@@ -1,0 +1,104 @@
+@import url(https://fonts.bunny.net/css?family=Nunito);
+.vh-100 {
+  height: 100vh;
+}
+
+.vw-100 {
+  width: 100vh;
+}
+
+.bg-body-dark {
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.card-center {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.input-outline-none {
+  border-bottom: greenyellow 1px solid;
+}
+.input-outline-none:focus {
+  color: #212529;
+  background-color: #fff;
+  outline: 0;
+}
+
+.btn-login:active {
+  background-color: #09A635;
+  box-shadow: 0 0 0 0.25rem #09A635;
+  border-color: #09A635;
+}
+.btn-login:focus {
+  background-color: #055f1e;
+  border-color: #055f1e;
+  box-shadow: 0 0 0 0.25rem #055f1e !important;
+}
+.btn-login:hover {
+  background-color: #055f1e;
+  border-color: #055f1e !important;
+}
+
+.cursive {
+  font-family: cursive;
+}
+
+.switch-button {
+  height: 18px;
+  border-radius: 20px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  transition: all ease 0.2s;
+  padding: 2px;
+  padding-right: 20px;
+  border: 1px solid #198754;
+  cursor: pointer;
+  background-color: #fff;
+}
+.switch-button.enabled {
+  padding-left: 20px;
+  padding-right: 2px;
+  background-color: #198754;
+}
+.switch-button.enabled .round {
+  background-color: #fff;
+}
+.switch-button .round {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #198754;
+}
+
+#combobox .bg-teal-600 {
+  background-color: #075985;
+}
+#combobox .combobox-button {
+  width: calc(100% - 30px);
+}
+#combobox .combobox-input {
+  min-width: calc(100% - 50px);
+  outline: none;
+  border: none;
+}
+#combobox .combobox-options {
+  min-width: calc(100% - 50px);
+  max-height: 500px;
+  overflow-y: scroll;
+}
+#combobox .combobox-options .combobox-option {
+  position: relative;
+  padding: 6px 12px 6px 0px;
+}
+#combobox .combobox-options .combobox-option .combobox-text {
+  padding-left: 35px;
+  white-space: normal;
+}
+#combobox .combobox-options .combobox-option .combobox-icon {
+  position: absolute;
+  left: 0;
+  transform: translateX(50%);
+}

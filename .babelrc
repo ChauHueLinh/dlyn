@@ -1,0 +1,17 @@
+{
+    "presets": [
+        
+    ],
+    "plugins": [
+        [
+            "babel-plugin-root-import",
+            {
+                "rootPathPrefix": "~",
+                "rootPathSuffix": "resources/js"
+            }
+        ]
+    ],
+    "env": {
+        
+    }
+}
