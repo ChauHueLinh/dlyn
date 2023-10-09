@@ -12452,25 +12452,10 @@ function UploadImg(props) {
       setErrors({});
     }
   }, [props.validate]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!fileImage) {
-      setPreview(undefined);
-      return;
-    }
-    var objectUrl = URL.createObjectURL(fileImage);
-    setPreview(objectUrl);
-    return function () {
-      return URL.revokeObjectURL(objectUrl);
-    };
-  }, [fileImage]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setPreview(props.value ? props.value : '');
-  }, [props.value]);
   var onSelectFile = function onSelectFile(e) {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
-    setFileImage(e.target.files[0]);
     props.callback(e.target.files[0]);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -12483,33 +12468,24 @@ function UploadImg(props) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "flex items-center space-x-4 ".concat(props.classPreview && props.classPreview),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "w-full",
         style: props.stylePreview && props.stylePreview,
         onClick: function onClick() {
           return document.getElementById('input-file').click();
         },
-        children: [preview && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "w-full border border-1 border-dark rounded-circle overflow-hidden display-square mx-auto",
-          style: props.style && props.style,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            className: "h-100 mx-auto",
-            style: props.stylePreview && props.stylePreview,
-            src: preview,
-            alt: "bdns"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "flex justify-center mt-3",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "".concat(props.containerBtnClass ? props.containerBtnClass : 'flex justify-content-start mt-3'),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             style: {
               fontSize: '30px'
             },
-            className: "w-50 inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100",
+            className: "".concat(props.btnClass ? props.btnClass : 'inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
               className: "bx bx-image-add"
             })
           })
-        })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "file",
         name: props.name,
@@ -12556,14 +12532,6 @@ function UploadImg(props) {
     _useState2 = _slicedToArray(_useState, 2),
     errors = _useState2[0],
     setErrors = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
-    _useState4 = _slicedToArray(_useState3, 2),
-    fileImage = _useState4[0],
-    setFileImage = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
-    _useState6 = _slicedToArray(_useState5, 2),
-    preview = _useState6[0],
-    setPreview = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (props.validate[props.name] != undefined) {
       Object.entries(props.validate).forEach(function (_ref) {
@@ -12581,26 +12549,11 @@ function UploadImg(props) {
       setErrors({});
     }
   }, [props.validate]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!fileImage) {
-      setPreview(undefined);
-      return;
-    }
-    var objectUrl = URL.createObjectURL(fileImage);
-    setPreview(objectUrl);
-    return function () {
-      return URL.revokeObjectURL(objectUrl);
-    };
-  }, [fileImage]);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    setPreview(props.value ? props.value : '');
-  }, [props.value]);
   var onSelectFile = function onSelectFile(e) {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
-    setFileImage(e.target.files[0]);
-    props.callback(e.target.files[0]);
+    props.callback(e.target.files);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: props.containerClass,
@@ -12612,40 +12565,24 @@ function UploadImg(props) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "flex items-center space-x-4 ".concat(props.classPreview && props.classPreview),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "w-full",
         style: props.stylePreview && props.stylePreview,
         onClick: function onClick() {
           return document.getElementById('input-files').click();
         },
-        children: [(preview === null || preview === void 0 ? void 0 : preview.length) > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "",
-          style: {
-            width: '150px',
-            height: '150px'
-          }
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "h1",
-          style: {
-            width: '150px',
-            height: '150px'
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-            src: "/assets/img/default-product.png",
-            alt: ""
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "flex justify-center mt-3",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "".concat(props.containerBtnClass ? props.containerBtnClass : 'flex justify-content-start mt-3'),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             style: {
               fontSize: '30px'
             },
-            className: "inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100",
+            className: "".concat(props.btnClass ? props.btnClass : 'inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
               className: "bx bx-image-add"
             })
           })
-        })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         type: "file",
         name: props.name,
@@ -12714,7 +12651,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Add(props) {
-  var _data$avatarUrl;
+  var _errorsMainImage$;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var status = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.modal.isOpen;
@@ -12730,12 +12667,20 @@ function Add(props) {
     _useState4 = _slicedToArray(_useState3, 2),
     loading = _useState4[0],
     setLoading = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    previewMainImage = _useState6[0],
+    setPreviewMainImage = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    errorsMainImage = _useState8[0],
+    setErrorsMainImage = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       status: 1
     }),
-    _useState6 = _slicedToArray(_useState5, 2),
-    data = _useState6[0],
-    setData = _useState6[1];
+    _useState10 = _slicedToArray(_useState9, 2),
+    data = _useState10[0],
+    setData = _useState10[1];
   var openDialog = collection.name == props.modalKey && status;
   var handler = function handler(e) {
     var _data$name, _data$phone, _data$email, _data$password, _data$roleId, _data$status;
@@ -12774,7 +12719,8 @@ function Add(props) {
     });
   };
   var callbackUploadFile = function callbackUploadFile(file) {
-    var errors = errors;
+    var objectUrl = URL.createObjectURL(file);
+    setPreviewMainImage(objectUrl);
     var arr_error = [];
     var ruleType = ['jpg', 'jpeg', 'png'];
     var type = file.type.split('/');
@@ -12784,17 +12730,10 @@ function Add(props) {
     if (file.size > 2000000) {
       arr_error.push('Dung lượng ảnh không vượt quá 2 MB.');
     }
-    if (arr_error.length > 0) {
-      setErrors(_objectSpread(_objectSpread({}, errors), {}, {
-        avatar: arr_error
-      }));
-    } else {
-      setData(_objectSpread(_objectSpread({}, data), {}, {
-        avatar: file
-      }));
-      (errors === null || errors === void 0 ? void 0 : errors.avatar) && errors.remove('avatar');
-      setErrors({});
-    }
+    setErrorsMainImage([].concat(arr_error));
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      main: file
+    }));
   };
   var close = function close() {
     dispatch(_store_modal_slice__WEBPACK_IMPORTED_MODULE_9__.modalActions.close());
@@ -12955,25 +12894,44 @@ function Add(props) {
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "w-50 h-100",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-          className: "w-full",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_molecules_UploadFile__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            name: "avatar",
-            containerClass: "mt-6 w-75 mx-auto",
-            validate: errors,
-            value: (_data$avatarUrl = data.avatarUrl) !== null && _data$avatarUrl !== void 0 ? _data$avatarUrl : document.location.origin + '/assets/img/default-avatar.png',
-            callback: function callback(file) {
-              return callbackUploadFile(file);
-            },
-            errors: errors,
-            style: {
-              width: '30vh',
-              height: '30vh'
-            }
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          className: "w-75 mx-auto",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("label", {
+            htmlFor: "",
+            className: "mt-6 h3",
+            children: "\u1EA2nh \u0111\u1EA1i di\u1EC7n"
           })
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "w-75 mx-auto",
+          children: [previewMainImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ".concat(errorsMainImage.length > 0 ? 'border-danger' : 'border-dark'),
+            style: {
+              height: '250px',
+              width: '250px'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("img", {
+              src: previewMainImage,
+              alt: "",
+              className: "mx-auto",
+              style: {
+                height: '250px'
+              }
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "text-red",
+            children: (_errorsMainImage$ = errorsMainImage[0]) !== null && _errorsMainImage$ !== void 0 ? _errorsMainImage$ : ''
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_molecules_UploadFile__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          name: "avatar",
+          containerClass: "mt-0 w-75 mx-auto",
+          validate: errors,
+          callback: function callback(file) {
+            return callbackUploadFile(file);
+          },
+          errors: errors
+        })]
       })]
     })]
   });
@@ -13688,7 +13646,6 @@ function AdminIndex() {
       name: 'delete'
     }));
   };
-  console.log(filters);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_molecules_PageFrame__WEBPACK_IMPORTED_MODULE_13__["default"], {
     data: lists,
     name: "Danh s\xE1ch qu\u1EA3n tr\u1ECB vi\xEAn",
@@ -14993,7 +14950,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Add(props) {
-  var _data$status, _data$avatarUrl, _data$avatarUrl2;
+  var _data$status, _errorsMainImage$;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var status = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.modal.isOpen;
@@ -15023,11 +14980,31 @@ function Add(props) {
     _useState10 = _slicedToArray(_useState9, 2),
     errorAttributes = _useState10[0],
     setErrorAttributes = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+    _useState12 = _slicedToArray(_useState11, 2),
+    previewMainImage = _useState12[0],
+    setPreviewMainImage = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 2),
+    previewDescriptionImage = _useState14[0],
+    setPreviewDescriptionImage = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState16 = _slicedToArray(_useState15, 2),
+    errorsDescriptionImage = _useState16[0],
+    setErrorsDescriptionImage = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState18 = _slicedToArray(_useState17, 2),
+    errorsMainImage = _useState18[0],
+    setErrorsMainImage = _useState18[1];
   var openDialog = collection.name == props.modalKey && status;
   var handler = function handler(e) {
-    var _data$name, _data$price;
+    var _data$name, _data$price, _data$mainImage, _Object$entries;
     e.preventDefault();
-    if (errors.avatar) {
+    if ((errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.length) > 0 || (errorsMainImage === null || errorsMainImage === void 0 ? void 0 : errorsMainImage.length) > 0 || (errorsDescriptionImage === null || errorsDescriptionImage === void 0 ? void 0 : errorsDescriptionImage.length) > 0) {
+      return false;
+    }
+    if (!data.mainImage) {
+      setErrorsMainImage(['Ảnh đại diện là bắt buộc.']);
       return false;
     }
     setLoading(true);
@@ -15040,6 +15017,10 @@ function Add(props) {
         value: item.value
       }));
     });
+    form.append('mainImage', (_data$mainImage = data.mainImage) !== null && _data$mainImage !== void 0 ? _data$mainImage : '');
+    data.descriptionImages.length > 0 && (Object === null || Object === void 0 || (_Object$entries = Object.entries(data.descriptionImages)) === null || _Object$entries === void 0 ? void 0 : _Object$entries.map(function (item) {
+      form.append('descriptionImages[]', item[1]);
+    }));
     _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_3__["default"].post(_Url__WEBPACK_IMPORTED_MODULE_9__.url.store, form).then(function (e) {
       react_hot_toast__WEBPACK_IMPORTED_MODULE_1__["default"].dismiss();
       if (e.data.status == true) {
@@ -15150,7 +15131,8 @@ function Add(props) {
     setAttributes(new_array_attributes);
   };
   var callbackUploadFile = function callbackUploadFile(file) {
-    var errors = errors;
+    var objectUrl = URL.createObjectURL(file);
+    setPreviewMainImage(objectUrl);
     var arr_error = [];
     var ruleType = ['jpg', 'jpeg', 'png'];
     var type = file.type.split('/');
@@ -15160,23 +15142,53 @@ function Add(props) {
     if (file.size > 2000000) {
       arr_error.push('Dung lượng ảnh không vượt quá 2 MB.');
     }
-    if (arr_error.length > 0) {
-      setErrors(_objectSpread(_objectSpread({}, errors), {}, {
-        main: arr_error
-      }));
-    } else {
-      setData(_objectSpread(_objectSpread({}, data), {}, {
-        main: file
-      }));
-      (errors === null || errors === void 0 ? void 0 : errors.main) && errors.remove('main');
-      setErrors({});
-    }
+    setErrorsMainImage([].concat(arr_error));
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      mainImage: file
+    }));
+  };
+  var callbackUploadFiles = function callbackUploadFiles(files) {
+    var _Object$entries2;
+    var newPreviewDescriptionImage = previewDescriptionImage !== null && previewDescriptionImage !== void 0 ? previewDescriptionImage : [];
+    var errors = errorsDescriptionImage !== null && errorsDescriptionImage !== void 0 ? errorsDescriptionImage : [];
+    Object === null || Object === void 0 || (_Object$entries2 = Object.entries(files)) === null || _Object$entries2 === void 0 || _Object$entries2.map(function (item) {
+      var _newPreviewDescriptio;
+      var objectUrl = URL.createObjectURL(item[1]);
+      var id = newPreviewDescriptionImage.length > 0 ? ((_newPreviewDescriptio = newPreviewDescriptionImage.at(-1)) === null || _newPreviewDescriptio === void 0 ? void 0 : _newPreviewDescriptio.id) + 1 : 0;
+      newPreviewDescriptionImage.push({
+        id: id,
+        value: objectUrl
+      });
+      var arr_error = [];
+      var ruleType = ['jpg', 'jpeg', 'png'];
+      var type = item[1].type.split('/');
+      errors['desImg-' + id] = [];
+      if (ruleType.includes(type[1]) == false) {
+        errors['desImg-' + id].push('Ảnh không đúng định dạng.');
+      }
+      if (item[1].size > 2000000) {
+        errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.');
+      }
+    });
+    setErrorsDescriptionImage(errors);
+    setPreviewDescriptionImage(_toConsumableArray(newPreviewDescriptionImage));
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      descriptionImages: files
+    }));
+  };
+  var removeDescriptionImage = function removeDescriptionImage(id) {
+    var newPreviewDescriptionImage = previewDescriptionImage === null || previewDescriptionImage === void 0 ? void 0 : previewDescriptionImage.filter(function (item) {
+      return item.id != id;
+    });
+    delete errorsDescriptionImage['desImg-' + id];
+    setPreviewDescriptionImage(_toConsumableArray(newPreviewDescriptionImage));
   };
   var close = function close() {
     dispatch(_store_modal_slice__WEBPACK_IMPORTED_MODULE_10__.modalActions.close());
     setLoading(false);
     setErrors({});
   };
+  console.log(errorsMainImage);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_molecules_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     display: openDialog,
     callbackClose: function callbackClose() {
@@ -15359,13 +15371,33 @@ function Add(props) {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
         className: "w-50",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_molecules_UploadFile__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+          className: "w-75 mx-auto",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("label", {
+            htmlFor: "",
+            className: "mt-6 h3",
+            children: "\u1EA2nh \u0111\u1EA1i di\u1EC7n"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+          className: "w-75 mx-auto",
+          children: [previewMainImage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            className: "flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ".concat(errorsMainImage.length > 0 ? 'border-danger' : 'border-dark'),
+            style: {
+              height: '100px',
+              width: '100px'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+              src: previewMainImage,
+              alt: ""
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            className: "text-red",
+            children: (_errorsMainImage$ = errorsMainImage[0]) !== null && _errorsMainImage$ !== void 0 ? _errorsMainImage$ : ''
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_molecules_UploadFile__WEBPACK_IMPORTED_MODULE_7__["default"], {
           name: "main",
-          containerClass: "mt-6 w-75 mx-auto",
-          labelClass: " h3",
+          containerClass: "mt-0 w-75 mx-auto",
           validate: errors,
-          label: "\u1EA2nh \u0111\u1EA1i di\u1EC7n",
-          value: (_data$avatarUrl = data.avatarUrl) !== null && _data$avatarUrl !== void 0 ? _data$avatarUrl : document.location.origin + '/assets/img/default-product.png',
           callback: function callback(file) {
             return callbackUploadFile(file);
           },
@@ -15374,16 +15406,59 @@ function Add(props) {
             width: '30vh',
             height: '30vh'
           }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+          className: "w-75 mx-auto",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("label", {
+            htmlFor: "",
+            className: "mt-6 h3",
+            children: "\u1EA2nh m\xF4 t\u1EA3"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+          className: "relative w-75 mx-auto flex space-x-1 flex-wrap",
+          children: previewDescriptionImage === null || previewDescriptionImage === void 0 ? void 0 : previewDescriptionImage.map(function (item) {
+            var _errorsDescriptionIma;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              className: "relative mt-2",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                className: "w-full absolute flex justify-content-end",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                  className: "bg-red flex items-center justify-center overflow-hidden rounded-circle",
+                  style: {
+                    width: '19px',
+                    height: '19px',
+                    fontSize: '19px'
+                  },
+                  onClick: function onClick(event) {
+                    return removeDescriptionImage(item.id);
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("i", {
+                    className: "bx bx-x-circle text-black bg-white",
+                    style: {
+                      width: '19px'
+                    }
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                className: "flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ".concat(errorsDescriptionImage['desImg-' + item.id].length > 0 ? 'border-danger' : 'border-dark'),
+                style: {
+                  height: '100px',
+                  width: '100px'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("img", {
+                  src: item.value,
+                  alt: "",
+                  title: (_errorsDescriptionIma = errorsDescriptionImage['desImg-' + item.id]) !== null && _errorsDescriptionIma !== void 0 ? _errorsDescriptionIma : ''
+                })
+              })]
+            }, item.id);
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_molecules_UploadFiles__WEBPACK_IMPORTED_MODULE_8__["default"], {
           name: "sub",
           preview: [],
-          containerClass: "mt-6 w-75 mx-auto",
-          labelClass: " h3",
-          label: "\u1EA2nh \u0111\xEDnh k\xE8m",
+          containerClass: "w-75 mx-auto",
           validate: errors,
-          value: (_data$avatarUrl2 = data.avatarUrl) !== null && _data$avatarUrl2 !== void 0 ? _data$avatarUrl2 : document.location.origin + '/assets/img/default-avatar.png',
-          callback: function callback(file) {
-            return console.log(file);
+          callback: function callback(files) {
+            callbackUploadFiles(files);
           },
           errors: errors,
           style: {

@@ -26,13 +26,22 @@ export default function Add(props) {
     })
     const [attributes, setAttributes] = useState([])
     const [errorAttributes, setErrorAttributes] = useState([])
+    const [previewMainImage, setPreviewMainImage] = useState()
+    const [previewDescriptionImage, setPreviewDescriptionImage] = useState([])
+    const [errorsDescriptionImage, setErrorsDescriptionImage] = useState([])
+    const [errorsMainImage, setErrorsMainImage] = useState([])
 
     const openDialog = collection.name == props.modalKey && status
         
     const handler = (e) => {
         e.preventDefault()
 
-        if(errors.avatar) {
+        if(errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
+            return false
+        }
+
+        if(!data.mainImage) {
+            setErrorsMainImage(['Ảnh đại diện là bắt buộc.'])
             return false
         }
 
@@ -46,6 +55,10 @@ export default function Add(props) {
                     name: item.name,
                     value: item.value,
                 }))
+            })
+            form.append('mainImage', data.mainImage ?? '')
+            data.descriptionImages.length > 0 && Object?.entries(data.descriptionImages)?.map((item) => {
+                form.append('descriptionImages[]', item[1])
             })
 
         axiosAPI.post(url.store, form)
@@ -131,7 +144,8 @@ export default function Add(props) {
     }
 
     const callbackUploadFile=(file) => {
-        var errors = errors
+        const objectUrl = URL.createObjectURL(file)
+        setPreviewMainImage(objectUrl)
         var arr_error = []
         var ruleType = ['jpg', 'jpeg', 'png']
         var type = file.type.split('/')
@@ -141,13 +155,37 @@ export default function Add(props) {
         if(file.size > 2000000) {
             arr_error.push('Dung lượng ảnh không vượt quá 2 MB.')
         }
-        if(arr_error.length > 0) {
-            setErrors({...errors, main: arr_error})
-        } else {
-            setData({...data, main: file})
-            errors?.main && errors.remove('main')
-            setErrors({})
-        }
+        setErrorsMainImage([...arr_error])
+        setData({...data, mainImage: file})
+    }
+
+    const callbackUploadFiles = (files) => {
+        const newPreviewDescriptionImage = previewDescriptionImage ?? []
+        const errors = errorsDescriptionImage ?? []
+        Object?.entries(files)?.map((item) => {
+            const objectUrl = URL.createObjectURL(item[1])
+            const id = newPreviewDescriptionImage.length > 0 ? newPreviewDescriptionImage.at(-1)?.id + 1 : 0
+            newPreviewDescriptionImage.push({id: id, value: objectUrl})
+            var arr_error = []
+            var ruleType = ['jpg', 'jpeg', 'png']
+            var type = item[1].type.split('/')
+            errors['desImg-' + id] = []
+            if(ruleType.includes(type[1]) == false) {
+                errors['desImg-' + id].push('Ảnh không đúng định dạng.')
+            }
+            if(item[1].size > 2000000) {
+                errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.')
+            }
+        })
+        setErrorsDescriptionImage(errors)
+        setPreviewDescriptionImage([...newPreviewDescriptionImage])
+        setData({...data, descriptionImages: files})
+    }
+
+    const removeDescriptionImage = (id) => {
+        const newPreviewDescriptionImage = previewDescriptionImage?.filter((item) => item.id != id)
+        delete errorsDescriptionImage['desImg-' + id]
+        setPreviewDescriptionImage([...newPreviewDescriptionImage])
     }
 
     const close = () => {
@@ -155,7 +193,7 @@ export default function Add(props) {
         setLoading(false)
         setErrors({})
     }
-
+    console.log(errorsMainImage);
     return (
         <Modal
             display={openDialog}
@@ -287,26 +325,61 @@ export default function Add(props) {
                     </form>
                 </div>
                 <div className="w-50">
+                    <div className="w-75 mx-auto">
+                        <label htmlFor="" className='mt-6 h3'>Ảnh đại diện</label>
+                    </div>
+                    <div className="w-75 mx-auto">
+                        {previewMainImage &&
+                            <div 
+                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage.length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                style={{height: '100px', width: '100px'}}
+                            >
+                                <img src={previewMainImage} alt="" />
+                            </div>
+                        }
+                        
+                        <div className="text-red">{errorsMainImage[0] ?? ''}</div>
+                    </div>
                     <UploadFile
                         name='main'
-                        containerClass='mt-6 w-75 mx-auto'
-                        labelClass=' h3'
+                        containerClass='mt-0 w-75 mx-auto'
                         validate={errors}
-                        label='Ảnh đại diện'
-                        value={data.avatarUrl ?? document.location.origin + '/assets/img/default-product.png'}
                         callback={(file) => callbackUploadFile(file)}
                         errors={errors}
                         style={{width: '30vh', height: '30vh'}}
                     />
+                    <div className="w-75 mx-auto">
+                        <label htmlFor="" className='mt-6 h3'>Ảnh mô tả</label>
+                    </div>
+                    <div className="relative w-75 mx-auto flex space-x-1 flex-wrap">
+                        {previewDescriptionImage?.map((item) => (
+                            <div className="relative mt-2" key={item.id}>
+                                <div className="w-full absolute flex justify-content-end">
+                                    <div 
+                                        className="bg-red flex items-center justify-center overflow-hidden rounded-circle" 
+                                        style={{width: '19px', height: '19px', fontSize: '19px'}}
+                                        onClick={(event) => removeDescriptionImage(item.id)}
+                                    >
+                                        <i className='bx bx-x-circle text-black bg-white' style={{width: '19px'}}></i>
+                                    </div>
+                                </div>
+                                <div    
+                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id].length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                    style={{height: '100px', width: '100px'}}
+                                >
+                                    <img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''}/>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                     <UploadFiles
                         name='sub'
                         preview={[]}
-                        containerClass='mt-6 w-75 mx-auto'
-                        labelClass=' h3'
-                        label='Ảnh đính kèm'
+                        containerClass='w-75 mx-auto'
                         validate={errors}
-                        value={data.avatarUrl ?? document.location.origin + '/assets/img/default-avatar.png'}
-                        callback={(file) => console.log(file)}
+                        callback={(files) => {
+                            callbackUploadFiles(files)
+                        }}
                         errors={errors}
                         style={{width: '30vh', height: '30vh'}}
                     />

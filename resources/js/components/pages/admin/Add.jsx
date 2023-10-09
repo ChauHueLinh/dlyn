@@ -18,9 +18,11 @@ export default function Add(props) {
     const status     = useSelector((state) => state.modal.isOpen)
     const collection = useSelector((state) => state.modal.collection)
 
-    const [errors, setErrors]         = useState({})
-    const [loading, setLoading]       = useState(false)
-    const [data, setData]             = useState({
+    const [errors, setErrors]                       = useState({})
+    const [loading, setLoading]                     = useState(false)
+    const [previewMainImage, setPreviewMainImage]   = useState(false)
+    const [errorsMainImage , setErrorsMainImage]    = useState([])
+    const [data, setData]                           = useState({
         status: 1,
     })
 
@@ -69,7 +71,8 @@ export default function Add(props) {
     }
 
     const callbackUploadFile=(file) => {
-        var errors = errors
+        const objectUrl = URL.createObjectURL(file)
+        setPreviewMainImage(objectUrl)
         var arr_error = []
         var ruleType = ['jpg', 'jpeg', 'png']
         var type = file.type.split('/')
@@ -79,13 +82,8 @@ export default function Add(props) {
         if(file.size > 2000000) {
             arr_error.push('Dung lượng ảnh không vượt quá 2 MB.')
         }
-        if(arr_error.length > 0) {
-            setErrors({...errors, avatar: arr_error})
-        } else {
-            setData({...data, avatar: file})
-            errors?.avatar && errors.remove('avatar')
-            setErrors({})
-        }
+        setErrorsMainImage([...arr_error])
+        setData({...data, main: file})
     }
 
     const close = () => {
@@ -203,17 +201,28 @@ export default function Add(props) {
                     </form>
                 </div>
                 <div className="w-50 h-100">
-                    <div className='w-full'>
-                        <UploadFile
-                            name='avatar'
-                            containerClass='mt-6 w-75 mx-auto'
-                            validate={errors}
-                            value={data.avatarUrl ?? document.location.origin + '/assets/img/default-avatar.png'}
-                            callback={(file) => callbackUploadFile(file)}
-                            errors={errors}
-                            style={{width: '30vh', height: '30vh'}}
-                        />
+                <div className="w-75 mx-auto">
+                    <label htmlFor="" className='mt-6 h3'>Ảnh đại diện</label>
                     </div>
+                    <div className="w-75 mx-auto">
+                        {previewMainImage &&
+                            <div 
+                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage.length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                style={{height: '250px', width: '250px'}}
+                            >
+                                <img src={previewMainImage} alt="" className='mx-auto' style={{height: '250px'}}/>
+                            </div>
+                        }
+                        
+                        <div className="text-red">{errorsMainImage[0] ?? ''}</div>
+                    </div>
+                    <UploadFile
+                        name='avatar'
+                        containerClass='mt-0 w-75 mx-auto'
+                        validate={errors}
+                        callback={(file) => callbackUploadFile(file)}
+                        errors={errors}
+                    />
                 </div>
 			</div>
         </Modal>

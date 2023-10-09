@@ -18,7 +18,7 @@
             <div class="w-50 h-100">
                 <div class="w-100 text-center text-white mt-5 fw-bold cursive" style="font-size: 100px">CMS</div>
                 <div class="h-75 text-white p-5">
-                    <form action="{{ route("cms.login.post") }}" method="POST">
+                    <form action="{{ route("cms.login.post") }}" method="POST" autocomplete="off">
                         @csrf
                         <label for="" class="mb-3 h4">Email</label>
                         <div class="w-full bg-transparent overflow-hidden mb-5 h5">
@@ -26,7 +26,7 @@
                         </div>
                         <label for="" class="mb-3 mt-5 h4">Mật khẩu</label>
                         <div class="w-full bg-transparent overflow-hidden h5">
-                            <input type="text" name='password' class="w-full bg-transparent input-outline-none text-white mb-5">
+                            <input type="password" name='password' class="w-full bg-transparent input-outline-none text-white mb-5">
                         </div>
                         <div class="w-50 mx-auto mt-5 h4" style="height: 50px">
                             <button type="submit" class="mx-auto rounded-3 w-full btn-login h-100 bg-success">

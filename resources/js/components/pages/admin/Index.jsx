@@ -179,7 +179,7 @@ function AdminIndex() {
             name: 'delete'
         }))
     }
-    console.log(filters);
+
     return (
         <PageFrame
             data={lists}

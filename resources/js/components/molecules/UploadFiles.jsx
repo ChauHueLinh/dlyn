@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react'
 export default function UploadImg(props) {
 
     const [errors, setErrors] = useState({})
-    const [fileImage, setFileImage] = useState()
-    const [preview, setPreview] = useState()
     
     useEffect(() => {
         if (props.validate[props.name] != undefined) {
@@ -21,29 +19,11 @@ export default function UploadImg(props) {
         }
     }, [props.validate]);
 
-    useEffect(() => {
-        if (!fileImage) {
-            setPreview(undefined)
-            return
-        }
-
-        const objectUrl = URL.createObjectURL(fileImage)
-        setPreview(objectUrl)
-
-        return () => URL.revokeObjectURL(objectUrl)
-    }, [fileImage])
-
-    useEffect(() => {
-        setPreview(props.value ? props.value : '')
-    }, [props.value])
-
     const onSelectFile = e => {
         if (!e.target.files || e.target.files.length === 0) {
             return
         }
-        
-        setFileImage(e.target.files[0])
-        props.callback(e.target.files[0])
+        props.callback(e.target.files)
     }
 
     return (
@@ -53,21 +33,10 @@ export default function UploadImg(props) {
             </div>
             <div className={`flex items-center space-x-4 ${props.classPreview && props.classPreview}`}>
                 <div className='w-full' style={props.stylePreview && props.stylePreview} onClick={() => document.getElementById('input-files').click()}>
-                    {
-                        preview?.length > 0 ? (
-                            <div className="" style={{width: '150px', height: '150px'}}>
-                            {}
-                            </div>
-                        ) : (
-                            <div className="h1" style={{width: '150px', height: '150px'}}>
-                                <img src="/assets/img/default-product.png" alt="" />
-                            </div>
-                        )
-                    }  
-                    <div className="flex justify-center mt-3">
+                    <div className={`${props.containerBtnClass ? props.containerBtnClass : 'flex justify-content-start mt-3'}`}>
                         <button 
                             style={{fontSize: '30px'}}
-                            className='inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'
+                            className={`${props.btnClass ? props.btnClass : 'inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'}`}
                         >
                             <i className='bx bx-image-add'></i>
                         </button>
