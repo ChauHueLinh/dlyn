@@ -7,7 +7,9 @@ use App\Models\Product;
 use App\Models\Permission;
 use App\Models\ProductImage;
 use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -104,10 +106,20 @@ class ProductService
             $this->productAttribute->where('productId', $params['id'])->whereIn('id', $params['deletedAttributes'])->delete();
         }
         if(isset($params['deletedDescriptionImages'])) {
-            $this->productImage->where('productId', $params['id'])->whereIn('id', $params['deletedDescriptionImages'])->delete();
+            $deletedDescriptionImages = $this->productImage->where('productId', $params['id'])->whereIn('id', $params['deletedDescriptionImages'])->get();
+            foreach($deletedDescriptionImages as $deletedDescriptionImage) {
+                if(Storage::disk('public')->exists($deletedDescriptionImage['src'])) {
+                    Storage::disk('public')->delete($deletedDescriptionImage['src']);
+                }
+                $deletedDescriptionImage->delete();
+            }
         }
         if(isset($params['mainImage'])) {
-            $this->productImage->where('productId', $params['id'])->where('key', 'main')->update(['src' => $params['mainImage']]);
+            $deletedMainImage = $this->productImage->where('productId', $params['id'])->where('key', 'main')->first();
+            if(Storage::disk('public')->exists($deletedMainImage['src'])) {
+                Storage::disk('public')->delete($deletedMainImage['src']);
+            }
+            $deletedMainImage->update(['src' => $params['mainImage']]);
         }
         if(isset($params['attributes'])) {
             foreach($params['attributes'] as $attribute) {
@@ -124,11 +136,7 @@ class ProductService
         }
         if(isset($params['descriptionImages'])) {
             foreach($params['descriptionImages'] as $descriptionImage) {
-                $this->productImage->updateOrCreate([
-                    'id'        => $attribute->id,
-                    'productId' => $product->id,
-                    'key'       => 'description',
-                ], [
+                $this->productImage->create([
                     'productId' => $product->id,
                     'key'       => 'description',
                     'src'       => $descriptionImage,
@@ -137,6 +145,25 @@ class ProductService
         }
         
         return Response::responseArray(true, 'Cập nhật thành công.');
+    }
+
+    public function destroy($params)
+    {
+        $images =  $this->productImage->where('productId', $params['id'])->get();
+        $attributes =  $this->productAttribute->where('productId', $params['id'])->get();
+
+        $this->product->where('id', $params['id'])->delete();
+        foreach($images as $image) {
+            if(Storage::disk('public')->exists($image['src'])) {
+                Storage::disk('public')->delete($image['src']);
+            }
+            $image->delete();
+        }
+        foreach($attributes as $attribute) {
+            $attribute->delete();
+        }
+
+        return Response::responseArray(true, 'Đã xóa thành công.');
     }
 
     public function getPermissions()

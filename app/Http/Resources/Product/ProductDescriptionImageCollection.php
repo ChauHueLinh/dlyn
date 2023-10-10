@@ -21,7 +21,7 @@ class ProductDescriptionImageCollection extends JsonResource
             'id' => $this->id,
             'productId' => $this->productId,
             'key' => $this->key,
-            'src' => url($this->src),
+            'src' => url('storage' . DIRECTORY_SEPARATOR . $this->src),
         ];
     }
 }

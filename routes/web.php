@@ -83,7 +83,7 @@ Route::prefix('cms')->group(function () {
 				Route::get('', [CommonProductController::class, 'index']);
 				Route::post('store', [CommonProductController::class, 'store'])->name('product.store');
 				Route::put('update', [CommonProductController::class, 'update'])->name('product.update');
-				// Route::delete('destroy', [CommonCouponController::class, 'destroy'])->name('coupon.destroy');
+				Route::delete('destroy', [CommonProductController::class, 'destroy'])->name('product.destroy');
 			});
 
 			Route::get('admin/constant', [CommonAdminController::class, 'getConstant'])->name('admin.constant');

@@ -11914,7 +11914,7 @@ function Paginate(props) {
   if ((props === null || props === void 0 || (_props$data = props.data) === null || _props$data === void 0 || (_props$data = _props$data.data) === null || _props$data === void 0 ? void 0 : _props$data.length) > 0) {
     var _props$data$meta, _props$data$meta2, _props$data$meta3, _props$data$meta4;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
-      className: "flex items-center justify-content-end space-x-2 mb-3",
+      className: "flex items-center justify-content-end space-x-2 mb-3 ".concat(props.className && props.className),
       "aria-label": "Table navigation",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "flex align-items-center",
@@ -14998,7 +14998,7 @@ function Add(props) {
     setErrorsMainImage = _useState18[1];
   var openDialog = collection.name == props.modalKey && status;
   var handler = function handler(e) {
-    var _data$name, _data$price, _data$quantity, _data$status, _data$mainImage, _data$descriptionImag;
+    var _data$name, _data$price, _data$quantity, _data$status, _data$mainImage, _data$descriptionImag, _data$descriptionImag2;
     e.preventDefault();
     if ((errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.length) > 0 || (errorsMainImage === null || errorsMainImage === void 0 ? void 0 : errorsMainImage.length) > 0 || (errorsDescriptionImage === null || errorsDescriptionImage === void 0 ? void 0 : errorsDescriptionImage.length) > 0) {
       console.log(2);
@@ -15015,14 +15015,14 @@ function Add(props) {
     form.append('price', (_data$price = data.price) !== null && _data$price !== void 0 ? _data$price : '');
     form.append('quantity', (_data$quantity = data.quantity) !== null && _data$quantity !== void 0 ? _data$quantity : '');
     form.append('status', (_data$status = data.status) !== null && _data$status !== void 0 ? _data$status : '');
-    attributes.length > 0 && attributes.map(function (item) {
+    (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 && attributes.map(function (item) {
       form.append('attr[]', JSON.stringify({
         name: item.name,
         value: item.value
       }));
     });
     form.append('mainImage', (_data$mainImage = data.mainImage) !== null && _data$mainImage !== void 0 ? _data$mainImage : '');
-    data.descriptionImages.length > 0 && ((_data$descriptionImag = data.descriptionImages) === null || _data$descriptionImag === void 0 ? void 0 : _data$descriptionImag.map(function (item) {
+    (data === null || data === void 0 || (_data$descriptionImag = data.descriptionImages) === null || _data$descriptionImag === void 0 ? void 0 : _data$descriptionImag.length) > 0 && (data === null || data === void 0 || (_data$descriptionImag2 = data.descriptionImages) === null || _data$descriptionImag2 === void 0 ? void 0 : _data$descriptionImag2.map(function (item) {
       form.append('descriptionImages[]', item.value);
     }));
     _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_3__["default"].post(_Url__WEBPACK_IMPORTED_MODULE_9__.url.store, form).then(function (e) {
@@ -15156,10 +15156,10 @@ function Add(props) {
     }));
   };
   var callbackUploadFiles = function callbackUploadFiles(files) {
-    var _data$descriptionImag2, _Object$entries;
+    var _data$descriptionImag3, _Object$entries;
     var newPreviewDescriptionImage = previewDescriptionImage !== null && previewDescriptionImage !== void 0 ? previewDescriptionImage : [];
     var errors = errorsDescriptionImage !== null && errorsDescriptionImage !== void 0 ? errorsDescriptionImage : [];
-    var desImgs = (_data$descriptionImag2 = data.descriptionImages) !== null && _data$descriptionImag2 !== void 0 ? _data$descriptionImag2 : [];
+    var desImgs = (_data$descriptionImag3 = data.descriptionImages) !== null && _data$descriptionImag3 !== void 0 ? _data$descriptionImag3 : [];
     Object === null || Object === void 0 || (_Object$entries = Object.entries(files)) === null || _Object$entries === void 0 || _Object$entries.map(function (item) {
       var _newPreviewDescriptio, _errors;
       var objectUrl = URL.createObjectURL(item[1]);
@@ -15192,11 +15192,11 @@ function Add(props) {
     }));
   };
   var removeDescriptionImage = function removeDescriptionImage(id) {
-    var _data$descriptionImag3;
+    var _data$descriptionImag4;
     var newPreviewDescriptionImage = previewDescriptionImage === null || previewDescriptionImage === void 0 ? void 0 : previewDescriptionImage.filter(function (item) {
       return item.id != id;
     });
-    var newDescriptionImages = data === null || data === void 0 || (_data$descriptionImag3 = data.descriptionImages) === null || _data$descriptionImag3 === void 0 ? void 0 : _data$descriptionImag3.filter(function (item) {
+    var newDescriptionImages = data === null || data === void 0 || (_data$descriptionImag4 = data.descriptionImages) === null || _data$descriptionImag4 === void 0 ? void 0 : _data$descriptionImag4.filter(function (item) {
       return item.id != id;
     });
     delete errorsDescriptionImage['desImg-' + id];
@@ -15206,7 +15206,9 @@ function Add(props) {
     }));
   };
   var close = function close() {
-    setData({});
+    setData({
+      status: 0
+    });
     setErrors({});
     setLoading(false);
     setAttributes([]);
@@ -15516,7 +15518,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_modal_slice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/modal-slice */ "./resources/js/components/store/modal-slice.js");
 /* harmony import */ var _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../libs/axiosAPI */ "./resources/js/libs/axiosAPI.js");
 /* harmony import */ var _molecules_Modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../molecules/Modal */ "./resources/js/components/molecules/Modal.jsx");
-/* harmony import */ var _coupon_Url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../coupon/Url */ "./resources/js/components/pages/coupon/Url.jsx");
+/* harmony import */ var _Url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Url */ "./resources/js/components/pages/product/Url.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -15545,7 +15547,7 @@ function Delete(props) {
     var form = new FormData();
     form.append('id', props.data.id);
     form.append('_method', 'DELETE');
-    _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_4__["default"].post(_coupon_Url__WEBPACK_IMPORTED_MODULE_6__.url.destroy, form).then(function (res) {
+    _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_4__["default"].post(_Url__WEBPACK_IMPORTED_MODULE_6__.url.destroy, form).then(function (res) {
       react_hot_toast__WEBPACK_IMPORTED_MODULE_1__["default"].dismiss();
       if (res.data.status == true) {
         react_hot_toast__WEBPACK_IMPORTED_MODULE_1__["default"].success(res.data.message);
@@ -15572,7 +15574,7 @@ function Delete(props) {
       children: [" ", props.data.name, " "]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
       className: "mt-2 text-gray-700 text-center",
-      children: " B\u1EA1n c\xF3 ch\u1EAFc ch\u1EAFn mu\u1ED1n x\xF3a m\xE3 gi\u1EA3m gi\xE1 n\xE0y kh\xF4ng? "
+      children: " B\u1EA1n c\xF3 ch\u1EAFc ch\u1EAFn mu\u1ED1n x\xF3a s\u1EA3n ph\u1EA9m n\xE0y kh\xF4ng? "
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "flex items-center justify-center mt-4 space-x-4",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
@@ -16352,6 +16354,7 @@ function ProductIndex() {
     style: 'currency',
     currency: 'VND'
   });
+  var NUMBER = new Intl.NumberFormat();
   var tableThead = [{
     name: 'Id',
     key: 'id'
@@ -16547,7 +16550,7 @@ function ProductIndex() {
             children: item.name
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("td", {
             className: "p-3 text-end",
-            children: item.quantity
+            children: NUMBER.format(item.quantity)
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("td", {
             className: "p-3 text-end",
             children: VND.format(item.price)

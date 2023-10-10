@@ -25,7 +25,7 @@ class ProductCollection extends JsonResource
             'status'            => $this->status,
             'quantity'          => $this->quantity,
             'attributes'        => $this->attributes,
-            'mainImage'         => url($this->mainImage['src']),
+            'mainImage'         => url('storage' . DIRECTORY_SEPARATOR . $this->mainImage['src']),
             'descriptionImages' => ProductDescriptionImageCollection::collection($this->descriptionImages),
         ];
     }

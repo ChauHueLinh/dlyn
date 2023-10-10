@@ -93,6 +93,17 @@ class ProductController extends Controller
         return Response::responseArray($result['status'], $result['message']);
     }
 
+    public function destroy(Request $request)
+    {
+        $params = [
+            'id' => $request->id,
+        ];
+
+        $result = $this->productService->destroy($params);
+
+        return Response::responseArray($result['status'], $result['message']);
+    }
+
     public function getConstant(Request $request) 
     {
         $permissions = auth()->guard('admin')->user()->role ? auth()->user()->role->permissions->pluck('displayName', 'key') : [];

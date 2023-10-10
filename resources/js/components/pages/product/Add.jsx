@@ -54,14 +54,14 @@ export default function Add(props) {
             form.append('price', data.price ?? '')
             form.append('quantity', data.quantity ?? '')
             form.append('status', data.status ?? '')
-            attributes.length > 0 && attributes.map((item) => {
+            attributes?.length > 0 && attributes.map((item) => {
                 form.append('attr[]', JSON.stringify({
                     name: item.name,
                     value: item.value,
                 }))
             })
             form.append('mainImage', data.mainImage ?? '')
-            data.descriptionImages.length > 0 && data.descriptionImages?.map((item) => {
+            data?.descriptionImages?.length > 0 && data?.descriptionImages?.map((item) => {
                 form.append('descriptionImages[]', item.value)
             })
 
@@ -206,7 +206,7 @@ export default function Add(props) {
     }
 
     const close = () => {
-        setData({})
+        setData({status: 0})
         setErrors({})
         setLoading(false)
         setAttributes([])

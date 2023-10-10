@@ -25,6 +25,8 @@ function ProductIndex() {
         currency: 'VND',
     });
 
+    var NUMBER = new Intl.NumberFormat();
+
     const tableThead = [
         {
             name: 'Id',
@@ -194,7 +196,7 @@ function ProductIndex() {
                             {item.name}
                         </td>
                         <td className="p-3 text-end">
-                            {item.quantity}
+                            {NUMBER.format(item.quantity)}
                         </td>
                         <td className="p-3 text-end">
                             {VND.format(item.price)}
@@ -232,7 +234,6 @@ function ProductIndex() {
                     </tr>
                 ))}
             </Table>
-
             <Add
                 modalKey='create'
                 callback={() => callbackAdd()}

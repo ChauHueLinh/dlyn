@@ -17,7 +17,7 @@ export default function Paginate(props) {
 
 	if(props?.data?.data?.length > 0) {
 		return (
-		<nav className="flex items-center justify-content-end space-x-2 mb-3" aria-label="Table navigation">
+		<nav className={`flex items-center justify-content-end space-x-2 mb-3 ${props.className && props.className}`} aria-label="Table navigation">
 			<div className="flex align-items-center">
 				<div className="">Số hàng</div>
 			</div>

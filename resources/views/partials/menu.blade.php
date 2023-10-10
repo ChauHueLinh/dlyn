@@ -42,13 +42,13 @@
             </ul>
         </li>
     @endif
-    @if ($auth->hasRoles('indexProduct') || $auth->hasRoles('indexReceip') || $auth->hasRoles('indexCoupon'))
+    @if ($auth->hasRoles('indexProduct') ||  $auth->hasRoles('indexCoupon'))
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-5">
                     <i class='bx bxs-cart' ></i>
                 </div>
-                <div class="menu-title">Bán hàng</div>
+                <div class="menu-title">Sản phẩm</div>
             </a>
             <ul>
                 @if (Auth::user()->can('index', \App\Models\Product::class))
@@ -57,7 +57,7 @@
                             <div class="parent-icon icon-color-5 pl-4">
                                 <i class='bx bxs-receipt'></i>
                             </div>
-                            <div class="menu-title">Sản phẩm</div>
+                            <div class="menu-title">Danh sách</div>
                         </a>
                     </li>
                 @endif

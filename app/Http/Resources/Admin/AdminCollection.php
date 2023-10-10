@@ -26,7 +26,7 @@ class AdminCollection extends JsonResource
             'phone'         => $this->phone,
             'email'         => $this->email,
             'role'          => $this->role,
-            'avatar'        => isset($this->avatar) ? url($this->avatar) : url(Admin::DEFAULT_IMG),
+            'avatar'        => isset($this->avatar) ? url('storage'. DIRECTORY_SEPARATOR . $this->avatar) : url(Admin::DEFAULT_IMG),
         ];
     }
 }

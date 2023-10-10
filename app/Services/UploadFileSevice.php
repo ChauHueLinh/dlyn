@@ -18,7 +18,7 @@ class UploadFileSevice
 	{
 		$time = Carbon::now()->timestamp;
 		$fileName = $time . '_' . $file->getClientOriginalName();
-		$filePath = $folder . '/' . $fileName;
+		$filePath = $folder . DIRECTORY_SEPARATOR . $fileName;
 
 		if (Storage::disk('public')->exists($filePath)) {
             return Response::responseArray(false, 'Đã có lỗi xảy ra.');
@@ -26,7 +26,7 @@ class UploadFileSevice
 			Storage::disk('public')->putFileAs($folder, $file, $fileName);
 		}
 
-		$fullUrl = 'storage/' . $filePath;
+		$fullUrl = $filePath;
 
 		return Response::responseArray(true, 'Thành công.', $fullUrl);
 	}
@@ -37,7 +37,7 @@ class UploadFileSevice
 		$result = [];
 		foreach($files as $file) {
 			$fileName = $time . '_' . $file->getClientOriginalName();
-			$filePath = $folder . '/' . $fileName;
+			$filePath = $folder . DIRECTORY_SEPARATOR . $fileName;
 
 			if (Storage::disk('public')->exists($filePath)) {
 			    return Response::responseArray(false, 'Đã có lỗi xảy ra.');
@@ -45,7 +45,7 @@ class UploadFileSevice
 				Storage::disk('public')->putFileAs($folder, $file, $fileName);
 			}
 
-			$result[] = 'storage/' . $filePath;
+			$result[] = $filePath;
 		}
 
 		return Response::responseArray(true, 'Thành công.', $result);
