@@ -37,10 +37,12 @@ export default function Add(props) {
         e.preventDefault()
 
         if(errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
+            console.log(2);
             return false
         }
 
         if(!data.mainImage) {
+            console.log(1);
             setErrorsMainImage(['Ảnh đại diện là bắt buộc.'])
             return false
         }
@@ -50,15 +52,17 @@ export default function Add(props) {
         let form = new FormData()
             form.append('name', data.name ?? '')
             form.append('price', data.price ?? '')
+            form.append('quantity', data.quantity ?? '')
+            form.append('status', data.status ?? '')
             attributes.length > 0 && attributes.map((item) => {
-                form.append('attributes[]', JSON.stringify({
+                form.append('attr[]', JSON.stringify({
                     name: item.name,
                     value: item.value,
                 }))
             })
             form.append('mainImage', data.mainImage ?? '')
-            data.descriptionImages.length > 0 && Object?.entries(data.descriptionImages)?.map((item) => {
-                form.append('descriptionImages[]', item[1])
+            data.descriptionImages.length > 0 && data.descriptionImages?.map((item) => {
+                form.append('descriptionImages[]', item.value)
             })
 
         axiosAPI.post(url.store, form)
@@ -112,8 +116,9 @@ export default function Add(props) {
         } else {
             e.push(nameUnique)
         }
-
-        error_atrributes.push({id: id, value: e})
+        if(e.length > 0) {
+            error_atrributes.push({id: id, value: e})
+        }
         setErrorAttributes(error_atrributes)
 
         var new_array_attributes = attributes.filter((item) => item.id != id)
@@ -133,8 +138,9 @@ export default function Add(props) {
         } else {
             e.filter((item) => item != valueLength)
         }
-
-        error_atrributes.push({id: id, value: e})
+        if(e.length > 0) {
+            error_atrributes.push({id: id, value: e})
+        }
         setErrorAttributes(error_atrributes)
 
         var new_array_attributes = attributes.filter((item) => item.id != id)
@@ -160,15 +166,16 @@ export default function Add(props) {
     }
 
     const callbackUploadFiles = (files) => {
-        const newPreviewDescriptionImage = previewDescriptionImage ?? []
-        const errors = errorsDescriptionImage ?? []
+        let newPreviewDescriptionImage = previewDescriptionImage ?? []
+        let errors = errorsDescriptionImage ?? []
+        let desImgs = data.descriptionImages ?? []
+
         Object?.entries(files)?.map((item) => {
             const objectUrl = URL.createObjectURL(item[1])
             const id = newPreviewDescriptionImage.length > 0 ? newPreviewDescriptionImage.at(-1)?.id + 1 : 0
-            newPreviewDescriptionImage.push({id: id, value: objectUrl})
-            var arr_error = []
             var ruleType = ['jpg', 'jpeg', 'png']
             var type = item[1].type.split('/')
+
             errors['desImg-' + id] = []
             if(ruleType.includes(type[1]) == false) {
                 errors['desImg-' + id].push('Ảnh không đúng định dạng.')
@@ -176,24 +183,38 @@ export default function Add(props) {
             if(item[1].size > 2000000) {
                 errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.')
             }
+            if(errors['desImg-' + id]?.length == 0) {
+                delete errors['desImg-' + id]
+            }
+            desImgs.push({id: id, value: item[1]})
+            newPreviewDescriptionImage.push({id: id, value: objectUrl})
         })
+
         setErrorsDescriptionImage(errors)
         setPreviewDescriptionImage([...newPreviewDescriptionImage])
-        setData({...data, descriptionImages: files})
+        setData({...data, descriptionImages: desImgs})
     }
 
     const removeDescriptionImage = (id) => {
         const newPreviewDescriptionImage = previewDescriptionImage?.filter((item) => item.id != id)
+        const newDescriptionImages = data?.descriptionImages?.filter((item) => item.id != id)
+
         delete errorsDescriptionImage['desImg-' + id]
+
         setPreviewDescriptionImage([...newPreviewDescriptionImage])
+        setData({...data, descriptionImages: newDescriptionImages})
     }
 
     const close = () => {
-        dispatch(modalActions.close())
-        setLoading(false)
+        setData({})
         setErrors({})
+        setLoading(false)
+        setAttributes([])
+        setPreviewMainImage()
+        setPreviewDescriptionImage([])
+        dispatch(modalActions.close())
     }
-    console.log(errorsMainImage);
+
     return (
         <Modal
             display={openDialog}
@@ -331,7 +352,7 @@ export default function Add(props) {
                     <div className="w-75 mx-auto">
                         {previewMainImage &&
                             <div 
-                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage.length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage?.length > 0 ? 'border-danger' : 'border-dark'}`} 
                                 style={{height: '100px', width: '100px'}}
                             >
                                 <img src={previewMainImage} alt="" />
@@ -364,7 +385,7 @@ export default function Add(props) {
                                     </div>
                                 </div>
                                 <div    
-                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id].length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id]?.length > 0 ? 'border-danger' : 'border-dark'}`} 
                                     style={{height: '100px', width: '100px'}}
                                 >
                                     <img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''}/>

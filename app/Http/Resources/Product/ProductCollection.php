@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Product;
 
+use App\Models\ProductImage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductCollection extends JsonResource
@@ -17,12 +18,15 @@ class ProductCollection extends JsonResource
         if(!empty($this->items)) {
             return [];
         }
-
         return [
-            'id'            => $this->id,
-            'name'          => $this->name,
-            'attributes'    => $this->attributes,
-            'price'         => $this->price,
+            'id'                => $this->id,
+            'name'              => $this->name,
+            'price'             => $this->price,
+            'status'            => $this->status,
+            'quantity'          => $this->quantity,
+            'attributes'        => $this->attributes,
+            'mainImage'         => url($this->mainImage['src']),
+            'descriptionImages' => ProductDescriptionImageCollection::collection($this->descriptionImages),
         ];
     }
 }

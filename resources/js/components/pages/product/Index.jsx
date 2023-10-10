@@ -20,21 +20,32 @@ import {filtersActions} from '~/components/store/filters-slice'
 
 function ProductIndex() {
 
+    const VND = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+
     const tableThead = [
         {
             name: 'Id',
             key: 'id',
         },
         {
+            name: 'Ảnh',
+            key: false,
+            className: 'text-center flex justify-content-start space-x-1'
+        },
+        {
             name: 'Tên',
             key: 'name'
         },
         {
-            name: 'Thuộc tính',
-            key: false
+            name: 'Số lượng',
+            key: 'quantity',
+            className: 'text-end flex justify-content-end space-x-1'
         },
         {
-            name: 'Giá (VNĐ)',
+            name: 'Giá',
             key: 'price',
             className: 'text-end flex justify-content-end space-x-1'
         },
@@ -172,17 +183,21 @@ function ProductIndex() {
                             {item.id}
                         </td>
                         <td className="p-3">
-                            {item.name}
+                            <img 
+                                src={item.mainImage} 
+                                alt="" 
+                                style={{width: '60px', height: '60px'}}
+                                className='rounded-2'
+                            />
                         </td>
                         <td className="p-3">
-                            {item.attributes?.map((item, key) => (
-                                <div key={key} className='flex flex-nowrap w-full'>
-                                    <div className='w-25'>{item.name}: </div><div className="w-75">{item.value}</div>
-                                </div>
-                            ))}
+                            {item.name}
                         </td>
                         <td className="p-3 text-end">
-                            {item.price}
+                            {item.quantity}
+                        </td>
+                        <td className="p-3 text-end">
+                            {VND.format(item.price)}
                         </td>
                         <td>
                             <div className="flex items-center justify-center p-3">

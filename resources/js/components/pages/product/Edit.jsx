@@ -1,47 +1,97 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import axiosAPI from '~/libs/axiosAPI'
-import Input from '~/components/molecules/Input'
 import Modal from '~/components/molecules/Modal'
+import Input from '~/components/molecules/Input'
 import SelectBox from '~/components/molecules/SelectBox'
 import UploadFile from '~/components/molecules/UploadFile'
+import UploadFiles from '~/components/molecules/UploadFiles'
 
-import { url } from '~/components/pages/admin/Url'
+import {url} from '~/components/pages/product/Url'
 import {modalActions} from '~/components/store/modal-slice'
+import { map } from 'leaflet'
 
 export default function Edit(props) {
     const dispatch   = useDispatch()
     const status     = useSelector((state) => state.modal.isOpen)
     const collection = useSelector((state) => state.modal.collection)
-    
-    const [errors, setErrors]           = useState({})
-    const [dataItem, setDataItem]       = useState(props.data)
-    const [loading, setLoading]         = useState(false)
 
-    useEffect(() => {
-        setDataItem(props.data)
-    }, [props.data])
+    const [errors, setErrors]                                       = useState({})
+    const [loading, setLoading]                                     = useState(false)
+    const [attributes, setAttributes]                               = useState([])
+    const [errorAttributes, setErrorAttributes]                     = useState([])
+    const [errorsMainImage, setErrorsMainImage]                     = useState([])
+    const [previewMainImage, setPreviewMainImage]                   = useState()
+    const [deletedAttributes, setDeletedAttributes]                 = useState([])
+    const [errorsDescriptionImage, setErrorsDescriptionImage]       = useState([])
+    const [previewDescriptionImage, setPreviewDescriptionImage]     = useState([])
+    const [deletedDescriptionImages, setDeletedDescriptionImages]   = useState([])
+    const [data, setData]                                           = useState({
+        status: 0
+    })
     
     const openDialog = collection.name == props.modalKey && status
 
+    useEffect(() => {
+        let desImgs = []
+        let attr = []
+        props?.data?.descriptionImages?.map((item) => {
+            desImgs.push({id: item.id, value: item.src})
+        })
+        props?.data?.attributes?.map((item) => {
+            attr.push({id: item.id, name: item.name, value: item.value})
+        })
+
+        setPreviewMainImage(props?.data?.mainImage)
+        setPreviewDescriptionImage(desImgs)
+        setAttributes(attr)
+        setData({...data,
+            id: props?.data?.id,
+            name: props?.data?.name,
+            price: props?.data?.price,
+            quantity: props?.data?.quantity,
+            status: props?.data?.status,
+        })
+    }, [props.data, status])
+        
     const handler = (e) => {
         e.preventDefault()
 
-        dispatch(modalActions.loading(true))
+        if(errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
+            console.log(2);
+            return false
+        }
+
+        setLoading(true)
 
         let form = new FormData()
-            form.append('id', dataItem.id ?? '')
-            form.append('name', dataItem.name ?? '')
-            form.append('phone', dataItem.phone ?? '')
-            form.append('email', dataItem.email ?? '')
-            form.append('roleId', dataItem.roleId ?? '')
-            form.append('status', dataItem.status ?? '')
-            dataItem.file && form.append('avatar', dataItem.file)
-            dataItem.file && form.append('password', dataItem.password ?? '')
+            form.append('id', data.id ?? '')
+            form.append('name', data.name ?? '')
+            form.append('price', data.price ?? '')
+            form.append('quantity', data.quantity ?? '')
+            form.append('status', data.status ?? '')
+            form.append('mainImage', data.mainImage ?? '')
+            form.append('_method', 'PUT')
+            attributes?.length > 0 && attributes?.map((item) => {
+                form.append('attr[]', JSON.stringify({
+                    id: item.id,
+                    name: item.name,
+                    value: item.value,
+                }))
+            })
+            data?.descriptionImages?.length > 0 && data?.descriptionImages?.map((item) => {
+                form.append('descriptionImages[]', item.value)
+            })
+            deletedAttributes?.length > 0 && deletedAttributes?.map((item) => {
+                form.append('deletedAttributes[]', item)
+            })
+            deletedDescriptionImages?.length > 0 && deletedDescriptionImages?.map((item) => {
+                form.append('deletedDescriptionImages[]', item)
+            })
 
         axiosAPI.post(url.update, form)
         .then((e) => {
@@ -67,8 +117,73 @@ export default function Edit(props) {
         })
     }
 
+    const addAttribute = () => {
+        setAttributes([...attributes, {id: attributes?.length > 0 ? (attributes.at(-1).id + 1) : 0, name: '', value: ''}]) 
+    } 
+
+    const removeAttribute = (id) => {
+        var new_array_attributes = attributes.filter((item) => item.id != id)
+        var new_deleted_attributes = deletedAttributes
+        new_deleted_attributes.push(id)
+
+        setDeletedAttributes(new_deleted_attributes)
+        setAttributes(new_array_attributes)
+    } 
+
+    const setNameAttribute = (id, name, value) => {
+        const error_atrributes = errorAttributes.filter((item) => item.id != id)
+        const maxString = 255
+        const nameLength = 'Tên thuộc tính chứa tối đa ' + maxString + ' ký tự.'
+        const nameUnique = 'Thuộc tính đã tồn tại.'
+        const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
+        const e = [];
+
+        if(name.length > maxString) {
+            e.push(nameLength)
+        } else {
+            e.filter((item) => item != nameLength)
+        }
+        if(attributes.filter((item) => item.name == name).length < 1) {
+            e.filter((item) => item != nameUnique)
+        } else {
+            e.push(nameUnique)
+        }
+        if(e.length > 0) {
+            error_atrributes.push({id: id, value: e})
+        }
+        setErrorAttributes(error_atrributes)
+
+        var new_array_attributes = attributes.filter((item) => item.id != id)
+        new_array_attributes.push({id: id, name: name, value:value})
+        new_array_attributes.sort((a, b) => a.id-b.id)
+        setAttributes(new_array_attributes)
+    }
+
+    const setValueAttribute = (id, name, value) => {
+        const error_atrributes = errorAttributes.filter((item) => item.id != id)
+        const maxString = 255
+        const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
+        const e = [];
+
+        if(value.length > maxString) {
+            e.push(valueLength)
+        } else {
+            e.filter((item) => item != valueLength)
+        }
+        if(e.length > 0) {
+            error_atrributes.push({id: id, value: e})
+        }
+        setErrorAttributes(error_atrributes)
+
+        var new_array_attributes = attributes.filter((item) => item.id != id)
+        new_array_attributes.push({id: id, name: name, value:value})
+        new_array_attributes.sort((a, b) => a.id-b.id)
+        setAttributes(new_array_attributes)
+    }
+
     const callbackUploadFile=(file) => {
-        var errors = errors
+        const objectUrl = URL.createObjectURL(file)
+        setPreviewMainImage(objectUrl)
         var arr_error = []
         var ruleType = ['jpg', 'jpeg', 'png']
         var type = file.type.split('/')
@@ -78,147 +193,255 @@ export default function Edit(props) {
         if(file.size > 2000000) {
             arr_error.push('Dung lượng ảnh không vượt quá 2 MB.')
         }
-        if(arr_error.length > 0) {
-            setErrors({...errors, avatar: arr_error})
-        } else {
-            setDataItem({...dataItem, file: file})
-            errors?.avatar && errors.remove('avatar')
-            setErrors({})
-        }
+        setErrorsMainImage([...arr_error])
+        setData({...data, mainImage: file})
+    }
+
+    const callbackUploadFiles = (files) => {
+        let newPreviewDescriptionImage = previewDescriptionImage ?? []
+        let errors = errorsDescriptionImage ?? []
+        let desImgs = data.descriptionImages ?? []
+
+        Object?.entries(files)?.map((item) => {
+            const objectUrl = URL.createObjectURL(item[1])
+            const id = newPreviewDescriptionImage.length > 0 ? newPreviewDescriptionImage.at(-1)?.id + 1 : 0
+            var ruleType = ['jpg', 'jpeg', 'png']
+            var type = item[1].type.split('/')
+
+            errors['desImg-' + id] = []
+            if(ruleType.includes(type[1]) == false) {
+                errors['desImg-' + id].push('Ảnh không đúng định dạng.')
+            }
+            if(item[1].size > 2000000) {
+                errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.')
+            }
+            if(errors['desImg-' + id]?.length == 0) {
+                delete errors['desImg-' + id]
+            }
+            desImgs.push({id: id, value: item[1]})
+            newPreviewDescriptionImage.push({id: id, value: objectUrl})
+        })
+
+        setErrorsDescriptionImage(errors)
+        setPreviewDescriptionImage([...newPreviewDescriptionImage])
+        setData({...data, descriptionImages: desImgs})
+    }
+
+    const removeDescriptionImage = (id) => {
+        const newPreviewDescriptionImage = previewDescriptionImage?.filter((item) => item.id != id)
+        const newDescriptionImages = data?.descriptionImages?.filter((item) => item.id != id)
+        const newDeleletedDescriptionImages = deletedDescriptionImages ?? []
+
+        delete errorsDescriptionImage['desImg-' + id]
+        newDeleletedDescriptionImages.push(id)
+
+        setPreviewDescriptionImage([...newPreviewDescriptionImage])
+        setData({...data, descriptionImages: newDescriptionImages})
+        setDeletedDescriptionImages([...newDeleletedDescriptionImages])
     }
 
     const close = () => {
         dispatch(modalActions.close())
-        dispatch(modalActions.loadingTable(false))
+        setLoading(false)
         setErrors({})
+        setAttributes([])
+        setData({})
     }
 
     return (
         <Modal
             display={openDialog}
             callbackClose={() => close()}
-            wrapperClass='w-50'
+			wrapperClass='w-75'
+            btnClose={true}
         >
-            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Chỉnh sửa quản trị viên </h2>
-            <div className="flex w-100 h-100">
-				<div className="w-50">
+            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Chỉnh sửa sản phẩm</h2>
+            <div className="flex">
+                <div className="w-50">
                     <form onSubmit={handler} className="space-y-6">
-						<Input
-							id='name'
-							name='name'
-							type='text'
-                            value={dataItem.name ?? ''}
-							labelName='Tên'
-							placeholder="Nhập tên"
-							isRequired={true}
-							validate={errors}
-							containerClass='w-full mb-4'
-							onChange={(value) => {
-								setDataItem({...dataItem, name: value})
-							}}
-						/>
-						<Input
-							id='phone'
-							name='phone'
-							type='text'
-                            value={dataItem.phone ?? ''}
-							labelName='Số điện thoại'
-							placeholder="Nhập số điện thoại"
-							isRequired={true}
-							validate={errors}
-							containerClass='w-full mb-4'
-							onChange={(value) => {
-								setDataItem({...dataItem, phone: value})
-							}}
-						/>
-						<Input
-							id='email'
-							name='email'
-							type='text'
-                            value={dataItem.email ?? ''}
-							labelName='Email'
-							placeholder="Nhập email"
-							isRequired={true}
-							validate={errors}
-							containerClass='w-full mb-4'
-							onChange={(value) => {
-								setDataItem({...dataItem, email: value})
-							}}
-						/>
-						<Input
-							id='password'
-							name='password'
-							type='text'
-							labelName='Mật khẩu'
-							placeholder="Nhập mật khẩu"
-							isRequired={true}
-							validate={errors}
-							containerClass='w-full mb-4'
-							onChange={(value) => {
-								setDataItem({...dataItem, password: value})
-							}}
-						/>
-                        <SelectBox
-                            name='roleId'
-                            label='Vai trò'
-                            data={props.constant.roles ? props.constant.roles : []}
-                            value={dataItem?.role?.id ?? ''}
-                            callback={(value) => setDataItem({...dataItem, roleId: value.id})}
-                            search={false}
-                            containerClass='mb-4'
-                            validate={errors}
-                        />
-                        <SelectBox
-                            name='status'
-                            label='Trạng thái'
-                            data={props.constant.status ? props.constant.status.filter((item) => item.id != '') : []}
-                            value={dataItem.status ?? ''}
-                            callback={(value) => setDataItem({...dataItem, status: value.id})}
-                            search={false}
+                        <Input
+                            id='name'
+                            name='name'
+                            type='text'
+                            labelName='Tên'
+                            placeholder="Nhập tên"
+                            value={data?.name}
                             isRequired={true}
                             validate={errors}
+                            containerClass='w-full mb-4'
+                            onChange={(value) => {
+                                setData({...data, name: value})
+                            }}
                         />
-                        <div className="flex justify-content-around mt-6 w-full">
-                            <button 
-                                type="button" 
-                                onClick={() => close()} 
-                                style={{width: '100px'}}
-                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                            > 
-                                Thoát 
-                            </button>
-                            {loading == true ? (
-                                <div className="flex items-center justify-content-around" style={{width: '100px'}}>
-                                    <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
-                                        <span className="sr-only">Loading...</span>
+                        <Input
+                            id='price'
+                            name='price'
+                            type='number'
+                            labelName='Giá'
+                            placeholder="Nhập giá"
+                            value={data?.price}
+                            isRequired={true}
+                            validate={errors}
+                            containerClass='w-full mb-4'
+                            onChange={(value) => {
+                                setData({...data, price: value})
+                            }}
+                        />
+                        <Input
+                            id='quantity'
+                            name='quantity'
+                            type='number'
+                            labelName='Số lượng'
+                            placeholder="Nhập số lượng"
+                            value={data?.quantity}
+                            isRequired={true}
+                            validate={errors}
+                            containerClass='w-full mb-4'
+                            onChange={(value) => {
+                                setData({...data, quantity: value})
+                            }}
+                        />
+                         <SelectBox
+                            label='Trạng thái'
+                            data={props.constant ? props.constant.status : []}
+                            value={data?.status}
+                            callback={(value) => setData({...data, status: value.id})}
+                            search={false}
+                        />
+                        <div className="">Thuộc tính</div>
+                        {attributes?.map((item) => (
+                            <div className="mt-0" key={item.id}>
+                                <div className="flex mt-0 w-full space-x-2">
+                                    <div className="flex items-center justify-center mb-0 mt-2 h4">
+                                        <i 
+                                            className='bx bx-x-circle text-red'
+                                            onClick={() => removeAttribute(item.id)}
+                                        >
+                                        </i>
                                     </div>
-                                    <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
-                                        <span className="sr-only">Loading...</span>
-                                    </div>
-                                    <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
-                                        <span className="sr-only">Loading...</span>
-                                    </div>
+                                    <Input
+                                        id={item.id}
+                                        type='text'
+                                        value={item.name}
+                                        placeholder="Nhập tên thuộc tính"
+                                        containerClass='w-25 mb-0'
+                                        validate={errors}
+                                        onChange={(value) => {
+                                            setNameAttribute(item.id, value, item.value)
+                                        }}
+                                    />
+                                    <Input
+                                        id={item.id}
+                                        type='text'
+                                        value={item.value}
+                                        placeholder="Nhập giá trị"
+                                        containerClass='w-75 mb-0'
+                                        validate={errors}
+                                        onChange={(value) => {
+                                            setValueAttribute(item.id, item.name, value)
+                                        }}
+                                    />
                                 </div>
-                            ) : (
-                                <button type="submit" className="px-6 py-2 rounded-md bg-sky-800 hover:bg-sky-700 text-white"> Cập nhật </button>
-                            )}
+                                <div className="text-red">{errorAttributes?.filter((i) => i.id == item.id)[0]?.value[0]}</div>
+                            </div>
+                        ))}
+                        <div className="flex items-center justify-content-start mb-4 mt-1 h4">
+                            <i 
+                                className='bx bx-plus-circle text-green' 
+                                onClick={() => addAttribute()}
+                            >
+                            </i>
+                        </div>
+                        <div className="flex justify-content-start w-full">
+                            <div className="flex justify-content-around mt-6 w-50">
+                                <button 
+                                    type="button" 
+                                    onClick={() => close()} 
+                                    style={{width: '100px'}}
+                                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                > 
+                                    Thoát 
+                                </button>
+                                {loading == true ? (
+                                    <div className="flex items-center justify-content-around" style={{width: '100px'}}>
+                                        <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                        <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                        <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
+                                            <span className="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <button type="submit" className="px-6 py-2 rounded-md bg-sky-800 hover:bg-sky-700 text-white"> Cập nhật </button>
+                                )}
+                            </div>
                         </div>
                     </form>
                 </div>
-                <div className="w-50 h-100">
-                    <div className='w-full'>
-                        <UploadFile
-                            name='avatar'
-                            containerClass='mt-6 w-75 mx-auto'
-                            validate={errors}
-                            value={dataItem.avatar ?? document.location.origin + '/assets/img/default-avatar.png'}
-                            callback={(file) => callbackUploadFile(file)}
-                            errors={errors}
-                            style={{width: '30vh', height: '30vh'}}
-                        />
+                <div className="w-50">
+                    <div className="w-75 mx-auto">
+                        <label htmlFor="" className='mt-6 h3'>Ảnh đại diện</label>
                     </div>
+                    <div className="w-75 mx-auto">
+                        {previewMainImage &&
+                            <div 
+                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage?.length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                style={{height: '100px', width: '100px'}}
+                            >
+                                <img src={previewMainImage} alt="" />
+                            </div>
+                        }
+                        
+                        <div className="text-red">{errorsMainImage[0] ?? ''}</div>
+                    </div>
+                    <UploadFile
+                        name='main'
+                        containerClass='mt-0 w-75 mx-auto'
+                        validate={errors}
+                        callback={(file) => callbackUploadFile(file)}
+                        errors={errors}
+                        style={{width: '30vh', height: '30vh'}}
+                    />
+                    <div className="w-75 mx-auto">
+                        <label htmlFor="" className='mt-6 h3'>Ảnh mô tả</label>
+                    </div>
+                    <div className="relative w-75 mx-auto flex space-x-1 flex-wrap">
+                        {previewDescriptionImage?.map((item) => (
+                            <div className="relative mt-2" key={item.id}>
+                                <div className="w-full absolute flex justify-content-end">
+                                    <div 
+                                        className="bg-red flex items-center justify-center overflow-hidden rounded-circle" 
+                                        style={{width: '19px', height: '19px', fontSize: '19px'}}
+                                        onClick={(event) => removeDescriptionImage(item.id, item.name)}
+                                    >
+                                        <i className='bx bx-x-circle text-black bg-white' style={{width: '19px'}}></i>
+                                    </div>
+                                </div>
+                                <div    
+                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id]?.length > 0 ? 'border-danger' : 'border-dark'}`} 
+                                    style={{height: '100px', width: '100px'}}
+                                >
+                                    <img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''}/>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <UploadFiles
+                        name='sub'
+                        preview={[]}
+                        containerClass='w-75 mx-auto'
+                        validate={errors}
+                        callback={(files) => {
+                            callbackUploadFiles(files)
+                        }}
+                        errors={errors}
+                        style={{width: '30vh', height: '30vh'}}
+                    />
                 </div>
-			</div>
+            </div>
         </Modal>
     )
 }

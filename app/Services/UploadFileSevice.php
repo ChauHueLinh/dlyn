@@ -30,4 +30,24 @@ class UploadFileSevice
 
 		return Response::responseArray(true, 'Thành công.', $fullUrl);
 	}
+
+	public function uploadImgs($files, $folder)
+	{
+		$time = Carbon::now()->timestamp;
+		$result = [];
+		foreach($files as $file) {
+			$fileName = $time . '_' . $file->getClientOriginalName();
+			$filePath = $folder . '/' . $fileName;
+
+			if (Storage::disk('public')->exists($filePath)) {
+			    return Response::responseArray(false, 'Đã có lỗi xảy ra.');
+			} else {
+				Storage::disk('public')->putFileAs($folder, $file, $fileName);
+			}
+
+			$result[] = 'storage/' . $filePath;
+		}
+
+		return Response::responseArray(true, 'Thành công.', $result);
+	}
 }

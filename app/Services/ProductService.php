@@ -2,28 +2,43 @@
 
 namespace App\Services;
 
-use App\Models\Permission;
+use App\Helper\Response;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Permission;
+use App\Models\ProductImage;
+use App\Models\ProductAttribute;
+use Illuminate\Support\Facades\Log;
+
+use function PHPUnit\Framework\returnSelf;
 
 class ProductService
 {
     protected $product;
     protected $permission;
+    protected $productImage;
+    protected $productAttribute;
 
     public function __construct(
         Product $product,
         Permission $permission,
+        ProductImage $productImage,
+        ProductAttribute $productAttribute,
     )
     {
         $this->product = $product;
         $this->permission = $permission;
+        $this->productImage = $productImage;
+        $this->productAttribute = $productAttribute;
     }
 
     public function index($params)
     {
         $products = $this->product
-            ->with('attributes')
+            ->with([
+                'attributes',
+                'mainImage',
+                'descriptionImages',
+            ])
             ->orderBy($params['sort_key'] ?? 'id', $params['order_by'] ?? 'DESC');
 
         if (isset($params['per_page'])) {
@@ -41,69 +56,88 @@ class ProductService
         return $products;
     }
 
-    // public function store($params) 
-    // {
+    public function store($params) 
+    {
+        $product = $this->product->create($params);
+
+        if(isset($params['attributes'])){
+            foreach($params['attributes'] as $attribute){
+                $attribute = json_decode($attribute);
+                $this->productAttribute->create([
+                    'productId' => $product->id,
+                    'name' => $attribute->name,
+                    'value' => $attribute->value,
+                ]);
+            }
+        }
+        if(isset($params['mainImage'])){
+            $this->productImage->create([
+                'productId' => $product->id,
+                'key' => 'main',
+                'src' => $params['mainImage'],
+            ]);
+        }
+        if(isset($params['descriptionImages'])){
+            foreach($params['descriptionImages'] as $descriptionImage){
+                $this->productImage->create([
+                    'productId' => $product->id,
+                    'key' => 'description',
+                    'src' => $descriptionImage,
+                ]);
+            }
+        }
+
+        return Response::responseArray(true, 'Tạo mới thành công.');
+    }
+
+    public function update($params)
+    {
+        $product = $this->product->where('id', $params['id'])->first();
+        $product->update([
+            'name' => $params['name'],
+            'price' => $params['price'],
+            'status' => $params['status'],
+            'quantity' => $params['quantity'],
+        ]);
+
+        if(isset($params['deletedAttributes'])) {
+            $this->productAttribute->where('productId', $params['id'])->whereIn('id', $params['deletedAttributes'])->delete();
+        }
+        if(isset($params['deletedDescriptionImages'])) {
+            $this->productImage->where('productId', $params['id'])->whereIn('id', $params['deletedDescriptionImages'])->delete();
+        }
+        if(isset($params['mainImage'])) {
+            $this->productImage->where('productId', $params['id'])->where('key', 'main')->update(['src', $params['mainImage']]);
+        }
+        if(isset($params['attributes'])) {
+            foreach($params['attributes'] as $attribute) {
+                $attribute = json_decode($attribute);
+                $this->productAttribute->updateOrCreate([
+                    'id'        => $attribute->id,
+                    'productId' => $product->id,
+                ], [
+                    'productId' => $product->id,
+                    'name'      => $attribute->name,
+                    'value'     => $attribute->value,
+                ]);
+            }
+        }
+        if(isset($params['descriptionImages'])) {
+            foreach($params['descriptionImages'] as $descriptionImage) {
+                $this->productImage->updateOrCreate([
+                    'id'        => $attribute->id,
+                    'productId' => $product->id,
+                    'key'       => 'description',
+                ], [
+                    'productId' => $product->id,
+                    'key'       => 'description',
+                    'src'       => $descriptionImage,
+                ]);
+            }
+        }
         
-    //     $role = $this->role->create($params);
-
-    //     if(isset($params['permission'])) {
-    //         $permissions = explode(',', $params['permission']);
-    //         foreach($permissions as $permission) {
-    //             $role->permissions()->attach($role->id, [
-    //                 'permissionId' => $permission,
-    //             ]);
-    //         }
-    //     }
-    // }
-
-    // public function destroy($id)
-    // {
-    //     $role = $this->role->find($id);
-    //     if(isset($role)) {
-    //         $role->delete();
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    // public function update($params, $id)
-    // {
-    //     $role = $this->role->find($id);
-
-    //     if(!isset($role)) {
-    //         return [
-    //             'status' => false,
-    //             'message' => 'Đã có lỗi xảy ra.',
-    //         ];
-    //     }
-
-    //     if($role->id == 1) {
-    //         return [
-    //             'status' => false,
-    //             'message' => 'Không thể chỉnh sửa vai trò này.',
-    //         ];
-    //     }
-        
-    //     $role->update($params);
-
-    //     if(isset($params['permissions']) && !empty($params['permissions'])) {
-    //         $permissions = explode(',', $params['permissions']);
-    //         $role->permissions()->where('roles.id', $role->id)->whereNotIn('permissionId', $permissions)->detach();
-    //         foreach($permissions as $permission) {
-    //             $role->permissions()->attach($role->id, [
-    //                 'permissionId' => $permission,
-    //             ]);
-    //         }
-    //     } else {
-    //         $role->permissions()->where('roles.id', $role->id)->detach();
-    //     }
-
-    //     return [
-    //         'status' => true,
-    //         'message' => 'Cập nhật thành công.',
-    //     ];
-    // }
+        return Response::responseArray(true, 'Cập nhật thành công.');
+    }
 
     public function getPermissions()
     {

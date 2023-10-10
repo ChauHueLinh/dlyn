@@ -20,10 +20,10 @@ export default function Modal(props) {
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
                 >
-                    <div className='fixed inset-0 bg-black bg-opacity-25' />
+                    <div className='fixed inset-0 bg-black bg-opacity-25'/>
                 </Transition.Child>
-                <div className='fixed inset-0 overflow-auto mh-100'>
-                    <div className={`card-center ${props.wrapperClass && props.wrapperClass}`}>
+                <div className='fixed inset-0 overflow-auto'>
+                    <div className={`card-center max-h-100 ${props.wrapperClass && props.wrapperClass}`}>
                         <Transition.Child
                             as={Fragment}
                             enter='ease-out duration-300'

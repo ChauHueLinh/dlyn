@@ -27,11 +27,13 @@ class Update extends FormRequest
         return [
             'name' => [
                 'required',
+				Rule::unique('products')->ignore($this->id),
                 'max:255',
-                Rule::unique('roles')->ignore($this->id),
             ],
-            'description' => [
+            'price' => [
                 'required',
+                'numeric',
+                'min:0',
             ],
         ];
     }
@@ -40,18 +42,20 @@ class Update extends FormRequest
     {
         return [
             'name.required' 		=> __('validation.required'),
-			'name.max' 				=>__('validation.max.string'),
-			'name.unique' 			=>__('validation.unique'),
+			'name.unique' 			=> __('validation.unique'),
+			'name.max' 				=> __('validation.max.string'),
 
-            'description.required' 	=> __('validation.required')
+            'price.required' 	    => __('validation.required'),
+            'price.numeric' 	    => __('validation.numeric'),
+            'price.min' 	        => __('validation.numeric'),
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Tên vai trò',
-            'description' => 'Mô tả',
+            'name'  => 'Tên sản phẩm',
+            'price' => 'Giá',
         ];
     }
 }

@@ -82,7 +82,7 @@ Route::prefix('cms')->group(function () {
 			Route::prefix('product')->group(function () {
 				Route::get('', [CommonProductController::class, 'index']);
 				Route::post('store', [CommonProductController::class, 'store'])->name('product.store');
-				// Route::put('update', [CommonRoleController::class, 'update'])->name('role.update');
+				Route::put('update', [CommonProductController::class, 'update'])->name('product.update');
 				// Route::delete('destroy', [CommonCouponController::class, 'destroy'])->name('coupon.destroy');
 			});
 
