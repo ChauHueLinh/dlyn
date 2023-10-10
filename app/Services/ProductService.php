@@ -107,7 +107,7 @@ class ProductService
             $this->productImage->where('productId', $params['id'])->whereIn('id', $params['deletedDescriptionImages'])->delete();
         }
         if(isset($params['mainImage'])) {
-            $this->productImage->where('productId', $params['id'])->where('key', 'main')->update(['src', $params['mainImage']]);
+            $this->productImage->where('productId', $params['id'])->where('key', 'main')->update(['src' => $params['mainImage']]);
         }
         if(isset($params['attributes'])) {
             foreach($params['attributes'] as $attribute) {
