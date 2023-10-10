@@ -241,11 +241,13 @@ export default function Edit(props) {
     }
 
     const close = () => {
-        dispatch(modalActions.close())
-        setLoading(false)
+        setData({})
         setErrors({})
         setAttributes([])
-        setData({})
+        setLoading(false)
+        setDeletedAttributes([])
+        dispatch(modalActions.close())
+        setDeletedDescriptionImages([])
     }
 
     return (

@@ -15990,11 +15990,13 @@ function Edit(props) {
     setDeletedDescriptionImages(_toConsumableArray(newDeleletedDescriptionImages));
   };
   var close = function close() {
-    dispatch(_store_modal_slice__WEBPACK_IMPORTED_MODULE_10__.modalActions.close());
-    setLoading(false);
+    setData({});
     setErrors({});
     setAttributes([]);
-    setData({});
+    setLoading(false);
+    setDeletedAttributes([]);
+    dispatch(_store_modal_slice__WEBPACK_IMPORTED_MODULE_10__.modalActions.close());
+    setDeletedDescriptionImages([]);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_molecules_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     display: openDialog,
