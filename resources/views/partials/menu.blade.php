@@ -22,27 +22,21 @@
                 @if (Auth::user()->can('index', \App\Models\Admin::class))
                     <li >
                         <a href="{{ route("admin.index") }}">
-                            <div class="parent-icon icon-color-5 pl-4">
-                                <i class='bx bxs-user-account' ></i>
-                            </div>
-                            <div class="menu-title">Danh sách</div>
+                            <div class="ps-4 menu-title">Danh sách</div>
                         </a>
                     </li>
                 @endif
                 @if (Auth::user()->can('index', \App\Models\Role::class))
                     <li>
                         <a href="{{ route("role.index") }}">
-                            <div class="parent-icon icon-color-5 pl-4">
-                                <i class='bx bxs-lock' ></i>
-                            </div>
-                            <div class="menu-title">Vai trò</div>
+                            <div class="ps-4 menu-title">Vai trò</div>
                         </a>
                     </li>
                 @endif
             </ul>
         </li>
     @endif
-    @if ($auth->hasRoles('indexProduct') ||  $auth->hasRoles('indexCoupon'))
+    @if ($auth->hasRoles('indexProduct') ||  $auth->hasRoles('indexCoupon') ||  $auth->hasRoles('indexProductType'))
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-5">
@@ -52,32 +46,30 @@
             </a>
             <ul>
                 @if (Auth::user()->can('index', \App\Models\Product::class))
-                    <li >
+                    <li>
                         <a href="{{ route('product.index') }}">
-                            <div class="parent-icon icon-color-5 pl-4">
-                                <i class='bx bxs-receipt'></i>
-                            </div>
-                            <div class="menu-title">Danh sách</div>
+                            <div class="ps-4 menu-title">Danh sách</div>
                         </a>
                     </li>
                 @endif
                 @if (Auth::user()->can('index', \App\Models\Receip::class))
-                    <li >
+                    <li>
                         <a href="">
-                            <div class="parent-icon icon-color-5 pl-4">
-                                <i class='bx bxs-receipt'></i>
-                            </div>
-                            <div class="menu-title">Hóa đơn</div>
+                            <div class="ps-4 menu-title">Hóa đơn</div>
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::user()->can('index', \App\Models\ProductType::class))
+                    <li>
+                        <a href="{{ route("productType.index") }}">
+                            <div class="ps-4 menu-title">Loại sản phẩm</div>
                         </a>
                     </li>
                 @endif
                 @if (Auth::user()->can('index', \App\Models\Coupon::class))
-                    <li >
+                    <li>
                         <a href="{{ route("coupon.index") }}">
-                            <div class="parent-icon icon-color-5 pl-4">
-                                <i class='bx bxs-coupon'></i>
-                            </div>
-                            <div class="menu-title">Mã giảm giá</div>
+                            <div class="ps-4 menu-title">Mã giảm giá</div>
                         </a>
                     </li>
                 @endif

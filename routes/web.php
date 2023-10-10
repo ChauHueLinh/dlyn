@@ -12,12 +12,14 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\DashboardController As AdminDashboardController;
 
 use App\Http\Controllers\AdminApi\RoleController As CommonRoleController;
 use App\Http\Controllers\AdminApi\AdminController As CommonAdminController;
 use App\Http\Controllers\AdminApi\CouponController as CommonCouponController;
 use App\Http\Controllers\AdminApi\ProductController as CommonProductController;
+use App\Http\Controllers\AdminApi\ProductTypeController as CommonProductTypeController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -52,6 +54,7 @@ Route::prefix('cms')->group(function () {
 		Route::get('role', [RoleController::class, 'index'])->name('role.index');
 		Route::get('coupon', [CouponController::class, 'index'])->name('coupon.index');
 		Route::get('product', [ProductController::class, 'index'])->name('product.index');
+		Route::get('productType', [ProductTypeController::class, 'index'])->name('productType.index');
 		
 		Route::prefix('common-api')->name('common.')->group(function(){
 			Route::prefix('admin')->group(function () {
@@ -85,11 +88,18 @@ Route::prefix('cms')->group(function () {
 				Route::put('update', [CommonProductController::class, 'update'])->name('product.update');
 				Route::delete('destroy', [CommonProductController::class, 'destroy'])->name('product.destroy');
 			});
+			Route::prefix('product-type')->group(function () {
+				Route::get('', [CommonProductTypeController::class, 'index']);
+				Route::post('store', [CommonProductTypeController::class, 'store'])->name('product-type.store');
+				Route::put('update', [CommonProductTypeController::class, 'update'])->name('product-type.update');
+				Route::delete('destroy', [CommonProductTypeController::class, 'destroy'])->name('product-type.destroy');
+			});
 
 			Route::get('admin/constant', [CommonAdminController::class, 'getConstant'])->name('admin.constant');
 			Route::get('role/constant', [CommonRoleController::class, 'getConstant'])->name('role.constant');
 			Route::get('coupon/constant', [CommonCouponController::class, 'getConstant'])->name('coupon.constant');
 			Route::get('product/constant', [CommonProductController::class, 'getConstant'])->name('product.constant');
+			Route::get('product-type/constant', [CommonProductTypeController::class, 'getConstant'])->name('product-type.constant');
 		});
 	});
 	

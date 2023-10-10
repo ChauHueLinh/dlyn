@@ -13,6 +13,7 @@ use App\Policies\AdminPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\CouponPolicy;
 use App\Policies\ProductPolicy;
+use App\Policies\ProductTypePolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Role::class                     => RolePolicy::class,
         Coupon::class                   => CouponPolicy::class,
         Product::class                  => ProductPolicy::class,
+        ProductType::class              => ProductTypePolicy::class,
     ];
 
     /**
