@@ -10,6 +10,7 @@ use App\Http\Controllers\Guest\DashboardController;
 
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductTypeController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Admin\DashboardController As AdminDashboardController;
 
 use App\Http\Controllers\AdminApi\RoleController As CommonRoleController;
 use App\Http\Controllers\AdminApi\AdminController As CommonAdminController;
+use App\Http\Controllers\AdminApi\BranchController as CommonBranchController;
 use App\Http\Controllers\AdminApi\CouponController as CommonCouponController;
 use App\Http\Controllers\AdminApi\ProductController as CommonProductController;
 use App\Http\Controllers\AdminApi\ProductTypeController as CommonProductTypeController;
@@ -55,6 +57,7 @@ Route::prefix('cms')->group(function () {
 		Route::get('coupon', [CouponController::class, 'index'])->name('coupon.index');
 		Route::get('product', [ProductController::class, 'index'])->name('product.index');
 		Route::get('productType', [ProductTypeController::class, 'index'])->name('productType.index');
+		Route::get('branch', [BranchController::class, 'index'])->name('branch.index');
 		
 		Route::prefix('common-api')->name('common.')->group(function(){
 			Route::prefix('admin')->group(function () {
@@ -94,12 +97,19 @@ Route::prefix('cms')->group(function () {
 				Route::put('update', [CommonProductTypeController::class, 'update'])->name('product-type.update');
 				Route::delete('destroy', [CommonProductTypeController::class, 'destroy'])->name('product-type.destroy');
 			});
+			Route::prefix('branch')->group(function () {
+				Route::get('', [CommonBranchController::class, 'index']);
+				Route::post('store', [CommonBranchController::class, 'store'])->name('branch.store');
+				Route::put('update', [CommonBranchController::class, 'update'])->name('branch.update');
+				Route::delete('destroy', [CommonBranchController::class, 'destroy'])->name('branch.destroy');
+			});
 
 			Route::get('admin/constant', [CommonAdminController::class, 'getConstant'])->name('admin.constant');
 			Route::get('role/constant', [CommonRoleController::class, 'getConstant'])->name('role.constant');
 			Route::get('coupon/constant', [CommonCouponController::class, 'getConstant'])->name('coupon.constant');
 			Route::get('product/constant', [CommonProductController::class, 'getConstant'])->name('product.constant');
 			Route::get('product-type/constant', [CommonProductTypeController::class, 'getConstant'])->name('product-type.constant');
+			Route::get('branch/constant', [CommonBranchController::class, 'getConstant'])->name('branch.constant');
 		});
 	});
 	

@@ -28,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         Coupon::class                   => CouponPolicy::class,
         Product::class                  => ProductPolicy::class,
         ProductType::class              => ProductTypePolicy::class,
+        Branch::class                   => BranchPolicy::class,
     ];
 
     /**
