@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Product;
 use App\Models\Province;
 use Illuminate\Database\Seeder;
-use App\Models\Role;
 
 class ProvinceSeeder extends Seeder
 {
@@ -20,10 +18,10 @@ class ProvinceSeeder extends Seeder
         $provinces = json_decode($file);
         foreach($provinces as $province) {
             Province::updateOrCreate([
-                'id' => $province->id,
+                'id' => $province->id
             ], [
                 'id' => $province->id,
-                'name' => $province->name,
+                'name' => trim($province->name),
                 'type' => $province->type,
             ]);
         }

@@ -19,13 +19,12 @@ class DistrictSeeder extends Seeder
         $districts = json_decode($file);
         foreach($districts as $district) {
             District::updateOrCreate([
-                'id' => $district->id,
+                'id' => $district->id
             ], [
-                'id'            => $district->id,
-                'name'          => $district->name,
-                'type'          => $district->type,
-                'provinceId'    => $district->provinceId,
-            ]); 
+                'id' => $district->id,
+                'name' => trim($district->name),
+                'type' => $district->type,
+            ]);
         }
     }
 }

@@ -93,7 +93,7 @@ export default function SelectBox(props) {
 						leaveTo="opacity-0"
 						afterLeave={() => setQuery('')}
 					>
-						<Combobox.Options style={{zIndex: 401}} className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white combobox-options py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+						<Combobox.Options style={{zIndex: 401, maxHeight: '200px'}} className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white combobox-options py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
 							{props.search && (
 								<Combobox.Input
 								className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 px-2 combobox-input"

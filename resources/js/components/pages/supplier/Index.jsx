@@ -194,7 +194,6 @@ function SupplierIndex() {
             <Add
                 modalKey='create'
                 callback={() => callbackAdd()}
-                constant={constant}
             />
             <Edit
                 modalKey='update'

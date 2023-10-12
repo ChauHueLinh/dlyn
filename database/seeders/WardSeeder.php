@@ -20,12 +20,11 @@ class WardSeeder extends Seeder
         $wards = json_decode($file);
         foreach($wards as $ward) {
             Ward::updateOrCreate([
-                'id' => $ward->id,
+                'id' => $ward->id
             ], [
-                'id'            => $ward->id,
-                'name'          => $ward->name,
-                'type'          => $ward->type,
-                'districtId'    => $ward->districtId,
+                'id' => $ward->id,
+                'name' => trim($ward->name),
+                'type' => $ward->type,
             ]);
         }
     }
