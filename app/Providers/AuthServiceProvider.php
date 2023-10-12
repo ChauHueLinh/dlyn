@@ -8,12 +8,13 @@ use App\Models\Admin;
 use App\Models\Role;
 use App\Models\Coupon;
 use App\Models\Product;
-
+use App\Models\Supplier;
 use App\Policies\AdminPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\CouponPolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\ProductTypePolicy;
+use App\Policies\SupplierPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         Product::class                  => ProductPolicy::class,
         ProductType::class              => ProductTypePolicy::class,
         Branch::class                   => BranchPolicy::class,
+        Supplier::class                 => SupplierPolicy::class,
     ];
 
     /**

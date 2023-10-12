@@ -73,6 +73,13 @@
                         </a>
                     </li>
                 @endif
+                @if (Auth::user()->can('index', \App\Models\Supplier::class))
+                    <li>
+                        <a href="{{ route("supplier.index") }}">
+                            <div class="ps-4 menu-title">Nhà cung cấp</div>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </li>
     @endif

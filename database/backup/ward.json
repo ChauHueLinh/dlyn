@@ -1,0 +1,6002 @@
+[
+    {
+        "id": 9831,
+        "name": "A Bung",
+        "type": "X",
+        "districtId": "128"
+    },
+    {
+        "id": 403,
+        "name": "A Dơi",
+        "type": "X",
+        "districtId": "137"
+    },
+    {
+        "id": 3820,
+        "name": "A Đớt",
+        "type": "X",
+        "districtId": "504"
+    },
+    {
+        "id": 6678,
+        "name": "A Lù",
+        "type": "X",
+        "districtId": "105"
+    },
+    {
+        "id": 3805,
+        "name": "A Lưới",
+        "type": "TT",
+        "districtId": "504"
+    },
+    {
+        "id": 6684,
+        "name": "A Mú Sung",
+        "type": "X",
+        "districtId": "105"
+    },
+    {
+        "id": 9834,
+        "name": "A Ngo",
+        "type": "X",
+        "districtId": "128"
+    },
+    {
+        "id": 3815,
+        "name": "A Ngo",
+        "type": "X",
+        "districtId": "504"
+    },
+    {
+        "id": 848,
+        "name": "A Nông",
+        "type": "X",
+        "districtId": "296"
+    },
+    {
+        "id": 3826,
+        "name": "A Roằng",
+        "type": "X",
+        "districtId": "504"
+    },
+    {
+        "id": 1827,
+        "name": "A Rooi",
+        "type": "X",
+        "districtId": "295"
+    },
+    {
+        "id": 847,
+        "name": "A Tiêng",
+        "type": "X",
+        "districtId": "296"
+    },
+    {
+        "id": 1829,
+        "name": "A Ting",
+        "type": "X",
+        "districtId": "295"
+    },
+    {
+        "id": 408,
+        "name": "A Túc",
+        "type": "X",
+        "districtId": "137"
+    },
+    {
+        "id": 9830,
+        "name": "A Vao",
+        "type": "X",
+        "districtId": "128"
+    },
+    {
+        "id": 856,
+        "name": "A Vương",
+        "type": "X",
+        "districtId": "296"
+    },
+    {
+        "id": 855,
+        "name": "A Xan",
+        "type": "X",
+        "districtId": "296"
+    },
+    {
+        "id": 397,
+        "name": "A Xing",
+        "type": "X",
+        "districtId": "137"
+    },
+    {
+        "id": 6036,
+        "name": "A Yun",
+        "type": "X",
+        "districtId": "626"
+    },
+    {
+        "id": 184,
+        "name": "ADơk",
+        "type": "X",
+        "districtId": "634"
+    },
+    {
+        "id": 6551,
+        "name": "Ái Nghĩa",
+        "type": "TT",
+        "districtId": "287"
+    },
+    {
+        "id": 11007,
+        "name": "Ái Quốc",
+        "type": "X",
+        "districtId": "472"
+    },
+    {
+        "id": 5033,
+        "name": "Ái Quốc",
+        "type": "X",
+        "districtId": "332"
+    },
+    {
+        "id": 6341,
+        "name": "Ái Thượng",
+        "type": "X",
+        "districtId": "438"
+    },
+    {
+        "id": 2524,
+        "name": "Ái Tử",
+        "type": "TT",
+        "districtId": "136"
+    },
+    {
+        "id": 6032,
+        "name": "Al Bá",
+        "type": "X",
+        "districtId": "626"
+    },
+    {
+        "id": 11118,
+        "name": "Ấm Hạ",
+        "type": "X",
+        "districtId": "314"
+    },
+    {
+        "id": 7200,
+        "name": "An Ấp",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 2404,
+        "name": "An Bá",
+        "type": "X",
+        "districtId": "462"
+    },
+    {
+        "id": 7204,
+        "name": "An Bài",
+        "type": "TT",
+        "districtId": "226"
+    },
+    {
+        "id": 9175,
+        "name": "An Biên",
+        "type": "P",
+        "districtId": "202"
+    },
+    {
+        "id": 9146,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "22"
+    },
+    {
+        "id": 7781,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "154"
+    },
+    {
+        "id": 450,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "42"
+    },
+    {
+        "id": 915,
+        "name": "An Bình",
+        "type": "P",
+        "districtId": "656"
+    },
+    {
+        "id": 8008,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "217"
+    },
+    {
+        "id": 10894,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "160"
+    },
+    {
+        "id": 10903,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "224"
+    },
+    {
+        "id": 1192,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "482"
+    },
+    {
+        "id": 2053,
+        "name": "An Bình",
+        "type": "P",
+        "districtId": "81"
+    },
+    {
+        "id": 2433,
+        "name": "An Bình",
+        "type": "P",
+        "districtId": "700"
+    },
+    {
+        "id": 4976,
+        "name": "An Bình",
+        "type": "P",
+        "districtId": "220"
+    },
+    {
+        "id": 5069,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "613"
+    },
+    {
+        "id": 5745,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "124"
+    },
+    {
+        "id": 5867,
+        "name": "An Bình",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 10673,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "538"
+    },
+    {
+        "id": 6056,
+        "name": "An Bình",
+        "type": "P",
+        "districtId": "625"
+    },
+    {
+        "id": 6831,
+        "name": "An Bình",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 6443,
+        "name": "An Bình A",
+        "type": "X",
+        "districtId": "155"
+    },
+    {
+        "id": 6442,
+        "name": "An Bình B",
+        "type": "X",
+        "districtId": "155"
+    },
+    {
+        "id": 9598,
+        "name": "An Bình Tây",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 10929,
+        "name": "An Bồi",
+        "type": "X",
+        "districtId": "224"
+    },
+    {
+        "id": 7180,
+        "name": "An Cầu",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 6569,
+        "name": "An Chấn",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 7169,
+        "name": "An Châu",
+        "type": "TT",
+        "districtId": "71"
+    },
+    {
+        "id": 10996,
+        "name": "An Châu",
+        "type": "X",
+        "districtId": "472"
+    },
+    {
+        "id": 3117,
+        "name": "An Châu",
+        "type": "X",
+        "districtId": "229"
+    },
+    {
+        "id": 2402,
+        "name": "An Châu",
+        "type": "X",
+        "districtId": "462"
+    },
+    {
+        "id": 2417,
+        "name": "An Châu",
+        "type": "TT",
+        "districtId": "462"
+    },
+    {
+        "id": 6823,
+        "name": "An Cơ",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 6560,
+        "name": "An Cư",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 2178,
+        "name": "An Cư",
+        "type": "X",
+        "districtId": "548"
+    },
+    {
+        "id": 4564,
+        "name": "An Cư",
+        "type": "X",
+        "districtId": "268"
+    },
+    {
+        "id": 5860,
+        "name": "An Cư",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 357,
+        "name": "An Cựu",
+        "type": "P",
+        "districtId": "506"
+    },
+    {
+        "id": 6556,
+        "name": "An Dân",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 7210,
+        "name": "An Dục",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 5184,
+        "name": "An Dũng",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 10815,
+        "name": "An Dương",
+        "type": "X",
+        "districtId": "454"
+    },
+    {
+        "id": 9182,
+        "name": "An Dương",
+        "type": "P",
+        "districtId": "202"
+    },
+    {
+        "id": 3564,
+        "name": "An Dương",
+        "type": "TT",
+        "districtId": "210"
+    },
+    {
+        "id": 5439,
+        "name": "An Đạo",
+        "type": "X",
+        "districtId": "290"
+    },
+    {
+        "id": 5284,
+        "name": "An Điền",
+        "type": "X",
+        "districtId": "219"
+    },
+    {
+        "id": 9947,
+        "name": "An Điền",
+        "type": "X",
+        "districtId": "660"
+    },
+    {
+        "id": 11260,
+        "name": "An Định",
+        "type": "X",
+        "districtId": "658"
+    },
+    {
+        "id": 6559,
+        "name": "An Định",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 1686,
+        "name": "An Đổ",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 5342,
+        "name": "An Đôn",
+        "type": "P",
+        "districtId": "133"
+    },
+    {
+        "id": 3566,
+        "name": "An Đồng",
+        "type": "X",
+        "districtId": "210"
+    },
+    {
+        "id": 376,
+        "name": "An Đông",
+        "type": "P",
+        "districtId": "506"
+    },
+    {
+        "id": 7198,
+        "name": "An Đồng",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 326,
+        "name": "Ân Đức",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 2269,
+        "name": "An Đức",
+        "type": "X",
+        "districtId": "481"
+    },
+    {
+        "id": 9597,
+        "name": "An Đức",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 7426,
+        "name": "An Hà",
+        "type": "X",
+        "districtId": "456"
+    },
+    {
+        "id": 9648,
+        "name": "An Hải",
+        "type": "X",
+        "districtId": "382"
+    },
+    {
+        "id": 3577,
+        "name": "An Hải",
+        "type": "P",
+        "districtId": "210"
+    },
+    {
+        "id": 449,
+        "name": "An Hải",
+        "type": "X",
+        "districtId": "42"
+    },
+    {
+        "id": 6564,
+        "name": "An Hải",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 6116,
+        "name": "An Hải Bắc",
+        "type": "P",
+        "districtId": "391"
+    },
+    {
+        "id": 6114,
+        "name": "An Hải Đông",
+        "type": "P",
+        "districtId": "391"
+    },
+    {
+        "id": 6111,
+        "name": "An Hải Tây",
+        "type": "P",
+        "districtId": "391"
+    },
+    {
+        "id": 2182,
+        "name": "An Hảo",
+        "type": "X",
+        "districtId": "548"
+    },
+    {
+        "id": 334,
+        "name": "Ân Hảo Đông",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 325,
+        "name": "Ân Hảo Tây",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 6950,
+        "name": "An Hiệp",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 7203,
+        "name": "An Hiệp",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 9605,
+        "name": "An Hiệp",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 8558,
+        "name": "An Hiệp",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 2570,
+        "name": "An Hiệp",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 6562,
+        "name": "An Hiệp",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 6571,
+        "name": "An Hoà",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 9109,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "150"
+    },
+    {
+        "id": 9344,
+        "name": "An Hòa",
+        "type": "P",
+        "districtId": "149"
+    },
+    {
+        "id": 3565,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "210"
+    },
+    {
+        "id": 3925,
+        "name": "Ân Hòa",
+        "type": "X",
+        "districtId": "311"
+    },
+    {
+        "id": 5180,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 5872,
+        "name": "An Hòa",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 7175,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 7307,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "88"
+    },
+    {
+        "id": 364,
+        "name": "An Hòa",
+        "type": "P",
+        "districtId": "506"
+    },
+    {
+        "id": 911,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "656"
+    },
+    {
+        "id": 9896,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "200"
+    },
+    {
+        "id": 10380,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "4"
+    },
+    {
+        "id": 10405,
+        "name": "An Hòa",
+        "type": "X",
+        "districtId": "273"
+    },
+    {
+        "id": 2044,
+        "name": "An Hòa",
+        "type": "P",
+        "districtId": "81"
+    },
+    {
+        "id": 2576,
+        "name": "An Hóa",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 9593,
+        "name": "An Hòa Tây",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 2869,
+        "name": "An Hoạch",
+        "type": "P",
+        "districtId": "446"
+    },
+    {
+        "id": 3054,
+        "name": "An Hội",
+        "type": "P",
+        "districtId": "665"
+    },
+    {
+        "id": 5871,
+        "name": "An Hội",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 3578,
+        "name": "An Hồng",
+        "type": "P",
+        "districtId": "210"
+    },
+    {
+        "id": 3569,
+        "name": "An Hưng",
+        "type": "P",
+        "districtId": "210"
+    },
+    {
+        "id": 5177,
+        "name": "An Hưng",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 10970,
+        "name": "An Hùng",
+        "type": "X",
+        "districtId": "327"
+    },
+    {
+        "id": 328,
+        "name": "Ân Hữu",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 4556,
+        "name": "An Hữu",
+        "type": "X",
+        "districtId": "268"
+    },
+    {
+        "id": 3834,
+        "name": "An Khang",
+        "type": "X",
+        "districtId": "303"
+    },
+    {
+        "id": 4506,
+        "name": "An Khánh",
+        "type": "X",
+        "districtId": "526"
+    },
+    {
+        "id": 5859,
+        "name": "An Khánh",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 6633,
+        "name": "An Khánh",
+        "type": "X",
+        "districtId": "194"
+    },
+    {
+        "id": 2566,
+        "name": "An Khánh",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 7368,
+        "name": "An Khánh",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 8567,
+        "name": "An Khánh",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 4819,
+        "name": "An Khê",
+        "type": "X",
+        "districtId": "208"
+    },
+    {
+        "id": 3676,
+        "name": "An Khê",
+        "type": "P",
+        "districtId": "393"
+    },
+    {
+        "id": 7207,
+        "name": "An Khê",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 1211,
+        "name": "An Khương",
+        "type": "X",
+        "districtId": "366"
+    },
+    {
+        "id": 4669,
+        "name": "An Lạc",
+        "type": "X",
+        "districtId": "125"
+    },
+    {
+        "id": 8295,
+        "name": "An Lạc",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 2146,
+        "name": "An Lạc",
+        "type": "X",
+        "districtId": "189"
+    },
+    {
+        "id": 2410,
+        "name": "An Lạc",
+        "type": "X",
+        "districtId": "462"
+    },
+    {
+        "id": 2442,
+        "name": "An Lạc",
+        "type": "P",
+        "districtId": "700"
+    },
+    {
+        "id": 6438,
+        "name": "An Lạc",
+        "type": "P",
+        "districtId": "155"
+    },
+    {
+        "id": 5058,
+        "name": "An Lạc",
+        "type": "X",
+        "districtId": "613"
+    },
+    {
+        "id": 5464,
+        "name": "An Lạc",
+        "type": "X",
+        "districtId": "477"
+    },
+    {
+        "id": 5864,
+        "name": "An Lạc",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 8288,
+        "name": "An Lạc A",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 891,
+        "name": "An Lạc Tây",
+        "type": "X",
+        "districtId": "573"
+    },
+    {
+        "id": 896,
+        "name": "An Lạc Thôn",
+        "type": "X",
+        "districtId": "573"
+    },
+    {
+        "id": 1204,
+        "name": "An Lâm",
+        "type": "X",
+        "districtId": "482"
+    },
+    {
+        "id": 1685,
+        "name": "An Lão",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 5175,
+        "name": "An Lão",
+        "type": "TT",
+        "districtId": "209"
+    },
+    {
+        "id": 3960,
+        "name": "An Lão",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 2415,
+        "name": "An Lập",
+        "type": "X",
+        "districtId": "462"
+    },
+    {
+        "id": 2839,
+        "name": "An Lập",
+        "type": "X",
+        "districtId": "222"
+    },
+    {
+        "id": 7183,
+        "name": "An Lễ",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 6558,
+        "name": "An Lĩnh",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 8016,
+        "name": "An Linh",
+        "type": "X",
+        "districtId": "217"
+    },
+    {
+        "id": 11169,
+        "name": "An Lộc",
+        "type": "X",
+        "districtId": "635"
+    },
+    {
+        "id": 9032,
+        "name": "An Lộc",
+        "type": "P",
+        "districtId": "358"
+    },
+    {
+        "id": 6440,
+        "name": "An Lộc",
+        "type": "P",
+        "districtId": "155"
+    },
+    {
+        "id": 7369,
+        "name": "An Lợi Đông",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 8015,
+        "name": "An Long",
+        "type": "X",
+        "districtId": "217"
+    },
+    {
+        "id": 9107,
+        "name": "An Long",
+        "type": "X",
+        "districtId": "150"
+    },
+    {
+        "id": 6170,
+        "name": "An Lư",
+        "type": "X",
+        "districtId": "207"
+    },
+    {
+        "id": 8880,
+        "name": "An Lục Long",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 8148,
+        "name": "An Lương",
+        "type": "X",
+        "districtId": "121"
+    },
+    {
+        "id": 10128,
+        "name": "An Lương",
+        "type": "X",
+        "districtId": "473"
+    },
+    {
+        "id": 6211,
+        "name": "An Minh Bắc",
+        "type": "X",
+        "districtId": "76"
+    },
+    {
+        "id": 6314,
+        "name": "An Mỹ",
+        "type": "P",
+        "districtId": "288"
+    },
+    {
+        "id": 6566,
+        "name": "An Mỹ",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 10279,
+        "name": "An Mỹ",
+        "type": "X",
+        "districtId": "509"
+    },
+    {
+        "id": 1687,
+        "name": "An Mỹ",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 331,
+        "name": "Ân Mỹ",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 889,
+        "name": "An Mỹ",
+        "type": "X",
+        "districtId": "573"
+    },
+    {
+        "id": 7206,
+        "name": "An Mỹ",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 2828,
+        "name": "An Ngãi",
+        "type": "X",
+        "districtId": "686"
+    },
+    {
+        "id": 9610,
+        "name": "An Ngãi Tây",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 9588,
+        "name": "An Ngãi Trung",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 323,
+        "name": "Ân Nghĩa",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 5183,
+        "name": "An Nghĩa",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 7565,
+        "name": "Ân Nghĩa",
+        "type": "X",
+        "districtId": "610"
+    },
+    {
+        "id": 6570,
+        "name": "An Nghiệp",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 5863,
+        "name": "An Nghiệp",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 9941,
+        "name": "An Nhơn",
+        "type": "X",
+        "districtId": "660"
+    },
+    {
+        "id": 5975,
+        "name": "An Nhơn",
+        "type": "X",
+        "districtId": "581"
+    },
+    {
+        "id": 8559,
+        "name": "An Nhơn",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 1150,
+        "name": "An Nhơn Tây",
+        "type": "X",
+        "districtId": "413"
+    },
+    {
+        "id": 2831,
+        "name": "An Nhứt",
+        "type": "X",
+        "districtId": "686"
+    },
+    {
+        "id": 4831,
+        "name": "An Nhựt Tân",
+        "type": "X",
+        "districtId": "558"
+    },
+    {
+        "id": 2115,
+        "name": "An Ninh",
+        "type": "X",
+        "districtId": "67"
+    },
+    {
+        "id": 6951,
+        "name": "An Ninh",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 7182,
+        "name": "An Ninh",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 1679,
+        "name": "An Ninh",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 10582,
+        "name": "An Ninh",
+        "type": "X",
+        "districtId": "225"
+    },
+    {
+        "id": 3145,
+        "name": "An Ninh Đông",
+        "type": "X",
+        "districtId": "560"
+    },
+    {
+        "id": 6561,
+        "name": "An Ninh Đông",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 6563,
+        "name": "An Ninh Tây",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 3138,
+        "name": "An Ninh Tây",
+        "type": "X",
+        "districtId": "560"
+    },
+    {
+        "id": 1674,
+        "name": "An Nội",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 2171,
+        "name": "An Nông",
+        "type": "X",
+        "districtId": "548"
+    },
+    {
+        "id": 8761,
+        "name": "An Nông",
+        "type": "X",
+        "districtId": "433"
+    },
+    {
+        "id": 8552,
+        "name": "An Phong",
+        "type": "X",
+        "districtId": "152"
+    },
+    {
+        "id": 329,
+        "name": "Ân Phong",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 2179,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "548"
+    },
+    {
+        "id": 4063,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "593"
+    },
+    {
+        "id": 4664,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "125"
+    },
+    {
+        "id": 1153,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "413"
+    },
+    {
+        "id": 1209,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "366"
+    },
+    {
+        "id": 9030,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "358"
+    },
+    {
+        "id": 9411,
+        "name": "An Phụ",
+        "type": "X",
+        "districtId": "474"
+    },
+    {
+        "id": 9474,
+        "name": "An Phú",
+        "type": "P",
+        "districtId": "215"
+    },
+    {
+        "id": 5267,
+        "name": "Ân Phú",
+        "type": "X",
+        "districtId": "643"
+    },
+    {
+        "id": 5868,
+        "name": "An Phú",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 3670,
+        "name": "An Phú",
+        "type": "TT",
+        "districtId": "547"
+    },
+    {
+        "id": 3797,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "628"
+    },
+    {
+        "id": 6049,
+        "name": "An Phú",
+        "type": "P",
+        "districtId": "625"
+    },
+    {
+        "id": 6306,
+        "name": "An Phú",
+        "type": "P",
+        "districtId": "288"
+    },
+    {
+        "id": 7372,
+        "name": "An Phú",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 10281,
+        "name": "An Phú",
+        "type": "X",
+        "districtId": "509"
+    },
+    {
+        "id": 4768,
+        "name": "An Phú Đông",
+        "type": "P",
+        "districtId": "407"
+    },
+    {
+        "id": 8994,
+        "name": "An Phú Tân",
+        "type": "X",
+        "districtId": "706"
+    },
+    {
+        "id": 4435,
+        "name": "An Phú Tây",
+        "type": "X",
+        "districtId": "408"
+    },
+    {
+        "id": 8563,
+        "name": "An Phú Thuận",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 9607,
+        "name": "An Phú Trung",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 1157,
+        "name": "An Phú Trung",
+        "type": "X",
+        "districtId": "413"
+    },
+    {
+        "id": 5586,
+        "name": "An Phúc",
+        "type": "X",
+        "districtId": "467"
+    },
+    {
+        "id": 157,
+        "name": "An Phước",
+        "type": "X",
+        "districtId": "159"
+    },
+    {
+        "id": 2562,
+        "name": "An Phước",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 1928,
+        "name": "An Phước",
+        "type": "X",
+        "districtId": "166"
+    },
+    {
+        "id": 5903,
+        "name": "An Phước",
+        "type": "X",
+        "districtId": "652"
+    },
+    {
+        "id": 6055,
+        "name": "An Phước",
+        "type": "P",
+        "districtId": "625"
+    },
+    {
+        "id": 5176,
+        "name": "An Quang",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 3087,
+        "name": "An Quảng Hữu",
+        "type": "X",
+        "districtId": "710"
+    },
+    {
+        "id": 9938,
+        "name": "An Quy",
+        "type": "X",
+        "districtId": "660"
+    },
+    {
+        "id": 7201,
+        "name": "An Quý",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 9412,
+        "name": "An Sinh",
+        "type": "X",
+        "districtId": "474"
+    },
+    {
+        "id": 11073,
+        "name": "An Sinh",
+        "type": "X",
+        "districtId": "667"
+    },
+    {
+        "id": 9470,
+        "name": "An Sơn",
+        "type": "X",
+        "districtId": "215"
+    },
+    {
+        "id": 6175,
+        "name": "An Sơn",
+        "type": "X",
+        "districtId": "207"
+    },
+    {
+        "id": 6309,
+        "name": "An Sơn",
+        "type": "P",
+        "districtId": "288"
+    },
+    {
+        "id": 8588,
+        "name": "An Sơn",
+        "type": "X",
+        "districtId": "72"
+    },
+    {
+        "id": 327,
+        "name": "Ân Sơn",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 1199,
+        "name": "An Sơn",
+        "type": "X",
+        "districtId": "482"
+    },
+    {
+        "id": 6052,
+        "name": "An Tân",
+        "type": "P",
+        "districtId": "625"
+    },
+    {
+        "id": 5178,
+        "name": "An Tân",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 11222,
+        "name": "An Tảo",
+        "type": "P",
+        "districtId": "241"
+    },
+    {
+        "id": 5288,
+        "name": "An Tây",
+        "type": "X",
+        "districtId": "219"
+    },
+    {
+        "id": 371,
+        "name": "An Tây",
+        "type": "P",
+        "districtId": "506"
+    },
+    {
+        "id": 6567,
+        "name": "An Thạch",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 7191,
+        "name": "An Thái",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 3958,
+        "name": "An Thái",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 8012,
+        "name": "An Thái",
+        "type": "X",
+        "districtId": "217"
+    },
+    {
+        "id": 4562,
+        "name": "An Thái Đông",
+        "type": "X",
+        "districtId": "268"
+    },
+    {
+        "id": 4558,
+        "name": "An Thái Trung",
+        "type": "X",
+        "districtId": "268"
+    },
+    {
+        "id": 3970,
+        "name": "An Thắng",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 282,
+        "name": "An Thắng",
+        "type": "X",
+        "districtId": "118"
+    },
+    {
+        "id": 324,
+        "name": "Ân Thạnh",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 8413,
+        "name": "An Thành",
+        "type": "X",
+        "districtId": "623"
+    },
+    {
+        "id": 6110,
+        "name": "An Thạnh",
+        "type": "X",
+        "districtId": "277"
+    },
+    {
+        "id": 6444,
+        "name": "An Thạnh",
+        "type": "P",
+        "districtId": "155"
+    },
+    {
+        "id": 11265,
+        "name": "An Thạnh",
+        "type": "X",
+        "districtId": "658"
+    },
+    {
+        "id": 7211,
+        "name": "An Thanh",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 9469,
+        "name": "An Thạnh",
+        "type": "P",
+        "districtId": "215"
+    },
+    {
+        "id": 4041,
+        "name": "An Thanh",
+        "type": "X",
+        "districtId": "478"
+    },
+    {
+        "id": 4624,
+        "name": "An Thạnh",
+        "type": "X",
+        "districtId": "559"
+    },
+    {
+        "id": 5869,
+        "name": "An Thạnh",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 9951,
+        "name": "An Thạnh",
+        "type": "X",
+        "districtId": "660"
+    },
+    {
+        "id": 9279,
+        "name": "An Thạnh 1",
+        "type": "X",
+        "districtId": "564"
+    },
+    {
+        "id": 9286,
+        "name": "An Thạnh 2",
+        "type": "X",
+        "districtId": "564"
+    },
+    {
+        "id": 9282,
+        "name": "An Thạnh 3",
+        "type": "X",
+        "districtId": "564"
+    },
+    {
+        "id": 9284,
+        "name": "An Thạnh Đông",
+        "type": "X",
+        "districtId": "564"
+    },
+    {
+        "id": 9280,
+        "name": "An Thạnh Nam",
+        "type": "X",
+        "districtId": "564"
+    },
+    {
+        "id": 9283,
+        "name": "An Thạnh Tây",
+        "type": "X",
+        "districtId": "564"
+    },
+    {
+        "id": 9586,
+        "name": "An Thạnh Thủy",
+        "type": "X",
+        "districtId": "261"
+    },
+    {
+        "id": 7976,
+        "name": "An Thạnh Trung",
+        "type": "X",
+        "districtId": "116"
+    },
+    {
+        "id": 5753,
+        "name": "An Thịnh",
+        "type": "X",
+        "districtId": "124"
+    },
+    {
+        "id": 4604,
+        "name": "An Thịnh",
+        "type": "X",
+        "districtId": "26"
+    },
+    {
+        "id": 3955,
+        "name": "An Thọ",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 6565,
+        "name": "An Thọ",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 11271,
+        "name": "An Thới",
+        "type": "X",
+        "districtId": "658"
+    },
+    {
+        "id": 10449,
+        "name": "An Thới",
+        "type": "P",
+        "districtId": "233"
+    },
+    {
+        "id": 10451,
+        "name": "An Thới",
+        "type": "P",
+        "districtId": "233"
+    },
+    {
+        "id": 8536,
+        "name": "An Thới Đông",
+        "type": "X",
+        "districtId": "402"
+    },
+    {
+        "id": 9943,
+        "name": "An Thuận",
+        "type": "X",
+        "districtId": "660"
+    },
+    {
+        "id": 4491,
+        "name": "An Thượng",
+        "type": "X",
+        "districtId": "526"
+    },
+    {
+        "id": 2947,
+        "name": "An Thượng",
+        "type": "X",
+        "districtId": "461"
+    },
+    {
+        "id": 10013,
+        "name": "An Thuỷ",
+        "type": "X",
+        "districtId": "62"
+    },
+    {
+        "id": 9591,
+        "name": "An Thủy",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 10272,
+        "name": "An Tiến",
+        "type": "X",
+        "districtId": "509"
+    },
+    {
+        "id": 3964,
+        "name": "An Tiến",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 332,
+        "name": "Ân Tín",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 10414,
+        "name": "An Tịnh",
+        "type": "X",
+        "districtId": "273"
+    },
+    {
+        "id": 5611,
+        "name": "Ân Tình",
+        "type": "X",
+        "districtId": "115"
+    },
+    {
+        "id": 5181,
+        "name": "An Toàn",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 5589,
+        "name": "An Trạch",
+        "type": "X",
+        "districtId": "467"
+    },
+    {
+        "id": 5584,
+        "name": "An Trạch A",
+        "type": "X",
+        "districtId": "467"
+    },
+    {
+        "id": 7188,
+        "name": "An Tràng",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 5182,
+        "name": "An Trung",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 2448,
+        "name": "An Trung",
+        "type": "X",
+        "districtId": "631"
+    },
+    {
+        "id": 204,
+        "name": "An Trường",
+        "type": "X",
+        "districtId": "711"
+    },
+    {
+        "id": 212,
+        "name": "An Trường A",
+        "type": "X",
+        "districtId": "711"
+    },
+    {
+        "id": 4293,
+        "name": "An Tức",
+        "type": "X",
+        "districtId": "546"
+    },
+    {
+        "id": 3829,
+        "name": "An Tường",
+        "type": "X",
+        "districtId": "303"
+    },
+    {
+        "id": 8682,
+        "name": "An Tường",
+        "type": "X",
+        "districtId": "87"
+    },
+    {
+        "id": 330,
+        "name": "Ân Tường Đông",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 321,
+        "name": "Ân Tường Tây",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 5727,
+        "name": "An Vĩ",
+        "type": "X",
+        "districtId": "247"
+    },
+    {
+        "id": 8237,
+        "name": "An Viễn",
+        "type": "X",
+        "districtId": "649"
+    },
+    {
+        "id": 1701,
+        "name": "An Viên",
+        "type": "X",
+        "districtId": "250"
+    },
+    {
+        "id": 448,
+        "name": "An Vĩnh",
+        "type": "X",
+        "districtId": "42"
+    },
+    {
+        "id": 5179,
+        "name": "An Vinh",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 7212,
+        "name": "An Vinh",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 9171,
+        "name": "An Vĩnh Ngãi",
+        "type": "X",
+        "districtId": "553"
+    },
+    {
+        "id": 7177,
+        "name": "An Vũ",
+        "type": "X",
+        "districtId": "226"
+    },
+    {
+        "id": 6312,
+        "name": "An Xuân",
+        "type": "P",
+        "districtId": "288"
+    },
+    {
+        "id": 6557,
+        "name": "An Xuân",
+        "type": "X",
+        "districtId": "590"
+    },
+    {
+        "id": 2493,
+        "name": "An Xuyên",
+        "type": "X",
+        "districtId": "50"
+    },
+    {
+        "id": 10683,
+        "name": "Ẳng Cang",
+        "type": "X",
+        "districtId": "138"
+    },
+    {
+        "id": 10685,
+        "name": "Ẳng Nưa",
+        "type": "X",
+        "districtId": "138"
+    },
+    {
+        "id": 10688,
+        "name": "Ẳng Tở",
+        "type": "X",
+        "districtId": "138"
+    },
+    {
+        "id": 626,
+        "name": "Anh Dũng",
+        "type": "P",
+        "districtId": "213"
+    },
+    {
+        "id": 44,
+        "name": "Anh Sơn",
+        "type": "X",
+        "districtId": "453"
+    },
+    {
+        "id": 1365,
+        "name": "Anh Sơn",
+        "type": "X",
+        "districtId": "21"
+    },
+    {
+        "id": 3953,
+        "name": "Âu Cơ",
+        "type": "P",
+        "districtId": "322"
+    },
+    {
+        "id": 8511,
+        "name": "Âu Lâu",
+        "type": "X",
+        "districtId": "120"
+    },
+    {
+        "id": 8846,
+        "name": "Ayun",
+        "type": "X",
+        "districtId": "622"
+    },
+    {
+        "id": 956,
+        "name": "Ayun Hạ",
+        "type": "X",
+        "districtId": "633"
+    },
+    {
+        "id": 8606,
+        "name": "B'Lá",
+        "type": "X",
+        "districtId": "183"
+    },
+    {
+        "id": 6924,
+        "name": "B'Lao",
+        "type": "P",
+        "districtId": "580"
+    },
+    {
+        "id": 92,
+        "name": "Ba Bích",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 7642,
+        "name": "Ba Chẽ",
+        "type": "TT",
+        "districtId": "673"
+    },
+    {
+        "id": 100,
+        "name": "Ba Chùa",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 4300,
+        "name": "Ba Chúc",
+        "type": "TT",
+        "districtId": "546"
+    },
+    {
+        "id": 4285,
+        "name": "Ba Cụm Bắc",
+        "type": "X",
+        "districtId": "97"
+    },
+    {
+        "id": 4286,
+        "name": "Ba Cụm Nam",
+        "type": "X",
+        "districtId": "97"
+    },
+    {
+        "id": 104,
+        "name": "Ba Cung",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 90,
+        "name": "Ba Dinh",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9562,
+        "name": "Bà Điểm",
+        "type": "P",
+        "districtId": "398"
+    },
+    {
+        "id": 101,
+        "name": "Ba Điền",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9929,
+        "name": "Ba Đình",
+        "type": "P",
+        "districtId": "429"
+    },
+    {
+        "id": 2879,
+        "name": "Ba Đình",
+        "type": "P",
+        "districtId": "446"
+    },
+    {
+        "id": 3248,
+        "name": "Ba Đình",
+        "type": "X",
+        "districtId": "444"
+    },
+    {
+        "id": 3706,
+        "name": "Ba Đồn",
+        "type": "TT",
+        "districtId": "65"
+    },
+    {
+        "id": 2130,
+        "name": "Ba Đồn",
+        "type": "P",
+        "districtId": "66"
+    },
+    {
+        "id": 96,
+        "name": "Ba Động",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 107,
+        "name": "Ba Giang",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9616,
+        "name": "Ba Hàng",
+        "type": "TT",
+        "districtId": "191"
+    },
+    {
+        "id": 9850,
+        "name": "Bá Hiến",
+        "type": "X",
+        "districtId": "86"
+    },
+    {
+        "id": 91,
+        "name": "Ba Khâm",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 7669,
+        "name": "Ba Khan",
+        "type": "X",
+        "districtId": "609"
+    },
+    {
+        "id": 8002,
+        "name": "Ba Láng",
+        "type": "P",
+        "districtId": "234"
+    },
+    {
+        "id": 94,
+        "name": "Ba Lế",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 98,
+        "name": "Ba Liên",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9829,
+        "name": "Ba Lòng",
+        "type": "X",
+        "districtId": "128"
+    },
+    {
+        "id": 103,
+        "name": "Ba Nam",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9832,
+        "name": "Ba Nang",
+        "type": "X",
+        "districtId": "128"
+    },
+    {
+        "id": 97,
+        "name": "Ba Ngạc",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 11059,
+        "name": "Ba Ngòi",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 8581,
+        "name": "Ba Sao",
+        "type": "TT",
+        "districtId": "493"
+    },
+    {
+        "id": 7777,
+        "name": "Ba Sao",
+        "type": "X",
+        "districtId": "154"
+    },
+    {
+        "id": 93,
+        "name": "Ba Thành",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 108,
+        "name": "Ba Tiêu",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 95,
+        "name": "Ba Tô",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 105,
+        "name": "Ba Tơ",
+        "type": "TT",
+        "districtId": "43"
+    },
+    {
+        "id": 10564,
+        "name": "Ba Trại",
+        "type": "X",
+        "districtId": "508"
+    },
+    {
+        "id": 102,
+        "name": "Ba Trang",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9590,
+        "name": "Ba Tri",
+        "type": "TT",
+        "districtId": "661"
+    },
+    {
+        "id": 6287,
+        "name": "Bà Triệu",
+        "type": "P",
+        "districtId": "255"
+    },
+    {
+        "id": 894,
+        "name": "Ba Trinh",
+        "type": "X",
+        "districtId": "573"
+    },
+    {
+        "id": 106,
+        "name": "Ba Vì",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 10540,
+        "name": "Ba Vì",
+        "type": "X",
+        "districtId": "508"
+    },
+    {
+        "id": 89,
+        "name": "Ba Vinh",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 99,
+        "name": "Ba Xa",
+        "type": "X",
+        "districtId": "43"
+    },
+    {
+        "id": 9191,
+        "name": "Bá Xuyên",
+        "type": "X",
+        "districtId": "192"
+    },
+    {
+        "id": 2000,
+        "name": "Bắc Ái",
+        "type": "X",
+        "districtId": "336"
+    },
+    {
+        "id": 5471,
+        "name": "Bắc An",
+        "type": "P",
+        "districtId": "477"
+    },
+    {
+        "id": 1750,
+        "name": "Bắc Bình",
+        "type": "X",
+        "districtId": "91"
+    },
+    {
+        "id": 7790,
+        "name": "Bắc Cường",
+        "type": "P",
+        "districtId": "103"
+    },
+    {
+        "id": 7103,
+        "name": "Bắc Hà",
+        "type": "P",
+        "districtId": "641"
+    },
+    {
+        "id": 10611,
+        "name": "Bắc Hà",
+        "type": "TT",
+        "districtId": "102"
+    },
+    {
+        "id": 10576,
+        "name": "Bắc Hải",
+        "type": "X",
+        "districtId": "225"
+    },
+    {
+        "id": 11054,
+        "name": "Bắc Hoà",
+        "type": "X",
+        "districtId": "549"
+    },
+    {
+        "id": 10235,
+        "name": "Bắc Hồng",
+        "type": "P",
+        "districtId": "637"
+    },
+    {
+        "id": 5084,
+        "name": "Bắc Hồng",
+        "type": "X",
+        "districtId": "523"
+    },
+    {
+        "id": 5363,
+        "name": "Bắc Hợp",
+        "type": "X",
+        "districtId": "186"
+    },
+    {
+        "id": 3496,
+        "name": "Bắc Hưng",
+        "type": "X",
+        "districtId": "211"
+    },
+    {
+        "id": 10954,
+        "name": "Bắc La",
+        "type": "X",
+        "districtId": "327"
+    },
+    {
+        "id": 6228,
+        "name": "Bắc Lãng",
+        "type": "X",
+        "districtId": "331"
+    },
+    {
+        "id": 7795,
+        "name": "Bắc Lệnh",
+        "type": "P",
+        "districtId": "103"
+    },
+    {
+        "id": 9874,
+        "name": "Bắc Lũng",
+        "type": "X",
+        "districtId": "455"
+    },
+    {
+        "id": 5228,
+        "name": "Bắc Lương",
+        "type": "X",
+        "districtId": "440"
+    },
+    {
+        "id": 7749,
+        "name": "Bắc Lý",
+        "type": "X",
+        "districtId": "494"
+    },
+    {
+        "id": 4375,
+        "name": "Bắc Lý",
+        "type": "X",
+        "districtId": "459"
+    },
+    {
+        "id": 8823,
+        "name": "Bắc Lý",
+        "type": "P",
+        "districtId": "63"
+    },
+    {
+        "id": 1714,
+        "name": "Bắc Lý",
+        "type": "X",
+        "districtId": "18"
+    },
+    {
+        "id": 8816,
+        "name": "Bắc Nghĩa",
+        "type": "P",
+        "districtId": "63"
+    },
+    {
+        "id": 4970,
+        "name": "Bắc Phong",
+        "type": "X",
+        "districtId": "614"
+    },
+    {
+        "id": 2685,
+        "name": "Bắc Phong",
+        "type": "X",
+        "districtId": "384"
+    },
+    {
+        "id": 9492,
+        "name": "Bắc Phong",
+        "type": "X",
+        "districtId": "369"
+    },
+    {
+        "id": 9785,
+        "name": "Bắc Phú",
+        "type": "X",
+        "districtId": "510"
+    },
+    {
+        "id": 10088,
+        "name": "Bắc Ruộng",
+        "type": "X",
+        "districtId": "483"
+    },
+    {
+        "id": 9927,
+        "name": "Bắc Sơn",
+        "type": "P",
+        "districtId": "429"
+    },
+    {
+        "id": 10460,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "668"
+    },
+    {
+        "id": 10529,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "243"
+    },
+    {
+        "id": 2684,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "384"
+    },
+    {
+        "id": 5124,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "12"
+    },
+    {
+        "id": 4579,
+        "name": "Bắc Sơn",
+        "type": "TT",
+        "districtId": "334"
+    },
+    {
+        "id": 4589,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "334"
+    },
+    {
+        "id": 8122,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "608"
+    },
+    {
+        "id": 8225,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "649"
+    },
+    {
+        "id": 7237,
+        "name": "Bắc Sơn",
+        "type": "P",
+        "districtId": "437"
+    },
+    {
+        "id": 3576,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "210"
+    },
+    {
+        "id": 3819,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "504"
+    },
+    {
+        "id": 6610,
+        "name": "Bắc Sơn",
+        "type": "TT",
+        "districtId": "10"
+    },
+    {
+        "id": 9615,
+        "name": "Bắc Sơn",
+        "type": "TT",
+        "districtId": "191"
+    },
+    {
+        "id": 9784,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "510"
+    },
+    {
+        "id": 10990,
+        "name": "Bắc Sơn",
+        "type": "P",
+        "districtId": "306"
+    },
+    {
+        "id": 288,
+        "name": "Bắc Sơn",
+        "type": "P",
+        "districtId": "214"
+    },
+    {
+        "id": 1247,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "646"
+    },
+    {
+        "id": 1490,
+        "name": "Bắc Sơn",
+        "type": "P",
+        "districtId": "677"
+    },
+    {
+        "id": 1661,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "616"
+    },
+    {
+        "id": 1910,
+        "name": "Bắc Sơn",
+        "type": "X",
+        "districtId": "230"
+    },
+    {
+        "id": 1593,
+        "name": "Bắc Thành",
+        "type": "X",
+        "districtId": "19"
+    },
+    {
+        "id": 4353,
+        "name": "Bắc Thủy",
+        "type": "X",
+        "districtId": "335"
+    },
+    {
+        "id": 1876,
+        "name": "Bắc Trạch",
+        "type": "X",
+        "districtId": "68"
+    },
+    {
+        "id": 6235,
+        "name": "Bắc Xa",
+        "type": "X",
+        "districtId": "331"
+    },
+    {
+        "id": 8313,
+        "name": "Bắc Yên",
+        "type": "TT",
+        "districtId": "371"
+    },
+    {
+        "id": 7343,
+        "name": "Bạch Đằng",
+        "type": "X",
+        "districtId": "181"
+    },
+    {
+        "id": 3089,
+        "name": "Bạch Đằng",
+        "type": "X",
+        "districtId": "229"
+    },
+    {
+        "id": 3507,
+        "name": "Bạch Đằng",
+        "type": "X",
+        "districtId": "211"
+    },
+    {
+        "id": 128,
+        "name": "Bạch Đằng",
+        "type": "P",
+        "districtId": "680"
+    },
+    {
+        "id": 300,
+        "name": "Bạch Đằng",
+        "type": "X",
+        "districtId": "223"
+    },
+    {
+        "id": 753,
+        "name": "Bạch Đằng",
+        "type": "P",
+        "districtId": "535"
+    },
+    {
+        "id": 9405,
+        "name": "Bạch Đằng",
+        "type": "X",
+        "districtId": "474"
+    },
+    {
+        "id": 4118,
+        "name": "Bạch Đích",
+        "type": "X",
+        "districtId": "604"
+    },
+    {
+        "id": 596,
+        "name": "Bạch Hạ",
+        "type": "X",
+        "districtId": "537"
+    },
+    {
+        "id": 3616,
+        "name": "Bạch Hà",
+        "type": "X",
+        "districtId": "126"
+    },
+    {
+        "id": 953,
+        "name": "Bạch Hạc",
+        "type": "P",
+        "districtId": "325"
+    },
+    {
+        "id": 762,
+        "name": "Bách Khoa",
+        "type": "P",
+        "districtId": "535"
+    },
+    {
+        "id": 11216,
+        "name": "Bạch Long",
+        "type": "X",
+        "districtId": "251"
+    },
+    {
+        "id": 11292,
+        "name": "Bạch Lưu",
+        "type": "X",
+        "districtId": "84"
+    },
+    {
+        "id": 745,
+        "name": "Bạch Mai",
+        "type": "P",
+        "districtId": "535"
+    },
+    {
+        "id": 10135,
+        "name": "Bạch Ngọc",
+        "type": "X",
+        "districtId": "597"
+    },
+    {
+        "id": 4377,
+        "name": "Bách Nhẫn",
+        "type": "TT",
+        "districtId": "459"
+    },
+    {
+        "id": 9189,
+        "name": "Bách Quang",
+        "type": "P",
+        "districtId": "192"
+    },
+    {
+        "id": 10881,
+        "name": "Bạch Sam",
+        "type": "X",
+        "districtId": "242"
+    },
+    {
+        "id": 1307,
+        "name": "Bách Thuận",
+        "type": "X",
+        "districtId": "231"
+    },
+    {
+        "id": 5936,
+        "name": "Bạch Thượng",
+        "type": "X",
+        "districtId": "495"
+    },
+    {
+        "id": 5537,
+        "name": "Bạch Xa",
+        "type": "X",
+        "districtId": "301"
+    },
+    {
+        "id": 9629,
+        "name": "Bãi Bông",
+        "type": "TT",
+        "districtId": "191"
+    },
+    {
+        "id": 124,
+        "name": "Bãi Cháy",
+        "type": "P",
+        "districtId": "680"
+    },
+    {
+        "id": 10523,
+        "name": "Bãi Sậy",
+        "type": "X",
+        "districtId": "243"
+    },
+    {
+        "id": 5142,
+        "name": "Bài Sơn",
+        "type": "X",
+        "districtId": "12"
+    },
+    {
+        "id": 10793,
+        "name": "Bãi Thơm",
+        "type": "X",
+        "districtId": "69"
+    },
+    {
+        "id": 425,
+        "name": "Bãi Trành",
+        "type": "X",
+        "districtId": "451"
+    },
+    {
+        "id": 1036,
+        "name": "Bản Bo",
+        "type": "X",
+        "districtId": "426"
+    },
+    {
+        "id": 10615,
+        "name": "Bản Cái",
+        "type": "X",
+        "districtId": "102"
+    },
+    {
+        "id": 1350,
+        "name": "Bản Cầm",
+        "type": "X",
+        "districtId": "110"
+    },
+    {
+        "id": 6346,
+        "name": "Ban Công",
+        "type": "X",
+        "districtId": "438"
+    },
+    {
+        "id": 2501,
+        "name": "Bản Công",
+        "type": "X",
+        "districtId": "127"
+    },
+    {
+        "id": 7677,
+        "name": "Bản Díu",
+        "type": "X",
+        "districtId": "600"
+    },
+    {
+        "id": 789,
+        "name": "Bàn Đạt",
+        "type": "X",
+        "districtId": "198"
+    },
+    {
+        "id": 10623,
+        "name": "Bản Già",
+        "type": "X",
+        "districtId": "102"
+    },
+    {
+        "id": 1767,
+        "name": "Bàn Giản",
+        "type": "X",
+        "districtId": "91"
+    },
+    {
+        "id": 1028,
+        "name": "Bản Giang",
+        "type": "X",
+        "districtId": "426"
+    },
+    {
+        "id": 3737,
+        "name": "Bản Hồ",
+        "type": "X",
+        "districtId": "109"
+    },
+    {
+        "id": 1031,
+        "name": "Bản Hon",
+        "type": "X",
+        "districtId": "426"
+    },
+    {
+        "id": 3735,
+        "name": "Bản Khoang",
+        "type": "X",
+        "districtId": "109"
+    },
+    {
+        "id": 631,
+        "name": "Bản Lầm",
+        "type": "X",
+        "districtId": "378"
+    },
+    {
+        "id": 10641,
+        "name": "Bản Lang",
+        "type": "X",
+        "districtId": "419"
+    },
+    {
+        "id": 6515,
+        "name": "Bản Lầu",
+        "type": "X",
+        "districtId": "106"
+    },
+    {
+        "id": 10626,
+        "name": "Bản Liền",
+        "type": "X",
+        "districtId": "102"
+    },
+    {
+        "id": 1091,
+        "name": "Bàn Long",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 4132,
+        "name": "Bản Luốc",
+        "type": "X",
+        "districtId": "603"
+    },
+    {
+        "id": 4124,
+        "name": "Bản Máy",
+        "type": "X",
+        "districtId": "603"
+    },
+    {
+        "id": 6941,
+        "name": "Bản Mế",
+        "type": "X",
+        "districtId": "104"
+    },
+    {
+        "id": 2505,
+        "name": "Bản Mù",
+        "type": "X",
+        "districtId": "127"
+    },
+    {
+        "id": 7689,
+        "name": "Bản Ngò",
+        "type": "X",
+        "districtId": "600"
+    },
+    {
+        "id": 6630,
+        "name": "Bản Ngoại",
+        "type": "X",
+        "districtId": "194"
+    },
+    {
+        "id": 7594,
+        "name": "Bản Nguyên",
+        "type": "X",
+        "districtId": "317"
+    },
+    {
+        "id": 4142,
+        "name": "Bản Nhùng",
+        "type": "X",
+        "districtId": "603"
+    },
+    {
+        "id": 4129,
+        "name": "Bản Péo",
+        "type": "X",
+        "districtId": "603"
+    },
+    {
+        "id": 1345,
+        "name": "Bản Phiệt",
+        "type": "X",
+        "districtId": "110"
+    },
+    {
+        "id": 10622,
+        "name": "Bản Phố",
+        "type": "X",
+        "districtId": "102"
+    },
+    {
+        "id": 4122,
+        "name": "Bản Phùng",
+        "type": "X",
+        "districtId": "603"
+    },
+    {
+        "id": 3743,
+        "name": "Bản Phùng",
+        "type": "X",
+        "districtId": "109"
+    },
+    {
+        "id": 6691,
+        "name": "Bản Qua",
+        "type": "X",
+        "districtId": "105"
+    },
+    {
+        "id": 2341,
+        "name": "Bản Rịa",
+        "type": "X",
+        "districtId": "605"
+    },
+    {
+        "id": 6509,
+        "name": "Bản Sen",
+        "type": "X",
+        "districtId": "106"
+    },
+    {
+        "id": 1549,
+        "name": "Bản Sen",
+        "type": "X",
+        "districtId": "676"
+    },
+    {
+        "id": 868,
+        "name": "Bàn Tân Định",
+        "type": "X",
+        "districtId": "83"
+    },
+    {
+        "id": 857,
+        "name": "Bàn Thạch",
+        "type": "X",
+        "districtId": "83"
+    },
+    {
+        "id": 6873,
+        "name": "Bản Thi",
+        "type": "X",
+        "districtId": "114"
+    },
+    {
+        "id": 6685,
+        "name": "Bản Vược",
+        "type": "X",
+        "districtId": "105"
+    },
+    {
+        "id": 6683,
+        "name": "Bản Xèo",
+        "type": "X",
+        "districtId": "105"
+    },
+    {
+        "id": 8618,
+        "name": "Băng A Drênh",
+        "type": "X",
+        "districtId": "693"
+    },
+    {
+        "id": 6528,
+        "name": "Bằng An",
+        "type": "X",
+        "districtId": "24"
+    },
+    {
+        "id": 8094,
+        "name": "Bằng Cả",
+        "type": "X",
+        "districtId": "672"
+    },
+    {
+        "id": 5534,
+        "name": "Bằng Cốc",
+        "type": "X",
+        "districtId": "301"
+    },
+    {
+        "id": 2242,
+        "name": "Bằng Doãn",
+        "type": "X",
+        "districtId": "324"
+    },
+    {
+        "id": 11134,
+        "name": "Bằng Giã",
+        "type": "X",
+        "districtId": "314"
+    },
+    {
+        "id": 10031,
+        "name": "Bằng Hành",
+        "type": "X",
+        "districtId": "598"
+    },
+    {
+        "id": 4341,
+        "name": "Bằng Hữu",
+        "type": "X",
+        "districtId": "335"
+    },
+    {
+        "id": 5032,
+        "name": "Bằng Khánh",
+        "type": "X",
+        "districtId": "332"
+    },
+    {
+        "id": 9658,
+        "name": "Bàng La",
+        "type": "P",
+        "districtId": "201"
+    },
+    {
+        "id": 6885,
+        "name": "Bằng Lãng",
+        "type": "X",
+        "districtId": "114"
+    },
+    {
+        "id": 2345,
+        "name": "Bằng Lang",
+        "type": "X",
+        "districtId": "605"
+    },
+    {
+        "id": 2228,
+        "name": "Bằng Luân",
+        "type": "X",
+        "districtId": "324"
+    },
+    {
+        "id": 6869,
+        "name": "Bằng Lũng",
+        "type": "TT",
+        "districtId": "114"
+    },
+    {
+        "id": 4344,
+        "name": "Bằng Mạc",
+        "type": "X",
+        "districtId": "335"
+    },
+    {
+        "id": 6884,
+        "name": "Bằng Phúc",
+        "type": "X",
+        "districtId": "114"
+    },
+    {
+        "id": 283,
+        "name": "Bằng Thành",
+        "type": "X",
+        "districtId": "118"
+    },
+    {
+        "id": 7259,
+        "name": "Bằng Vân",
+        "type": "X",
+        "districtId": "113"
+    },
+    {
+        "id": 2481,
+        "name": "Bành Trạch",
+        "type": "X",
+        "districtId": "117"
+    },
+    {
+        "id": 3605,
+        "name": "Bảo Ái",
+        "type": "X",
+        "districtId": "126"
+    },
+    {
+        "id": 5213,
+        "name": "Bảo An",
+        "type": "P",
+        "districtId": "383"
+    },
+    {
+        "id": 6125,
+        "name": "Bảo Bình",
+        "type": "X",
+        "districtId": "651"
+    },
+    {
+        "id": 6460,
+        "name": "Bảo Cường",
+        "type": "X",
+        "districtId": "195"
+    },
+    {
+        "id": 9889,
+        "name": "Bảo Đài",
+        "type": "X",
+        "districtId": "455"
+    },
+    {
+        "id": 11101,
+        "name": "Báo Đáp",
+        "type": "X",
+        "districtId": "119"
+    },
+    {
+        "id": 4855,
+        "name": "Bảo Hà",
+        "type": "X",
+        "districtId": "108"
+    },
+    {
+        "id": 5164,
+        "name": "Bảo Hiệu",
+        "type": "X",
+        "districtId": "612"
+    },
+    {
+        "id": 4470,
+        "name": "Bảo Hoà",
+        "type": "X",
+        "districtId": "653"
+    },
+    {
+        "id": 9550,
+        "name": "Bảo Hòa",
+        "type": "X",
+        "districtId": "647"
+    },
+    {
+        "id": 11093,
+        "name": "Bảo Hưng",
+        "type": "X",
+        "districtId": "119"
+    },
+    {
+        "id": 11233,
+        "name": "Bảo Khê",
+        "type": "X",
+        "districtId": "241"
+    },
+    {
+        "id": 7659,
+        "name": "Bao La",
+        "type": "X",
+        "districtId": "609"
+    },
+    {
+        "id": 5431,
+        "name": "Bảo Lạc",
+        "type": "TT",
+        "districtId": "185"
+    },
+    {
+        "id": 699,
+        "name": "Bảo Lâm",
+        "type": "X",
+        "districtId": "337"
+    },
+    {
+        "id": 6453,
+        "name": "Bảo Linh",
+        "type": "X",
+        "districtId": "195"
+    },
+    {
+        "id": 783,
+        "name": "Bảo Lý",
+        "type": "X",
+        "districtId": "198"
+    },
+    {
+        "id": 1713,
+        "name": "Bảo Nam",
+        "type": "X",
+        "districtId": "18"
+    },
+    {
+        "id": 10608,
+        "name": "Bảo Nhai",
+        "type": "X",
+        "districtId": "102"
+    },
+    {
+        "id": 8822,
+        "name": "Bảo Ninh",
+        "type": "X",
+        "districtId": "63"
+    },
+    {
+        "id": 4467,
+        "name": "Bảo Quang",
+        "type": "X",
+        "districtId": "653"
+    },
+    {
+        "id": 9865,
+        "name": "Bảo Sơn",
+        "type": "X",
+        "districtId": "455"
+    },
+    {
+        "id": 1723,
+        "name": "Bảo Thắng",
+        "type": "X",
+        "districtId": "18"
+    },
+    {
+        "id": 1569,
+        "name": "Bảo Thành",
+        "type": "X",
+        "districtId": "19"
+    },
+    {
+        "id": 5440,
+        "name": "Bảo Thanh",
+        "type": "X",
+        "districtId": "290"
+    },
+    {
+        "id": 9600,
+        "name": "Bảo Thạnh",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 9599,
+        "name": "Bảo Thuận",
+        "type": "X",
+        "districtId": "661"
+    },
+    {
+        "id": 340,
+        "name": "Bảo Thuận",
+        "type": "X",
+        "districtId": "586"
+    },
+    {
+        "id": 5424,
+        "name": "Bảo Toàn",
+        "type": "X",
+        "districtId": "185"
+    },
+    {
+        "id": 4478,
+        "name": "Bảo Vinh",
+        "type": "X",
+        "districtId": "653"
+    },
+    {
+        "id": 5986,
+        "name": "Bảo Yên",
+        "type": "X",
+        "districtId": "319"
+    },
+    {
+        "id": 6039,
+        "name": "Bar Măih",
+        "type": "X",
+        "districtId": "626"
+    },
+    {
+        "id": 8275,
+        "name": "Bát Đại Sơn",
+        "type": "X",
+        "districtId": "599"
+    },
+    {
+        "id": 2818,
+        "name": "Bát Mọt",
+        "type": "X",
+        "districtId": "447"
+    },
+    {
+        "id": 8663,
+        "name": "Bát Tràng",
+        "type": "X",
+        "districtId": "514"
+    },
+    {
+        "id": 3968,
+        "name": "Bát Trang",
+        "type": "X",
+        "districtId": "209"
+    },
+    {
+        "id": 6673,
+        "name": "Bát Xát",
+        "type": "TT",
+        "districtId": "105"
+    },
+    {
+        "id": 5894,
+        "name": "Bàu Cạn",
+        "type": "X",
+        "districtId": "652"
+    },
+    {
+        "id": 2671,
+        "name": "Bàu Cạn",
+        "type": "X",
+        "districtId": "630"
+    },
+    {
+        "id": 1121,
+        "name": "Bàu Chinh",
+        "type": "X",
+        "districtId": "687"
+    },
+    {
+        "id": 1269,
+        "name": "Bàu Đồn",
+        "type": "X",
+        "districtId": "280"
+    },
+    {
+        "id": 8231,
+        "name": "Bàu Hàm",
+        "type": "X",
+        "districtId": "649"
+    },
+    {
+        "id": 9276,
+        "name": "Bàu Hàm 2",
+        "type": "X",
+        "districtId": "648"
+    },
+    {
+        "id": 908,
+        "name": "Bàu Hang",
+        "type": "P",
+        "districtId": "656"
+    },
+    {
+        "id": 3489,
+        "name": "Bàu Lâm",
+        "type": "X",
+        "districtId": "685"
+    },
+    {
+        "id": 10784,
+        "name": "Bàu Năng",
+        "type": "X",
+        "districtId": "272"
+    },
+    {
+        "id": 4477,
+        "name": "Bàu Sen",
+        "type": "X",
+        "districtId": "653"
+    },
+    {
+        "id": 4472,
+        "name": "Bàu Trâm",
+        "type": "X",
+        "districtId": "653"
+    },
+    {
+        "id": 5875,
+        "name": "Bảy Ngàn",
+        "type": "TT",
+        "districtId": "353"
+    },
+    {
+        "id": 7351,
+        "name": "Bế Triều",
+        "type": "X",
+        "districtId": "181"
+    },
+    {
+        "id": 6106,
+        "name": "Bến Cầu",
+        "type": "TT",
+        "districtId": "277"
+    },
+    {
+        "id": 10789,
+        "name": "Bến Củi",
+        "type": "X",
+        "districtId": "272"
+    },
+    {
+        "id": 935,
+        "name": "Bến Gót",
+        "type": "P",
+        "districtId": "325"
+    },
+    {
+        "id": 4622,
+        "name": "Bến Lức",
+        "type": "TT",
+        "districtId": "559"
+    },
+    {
+        "id": 998,
+        "name": "Bến Nghé",
+        "type": "P",
+        "districtId": "415"
+    },
+    {
+        "id": 5561,
+        "name": "Bến Quan",
+        "type": "TT",
+        "districtId": "132"
+    },
+    {
+        "id": 9014,
+        "name": "Bến Sung",
+        "type": "TT",
+        "districtId": "432"
+    },
+    {
+        "id": 5460,
+        "name": "Bến Tắm",
+        "type": "P",
+        "districtId": "477"
+    },
+    {
+        "id": 1003,
+        "name": "Bến Thành",
+        "type": "P",
+        "districtId": "415"
+    },
+    {
+        "id": 10752,
+        "name": "Bến Thuỷ",
+        "type": "P",
+        "districtId": "2"
+    },
+    {
+        "id": 852,
+        "name": "Bhallê",
+        "type": "X",
+        "districtId": "296"
+    },
+    {
+        "id": 8488,
+        "name": "Bích Đào",
+        "type": "P",
+        "districtId": "308"
+    },
+    {
+        "id": 7117,
+        "name": "Bích Động",
+        "type": "TT",
+        "districtId": "457"
+    },
+    {
+        "id": 6394,
+        "name": "Bích Hòa",
+        "type": "X",
+        "districtId": "519"
+    },
+    {
+        "id": 7131,
+        "name": "Bích Sơn",
+        "type": "X",
+        "districtId": "457"
+    },
+    {
+        "id": 231,
+        "name": "Biển Bạch",
+        "type": "X",
+        "districtId": "52"
+    },
+    {
+        "id": 229,
+        "name": "Biển Bạch Đông",
+        "type": "X",
+        "districtId": "52"
+    },
+    {
+        "id": 1800,
+        "name": "Biển Động",
+        "type": "X",
+        "districtId": "463"
+    },
+    {
+        "id": 4842,
+        "name": "Biên Giang",
+        "type": "P",
+        "districtId": "524"
+    },
+    {
+        "id": 6824,
+        "name": "Biên Giới",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 3800,
+        "name": "Biển Hồ",
+        "type": "X",
+        "districtId": "628"
+    },
+    {
+        "id": 1801,
+        "name": "Biên Sơn",
+        "type": "X",
+        "districtId": "463"
+    },
+    {
+        "id": 5907,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "652"
+    },
+    {
+        "id": 8246,
+        "name": "Bình Ân",
+        "type": "X",
+        "districtId": "262"
+    },
+    {
+        "id": 4975,
+        "name": "Bình An",
+        "type": "P",
+        "districtId": "220"
+    },
+    {
+        "id": 7371,
+        "name": "Bình An",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 3408,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3891,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 10167,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "552"
+    },
+    {
+        "id": 10174,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 9644,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "484"
+    },
+    {
+        "id": 4489,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "80"
+    },
+    {
+        "id": 4615,
+        "name": "Bình An",
+        "type": "X",
+        "districtId": "302"
+    },
+    {
+        "id": 1122,
+        "name": "Bình Ba",
+        "type": "X",
+        "districtId": "687"
+    },
+    {
+        "id": 5455,
+        "name": "Bình Bộ",
+        "type": "X",
+        "districtId": "290"
+    },
+    {
+        "id": 7559,
+        "name": "Bình Cảng",
+        "type": "X",
+        "districtId": "610"
+    },
+    {
+        "id": 7576,
+        "name": "Bình Chân",
+        "type": "X",
+        "districtId": "610"
+    },
+    {
+        "id": 4440,
+        "name": "Bình Chánh",
+        "type": "X",
+        "districtId": "408"
+    },
+    {
+        "id": 6068,
+        "name": "Bình Chánh",
+        "type": "X",
+        "districtId": "543"
+    },
+    {
+        "id": 3416,
+        "name": "Bình Chánh",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3888,
+        "name": "Bình Chánh",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 3426,
+        "name": "Bình Châu",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3483,
+        "name": "Bình Châu",
+        "type": "X",
+        "districtId": "685"
+    },
+    {
+        "id": 562,
+        "name": "Bình Chiểu",
+        "type": "P",
+        "districtId": "418"
+    },
+    {
+        "id": 9477,
+        "name": "Bình Chuẩn",
+        "type": "P",
+        "districtId": "215"
+    },
+    {
+        "id": 10506,
+        "name": "Bình Chuẩn",
+        "type": "X",
+        "districtId": "3"
+    },
+    {
+        "id": 3417,
+        "name": "Bình Chương",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 1551,
+        "name": "Bình Dân",
+        "type": "X",
+        "districtId": "676"
+    },
+    {
+        "id": 11154,
+        "name": "Bình Dân",
+        "type": "X",
+        "districtId": "471"
+    },
+    {
+        "id": 11072,
+        "name": "Bình Dương",
+        "type": "X",
+        "districtId": "667"
+    },
+    {
+        "id": 7345,
+        "name": "Bình Dương",
+        "type": "X",
+        "districtId": "181"
+    },
+    {
+        "id": 3428,
+        "name": "Bình Dương",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3883,
+        "name": "Bình Dương",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 8676,
+        "name": "Bình Dương",
+        "type": "X",
+        "districtId": "87"
+    },
+    {
+        "id": 9751,
+        "name": "Bình Dương",
+        "type": "TT",
+        "districtId": "339"
+    },
+    {
+        "id": 5948,
+        "name": "Bình Dương",
+        "type": "X",
+        "districtId": "25"
+    },
+    {
+        "id": 923,
+        "name": "Bình Đa",
+        "type": "P",
+        "districtId": "656"
+    },
+    {
+        "id": 11023,
+        "name": "Bình Đại",
+        "type": "TT",
+        "districtId": "659"
+    },
+    {
+        "id": 3890,
+        "name": "Bình Đào",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 258,
+        "name": "Bình Điền",
+        "type": "X",
+        "districtId": "507"
+    },
+    {
+        "id": 4603,
+        "name": "Bình Định",
+        "type": "X",
+        "districtId": "26"
+    },
+    {
+        "id": 10905,
+        "name": "Bình Định",
+        "type": "X",
+        "districtId": "224"
+    },
+    {
+        "id": 5001,
+        "name": "Bình Định",
+        "type": "X",
+        "districtId": "89"
+    },
+    {
+        "id": 8965,
+        "name": "Bình Định",
+        "type": "P",
+        "districtId": "340"
+    },
+    {
+        "id": 3881,
+        "name": "Bình Định Bắc",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 3893,
+        "name": "Bình Định Nam",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 2964,
+        "name": "Bình Đông",
+        "type": "X",
+        "districtId": "270"
+    },
+    {
+        "id": 3412,
+        "name": "Bình Đông",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 4634,
+        "name": "Bình Đức",
+        "type": "X",
+        "districtId": "559"
+    },
+    {
+        "id": 1107,
+        "name": "Bình Đức",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 7723,
+        "name": "Bình Đức",
+        "type": "P",
+        "districtId": "541"
+    },
+    {
+        "id": 1125,
+        "name": "Bình Giã",
+        "type": "X",
+        "districtId": "687"
+    },
+    {
+        "id": 9226,
+        "name": "Bình Gia",
+        "type": "TT",
+        "districtId": "328"
+    },
+    {
+        "id": 3885,
+        "name": "Bình Giang",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 7987,
+        "name": "Bình Giang",
+        "type": "X",
+        "districtId": "73"
+    },
+    {
+        "id": 2667,
+        "name": "Bình Giáo",
+        "type": "X",
+        "districtId": "630"
+    },
+    {
+        "id": 3430,
+        "name": "Bình Hải",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3886,
+        "name": "Bình Hải",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 11009,
+        "name": "Bình Hàn",
+        "type": "P",
+        "districtId": "472"
+    },
+    {
+        "id": 7775,
+        "name": "Bình Hàng Tây",
+        "type": "X",
+        "districtId": "154"
+    },
+    {
+        "id": 7786,
+        "name": "Bình Hàng Trung",
+        "type": "X",
+        "districtId": "154"
+    },
+    {
+        "id": 7571,
+        "name": "Bình Hẻm",
+        "type": "X",
+        "districtId": "610"
+    },
+    {
+        "id": 4920,
+        "name": "Bình Hiên",
+        "type": "P",
+        "districtId": "392"
+    },
+    {
+        "id": 10733,
+        "name": "Bình Hiệp",
+        "type": "X",
+        "districtId": "550"
+    },
+    {
+        "id": 3411,
+        "name": "Bình Hiệp",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3418,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3851,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "664"
+    },
+    {
+        "id": 11210,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "251"
+    },
+    {
+        "id": 8616,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "693"
+    },
+    {
+        "id": 1608,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "345"
+    },
+    {
+        "id": 9472,
+        "name": "Bình Hòa",
+        "type": "P",
+        "districtId": "215"
+    },
+    {
+        "id": 4184,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "654"
+    },
+    {
+        "id": 7167,
+        "name": "Bình Hòa",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 6734,
+        "name": "Bình Hòa Bắc",
+        "type": "X",
+        "districtId": "556"
+    },
+    {
+        "id": 5366,
+        "name": "Bình Hòa Đông",
+        "type": "X",
+        "districtId": "557"
+    },
+    {
+        "id": 6738,
+        "name": "Bình Hòa Hưng",
+        "type": "X",
+        "districtId": "556"
+    },
+    {
+        "id": 6742,
+        "name": "Bình Hòa Nam",
+        "type": "X",
+        "districtId": "556"
+    },
+    {
+        "id": 10892,
+        "name": "Bình Hoà Phước",
+        "type": "X",
+        "districtId": "160"
+    },
+    {
+        "id": 5371,
+        "name": "Bình Hòa Tây",
+        "type": "X",
+        "districtId": "557"
+    },
+    {
+        "id": 5372,
+        "name": "Bình Hòa Trung",
+        "type": "X",
+        "districtId": "557"
+    },
+    {
+        "id": 5830,
+        "name": "Bình Hưng",
+        "type": "P",
+        "districtId": "487"
+    },
+    {
+        "id": 4442,
+        "name": "Bình Hưng",
+        "type": "X",
+        "districtId": "408"
+    },
+    {
+        "id": 8290,
+        "name": "Bình Hưng Hòa",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 8297,
+        "name": "Bình Hưng Hòa A",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 8296,
+        "name": "Bình Hưng Hòa B",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 8539,
+        "name": "Bình Khánh",
+        "type": "X",
+        "districtId": "402"
+    },
+    {
+        "id": 7370,
+        "name": "Bình Khánh",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 7727,
+        "name": "Bình Khánh",
+        "type": "P",
+        "districtId": "541"
+    },
+    {
+        "id": 11267,
+        "name": "Bình Khánh Đông",
+        "type": "X",
+        "districtId": "658"
+    },
+    {
+        "id": 11262,
+        "name": "Bình Khánh Tây",
+        "type": "X",
+        "districtId": "658"
+    },
+    {
+        "id": 11070,
+        "name": "Bình Khê",
+        "type": "X",
+        "districtId": "667"
+    },
+    {
+        "id": 3431,
+        "name": "Bình Khương",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 4068,
+        "name": "Bình Kiến",
+        "type": "X",
+        "districtId": "593"
+    },
+    {
+        "id": 5707,
+        "name": "Bình Kiều",
+        "type": "X",
+        "districtId": "247"
+    },
+    {
+        "id": 9233,
+        "name": "Bình La",
+        "type": "X",
+        "districtId": "328"
+    },
+    {
+        "id": 10702,
+        "name": "Bình Lâm",
+        "type": "X",
+        "districtId": "281"
+    },
+    {
+        "id": 5701,
+        "name": "Bình Lăng",
+        "type": "X",
+        "districtId": "184"
+    },
+    {
+        "id": 9531,
+        "name": "Bình Lãng",
+        "type": "X",
+        "districtId": "179"
+    },
+    {
+        "id": 4044,
+        "name": "Bình Lãng",
+        "type": "X",
+        "districtId": "478"
+    },
+    {
+        "id": 4836,
+        "name": "Bình Lãng",
+        "type": "X",
+        "districtId": "558"
+    },
+    {
+        "id": 3894,
+        "name": "Bình Lãnh",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 9538,
+        "name": "Bình Liêu",
+        "type": "TT",
+        "districtId": "670"
+    },
+    {
+        "id": 4469,
+        "name": "Bình Lộc",
+        "type": "X",
+        "districtId": "653"
+    },
+    {
+        "id": 11178,
+        "name": "Bình Lộc",
+        "type": "X",
+        "districtId": "635"
+    },
+    {
+        "id": 4176,
+        "name": "Bình Lợi",
+        "type": "X",
+        "districtId": "654"
+    },
+    {
+        "id": 4437,
+        "name": "Bình Lợi",
+        "type": "X",
+        "districtId": "408"
+    },
+    {
+        "id": 7215,
+        "name": "Bình Long",
+        "type": "X",
+        "districtId": "193"
+    },
+    {
+        "id": 7342,
+        "name": "Bình Long",
+        "type": "X",
+        "districtId": "181"
+    },
+    {
+        "id": 6067,
+        "name": "Bình Long",
+        "type": "X",
+        "districtId": "543"
+    },
+    {
+        "id": 3421,
+        "name": "Bình Long",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 1030,
+        "name": "Bình Lư",
+        "type": "X",
+        "districtId": "426"
+    },
+    {
+        "id": 418,
+        "name": "Bình Lương",
+        "type": "X",
+        "districtId": "451"
+    },
+    {
+        "id": 59,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "453"
+    },
+    {
+        "id": 535,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "367"
+    },
+    {
+        "id": 10920,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "224"
+    },
+    {
+        "id": 3432,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3900,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 3910,
+        "name": "Bình Minh",
+        "type": "TT",
+        "districtId": "311"
+    },
+    {
+        "id": 8873,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "274"
+    },
+    {
+        "id": 6973,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "74"
+    },
+    {
+        "id": 6985,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "254"
+    },
+    {
+        "id": 7806,
+        "name": "Bình Minh",
+        "type": "P",
+        "districtId": "103"
+    },
+    {
+        "id": 6408,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "519"
+    },
+    {
+        "id": 5728,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "247"
+    },
+    {
+        "id": 8230,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "649"
+    },
+    {
+        "id": 2722,
+        "name": "Bình Minh",
+        "type": "X",
+        "districtId": "479"
+    },
+    {
+        "id": 1156,
+        "name": "Bình Mỹ",
+        "type": "X",
+        "districtId": "413"
+    },
+    {
+        "id": 3414,
+        "name": "Bình Mỹ",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 301,
+        "name": "Bình Mỹ",
+        "type": "X",
+        "districtId": "223"
+    },
+    {
+        "id": 6060,
+        "name": "Bình Mỹ",
+        "type": "X",
+        "districtId": "543"
+    },
+    {
+        "id": 3895,
+        "name": "Bình Nam",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 1616,
+        "name": "Bình Nghi",
+        "type": "X",
+        "districtId": "345"
+    },
+    {
+        "id": 8245,
+        "name": "Bình Nghị",
+        "type": "X",
+        "districtId": "262"
+    },
+    {
+        "id": 1677,
+        "name": "Bình Nghĩa",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 10473,
+        "name": "Bình Ngọc",
+        "type": "P",
+        "districtId": "668"
+    },
+    {
+        "id": 4056,
+        "name": "Bình Ngọc",
+        "type": "X",
+        "districtId": "593"
+    },
+    {
+        "id": 3423,
+        "name": "Bình Nguyên",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3887,
+        "name": "Bình Nguyên",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 10914,
+        "name": "Bình Nguyên",
+        "type": "X",
+        "districtId": "224"
+    },
+    {
+        "id": 9475,
+        "name": "Bình Nhâm",
+        "type": "X",
+        "districtId": "215"
+    },
+    {
+        "id": 2913,
+        "name": "Bình Nhân",
+        "type": "X",
+        "districtId": "305"
+    },
+    {
+        "id": 3389,
+        "name": "Bình Nhì",
+        "type": "X",
+        "districtId": "269"
+    },
+    {
+        "id": 9574,
+        "name": "Bình Ninh",
+        "type": "X",
+        "districtId": "261"
+    },
+    {
+        "id": 16,
+        "name": "Bình Ninh",
+        "type": "X",
+        "districtId": "167"
+    },
+    {
+        "id": 9568,
+        "name": "Bình Phan",
+        "type": "X",
+        "districtId": "261"
+    },
+    {
+        "id": 5369,
+        "name": "Bình Phong Thạnh",
+        "type": "X",
+        "districtId": "557"
+    },
+    {
+        "id": 3063,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "665"
+    },
+    {
+        "id": 3388,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "269"
+    },
+    {
+        "id": 3409,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3897,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 2900,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "305"
+    },
+    {
+        "id": 6061,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "543"
+    },
+    {
+        "id": 6500,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "265"
+    },
+    {
+        "id": 9454,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "511"
+    },
+    {
+        "id": 165,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "159"
+    },
+    {
+        "id": 211,
+        "name": "Bình Phú",
+        "type": "X",
+        "districtId": "711"
+    },
+    {
+        "id": 3896,
+        "name": "Bình Phục",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 7287,
+        "name": "Bình Phúc",
+        "type": "X",
+        "districtId": "330"
+    },
+    {
+        "id": 9584,
+        "name": "Bình Phục Nhứt",
+        "type": "X",
+        "districtId": "261"
+    },
+    {
+        "id": 1930,
+        "name": "Bình Phước",
+        "type": "X",
+        "districtId": "166"
+    },
+    {
+        "id": 3410,
+        "name": "Bình Phước",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 7979,
+        "name": "Bình Phước Xuân",
+        "type": "X",
+        "districtId": "116"
+    },
+    {
+        "id": 3884,
+        "name": "Bình Quế",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 8884,
+        "name": "Bình Quới",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 8874,
+        "name": "Bình Quới.",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 3899,
+        "name": "Bình Quý",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 3898,
+        "name": "Bình Sa",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 10435,
+        "name": "Bình San",
+        "type": "P",
+        "districtId": "70"
+    },
+    {
+        "id": 9871,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "455"
+    },
+    {
+        "id": 10701,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "281"
+    },
+    {
+        "id": 9193,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "192"
+    },
+    {
+        "id": 7991,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "73"
+    },
+    {
+        "id": 8337,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "359"
+    },
+    {
+        "id": 8756,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "433"
+    },
+    {
+        "id": 1371,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "21"
+    },
+    {
+        "id": 1651,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "616"
+    },
+    {
+        "id": 5905,
+        "name": "Bình Sơn",
+        "type": "X",
+        "districtId": "652"
+    },
+    {
+        "id": 9168,
+        "name": "Bình Tâm",
+        "type": "X",
+        "districtId": "553"
+    },
+    {
+        "id": 9636,
+        "name": "Bình Tân",
+        "type": "X",
+        "districtId": "484"
+    },
+    {
+        "id": 10736,
+        "name": "Bình Tân",
+        "type": "X",
+        "districtId": "550"
+    },
+    {
+        "id": 3393,
+        "name": "Bình Tân",
+        "type": "X",
+        "districtId": "269"
+    },
+    {
+        "id": 3425,
+        "name": "Bình Tân",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 2435,
+        "name": "Bình Tân",
+        "type": "P",
+        "districtId": "700"
+    },
+    {
+        "id": 1613,
+        "name": "Bình Tân",
+        "type": "X",
+        "districtId": "345"
+    },
+    {
+        "id": 1706,
+        "name": "Bình Tân",
+        "type": "P",
+        "districtId": "490"
+    },
+    {
+        "id": 8331,
+        "name": "Bình Tân",
+        "type": "X",
+        "districtId": "359"
+    },
+    {
+        "id": 8547,
+        "name": "Bình Tấn",
+        "type": "X",
+        "districtId": "152"
+    },
+    {
+        "id": 9326,
+        "name": "Bình Thắng",
+        "type": "X",
+        "districtId": "357"
+    },
+    {
+        "id": 4972,
+        "name": "Bình Thắng",
+        "type": "P",
+        "districtId": "220"
+    },
+    {
+        "id": 11040,
+        "name": "Bình Thắng",
+        "type": "X",
+        "districtId": "659"
+    },
+    {
+        "id": 10928,
+        "name": "Bình Thanh",
+        "type": "X",
+        "districtId": "224"
+    },
+    {
+        "id": 4967,
+        "name": "Bình Thanh",
+        "type": "X",
+        "districtId": "614"
+    },
+    {
+        "id": 5367,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "557"
+    },
+    {
+        "id": 8549,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "152"
+    },
+    {
+        "id": 259,
+        "name": "Bình Thành",
+        "type": "P",
+        "districtId": "507"
+    },
+    {
+        "id": 2957,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "489"
+    },
+    {
+        "id": 3424,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3857,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "664"
+    },
+    {
+        "id": 9944,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "660"
+    },
+    {
+        "id": 10158,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "552"
+    },
+    {
+        "id": 10180,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "575"
+    },
+    {
+        "id": 10406,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "273"
+    },
+    {
+        "id": 10665,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "538"
+    },
+    {
+        "id": 1611,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "345"
+    },
+    {
+        "id": 6418,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "156"
+    },
+    {
+        "id": 6439,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "155"
+    },
+    {
+        "id": 6458,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "195"
+    },
+    {
+        "id": 6744,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "556"
+    },
+    {
+        "id": 6932,
+        "name": "Bình Thạnh",
+        "type": "P",
+        "districtId": "352"
+    },
+    {
+        "id": 7176,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 7626,
+        "name": "Bình Thành",
+        "type": "X",
+        "districtId": "351"
+    },
+    {
+        "id": 7782,
+        "name": "Bình Thạnh",
+        "type": "X",
+        "districtId": "154"
+    },
+    {
+        "id": 2059,
+        "name": "Bình Thạnh",
+        "type": "TT",
+        "districtId": "561"
+    },
+    {
+        "id": 3420,
+        "name": "Bình Thanh Đông",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 5327,
+        "name": "Bình Thạnh Đông",
+        "type": "X",
+        "districtId": "51"
+    },
+    {
+        "id": 3427,
+        "name": "Bình Thanh Tây",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 6420,
+        "name": "Bình Thạnh Trung",
+        "type": "X",
+        "districtId": "156"
+    },
+    {
+        "id": 559,
+        "name": "Bình Thọ",
+        "type": "P",
+        "districtId": "418"
+    },
+    {
+        "id": 11033,
+        "name": "Bình Thới",
+        "type": "X",
+        "districtId": "659"
+    },
+    {
+        "id": 3422,
+        "name": "Bình Thới",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3419,
+        "name": "Bình Thuận",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 6636,
+        "name": "Bình Thuận",
+        "type": "X",
+        "districtId": "194"
+    },
+    {
+        "id": 2441,
+        "name": "Bình Thuận",
+        "type": "X",
+        "districtId": "700"
+    },
+    {
+        "id": 8158,
+        "name": "Bình Thuận",
+        "type": "X",
+        "districtId": "121"
+    },
+    {
+        "id": 4917,
+        "name": "Bình Thuận",
+        "type": "P",
+        "districtId": "392"
+    },
+    {
+        "id": 1607,
+        "name": "Bình Thuận",
+        "type": "X",
+        "districtId": "345"
+    },
+    {
+        "id": 1959,
+        "name": "Bình Thuận",
+        "type": "P",
+        "districtId": "412"
+    },
+    {
+        "id": 6063,
+        "name": "Bình Thủy",
+        "type": "X",
+        "districtId": "543"
+    },
+    {
+        "id": 10454,
+        "name": "Bình Thủy",
+        "type": "P",
+        "districtId": "233"
+    },
+    {
+        "id": 4827,
+        "name": "Bình Tịnh",
+        "type": "X",
+        "districtId": "558"
+    },
+    {
+        "id": 4485,
+        "name": "Bình Trị",
+        "type": "X",
+        "districtId": "80"
+    },
+    {
+        "id": 3415,
+        "name": "Bình Trị",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3889,
+        "name": "Bình Trị",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 8289,
+        "name": "Bình Trị Đông",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 8291,
+        "name": "Bình Trị Đông A",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 8292,
+        "name": "Bình Trị Đông B",
+        "type": "P",
+        "districtId": "161"
+    },
+    {
+        "id": 3892,
+        "name": "Bình Triều",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 4829,
+        "name": "Bình Trinh Đông",
+        "type": "X",
+        "districtId": "558"
+    },
+    {
+        "id": 3429,
+        "name": "Bình Trung",
+        "type": "X",
+        "districtId": "40"
+    },
+    {
+        "id": 3882,
+        "name": "Bình Trung",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 689,
+        "name": "Bình Trung",
+        "type": "X",
+        "districtId": "337"
+    },
+    {
+        "id": 1089,
+        "name": "Bình Trưng",
+        "type": "X",
+        "districtId": "71"
+    },
+    {
+        "id": 1120,
+        "name": "Bình Trung",
+        "type": "X",
+        "districtId": "687"
+    },
+    {
+        "id": 6872,
+        "name": "Bình Trung",
+        "type": "X",
+        "districtId": "114"
+    },
+    {
+        "id": 7367,
+        "name": "Bình Trưng Đông",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 7376,
+        "name": "Bình Trưng Tây",
+        "type": "P",
+        "districtId": "404"
+    },
+    {
+        "id": 3901,
+        "name": "Bình Tú",
+        "type": "X",
+        "districtId": "292"
+    },
+    {
+        "id": 1618,
+        "name": "Bình Tường",
+        "type": "X",
+        "districtId": "345"
+    },
+    {
+        "id": 3876,
+        "name": "Bình Văn",
+        "type": "X",
+        "districtId": "116"
+    },
+    {
+        "id": 5536,
+        "name": "Bình Xa",
+        "type": "X",
+        "districtId": "301"
+    },
+    {
+        "id": 6233,
+        "name": "Bính Xá",
+        "type": "X",
+        "districtId": "331"
+    },
+    {
+        "id": 2963,
+        "name": "Bình Xuân",
+        "type": "X",
+        "districtId": "270"
+    },
+    {
+        "id": 2732,
+        "name": "Bình Xuyên",
+        "type": "X",
+        "districtId": "479"
+    },
+    {
+        "id": 3002,
+        "name": "Bình Yên",
+        "type": "X",
+        "districtId": "304"
+    },
+    {
+        "id": 9448,
+        "name": "Bình Yên",
+        "type": "X",
+        "districtId": "511"
+    },
+    {
+        "id": 6466,
+        "name": "Bình Yên",
+        "type": "X",
+        "districtId": "195"
+    },
+    {
+        "id": 8437,
+        "name": "Bồ Đề",
+        "type": "P",
+        "districtId": "515"
+    },
+    {
+        "id": 1672,
+        "name": "Bồ Đề",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 2936,
+        "name": "Bố Hạ",
+        "type": "X",
+        "districtId": "461"
+    },
+    {
+        "id": 2944,
+        "name": "Bố Hạ",
+        "type": "X",
+        "districtId": "461"
+    },
+    {
+        "id": 4306,
+        "name": "Bồ Lý",
+        "type": "X",
+        "districtId": "90"
+    },
+    {
+        "id": 641,
+        "name": "Bó Mười",
+        "type": "X",
+        "districtId": "378"
+    },
+    {
+        "id": 6044,
+        "name": "Bờ Ngoong",
+        "type": "X",
+        "districtId": "626"
+    },
+    {
+        "id": 8685,
+        "name": "Bồ Sao",
+        "type": "X",
+        "districtId": "87"
+    },
+    {
+        "id": 6195,
+        "name": "Bó Sinh",
+        "type": "X",
+        "districtId": "373"
+    },
+    {
+        "id": 4809,
+        "name": "Bồ Xuyên",
+        "type": "P",
+        "districtId": "227"
+    },
+    {
+        "id": 4793,
+        "name": "Bờ Y",
+        "type": "X",
+        "districtId": "173"
+    },
+    {
+        "id": 277,
+        "name": "Bộc Bố",
+        "type": "X",
+        "districtId": "118"
+    },
+    {
+        "id": 6447,
+        "name": "Bộc Nhiêu",
+        "type": "X",
+        "districtId": "195"
+    },
+    {
+        "id": 1678,
+        "name": "Bối Cầu",
+        "type": "X",
+        "districtId": "498"
+    },
+    {
+        "id": 5123,
+        "name": "Bồi Sơn",
+        "type": "X",
+        "districtId": "12"
+    },
+    {
+        "id": 322,
+        "name": "BokTơi",
+        "type": "X",
+        "districtId": "347"
+    },
+    {
+        "id": 522,
+        "name": "Bom Bo",
+        "type": "X",
+        "districtId": "367"
+    },
+    {
+        "id": 635,
+        "name": "Bon Phặng",
+        "type": "X",
+        "districtId": "378"
+    },
+    {
+        "id": 2416,
+        "name": "Bồng Am",
+        "type": "X",
+        "districtId": "462"
+    },
+    {
+        "id": 10508,
+        "name": "Bồng Khê",
+        "type": "X",
+        "districtId": "3"
+    },
+    {
+        "id": 389,
+        "name": "Bông Krang",
+        "type": "X",
+        "districtId": "703"
+    },
+    {
+        "id": 6527,
+        "name": "Bồng Lai",
+        "type": "X",
+        "districtId": "24"
+    },
+    {
+        "id": 1222,
+        "name": "Bồng Sơn",
+        "type": "TT",
+        "districtId": "346"
+    },
+    {
+        "id": 3485,
+        "name": "Bông Trang",
+        "type": "X",
+        "districtId": "685"
+    },
+    {
+        "id": 10266,
+        "name": "Bột Xuyên",
+        "type": "X",
+        "districtId": "509"
+    },
+    {
+        "id": 9325,
+        "name": "Bù Gia Mập",
+        "type": "X",
+        "districtId": "357"
+    },
+    {
+        "id": 8332,
+        "name": "Bù Nho",
+        "type": "X",
+        "districtId": "359"
+    },
+    {
+        "id": 10453,
+        "name": "Bùi Hữu Nghĩa",
+        "type": "P",
+        "districtId": "233"
+    },
+    {
+        "id": 750,
+        "name": "Bùi Thị Xuân",
+        "type": "P",
+        "districtId": "535"
+    },
+    {
+        "id": 8775,
+        "name": "Bùi Thị Xuân",
+        "type": "P",
+        "districtId": "341"
+    },
+    {
+        "id": 2754,
+        "name": "Bùi Xá",
+        "type": "X",
+        "districtId": "644"
+    },
+    {
+        "id": 6696,
+        "name": "Bum Nưa",
+        "type": "X",
+        "districtId": "422"
+    },
+    {
+        "id": 6705,
+        "name": "Bum Tở",
+        "type": "X",
+        "districtId": "422"
+    },
+    {
+        "id": 10682,
+        "name": "Búng Lao",
+        "type": "X",
+        "districtId": "138"
+    },
+    {
+        "id": 3480,
+        "name": "Bưng Riềng",
+        "type": "X",
+        "districtId": "685"
+    },
+    {
+        "id": 7633,
+        "name": "Búng Tàu",
+        "type": "TT",
+        "districtId": "351"
+    },
+    {
+        "id": 5764,
+        "name": "Bưởi",
+        "type": "P",
+        "districtId": "521"
+    },
+    {
+        "id": 2593,
+        "name": "Buôn Choah",
+        "type": "X",
+        "districtId": "59"
+    },
+    {
+        "id": 8619,
+        "name": "Buôn Trấp",
+        "type": "TT",
+        "districtId": "693"
+    },
+    {
+        "id": 391,
+        "name": "Buôn Tría",
+        "type": "X",
+        "districtId": "703"
+    },
+    {
+        "id": 384,
+        "name": "Buôn Triết",
+        "type": "X",
+        "districtId": "703"
+    },
+    {
+        "id": 3188,
+        "name": "Bút Sơn",
+        "type": "TT",
+        "districtId": "445"
+    },
+    {
+        "id": 919,
+        "name": "Bửu Hòa",
+        "type": "P",
+        "districtId": "656"
+    },
+    {
+        "id": 906,
+        "name": "Bửu Long",
+        "type": "P",
+        "districtId": "656"
+    },
+    {
+        "id": 2077,
+        "name": "Cà Dy",
+        "type": "X",
+        "districtId": "294"
+    },
+    {
+        "id": 2248,
+        "name": "Ca Đình",
+        "type": "X",
+        "districtId": "324"
+    },
+    {
+        "id": 3760,
+        "name": "Cà Lúi",
+        "type": "X",
+        "districtId": "594"
+    },
+    {
+        "id": 10222,
+        "name": "Cà Ná",
+        "type": "X",
+        "districtId": "381"
+    },
+    {
+        "id": 4272,
+        "name": "Cà Nàng",
+        "type": "X",
+        "districtId": "376"
+    },
+    {
+        "id": 5356,
+        "name": "Ca Thành",
+        "type": "X",
+        "districtId": "186"
+    },
+    {
+        "id": 42,
+        "name": "Các Sơn",
+        "type": "X",
+        "districtId": "453"
+    },
+    {
+        "id": 6518,
+        "name": "Cách Bi",
+        "type": "X",
+        "districtId": "24"
+    },
+    {
+        "id": 3589,
+        "name": "Cách Linh",
+        "type": "X",
+        "districtId": "188"
+    },
+    {
+        "id": 4551,
+        "name": "Cái Bè",
+        "type": "TT",
+        "districtId": "268"
+    },
+    {
+        "id": 5703,
+        "name": "Cai Bộ",
+        "type": "X",
+        "districtId": "184"
+    },
+    {
+        "id": 4361,
+        "name": "Cái Chiên",
+        "type": "X",
+        "districtId": "674"
+    },
+    {
+        "id": 6059,
+        "name": "Cái Dầu",
+        "type": "TT",
+        "districtId": "543"
+    },
+    {
+        "id": 9190,
+        "name": "Cải Đan",
+        "type": "P",
+        "districtId": "192"
+    },
+    {
+        "id": 1505,
+        "name": "Cái Đôi Vàm",
+        "type": "TT",
+        "districtId": "51"
+    },
+    {
+        "id": 5866,
+        "name": "Cái Khế",
+        "type": "P",
+        "districtId": "237"
+    },
+    {
+        "id": 8698,
+        "name": "Cai Kinh",
+        "type": "X",
+        "districtId": "329"
+    },
+    {
+        "id": 6485,
+        "name": "Cai Lậy",
+        "type": "TT",
+        "districtId": "265"
+    },
+    {
+        "id": 1926,
+        "name": "Cái Nhum",
+        "type": "TT",
+        "districtId": "166"
+    },
+    {
+        "id": 10724,
+        "name": "Cái Nước",
+        "type": "TT",
+        "districtId": "45"
+    },
+    {
+        "id": 1547,
+        "name": "Cái Rồng",
+        "type": "TT",
+        "districtId": "676"
+    },
+    {
+        "id": 5882,
+        "name": "Cái Tắc",
+        "type": "TT",
+        "districtId": "353"
+    },
+    {
+        "id": 8562,
+        "name": "Cái Tàu Hạ",
+        "type": "TT",
+        "districtId": "71"
+    },
+    {
+        "id": 10661,
+        "name": "Cải Viên",
+        "type": "X",
+        "districtId": "178"
+    },
+    {
+        "id": 2459,
+        "name": "Cái Vồn",
+        "type": "TT",
+        "districtId": "165"
+    },
+    {
+        "id": 2850,
+        "name": "Cam An",
+        "type": "X",
+        "districtId": "135"
+    },
+    {
+        "id": 9106,
+        "name": "Cẩm An",
+        "type": "P",
+        "districtId": "284"
+    },
+    {
+        "id": 3628,
+        "name": "Cảm Ân",
+        "type": "X",
+        "districtId": "126"
+    },
+    {
+        "id": 2655,
+        "name": "Cam An Bắc",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 2651,
+        "name": "Cam An Nam",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 3464,
+        "name": "Cẩm Bình",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 7138,
+        "name": "Cẩm Bình",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 8794,
+        "name": "Cẩm Bình",
+        "type": "P",
+        "districtId": "671"
+    },
+    {
+        "id": 11066,
+        "name": "Cam Bình",
+        "type": "X",
+        "districtId": "93"
+    },
+    {
+        "id": 3467,
+        "name": "Cẩm Châu",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 9104,
+        "name": "Cẩm Châu",
+        "type": "P",
+        "districtId": "284"
+    },
+    {
+        "id": 10121,
+        "name": "Cẩm Chế",
+        "type": "X",
+        "districtId": "473"
+    },
+    {
+        "id": 2848,
+        "name": "Cam Chính",
+        "type": "X",
+        "districtId": "135"
+    },
+    {
+        "id": 4861,
+        "name": "Cam Con",
+        "type": "X",
+        "districtId": "108"
+    },
+    {
+        "id": 7160,
+        "name": "Cẩm Duệ",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 7162,
+        "name": "Cẩm Dương",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 2412,
+        "name": "Cẩm Đàn",
+        "type": "X",
+        "districtId": "462"
+    },
+    {
+        "id": 7745,
+        "name": "Cẩm Điền",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 7746,
+        "name": "Cẩm Định",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 1450,
+        "name": "Cẩm Đình",
+        "type": "X",
+        "districtId": "533"
+    },
+    {
+        "id": 7732,
+        "name": "Cẩm Đoài",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 7731,
+        "name": "Cẩm Đông",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 2654,
+        "name": "Cam Đức",
+        "type": "TT",
+        "districtId": "98"
+    },
+    {
+        "id": 7807,
+        "name": "Cam Đường",
+        "type": "X",
+        "districtId": "103"
+    },
+    {
+        "id": 5898,
+        "name": "Cẩm Đường",
+        "type": "X",
+        "districtId": "652"
+    },
+    {
+        "id": 8795,
+        "name": "Cẩm Ðông",
+        "type": "P",
+        "districtId": "671"
+    },
+    {
+        "id": 469,
+        "name": "Cam Giá",
+        "type": "P",
+        "districtId": "199"
+    },
+    {
+        "id": 9696,
+        "name": "Cẩm Giàng",
+        "type": "X",
+        "districtId": "111"
+    },
+    {
+        "id": 7739,
+        "name": "Cẩm Giàng",
+        "type": "TT",
+        "districtId": "475"
+    },
+    {
+        "id": 1270,
+        "name": "Cẩm Giang",
+        "type": "X",
+        "districtId": "280"
+    },
+    {
+        "id": 3465,
+        "name": "Cẩm Giang",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 9103,
+        "name": "Cẩm Hà",
+        "type": "X",
+        "districtId": "284"
+    },
+    {
+        "id": 7146,
+        "name": "Cẩm Hà",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 8806,
+        "name": "Cẩm Hải",
+        "type": "X",
+        "districtId": "671"
+    },
+    {
+        "id": 2657,
+        "name": "Cam Hải Đông",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 2656,
+        "name": "Cam Hải Tây",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 2653,
+        "name": "Cam Hiệp Bắc",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 2652,
+        "name": "Cam Hiệp Nam",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 2846,
+        "name": "Cam Hiếu",
+        "type": "X",
+        "districtId": "135"
+    },
+    {
+        "id": 2658,
+        "name": "Cam Hòa",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 7141,
+        "name": "Cẩm Hoà",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 7740,
+        "name": "Cẩm Hoàng",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 7149,
+        "name": "Cẩm Hưng",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 7736,
+        "name": "Cẩm Hưng",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 7148,
+        "name": "Cẩm Huy",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 9099,
+        "name": "Cẩm Kim",
+        "type": "X",
+        "districtId": "284"
+    },
+    {
+        "id": 11156,
+        "name": "Cẩm La",
+        "type": "X",
+        "districtId": "471"
+    },
+    {
+        "id": 1173,
+        "name": "Cẩm La",
+        "type": "X",
+        "districtId": "678"
+    },
+    {
+        "id": 7161,
+        "name": "Cẩm Lạc",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 10514,
+        "name": "Cam Lâm",
+        "type": "X",
+        "districtId": "3"
+    },
+    {
+        "id": 11064,
+        "name": "Cam Lập",
+        "type": "X",
+        "districtId": "93"
+    },
+    {
+        "id": 3466,
+        "name": "Cẩm Liên",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 11062,
+        "name": "Cam Linh",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 7153,
+        "name": "Cẩm Lĩnh",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 10547,
+        "name": "Cẩm Lĩnh",
+        "type": "X",
+        "districtId": "508"
+    },
+    {
+        "id": 2852,
+        "name": "Cam Lộ",
+        "type": "TT",
+        "districtId": "135"
+    },
+    {
+        "id": 11065,
+        "name": "Cam Lộc",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 7137,
+        "name": "Cẩm Lộc",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 11055,
+        "name": "Cam Lợi",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 3469,
+        "name": "Cẩm Long",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 3457,
+        "name": "Cẩm Lương",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 9884,
+        "name": "Cẩm Lý",
+        "type": "X",
+        "districtId": "455"
+    },
+    {
+        "id": 7139,
+        "name": "Cẩm Minh",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 5021,
+        "name": "Cắm Muộn",
+        "type": "X",
+        "districtId": "13"
+    },
+    {
+        "id": 7140,
+        "name": "Cẩm Mỹ",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 7155,
+        "name": "Cẩm Nam",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 9094,
+        "name": "Cẩm Nam",
+        "type": "P",
+        "districtId": "284"
+    },
+    {
+        "id": 2844,
+        "name": "Cam Nghĩa",
+        "type": "X",
+        "districtId": "135"
+    },
+    {
+        "id": 11069,
+        "name": "Cam Nghĩa",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 3473,
+        "name": "Cẩm Ngọc",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 3611,
+        "name": "Cẩm Nhân",
+        "type": "X",
+        "districtId": "126"
+    },
+    {
+        "id": 7158,
+        "name": "Cẩm Nhượng",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 10522,
+        "name": "Cẩm Ninh",
+        "type": "X",
+        "districtId": "243"
+    },
+    {
+        "id": 9096,
+        "name": "Cẩm Phô",
+        "type": "P",
+        "districtId": "284"
+    },
+    {
+        "id": 3456,
+        "name": "Cẩm Phong",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 3459,
+        "name": "Cẩm Phú",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 11058,
+        "name": "Cam Phú",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 8801,
+        "name": "Cẩm Phú",
+        "type": "P",
+        "districtId": "671"
+    },
+    {
+        "id": 7151,
+        "name": "Cẩm Phúc",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 7748,
+        "name": "Cẩm Phúc",
+        "type": "X",
+        "districtId": "475"
+    },
+    {
+        "id": 11068,
+        "name": "Cam Phúc Bắc",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 11056,
+        "name": "Cam Phúc Nam",
+        "type": "P",
+        "districtId": "93"
+    },
+    {
+        "id": 11061,
+        "name": "Cam Phước Đông",
+        "type": "X",
+        "districtId": "93"
+    },
+    {
+        "id": 2646,
+        "name": "Cam Phước Tây",
+        "type": "X",
+        "districtId": "98"
+    },
+    {
+        "id": 7142,
+        "name": "Cẩm Quan",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 7156,
+        "name": "Cẩm Quang",
+        "type": "X",
+        "districtId": "640"
+    },
+    {
+        "id": 3470,
+        "name": "Cẩm Quý",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 3463,
+        "name": "Cẩm Sơn",
+        "type": "X",
+        "districtId": "443"
+    },
+    {
+        "id": 7154,
+        "name": "Cẩm Sơn",
+        "type": "X",
+        "districtId": "640"
+    }
+]
