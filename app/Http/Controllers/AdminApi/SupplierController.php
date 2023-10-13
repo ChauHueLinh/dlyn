@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\AdminApi;
 
+use App\Helper\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Supplier\Store;
+use App\Http\Requests\Supplier\Update;
 use App\Http\Resources\Supplier\SupplierCollection;
 use App\Models\District;
 use App\Models\Province;
@@ -30,11 +33,14 @@ class SupplierController extends Controller
         $this->authorize("index", Admin::class);
 
         $params = [
-            'keywords'  => $request->keywords,
-            'per_page'  => $request->per_page,
-            'page'      => $request->page ?? 1,
-            'order_by'  => $request->order_by,
-            'sort_key'  => $request->sort_key,
+            'keywords'      => $request->keywords,
+            'per_page'      => $request->per_page,
+            'page'          => $request->page ?? 1,
+            'order_by'      => $request->order_by,
+            'sort_key'      => $request->sort_key,
+            'provinceId'    => $request->provinceId,
+            'districtId'    => $request->districtId,
+            'wardId'        => $request->wardId,
         ];
 
         $suppliersCollection = $this->supplierService->index($params);
@@ -42,6 +48,48 @@ class SupplierController extends Controller
         $suppliers = SupplierCollection::collection($suppliersCollection);
 
         return $suppliers;
+    }
+
+    public function store(Store $request) 
+    {
+        $params = [
+            'name' => $request->name,
+            'provinceId' => $request->provinceId,
+            'districtId' => $request->districtId,
+            'wardId' => $request->wardId,
+            'address' => $request->address,
+        ];
+
+        $result = $this->supplierService->store($params);
+
+        return Response::responseArray($result['status'], $request['message']);
+    }
+
+    public function update(Update $request)
+    {
+        $params = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'provinceId' => $request->provinceId,
+            'districtId' => $request->districtId,
+            'wardId' => $request->wardId,
+            'address' => $request->address,
+        ];
+
+        $result = $this->supplierService->update($params);
+
+        return Response::responseArray($result['status'], $request['message']);
+    }
+
+    public function destroy(Request $request) 
+    {
+        $params = [
+            'id' => $request->id,
+        ];
+
+        $result = $this->supplierService->destroy($params);
+
+        return Response::responseArray($result['status'], $request['message']);
     }
     
     public function getConstant(Request $request)

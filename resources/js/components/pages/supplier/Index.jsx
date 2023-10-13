@@ -14,6 +14,7 @@ import Table from '~/components/molecules/Table'
 import Filters from '~/components/molecules/Filters'
 import PageFrame from '~/components/molecules/PageFrame'
 import Paginate from '~/components/molecules/Paginate'
+import SelectBox from '~/components/molecules/SelectBox'
 
 import {url} from '~/components/pages/supplier/Url'
 import {modalActions} from '~/components/store/modal-slice'
@@ -29,6 +30,22 @@ function SupplierIndex() {
         {
             name: 'Tên',
             key: 'name'
+        },
+        {
+            name: 'Địa chỉ',
+            key: 'address'
+        },
+        {
+            name: 'Phường/Xã/Thị trấn',
+            key: 'address'
+        },
+        {
+            name: 'Thành phố/Quận/Huyện/Thị xã',
+            key: 'address'
+        },
+        {
+            name: 'Tỉnh/Thành phố trung ương',
+            key: 'address'
         },
         {
             name: 'Số sản phẩm',
@@ -48,6 +65,7 @@ function SupplierIndex() {
     const [lists, setLists] = useState()
     const [constant, setConstant] = useState({})
     const [dataItem, setDataItem] = useState({})
+    const [paramsConstant, setParamsConstant] = useState({})
     
     useEffect(() => {
         getList()
@@ -55,11 +73,22 @@ function SupplierIndex() {
     }, [filters])
 
     const getConstant=async() => {
-        await axiosAPI.get(url.constant)
+        await axiosAPI.get(url.constant, {params: paramsConstant})
             .then((res) => {
+                let provinces = res.data.provinces
+                let districts = res.data.districts
+                let wards = res.data.wards
+
+                provinces.unshift({id: '', name: 'Chọn Tỉnh/Thành phố trung ương'})
+                districts.unshift({id: '', name: 'Chọn Thành phố/Quận/Huyện/Thị xã'})
+                wards.unshift({id: '', name: 'Chọn Phường/Xã/Thị trấn'})
+
                 setConstant({
                     ...constant, 
                     permissions: res.data.permissions,
+                    provinces: res.data.provinces,
+                    districts: res.data.districts,
+                    wards: res.data.wards,
                 })
             })
     }
@@ -132,6 +161,35 @@ function SupplierIndex() {
             <Filters
                 isSearch={true}
             >
+                <SelectBox
+                    data={constant ? constant.provinces : []}
+                    value={paramsConstant.provinceId ?? ''}
+                    callback={(value) => {
+                        dispatch(filtersActions.handle({provinceId: value.id}))
+                        setParamsConstant({...paramsConstant, provinceId: value.id})
+                    }}
+                    search={true}
+                    styleContainer={{width: '260px'}}
+                />
+                <SelectBox
+                    data={constant ? constant.districts : []}
+                    value={paramsConstant.districtId ?? ''}
+                    callback={(value) => {
+                        dispatch(filtersActions.handle({districtId: value.id}))
+                        setParamsConstant({...paramsConstant, districtId: value.id})
+                    }}
+                    search={true}
+                    styleContainer={{width: '280px'}}
+                />
+                <SelectBox
+                    data={constant ? constant.wards : []}
+                    value={paramsConstant.wardId ?? ''}
+                    callback={(value) => {
+                        dispatch(filtersActions.handle({wardId: value.id}))
+                    }}
+                    search={true}
+                    styleContainer={{width: '210px'}}
+                />
             </Filters>
             <Paginate
                 data={lists}
@@ -152,6 +210,18 @@ function SupplierIndex() {
                         </td>
                         <td className="p-3">
                             {item.name}
+                        </td>
+                        <td className="p-3">
+                            {item.address}
+                        </td>
+                        <td className="p-3">
+                            {item.ward}
+                        </td>
+                        <td className="p-3">
+                            {item.district}
+                        </td>
+                        <td className="p-3">
+                            {item.province}
                         </td>
                         <td className="p-3 text-end">
                             {/* {item.value} */}

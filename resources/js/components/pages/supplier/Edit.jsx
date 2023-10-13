@@ -7,8 +7,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import axiosAPI from '~/libs/axiosAPI'
 import Modal from '~/components/molecules/Modal'
 import Input from '~/components/molecules/Input'
+import SelectBox from '~/components/molecules/SelectBox'
 
-import {url} from '~/components/pages/productType/Url'
+import {url} from '~/components/pages/supplier/Url'
 import {modalActions} from '~/components/store/modal-slice'
 
 export default function Add(props) {
@@ -16,16 +17,30 @@ export default function Add(props) {
     const status     = useSelector((state) => state.modal.isOpen)
     const collection = useSelector((state) => state.modal.collection)
 
-    const [errors, setErrors]         = useState({})
-    const [loading, setLoading]       = useState(false)
-    const [data, setData]             = useState({})
+    const [errors, setErrors]                   = useState({})
+    const [loading, setLoading]                 = useState(false)
+    const [data, setData]                       = useState({})
+    const [constant, setConstant]               = useState({})
+    const [paramsConstant, setParamsConstant]   = useState({})
 
     const openDialog = collection.name == props.modalKey && status
+
+    useEffect(() => {
+        getConstant()
+    }, [paramsConstant])
 
     useEffect(() => {
         setData({...data,
             id: props.data.id,
             name: props.data.name,
+            address: props.data.address,
+            wardId: props.data.wardId,
+            districtId: props.data.districtId,
+            provinceId: props.data.provinceId,
+        })
+        setParamsConstant({...paramsConstant,
+            provinceId: props.data.provinceId,
+            districtId: props.data.districtId,
         })
     }, [props.data, status])
         
@@ -37,6 +52,10 @@ export default function Add(props) {
         let form = new FormData()
             form.append('id', data.id ?? '')
             form.append('name', data.name ?? '')
+            form.append('provinceId', data.provinceId ?? '')
+            form.append('districtId', data.districtId ?? '')
+            form.append('wardId', data.wardId ?? '')
+            form.append('address', data.address ?? '')
             form.append('_method', 'PUT')
 
         axiosAPI.post(url.update, form)
@@ -63,11 +82,46 @@ export default function Add(props) {
         })
     }
 
+    const getConstant = async () => {
+        console.log(paramsConstant);
+        await axiosAPI.get(url.constant, {params: paramsConstant})
+            .then((res) => {
+                let provinces = res.data.provinces
+                let districts = res.data.districts
+                let wards = res.data.wards
+                provinces.unshift({id: '', name: 'Chọn...'})
+                districts.unshift({id: '', name: 'Chọn...'})
+                wards.unshift({id: '', name: 'Chọn...'})
+                setConstant({
+                    ...constant, 
+                    provinces: provinces,
+                    districts: districts,
+                    wards: wards,
+                })
+            })
+    }
+
+    const handlerChangeProvince = (provinceId) => {
+        setParamsConstant({...paramsConstant, provinceId: provinceId, districtId: ''})
+        setData({...data, provinceId: provinceId})
+    }
+
+    const handlerChangeDistrict = (districtId) => {
+        setParamsConstant({...paramsConstant, districtId: districtId, wardId: ''})
+        setData({...data, districtId: districtId})
+    }
+
+    const handlerChangeWard = (wardId) => {
+        setParamsConstant({...paramsConstant, wardId: wardId})
+        setData({...data, wardId: wardId})
+    }
+
     const close = () => {
         dispatch(modalActions.close())
         setLoading(false)
         setErrors({})
         setName()
+        setData({})
     }
 
     return (
@@ -76,7 +130,7 @@ export default function Add(props) {
             callbackClose={() => close()}
 			wrapperClass='w-25'
         >
-            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Tạo mới loại sản phẩm</h2>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Chỉnh sửa nhà cung cấp</h2>
             <div className="w-100">
                 <form onSubmit={handler} className="space-y-6">
                     <Input
@@ -84,13 +138,51 @@ export default function Add(props) {
                         name='name'
                         type='text'
                         labelName='Tên'
-                        value={data.name ?? ''}
+                        value={data.name}
                         placeholder="Nhập tên loại sản phẩm"
                         isRequired={true}
                         validate={errors}
                         containerClass='w-full mb-4'
                         onChange={(value) => {
                             setData({...data, name: value})
+                        }}
+                    />
+                    <SelectBox
+                        label='Tỉnh\thành phố trung ương'
+                        data={constant ? constant.provinces : []}
+                        value={data.provinceId ?? ''}
+                        callback={(value) => handlerChangeProvince(value.id)}
+                        search={true}
+                        isRequired={true}
+                    />
+                    <SelectBox
+                        label='Thành phố\quận\huyện\thị xã'
+                        data={constant ? constant.districts : []}
+                        value={data.districtId ?? ''}
+                        callback={(value) => handlerChangeDistrict(value.id)}
+                        search={true}
+                        isRequired={true}
+                    />
+                    <SelectBox
+                        label='Phường\xã\thị trấn'
+                        data={constant ? constant.wards : []}
+                        value={data.wardId ?? ''}
+                        callback={(value) => handlerChangeWard(value.id)}
+                        search={true}
+                        isRequired={true}
+                    />
+                    <Input
+                        id='address'
+                        name='address'
+                        type='text'
+                        labelName='Địa chỉ'
+                        value={data.address}
+                        placeholder="Nhập địa chỉ"
+                        isRequired={true}
+                        validate={errors}
+                        containerClass='w-full mb-4'
+                        onChange={(value) => {
+                            setData({...data, address: value})
                         }}
                     />
                     <div className="flex justify-content-around mt-6 w-full">

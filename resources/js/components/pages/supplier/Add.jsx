@@ -36,6 +36,10 @@ export default function Add(props) {
 
         let form = new FormData()
             form.append('name', data.name ?? '')
+            form.append('provinceId', data.provinceId ?? '')
+            form.append('districtId', data.districtId ?? '')
+            form.append('wardId', data.wardId ?? '')
+            form.append('address', data.address ?? '')
 
         axiosAPI.post(url.store, form)
         .then((e) => {
@@ -81,12 +85,12 @@ export default function Add(props) {
     }
 
     const handlerChangeProvince = (provinceId) => {
-        setParamsConstant({...paramsConstant, provinceId: provinceId})
+        setParamsConstant({...paramsConstant, provinceId: provinceId, districtId: ''})
         setData({...data, provinceId: provinceId})
     }
 
     const handlerChangeDistrict = (districtId) => {
-        setParamsConstant({...paramsConstant, districtId: districtId})
+        setParamsConstant({...paramsConstant, districtId: districtId, wardId: ''})
         setData({...data, districtId: districtId})
     }
 
@@ -100,8 +104,9 @@ export default function Add(props) {
         setLoading(false)
         setErrors({})
         setName()
+        setData({})
     }
-    // console.log(constant);
+
     return (
         <Modal
             display={openDialog}
@@ -130,6 +135,7 @@ export default function Add(props) {
                         value={data.provinceId ?? ''}
                         callback={(value) => handlerChangeProvince(value.id)}
                         search={true}
+                        isRequired={true}
                     />
                     <SelectBox
                         label='Thành phố\quận\huyện\thị xã'
@@ -137,6 +143,7 @@ export default function Add(props) {
                         value={data.districtId ?? ''}
                         callback={(value) => handlerChangeDistrict(value.id)}
                         search={true}
+                        isRequired={true}
                     />
                     <SelectBox
                         label='Phường\xã\thị trấn'
@@ -144,6 +151,7 @@ export default function Add(props) {
                         value={data.wardId ?? ''}
                         callback={(value) => handlerChangeWard(value.id)}
                         search={true}
+                        isRequired={true}
                     />
                     <Input
                         id='address'

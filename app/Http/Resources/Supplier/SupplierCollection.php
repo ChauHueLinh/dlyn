@@ -17,10 +17,16 @@ class SupplierCollection extends JsonResource
         if(!empty($this->items)) {
             return [];
         }
-
         return [
             'id'            => $this->id,
             'name'          => $this->name,
+            'address'       => $this->address,
+            'wardId'        => $this->wardId,
+            'districtId'    => $this->districtId,
+            'provinceId'    => $this->provinceId,
+            'ward'          => $this->ward['name'],
+            'district'      => $this->district['name'],
+            'province'      => $this->province['name'],
         ];
     }
 }

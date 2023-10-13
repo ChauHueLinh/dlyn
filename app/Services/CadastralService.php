@@ -27,7 +27,7 @@ class CadastralService
 
     public function getProvinces()
     {
-        $provinces = $this->province->get();
+        $provinces = $this->province->orderBy('name', 'ASC')->get();
 
         return $provinces;
     }
@@ -35,7 +35,7 @@ class CadastralService
     public function getDistricts($params)
     {
         if(isset($params['provinceId'])) {
-            $districts = $this->district->where('provinceId', $params['provinceId'])->get();
+            $districts = $this->district->where('provinceId', $params['provinceId'])->orderBy('name', 'ASC')->get();
         } else {
             $districts = [];
         }
@@ -46,11 +46,11 @@ class CadastralService
     public function getWards($params)
     {
         if(isset($params['districtId'])) {
-            $wards = $this->ward->where('districtId', $params['districtId'])->get();
+            $wards = $this->ward->where('districtId', $params['districtId'])->orderBy('name', 'ASC')->get();
         } else {
             $wards = [];
         }
-        dd($params);
+        
         return $wards;
     }
 }
