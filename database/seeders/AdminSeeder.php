@@ -19,10 +19,10 @@ class AdminSeeder extends Seeder
             [
                 'id'        => 1,
                 'name'      => 'Dlyn',
-                'email'     => 'had261tb@gmail.com',
+                'email'     => 'admin@gmail.com',
                 'status'    => '1',
                 'roleId'    => '1',
-                'password'  => Hash::make('Anh0yeu1em@'),
+                'password'  => Hash::make('12345678'),
                 'phone'     => '0374396613',
             ],
             [
