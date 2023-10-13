@@ -105,6 +105,7 @@ export default function Add(props) {
         setErrors({})
         setName()
         setData({})
+        setParamsConstant({})
     }
 
     return (
