@@ -27,6 +27,7 @@ class WardSeeder extends Seeder
                 'type' => $ward->type,
                 'districtId' => $ward->districtId,
             ]);
+            echo trim($ward->name) . PHP_EOL;
         }
     }
 }

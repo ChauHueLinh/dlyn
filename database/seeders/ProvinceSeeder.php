@@ -24,6 +24,7 @@ class ProvinceSeeder extends Seeder
                 'name' => trim($province->name),
                 'type' => $province->type,
             ]);
+            echo trim($province->name) . PHP_EOL;
         }
     }
 }
