@@ -23,7 +23,7 @@ class RemoveImageSeeder extends Seeder
         foreach($images as $image) {
             if($image != '.gitignore') {
                 $admin = Admin::where('avatar', $image)->get()->count();
-                $product = ProductImage::where('src', $image)->get()->count();
+                $product = ProductImage::where('src', 'LIKE', $image)->get()->count();
                 $branch = Branch::where('image', $image)->get()-> count();
 
                 if($admin == 0 && $product == 0 && $branch == 0) {
