@@ -25,6 +25,7 @@ class WardSeeder extends Seeder
                 'id' => $ward->id,
                 'name' => trim($ward->name),
                 'type' => $ward->type,
+                'districtId' => $ward->districtId,
             ]);
         }
     }

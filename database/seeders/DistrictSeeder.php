@@ -24,6 +24,7 @@ class DistrictSeeder extends Seeder
                 'id' => $district->id,
                 'name' => trim($district->name),
                 'type' => $district->type,
+                'provinceId' => $district->provinceId,
             ]);
         }
     }
