@@ -8,7 +8,9 @@ use App\Http\Requests\Product\Store;
 use App\Http\Requests\Product\Update;
 use App\Http\Resources\Product\ProductCollection;
 use App\Models\Product;
+use App\Services\BranchService;
 use App\Services\ProductService;
+use App\Services\ProductTypeService;
 use App\Services\UploadFileSevice;
 use Illuminate\Http\Request;
 
@@ -16,14 +18,20 @@ class ProductController extends Controller
 {
     protected $productService;
     protected $uploadFileSevice;
+    protected $productTypeService;
+    protected $branchService;
 
     public function __construct(
         ProductService $productService,
         UploadFileSevice $uploadFileSevice,
+        ProductTypeService $productTypeService,
+        BranchService $branchService,
     )
     {
         $this->productService = $productService;
         $this->uploadFileSevice = $uploadFileSevice;
+        $this->productTypeService = $productTypeService;
+        $this->branchService = $branchService;
     }
 
     public function index(Request $request)
@@ -31,11 +39,14 @@ class ProductController extends Controller
         $this->authorize("index", Admin::class);
 
         $params = [
-            'keywords'  => $request->keywords,
-            'per_page'  => $request->per_page,
-            'page'      => $request->page ?? 1,
-            'order_by'  => $request->order_by,
-            'sort_key'  => $request->sort_key,
+            'keywords'      => $request->keywords,
+            'per_page'      => $request->per_page,
+            'page'          => $request->page ?? 1,
+            'order_by'      => $request->order_by,
+            'sort_key'      => $request->sort_key,
+            'status'        => $request->status,
+            'productTypeId' => $request->productTypeId,
+            'branchId'      => $request->branchId,
         ];
 
         $productsCollection = $this->productService->index($params);
@@ -52,7 +63,8 @@ class ProductController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'status' => $request->status,
-            'productType' => $request->productType ?? 0,
+            'productTypeId' => $request->productTypeId,
+            'branchId' => $request->branchId,
             'attributes' => $request->attr,
         ];
 
@@ -76,6 +88,8 @@ class ProductController extends Controller
             'price'                     => $request->price,
             'quantity'                  => $request->quantity,
             'status'                    => $request->status,
+            'productTypeId'             => $request->productTypeId,
+            'branchId'                  => $request->branchId,
             'attributes'                => $request->attr,
             'deletedAttributes'         => $request->deletedAttributes,
             'deletedDescriptionImages'  => $request->deletedDescriptionImages,
@@ -108,10 +122,14 @@ class ProductController extends Controller
     {
         $permissions = auth()->guard('admin')->user()->role ? auth()->user()->role->permissions->pluck('displayName', 'key') : [];
         $status = Product::LIST_STATUS;
+        $productTypes = $this->productTypeService->index([]);
+        $branchs = $this->branchService->index([]);
 
         $result = [
             'permissions' => $permissions,
             'status' => (array)$status,
+            'productTypes' => $productTypes,
+            'branchs' => $branchs,
         ];
 
         return $result;

@@ -36,12 +36,23 @@ class ProductService
     public function index($params)
     {
         $products = $this->product
+            ->orderBy($params['sort_key'] ?? 'id', $params['order_by'] ?? 'DESC')
+            ->when(isset($params['status']), function ($query) use ($params) {
+                return $query->status($params['status']);
+            })
+            ->when(isset($params['productTypeId']), function ($query) use ($params) {
+                return $query->productType($params['productTypeId']);
+            })
+            ->when(isset($params['branchId']), function ($query) use ($params) {
+                return $query->branch($params['branchId']);
+            });
+
+        $products = $products
             ->with([
                 'attributes',
                 'mainImage',
                 'descriptionImages',
-            ])
-            ->orderBy($params['sort_key'] ?? 'id', $params['order_by'] ?? 'DESC');
+            ]);
 
         if (isset($params['per_page'])) {
             $products = $products

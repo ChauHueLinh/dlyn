@@ -83,7 +83,6 @@ export default function Add(props) {
     }
 
     const getConstant = async () => {
-        console.log(paramsConstant);
         await axiosAPI.get(url.constant, {params: paramsConstant})
             .then((res) => {
                 let provinces = res.data.provinces
@@ -120,7 +119,6 @@ export default function Add(props) {
         dispatch(modalActions.close())
         setLoading(false)
         setErrors({})
-        setName()
         setData({})
         setParamsConstant({})
         setConstant({})

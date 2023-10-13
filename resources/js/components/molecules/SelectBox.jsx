@@ -74,6 +74,7 @@ export default function SelectBox(props) {
 							<Combobox.Button className="combobox-button w-full">
 								<input
 									className={`w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 px-2 bg-gray-50 combobox-input ${props.inputClass ?? ''} ${props.inputBgClass ?? 'bg-light'}`}
+									style={{height: '38px'}}
 									value={selected?.name}
 									readOnly
 								/>

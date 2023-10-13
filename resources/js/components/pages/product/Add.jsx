@@ -1,8 +1,8 @@
 import React from 'react'
 import toast from 'react-hot-toast'
 
-import {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import axiosAPI from '~/libs/axiosAPI'
 import Modal from '~/components/molecules/Modal'
@@ -12,16 +12,16 @@ import UploadFile from '~/components/molecules/UploadFile'
 import UploadFiles from '~/components/molecules/UploadFiles'
 
 import { url } from '~/components/pages/product/Url'
-import {modalActions} from '~/components/store/modal-slice'
+import { modalActions } from '~/components/store/modal-slice'
 
 export default function Add(props) {
-    const dispatch   = useDispatch()
-    const status     = useSelector((state) => state.modal.isOpen)
+    const dispatch = useDispatch()
+    const status = useSelector((state) => state.modal.isOpen)
     const collection = useSelector((state) => state.modal.collection)
 
-    const [errors, setErrors]         = useState({})
-    const [loading, setLoading]       = useState(false)
-    const [data, setData]             = useState({
+    const [errors, setErrors] = useState({})
+    const [loading, setLoading] = useState(false)
+    const [data, setData] = useState({
         status: 0
     })
     const [attributes, setAttributes] = useState([])
@@ -32,16 +32,16 @@ export default function Add(props) {
     const [errorsMainImage, setErrorsMainImage] = useState([])
 
     const openDialog = collection.name == props.modalKey && status
-        
+
     const handler = (e) => {
         e.preventDefault()
 
-        if(errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
+        if (errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
             console.log(2);
             return false
         }
 
-        if(!data.mainImage) {
+        if (!data.mainImage) {
             console.log(1);
             setErrorsMainImage(['Ảnh đại diện là bắt buộc.'])
             return false
@@ -50,53 +50,55 @@ export default function Add(props) {
         setLoading(true)
 
         let form = new FormData()
-            form.append('name', data.name ?? '')
-            form.append('price', data.price ?? '')
-            form.append('quantity', data.quantity ?? '')
-            form.append('status', data.status ?? '')
-            attributes?.length > 0 && attributes.map((item) => {
-                form.append('attr[]', JSON.stringify({
-                    name: item.name,
-                    value: item.value,
-                }))
-            })
-            form.append('mainImage', data.mainImage ?? '')
-            data?.descriptionImages?.length > 0 && data?.descriptionImages?.map((item) => {
-                form.append('descriptionImages[]', item.value)
-            })
+        form.append('name', data.name ?? '')
+        form.append('price', data.price ?? '')
+        form.append('quantity', data.quantity ?? '')
+        form.append('status', data.status ?? '')
+        form.append('productTypeId', data.productTypeId ?? '')
+        form.append('branchId', data.branchId ?? '')
+        attributes?.length > 0 && attributes.map((item) => {
+            form.append('attr[]', JSON.stringify({
+                name: item.name,
+                value: item.value,
+            }))
+        })
+        form.append('mainImage', data.mainImage ?? '')
+        data?.descriptionImages?.length > 0 && data?.descriptionImages?.map((item) => {
+            form.append('descriptionImages[]', item.value)
+        })
 
         axiosAPI.post(url.store, form)
-        .then((e) => {
-            toast.dismiss()
-            if (e.data.status == true) {
-                toast.success(e.data.message)
-                dispatch(modalActions.loadingTable(true))
-                props.callback()
+            .then((e) => {
+                toast.dismiss()
+                if (e.data.status == true) {
+                    toast.success(e.data.message)
+                    dispatch(modalActions.loadingTable(true))
+                    props.callback()
 
-                close()
-            } else if (e.data.status == false) {
-                toast.error(e.data.message)
-                setErrors(e.data.errors)
-                dispatch(modalActions.loading(false))
-                dispatch(modalActions.loadingTable(false))
-                setLoading(false)
-            } else {
-                setErrors(e.data.errors)
-                dispatch(modalActions.loading(false))
-                dispatch(modalActions.loadingTable(false))
-                setLoading(false)
-            }
-        })
+                    close()
+                } else if (e.data.status == false) {
+                    toast.error(e.data.message)
+                    setErrors(e.data.errors)
+                    dispatch(modalActions.loading(false))
+                    dispatch(modalActions.loadingTable(false))
+                    setLoading(false)
+                } else {
+                    setErrors(e.data.errors)
+                    dispatch(modalActions.loading(false))
+                    dispatch(modalActions.loadingTable(false))
+                    setLoading(false)
+                }
+            })
     }
 
     const addAttribute = () => {
-        setAttributes([...attributes, {id: attributes?.length > 0 ? (attributes.at(-1).id + 1) : 0, name: '', value: ''}]) 
-    } 
+        setAttributes([...attributes, { id: attributes?.length > 0 ? (attributes.at(-1).id + 1) : 0, name: '', value: '' }])
+    }
 
     const removeAttribute = (id) => {
         var new_array_attributes = attributes.filter((item) => item.id != id)
         setAttributes(new_array_attributes)
-    } 
+    }
 
     const setNameAttribute = (id, name, value) => {
         const error_atrributes = errorAttributes.filter((item) => item.id != id)
@@ -106,24 +108,24 @@ export default function Add(props) {
         const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
         const e = [];
 
-        if(name.length > maxString) {
+        if (name.length > maxString) {
             e.push(nameLength)
         } else {
             e.filter((item) => item != nameLength)
         }
-        if(attributes.filter((item) => item.name == name).length < 1) {
+        if (attributes.filter((item) => item.name == name).length < 1) {
             e.filter((item) => item != nameUnique)
         } else {
             e.push(nameUnique)
         }
-        if(e.length > 0) {
-            error_atrributes.push({id: id, value: e})
+        if (e.length > 0) {
+            error_atrributes.push({ id: id, value: e })
         }
         setErrorAttributes(error_atrributes)
 
         var new_array_attributes = attributes.filter((item) => item.id != id)
-        new_array_attributes.push({id: id, name: name, value:value})
-        new_array_attributes.sort((a, b) => a.id-b.id)
+        new_array_attributes.push({ id: id, name: name, value: value })
+        new_array_attributes.sort((a, b) => a.id - b.id)
         setAttributes(new_array_attributes)
     }
 
@@ -133,36 +135,36 @@ export default function Add(props) {
         const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
         const e = [];
 
-        if(value.length > maxString) {
+        if (value.length > maxString) {
             e.push(valueLength)
         } else {
             e.filter((item) => item != valueLength)
         }
-        if(e.length > 0) {
-            error_atrributes.push({id: id, value: e})
+        if (e.length > 0) {
+            error_atrributes.push({ id: id, value: e })
         }
         setErrorAttributes(error_atrributes)
 
         var new_array_attributes = attributes.filter((item) => item.id != id)
-        new_array_attributes.push({id: id, name: name, value:value})
-        new_array_attributes.sort((a, b) => a.id-b.id)
+        new_array_attributes.push({ id: id, name: name, value: value })
+        new_array_attributes.sort((a, b) => a.id - b.id)
         setAttributes(new_array_attributes)
     }
 
-    const callbackUploadFile=(file) => {
+    const callbackUploadFile = (file) => {
         const objectUrl = URL.createObjectURL(file)
         setPreviewMainImage(objectUrl)
         var arr_error = []
         var ruleType = ['jpg', 'jpeg', 'png']
         var type = file.type.split('/')
-        if(ruleType.includes(type[1]) == false) {
+        if (ruleType.includes(type[1]) == false) {
             arr_error.push('Ảnh không đúng định dạng.')
         }
-        if(file.size > 2000000) {
+        if (file.size > 2000000) {
             arr_error.push('Dung lượng ảnh không vượt quá 2 MB.')
         }
         setErrorsMainImage([...arr_error])
-        setData({...data, mainImage: file})
+        setData({ ...data, mainImage: file })
     }
 
     const callbackUploadFiles = (files) => {
@@ -177,22 +179,22 @@ export default function Add(props) {
             var type = item[1].type.split('/')
 
             errors['desImg-' + id] = []
-            if(ruleType.includes(type[1]) == false) {
+            if (ruleType.includes(type[1]) == false) {
                 errors['desImg-' + id].push('Ảnh không đúng định dạng.')
             }
-            if(item[1].size > 2000000) {
+            if (item[1].size > 2000000) {
                 errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.')
             }
-            if(errors['desImg-' + id]?.length == 0) {
+            if (errors['desImg-' + id]?.length == 0) {
                 delete errors['desImg-' + id]
             }
-            desImgs.push({id: id, value: item[1]})
-            newPreviewDescriptionImage.push({id: id, value: objectUrl})
+            desImgs.push({ id: id, value: item[1] })
+            newPreviewDescriptionImage.push({ id: id, value: objectUrl })
         })
 
         setErrorsDescriptionImage(errors)
         setPreviewDescriptionImage([...newPreviewDescriptionImage])
-        setData({...data, descriptionImages: desImgs})
+        setData({ ...data, descriptionImages: desImgs })
     }
 
     const removeDescriptionImage = (id) => {
@@ -202,11 +204,11 @@ export default function Add(props) {
         delete errorsDescriptionImage['desImg-' + id]
 
         setPreviewDescriptionImage([...newPreviewDescriptionImage])
-        setData({...data, descriptionImages: newDescriptionImages})
+        setData({ ...data, descriptionImages: newDescriptionImages })
     }
 
     const close = () => {
-        setData({status: 0})
+        setData({ status: 0 })
         setErrors({})
         setLoading(false)
         setAttributes([])
@@ -219,7 +221,7 @@ export default function Add(props) {
         <Modal
             display={openDialog}
             callbackClose={() => close()}
-			wrapperClass='w-75'
+            wrapperClass='w-75'
             btnClose={true}
         >
             <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Tạo mới sản phẩm</h2>
@@ -236,7 +238,7 @@ export default function Add(props) {
                             validate={errors}
                             containerClass='w-full mb-4'
                             onChange={(value) => {
-                                setData({...data, name: value})
+                                setData({ ...data, name: value })
                             }}
                         />
                         <Input
@@ -249,7 +251,7 @@ export default function Add(props) {
                             validate={errors}
                             containerClass='w-full mb-4'
                             onChange={(value) => {
-                                setData({...data, price: value})
+                                setData({ ...data, price: value })
                             }}
                         />
                         <Input
@@ -262,22 +264,36 @@ export default function Add(props) {
                             validate={errors}
                             containerClass='w-full mb-4'
                             onChange={(value) => {
-                                setData({...data, quantity: value})
+                                setData({ ...data, quantity: value })
                             }}
                         />
-                         <SelectBox
+                        <SelectBox
                             label='Trạng thái'
                             data={props.constant ? props.constant.status : []}
                             value={data.status ?? 0}
-                            callback={(value) => setData({...data, status: value.id})}
+                            callback={(value) => setData({ ...data, status: value.id })}
                             search={false}
+                        />
+                        <SelectBox
+                            label='Loại sản phẩm'
+                            data={props.constant ? props.constant.productTypes : []}
+                            value={data.productTypeId ?? 0}
+                            callback={(value) => setData({ ...data, productTypeId: value.id })}
+                            search={true}
+                        />
+                        <SelectBox
+                            label='Thương hiệu'
+                            data={props.constant ? props.constant.branchs : []}
+                            value={data.branchId ?? 0}
+                            callback={(value) => setData({ ...data, branchId: value.id })}
+                            search={true}
                         />
                         <div className="">Thuộc tính</div>
                         {attributes?.map((item) => (
                             <div className="mt-0" key={item.id}>
                                 <div className="flex mt-0 w-full space-x-2">
                                     <div className="flex items-center justify-center mb-0 mt-2 h4">
-                                        <i 
+                                        <i
                                             className='bx bx-x-circle text-red'
                                             onClick={() => removeAttribute(item.id)}
                                         >
@@ -310,31 +326,31 @@ export default function Add(props) {
                             </div>
                         ))}
                         <div className="flex items-center justify-content-start mb-4 mt-1 h4">
-                            <i 
-                                className='bx bx-plus-circle text-green' 
+                            <i
+                                className='bx bx-plus-circle text-green'
                                 onClick={() => addAttribute()}
                             >
                             </i>
                         </div>
                         <div className="flex justify-content-start w-full">
                             <div className="flex justify-content-around mt-6 w-50">
-                                <button 
-                                    type="button" 
-                                    onClick={() => close()} 
-                                    style={{width: '100px'}}
+                                <button
+                                    type="button"
+                                    onClick={() => close()}
+                                    style={{ width: '100px' }}
                                     className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                > 
-                                    Thoát 
+                                >
+                                    Thoát
                                 </button>
                                 {loading == true ? (
-                                    <div className="flex items-center justify-content-around" style={{width: '100px'}}>
-                                        <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
+                                    <div className="flex items-center justify-content-around" style={{ width: '100px' }}>
+                                        <div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
                                             <span className="sr-only">Loading...</span>
                                         </div>
-                                        <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
+                                        <div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
                                             <span className="sr-only">Loading...</span>
                                         </div>
-                                        <div className="spinner-grow text-success" style={{height: '10px', width: '10px'}}>
+                                        <div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
                                             <span className="sr-only">Loading...</span>
                                         </div>
                                     </div>
@@ -351,14 +367,14 @@ export default function Add(props) {
                     </div>
                     <div className="w-75 mx-auto">
                         {previewMainImage &&
-                            <div 
-                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage?.length > 0 ? 'border-danger' : 'border-dark'}`} 
-                                style={{height: '100px', width: '100px'}}
+                            <div
+                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage?.length > 0 ? 'border-danger' : 'border-dark'}`}
+                                style={{ height: '100px', width: '100px' }}
                             >
                                 <img src={previewMainImage} alt="" />
                             </div>
                         }
-                        
+
                         <div className="text-red">{errorsMainImage[0] ?? ''}</div>
                     </div>
                     <UploadFile
@@ -367,7 +383,7 @@ export default function Add(props) {
                         validate={errors}
                         callback={(file) => callbackUploadFile(file)}
                         errors={errors}
-                        style={{width: '30vh', height: '30vh'}}
+                        style={{ width: '30vh', height: '30vh' }}
                     />
                     <div className="w-75 mx-auto">
                         <label htmlFor="" className='mt-6 h3'>Ảnh mô tả</label>
@@ -376,19 +392,19 @@ export default function Add(props) {
                         {previewDescriptionImage?.map((item) => (
                             <div className="relative mt-2" key={item.id}>
                                 <div className="w-full absolute flex justify-content-end">
-                                    <div 
-                                        className="bg-red flex items-center justify-center overflow-hidden rounded-circle" 
-                                        style={{width: '19px', height: '19px', fontSize: '19px'}}
+                                    <div
+                                        className="bg-red flex items-center justify-center overflow-hidden rounded-circle"
+                                        style={{ width: '19px', height: '19px', fontSize: '19px' }}
                                         onClick={(event) => removeDescriptionImage(item.id)}
                                     >
-                                        <i className='bx bx-x-circle text-black bg-white' style={{width: '19px'}}></i>
+                                        <i className='bx bx-x-circle text-black bg-white' style={{ width: '19px' }}></i>
                                     </div>
                                 </div>
-                                <div    
-                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id]?.length > 0 ? 'border-danger' : 'border-dark'}`} 
-                                    style={{height: '100px', width: '100px'}}
+                                <div
+                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id]?.length > 0 ? 'border-danger' : 'border-dark'}`}
+                                    style={{ height: '100px', width: '100px' }}
                                 >
-                                    <img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''}/>
+                                    <img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''} />
                                 </div>
                             </div>
                         ))}
@@ -402,7 +418,7 @@ export default function Add(props) {
                             callbackUploadFiles(files)
                         }}
                         errors={errors}
-                        style={{width: '30vh', height: '30vh'}}
+                        style={{ width: '30vh', height: '30vh' }}
                     />
                 </div>
             </div>

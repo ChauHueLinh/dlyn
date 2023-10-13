@@ -15,7 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('price');
-            $table->string('productType');
+            $table->string('productTypeId');
+            $table->string('branchId');
             $table->string('status');
             $table->string('quantity');
             $table->timestamps();

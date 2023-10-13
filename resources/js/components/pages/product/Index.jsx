@@ -13,6 +13,7 @@ import Table from '~/components/molecules/Table'
 import Filters from '~/components/molecules/Filters'
 import PageFrame from '~/components/molecules/PageFrame'
 import Paginate from '~/components/molecules/Paginate'
+import SelectBox from '~/components/molecules/SelectBox'
 
 import {url} from '~/components/pages/product/Url'
 import {modalActions} from '~/components/store/modal-slice'
@@ -79,16 +80,22 @@ function ProductIndex() {
         await axiosAPI.get(url.constant, paramConstants)
             .then((res) => {
                 var status = []
+                var productTypes = res.data.productTypes
+                var branchs = res.data.branchs
 
                 Object.entries(res.data.status)?.map((item => {
                     status.unshift({id: item[0], name: item[1]})
                 }))
                 status.unshift({id: 0, name: 'Chọn trạng thái'})
+                productTypes.unshift({id: '', name: 'Chọn loại sản phẩm'})
+                branchs.unshift({id: '', name: 'Chọn thương hiệu'})
 
                 setConstant({
                     ...constant, 
                     permissions: res.data.permissions,
                     status: status,
+                    productTypes: productTypes,
+                    branchs: branchs,
                 })
             })
     }
@@ -161,11 +168,21 @@ function ProductIndex() {
             <Filters
                 isSearch={true}
             >
-                {/* <SelectBox
-                    data={constant ? constant.unit : []}
-                    callback={(value) => dispatch(filtersActions.handle({unit: value.id}))}
+                <SelectBox
+                    data={constant ? constant.status : []}
+                    callback={(value) => dispatch(filtersActions.handle({status: value.id}))}
                     search={false}
-                /> */}
+                />
+                <SelectBox
+                    data={constant ? constant.productTypes : []}
+                    callback={(value) => dispatch(filtersActions.handle({productTypeId: value.id}))}
+                    search={true}
+                />
+                <SelectBox
+                    data={constant ? constant.branchs : []}
+                    callback={(value) => dispatch(filtersActions.handle({branchId: value.id}))}
+                    search={true}
+                />
             </Filters>
             <Paginate
                 data={lists}

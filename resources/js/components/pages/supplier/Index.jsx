@@ -204,7 +204,7 @@ function SupplierIndex() {
                 length={lists?.data}
             >
                 {lists?.data?.map((item, index) => (
-                    <tr key={index} className="bg-white border-b border-gray-100 hover:bg-gray-50">
+                    <tr key={item.id} className="bg-white border-b border-gray-100 hover:bg-gray-50">
                         <td className="p-3 colum-id">
                             {item.id}
                         </td>

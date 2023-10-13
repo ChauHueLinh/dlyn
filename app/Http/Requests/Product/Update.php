@@ -35,27 +35,57 @@ class Update extends FormRequest
                 'numeric',
                 'min:0',
             ],
+            'quantity' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
+            'productTypeId' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
+            'branchId' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' 		=> __('validation.required'),
-			'name.unique' 			=> __('validation.unique'),
-			'name.max' 				=> __('validation.max.string'),
+            'name.required' 		    => __('validation.required'),
+			'name.unique' 			    => __('validation.unique'),
+			'name.max' 				    => __('validation.max.string'),
 
-            'price.required' 	    => __('validation.required'),
-            'price.numeric' 	    => __('validation.numeric'),
-            'price.min' 	        => __('validation.numeric'),
+            'price.required' 	        => __('validation.required'),
+            'price.numeric' 	        => __('validation.numeric'),
+            'price.min' 	            => __('validation.numeric'),
+            
+            'quantity.required' 	    => __('validation.required'),
+            'quantity.numeric' 	        => __('validation.numeric'),
+            'quantity.min' 	            => __('validation.numeric'),
+
+            'productTypeId.required'    => __('validation.required'),
+            'productTypeId.numeric' 	=> __('validation.numeric'),
+            'productTypeId.min' 	    => __('validation.numeric'),
+
+            'branchId.required' 	    => __('validation.required'),
+            'branchId.numeric' 	        => __('validation.numeric'),
+            'branchId.min' 	            => __('validation.numeric'),
         ];
     }
 
     public function attributes()
     {
         return [
-            'name'  => 'Tên sản phẩm',
-            'price' => 'Giá',
+            'name'          => 'Tên sản phẩm',
+            'price'         => 'Giá',
+            'quantity'      => 'Số lượng',
+            'productTypeId' => 'Loại Sản phẩm',
+            'branchId'      => 'Thương hiệu',
         ];
     }
 }

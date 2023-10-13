@@ -13,7 +13,8 @@ class Product extends Model
         'name',
         'atributes',
         'price',
-        'productType',
+        'productTypeId',
+        'branchId',
         'quantity',
         'status',
     ];
@@ -25,6 +26,23 @@ class Product extends Model
         self::HOT => 'Hot',
         self::OUT_OF_STOCK => 'Hết hàng',
     ];
+
+    public function scopeStatus($query, $status)
+    {
+        if($status != 0) {
+            return $query->where('status', $status);
+        }
+    }
+
+    public function scopeProductType($query, $productTypeId)
+    {
+        return $query->where('productTypeId', $productTypeId);
+    }
+
+    public function scopeBranch($query, $branchId)
+    {
+        return $query->where('branchId', $branchId);
+    }
 
     public function attributes()
     {

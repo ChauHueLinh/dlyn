@@ -59,7 +59,6 @@ export default function Add(props) {
         dispatch(modalActions.close())
         setLoading(false)
         setErrors({})
-        setName()
     }
 
     return (

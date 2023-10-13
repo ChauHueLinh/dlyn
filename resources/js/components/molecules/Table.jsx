@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 export default function Table(props) {
-    const dispatch  = useDispatch()
-    const param     = useSelector((state) => state.filters.param)
-    const status    = useSelector((state) => state.filters.status)
-    const reload    = useSelector((state) => state.modal.isLoadingTable)
+    const dispatch = useDispatch()
+    const param = useSelector((state) => state.filters.param)
+    const status = useSelector((state) => state.filters.status)
+    const reload = useSelector((state) => state.modal.isLoadingTable)
 
-    const sortHead  = (item) => {
+    const sortHead = (item) => {
         dispatch(filtersActions.handle({
             sort_key: item.key
         }))
@@ -38,15 +38,15 @@ export default function Table(props) {
                     <tr>
                         {
                             props.thead && props.thead.map((item, index) => (
-                                <th scope="col" className={ item.classCol ? item.classCol : 'p-3 min-w-max' } key={index}>
-                                    <div className={ item.className ? item.className : 'flex items-center space-x-1' }>
-                                        <div className='min-w-max'> { item.name } </div>
-                                        { item.key &&
+                                <th scope="col" className={item.classCol ? item.classCol : 'p-3 min-w-max'} key={index}>
+                                    <div className={item.className ? item.className : 'flex items-center space-x-1'}>
+                                        <div className='min-w-max'> {item.name} </div>
+                                        {item.key &&
                                             <button
                                                 type="button"
                                                 onClick={() => sortHead(item)}
                                             >
-                                            { sortIcon(item.key) }
+                                                {sortIcon(item.key)}
 
                                             </button>
                                         }
@@ -57,13 +57,13 @@ export default function Table(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    { reload
+                    {reload
                         ?
-                            props?.length?.map((item) => (
-                                <Loading key={item.id} thead={props.thead} />
-                            ))
+                        props?.length?.map((item) => (
+                            <Loading key={item.id} thead={props.thead} />
+                        ))
                         :
-                            props.children
+                        props.children
                     }
                 </tbody>
             </table>
@@ -74,38 +74,38 @@ export default function Table(props) {
 function Loading(props) {
     return (
         <tr className="bg-white border-b border-gray-100 hover:bg-gray-50">
-            { props.thead.map((item, index) => (
-              <>
-                {
-                  index == 0
-                  ?
-                    <td className="p-3 colum-id" key={index}>
-                        <div className="placeholder" style={{width: '34px', height: '16px'}}>
-                            <div className="animated-background"></div>
-                        </div>
-                    </td>
-                  :
-                    index + 1 == props.thead.length
-                    ?
-                      <td className="p-3 text-break" key={index}>
-                          <div className='flex items-center space-x-2'>
-                              <div className="placeholder" style={{width: '34px', height: '34px'}}>
-                                  <div className="animated-background"></div>
-                              </div>
-                              <div className="placeholder" style={{width: '34px', height: '34px'}}>
-                                  <div className="animated-background"></div>
-                              </div>
-                          </div>
-                      </td>
-                    :
-                      <td className="p-3" key={index}>
-                          <div className="placeholder" style={{width: '110px', height: '16px'}}>
-                              <div className="animated-background"></div>
-                          </div>
-                      </td>
-                  }
-              </>
-            )) }
+            {props.thead.map((item, index) => (
+                <>
+                    {
+                        index == 0
+                            ?
+                            <td className="p-3 colum-id" key={index}>
+                                <div className="placeholder" style={{ width: '34px', height: '16px' }}>
+                                    <div className="animated-background"></div>
+                                </div>
+                            </td>
+                            :
+                            index + 1 == props.thead.length
+                                ?
+                                <td className="p-3 text-break" key={index}>
+                                    <div className='flex items-center space-x-2'>
+                                        <div className="placeholder" style={{ width: '34px', height: '34px' }}>
+                                            <div className="animated-background"></div>
+                                        </div>
+                                        <div className="placeholder" style={{ width: '34px', height: '34px' }}>
+                                            <div className="animated-background"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                :
+                                <td className="p-3" key={index}>
+                                    <div className="placeholder" style={{ width: '110px', height: '16px' }}>
+                                        <div className="animated-background"></div>
+                                    </div>
+                                </td>
+                    }
+                </>
+            ))}
         </tr>
     )
 }
