@@ -27,7 +27,7 @@ export default function Add(props) {
 
     useEffect(() => {
         getConstant()
-    }, [paramsConstant])
+    }, [paramsConstant, status])
         
     const handler = (e) => {
         e.preventDefault()
@@ -103,11 +103,11 @@ export default function Add(props) {
         dispatch(modalActions.close())
         setLoading(false)
         setErrors({})
-        setName()
         setData({})
         setParamsConstant({})
+        setConstant({})
     }
-
+    console.log(paramsConstant);
     return (
         <Modal
             display={openDialog}

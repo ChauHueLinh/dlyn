@@ -123,6 +123,7 @@ export default function Add(props) {
         setName()
         setData({})
         setParamsConstant({})
+        setConstant({})
     }
 
     return (
