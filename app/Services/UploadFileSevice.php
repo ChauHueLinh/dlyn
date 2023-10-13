@@ -18,7 +18,7 @@ class UploadFileSevice
 	{
 		$time = Carbon::now()->timestamp;
 		$fileName = $time . '_' . $file->getClientOriginalName();
-		$filePath = $folder . DIRECTORY_SEPARATOR . $fileName;
+		$filePath = $folder . '/' . $fileName;
 
 		if (Storage::disk('public')->exists($filePath)) {
             return Response::responseArray(false, 'Đã có lỗi xảy ra.');
@@ -37,7 +37,7 @@ class UploadFileSevice
 		$result = [];
 		foreach($files as $file) {
 			$fileName = $time . '_' . $file->getClientOriginalName();
-			$filePath = $folder . DIRECTORY_SEPARATOR . $fileName;
+			$filePath = $folder . '/' . $fileName;
 
 			if (Storage::disk('public')->exists($filePath)) {
 			    return Response::responseArray(false, 'Đã có lỗi xảy ra.');
