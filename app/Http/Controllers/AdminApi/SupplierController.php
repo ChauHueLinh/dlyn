@@ -62,7 +62,7 @@ class SupplierController extends Controller
 
         $result = $this->supplierService->store($params);
 
-        return Response::responseArray($result['status'], $request['message']);
+        return Response::responseArray($result['status'], $result['message']);
     }
 
     public function update(Update $request)
@@ -78,7 +78,7 @@ class SupplierController extends Controller
 
         $result = $this->supplierService->update($params);
 
-        return Response::responseArray($result['status'], $request['message']);
+        return Response::responseArray($result['status'], $result['message']);
     }
 
     public function destroy(Request $request) 
@@ -89,7 +89,7 @@ class SupplierController extends Controller
 
         $result = $this->supplierService->destroy($params);
 
-        return Response::responseArray($result['status'], $request['message']);
+        return Response::responseArray($result['status'], $result['message']);
     }
     
     public function getConstant(Request $request)
