@@ -7,20 +7,19 @@ import {useState, useEffect} from 'react'
 import {Provider, useDispatch, useSelector} from 'react-redux'
 
 import store from '~/components/store'
-import Add from '~/components/pages/coupon/Add'
-import Edit from '~/components/pages/coupon/Edit'
-import Delete from '~/components/pages/coupon/Delete'
+import Add from '~/components/pages/receipt/Add'
+import Edit from '~/components/pages/receipt/Edit'
+import Delete from '~/components/pages/receipt/Delete'
 import Table from '~/components/molecules/Table'
 import Filters from '~/components/molecules/Filters'
 import PageFrame from '~/components/molecules/PageFrame'
 import SelectBox from '~/components/molecules/SelectBox'
 
-import {url} from '~/components/pages/coupon/Url'
+import {url} from '~/components/pages/receipt/Url'
 import {modalActions} from '~/components/store/modal-slice'
 import {filtersActions} from '~/components/store/filters-slice'
 
-function CouponIndex() {
-
+function ReceiptIndex() {
     const tableThead = [
         {
             name: 'Id',
@@ -76,16 +75,10 @@ function CouponIndex() {
     const getConstant=async() => {
         await axiosAPI.get(url.constant, paramConstants)
             .then((res) => {
-                var unit = []
-
-                Object.entries(res.data.unit)?.map((item => {
-                    unit.unshift({id: item[0], name: item[1]})
-                }))
 
                 setConstant({
                     ...constant, 
                     permissions: res.data.permissions,
-                    unit: unit,
                 })
             })
     }
@@ -148,12 +141,12 @@ function CouponIndex() {
             name: 'delete'
         }))
     }
-
+    console.log(constant);
     return (
         <PageFrame
             data={lists}
-            name='Danh sách mã giảm giá'
-            isCreate={constant?.permissions?.createAdmin}
+            name='Danh sách hóa đơn'
+            isCreate={constant?.permissions?.createReceipt}
             isPaginate={true}
             callbackPaginate={(page) => dispatch(filtersActions.handle({page: page}))}
             forcePage={filters.forcePage}
@@ -161,11 +154,11 @@ function CouponIndex() {
             <Filters
                 isSearch={true}
             >
-                <SelectBox
+                {/* <SelectBox
                     data={constant ? constant.unit : []}
                     callback={(value) => dispatch(filtersActions.handle({unit: value.id}))}
                     search={false}
-                />
+                /> */}
             </Filters>
             <Table
                 thead={tableThead}
@@ -245,12 +238,12 @@ function CouponIndex() {
     )
 }
 
-export default CouponIndex
+export default ReceiptIndex
 
-if (document.getElementById("coupon-index")) {
-    ReactDOM.createRoot(document.getElementById("coupon-index")).render (
+if (document.getElementById("receipt-index")) {
+    ReactDOM.createRoot(document.getElementById("receipt-index")).render (
         <Provider store={store}>
-            <CouponIndex/>
+            <ReceiptIndex/>
         </Provider>
     )
 }

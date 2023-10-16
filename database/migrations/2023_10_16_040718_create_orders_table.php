@@ -11,19 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('receipts', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');
+            $table->string('receiptId');
             $table->string('status');
-            $table->string('userId');
-            $table->string('orderId')->nullable(true);
-            $table->string('couponId');
-            $table->string('total');
-            $table->string('name');
-            $table->string('phoneNumber');
-            $table->string('address');
             $table->string('createdBy');
-            $table->string('updatedBy');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('receipts');
+        Schema::dropIfExists('orders');
     }
 };

@@ -75,7 +75,7 @@ export default function Add(props) {
             callbackClose={() => close()}
 			wrapperClass='w-25'
         >
-            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Tạo mới mã giảm giá</h2>
+            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Tạo mới hóa đơn</h2>
             <div className="w-100">
                 <form onSubmit={handler} className="space-y-6">
                     <Input

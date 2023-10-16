@@ -92,9 +92,9 @@
                 <div class="menu-title">Bán hàng</div>
             </a>
             <ul>
-                @if (Auth::user()->can('index', \App\Models\Receip::class))
+                @if (Auth::user()->can('index', \App\Models\Receipt::class))
                     <li>
-                        <a href="">
+                        <a href="{{ route("receipt.index") }}">
                             <div class="ps-4 menu-title">Hóa đơn</div>
                         </a>
                     </li>
