@@ -62,7 +62,7 @@ export default function SelectBox(props) {
 			>
 				<div className={`relative ${props.containerClass && props.containerClass}`}>
 					{props.label &&
-						<div className={`mb-2 top-0 left-0 z-10 combobox-label`}>
+						<div className={`mb-2 top-0 left-0 z-10`}>
 							{props?.label} {props?.isRequired && <span className="text-red-500 ps-1">*</span>}
 						</div>
 					}

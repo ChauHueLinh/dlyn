@@ -38,7 +38,7 @@ export default function UploadImg(props) {
                             style={{fontSize: '30px'}}
                             className={`${props.btnClass ? props.btnClass : 'inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'}`}
                         >
-                            <i className='bx bx-image-add'></i>
+                            {props?.btnValue}
                         </button>
                     </div>
                 </div>

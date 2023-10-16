@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\ProductService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -41,7 +42,14 @@ class Product extends Model
 
     public function scopeBranch($query, $branchId)
     {
-        return $query->where('branchId', $branchId);
+        return $query->whereHas('branchId', $branchId);
+    }
+
+    public function scopeSupplier($query, $supplierId)
+    {
+        return $query->whereHas('suppliers', function ($q) use($supplierId) {
+            return $q->where('suppliers.id', $supplierId);
+        });
     }
 
     public function attributes()
@@ -57,5 +65,10 @@ class Product extends Model
     public function descriptionImages()
     {
         return $this->hasMany(ProductImage::class, 'productId', 'id')->where('key', 'description');
+    }
+
+    public function suppliers()
+    {
+        return $this->belongsToMany(Supplier::class, 'product_suppliers', 'productId', 'supplierId');
     }
 }

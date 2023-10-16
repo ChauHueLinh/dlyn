@@ -43,6 +43,9 @@ class ProductService
             ->when(isset($params['productTypeId']), function ($query) use ($params) {
                 return $query->productType($params['productTypeId']);
             })
+            ->when(isset($params['supplierId']), function ($query) use ($params) {
+                return $query->supplier($params['supplierId']);
+            })
             ->when(isset($params['branchId']), function ($query) use ($params) {
                 return $query->branch($params['branchId']);
             });
@@ -52,6 +55,7 @@ class ProductService
                 'attributes',
                 'mainImage',
                 'descriptionImages',
+                'suppliers'
             ]);
 
         if (isset($params['per_page'])) {
@@ -72,6 +76,10 @@ class ProductService
     public function store($params) 
     {
         $product = $this->product->create($params);
+
+        foreach($params['supplierId'] as $supplierId) {
+            $product->suppliers()->attach($supplierId);
+        }
 
         if(isset($params['attributes'])){
             foreach($params['attributes'] as $attribute){
@@ -106,6 +114,11 @@ class ProductService
     public function update($params)
     {
         $product = $this->product->where('id', $params['id'])->first();
+        
+        if(!$product) {
+            return Response::responseArray(false, 'Đã có lỗi xảy ra.');
+        }
+
         $product->update([
             'name' => $params['name'],
             'price' => $params['price'],
@@ -154,6 +167,8 @@ class ProductService
                 ]);
             }
         }
+
+        $product->suppliers()->sync($params['supplierId']);
         
         return Response::responseArray(true, 'Cập nhật thành công.');
     }

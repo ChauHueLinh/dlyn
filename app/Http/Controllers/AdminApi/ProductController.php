@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Services\BranchService;
 use App\Services\ProductService;
 use App\Services\ProductTypeService;
+use App\Services\SupplierService;
 use App\Services\UploadFileSevice;
 use Illuminate\Http\Request;
 
@@ -20,11 +21,13 @@ class ProductController extends Controller
     protected $uploadFileSevice;
     protected $productTypeService;
     protected $branchService;
+    protected $supplierService;
 
     public function __construct(
         ProductService $productService,
         UploadFileSevice $uploadFileSevice,
         ProductTypeService $productTypeService,
+        SupplierService $supplierService,
         BranchService $branchService,
     )
     {
@@ -32,6 +35,7 @@ class ProductController extends Controller
         $this->uploadFileSevice = $uploadFileSevice;
         $this->productTypeService = $productTypeService;
         $this->branchService = $branchService;
+        $this->supplierService = $supplierService;
     }
 
     public function index(Request $request)
@@ -47,6 +51,7 @@ class ProductController extends Controller
             'status'        => $request->status,
             'productTypeId' => $request->productTypeId,
             'branchId'      => $request->branchId,
+            'supplierId'    => $request->supplierId,
         ];
 
         $productsCollection = $this->productService->index($params);
@@ -66,6 +71,7 @@ class ProductController extends Controller
             'productTypeId' => $request->productTypeId,
             'branchId' => $request->branchId,
             'attributes' => $request->attr,
+            'supplierId' => $request->supplierId,
         ];
 
         if(isset($request->mainImage)) {
@@ -85,12 +91,13 @@ class ProductController extends Controller
         $params = [
             'id'                        => $request->id,
             'name'                      => $request->name,
-            'price'                     => $request->price,
-            'quantity'                  => $request->quantity,
-            'status'                    => $request->status,
-            'productTypeId'             => $request->productTypeId,
-            'branchId'                  => $request->branchId,
             'attributes'                => $request->attr,
+            'price'                     => $request->price,
+            'status'                    => $request->status,
+            'quantity'                  => $request->quantity,
+            'branchId'                  => $request->branchId,
+            'supplierId'                => $request->supplierId,
+            'productTypeId'             => $request->productTypeId,
             'deletedAttributes'         => $request->deletedAttributes,
             'deletedDescriptionImages'  => $request->deletedDescriptionImages,
         ];
@@ -124,12 +131,14 @@ class ProductController extends Controller
         $status = Product::LIST_STATUS;
         $productTypes = $this->productTypeService->index([]);
         $branchs = $this->branchService->index([]);
+        $suppliers = $this->supplierService->index([]);
 
         $result = [
             'permissions' => $permissions,
             'status' => (array)$status,
             'productTypes' => $productTypes,
             'branchs' => $branchs,
+            'suppliers' => $suppliers,
         ];
 
         return $result;

@@ -14,6 +14,7 @@ import Filters from '~/components/molecules/Filters'
 import PageFrame from '~/components/molecules/PageFrame'
 import Paginate from '~/components/molecules/Paginate'
 import SelectBox from '~/components/molecules/SelectBox'
+import MultiSelectBox from '~/components/molecules/MultiSelectBox'
 
 import {url} from '~/components/pages/product/Url'
 import {modalActions} from '~/components/store/modal-slice'
@@ -82,6 +83,7 @@ function ProductIndex() {
                 var status = []
                 var productTypes = res.data.productTypes
                 var branchs = res.data.branchs
+                var suppliers = res.data.suppliers
 
                 Object.entries(res.data.status)?.map((item => {
                     status.unshift({id: item[0], name: item[1]})
@@ -89,6 +91,7 @@ function ProductIndex() {
                 status.unshift({id: 0, name: 'Chọn trạng thái'})
                 productTypes.unshift({id: '', name: 'Chọn loại sản phẩm'})
                 branchs.unshift({id: '', name: 'Chọn thương hiệu'})
+                suppliers.unshift({id: '', name: 'Chọn nhà cung cấp'})
 
                 setConstant({
                     ...constant, 
@@ -96,6 +99,7 @@ function ProductIndex() {
                     status: status,
                     productTypes: productTypes,
                     branchs: branchs,
+                    suppliers: suppliers,
                 })
             })
     }
@@ -181,6 +185,11 @@ function ProductIndex() {
                 <SelectBox
                     data={constant ? constant.branchs : []}
                     callback={(value) => dispatch(filtersActions.handle({branchId: value.id}))}
+                    search={true}
+                />
+                <SelectBox
+                    data={constant ? constant.suppliers : []}
+                    callback={(value) => dispatch(filtersActions.handle({supplierId: value.id}))}
                     search={true}
                 />
             </Filters>
