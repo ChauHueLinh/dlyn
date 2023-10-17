@@ -40,20 +40,12 @@ class UserService
 
     public function getList($params)
     {
-        $arr = [];
         $users = $this->user
             ->orderBy('name', 'ASC')
-            ->get(['id', 'phone']);
-        
-        if(isset($params['phone'])) {
-            foreach($users as $user) {
-                $check = explode($params['phone'], $user->phone);
-                if(count($check) > 1) {
-                    $arr[] = $user->id;
-                }
-            }
-        }
-        $users = $this->user->whereIn('id', $arr)->get();
+            ->when(isset($params['phone']), function ($query) use ($params) {
+                return $query->phone($params['phone']);
+            })
+            ->get();
 
         return $users;
     }

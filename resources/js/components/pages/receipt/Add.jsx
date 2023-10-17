@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import toast from 'react-hot-toast'
 
 import { useState } from 'react'
@@ -8,6 +8,7 @@ import axiosAPI from '~/libs/axiosAPI'
 import Modal from '~/components//molecules/Modal'
 import Input from '~/components/molecules/Input'
 import SelectBox from '~/components//molecules/SelectBox'
+import Textarea from '~/components//molecules/Textarea'
 
 import { url } from '~/components/pages/receipt/Url'
 import { modalActions } from '~/components/store/modal-slice'
@@ -21,11 +22,20 @@ export default function Add(props) {
     const [loading, setLoading] = useState(false)
     const [listUser, setListUser] = useState([])
     const [products, setProducts] = useState([])
-    const [data, setData] = useState({
-        unit: '%',
-    })
-
+    const [data, setData] = useState({})
+    const [totalReceipt, setTotalReceipt] = useState({})
+    const [couponReceipt, setCouponReceipt] = useState({})
+    
     const openDialog = collection.name == props.modalKey && status
+    
+    const VND = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+    
+    useEffect(() => {
+        setValueTotalReceipt()
+    }, [products, data.coupon])
 
     const handler = (e) => {
         e.preventDefault()
@@ -37,9 +47,18 @@ export default function Add(props) {
         setLoading(true)
 
         let form = new FormData()
-        form.append('code', data.code ?? '')
-        form.append('value', data.value ?? '')
-        form.append('unit', data.unit ?? '')
+        form.append('name', data.name ?? '')
+        form.append('phone', data.phone ?? '')
+        form.append('email', data.email ?? '')
+        form.append('address', data.address ?? '')
+        form.append('couponId', data?.coupon?.id ?? '')
+        form.append('note', data?.note ?? '')
+        products?.length > 0 && products.map((item) => {
+            form.append('products[]', JSON.stringify({
+                productId: item.productId,
+                quantity: item.quantity,
+            }))
+        })
 
         axiosAPI.post(url.store, form)
             .then((e) => {
@@ -67,6 +86,7 @@ export default function Add(props) {
 
     const getUser = async (phone) => {
         if (phone.length < 5) {
+            setListUser([])
             return false
         }
         let res = await axiosAPI.get(url.users, { params: { phone: phone } })
@@ -85,6 +105,61 @@ export default function Add(props) {
         setProducts([...arr])
     }
 
+    const setAttributesProducts = (id, value) => {
+        const new_products = products?.filter((item) => item.id != id)
+
+        new_products.push({ id: id, productId: value.id, price: value.price, quantity: 0, total: 0 })
+        new_products.sort((a, b) => a.id - b.id)
+
+        setProducts([...new_products])
+    }
+
+    const setQuantityProduct = (id, productId, price, quantity) => {
+        const new_products = products?.filter((item) => item.id != id)
+        if (quantity > 0) {
+            let total = price * quantity
+
+            new_products.push({ id: id, productId: productId, price: price, quantity: quantity, total: total })
+            new_products.sort((a, b) => a.id - b.id)
+
+            setProducts([...new_products])
+        }
+
+    }
+
+    const removeProduct = (id) => {
+        const new_products = products?.filter((item) => item.id != id)
+
+        setProducts([...new_products])
+    }
+
+    const setValueTotalReceipt = () => {
+        let total_receipt = 0
+        products?.map((item) => {
+            total_receipt = total_receipt + item.total
+        })
+
+        setTotalReceipt(total_receipt)
+        setValueCouponReceipt(total_receipt)
+    }
+
+    const setValueCouponReceipt = (total_receipt) => {
+        let coupon_receipt = 0
+        if(data.coupon) {
+            if(data.coupon.unit == 'VND') {
+                if(data.coupon.value > total_receipt) {
+                    coupon_receipt = total_receipt
+                } else {
+                    coupon_receipt = data.coupon.value
+                }
+            } else if(data.coupon.unit == '%') {
+                coupon_receipt = total_receipt * data.coupon.value / 100
+            }
+        }
+
+        setCouponReceipt(coupon_receipt)
+    }
+
     const close = () => {
         dispatch(modalActions.close())
         setLoading(false)
@@ -95,10 +170,11 @@ export default function Add(props) {
         <Modal
             display={openDialog}
             callbackClose={() => close()}
+            btnClose={true}
             wrapperClass='w-75'
         >
             <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Tạo mới hóa đơn</h2>
-            <div className="flex space-x-6">
+            <div className="flex space-x-6 mb-4">
                 <div className="w-50">
                     <Input
                         id='name'
@@ -114,16 +190,16 @@ export default function Add(props) {
                             setData({ ...data, name: value })
                         }}
                     />
+                    <div className="mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2">
+                        <div className="">Số điện thoại</div>
+                        <div className="text-red-500">*</div>
+                    </div>
                     <div className='relative'>
                         <Input
                             id='phone'
                             name='phone'
                             type='text'
                             value={data?.phone}
-                            callbackOnBlur={() => {
-                                setListUser([])
-                            }}
-                            labelName='Số điện thoại'
                             placeholder="Nhập số điện thoại"
                             isRequired={true}
                             validate={errors}
@@ -137,6 +213,7 @@ export default function Add(props) {
                             <div
                                 className='absolute w-full py-1 rounded-lg overflow-auto border border-gray-300  bg-white z-15'
                                 style={{ maxHeight: '100px', height: 'fit-content' }}
+                                onBlur={() => setListUser([])}
                             >
                                 {listUser?.length > 0 &&
                                     listUser?.map((item) => (
@@ -190,22 +267,30 @@ export default function Add(props) {
                             setData({ ...data, address: value })
                         }}
                     />
-                    {/* <SelectBox
-                        name='unit'
-                        label='Đơn vị'
-                        data={props.constant.unit ? props.constant.unit.filter((item) => item.id != '') : []}
-                        value={data.unit}
-                        callback={(value) => setData({...data, unit: value.id})}
-                        search={false}
-                        isRequired={true}
-                        containerClass='mb-4'
+                    <SelectBox
+                        name='couponId'
+                        label='Mã giảm giá'
+                        data={props.constant.coupons ?? []}
+                        callback={(value) => {setData({...data, coupon: value})}}
+                        search={true}
                         validate={errors}
-                    /> */}
+                    />
+                    <Textarea
+                        name='note'
+                        labelName='Ghi chú'
+                        placeholder='Nhập ghi chú'
+                        validate={errors}
+                        containerClass='mt-4'
+                        onChange={(value) => setData({...data, note: value})}
+                    />
                 </div>
                 <div className="w-50">
-                    <div className="mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2">
-                        <div className="">Sản phẩm</div>
-                        <div className="text-red-500">*</div>
+                    <div className="flex space-x-1 mb-2">
+                        <div className="w-25">Tên sản phẩm</div>
+                        <div className="w-25 ps-1">Giá</div>
+                        <div className="w-25 ps-1">Số lượng</div>
+                        <div className="w-25 ps-1">Thành tiền</div>
+                        <div className="" style={{ width: '24.11px' }}></div>
                     </div>
                     {products?.length > 0 &&
                         products?.map((item) => (
@@ -214,7 +299,7 @@ export default function Add(props) {
                                     name='product'
                                     data={props?.constant?.products ?? []}
                                     value={item.productId}
-                                    callback={(value) => { }}
+                                    callback={(value) => { setAttributesProducts(item.id, value) }}
                                     search={true}
                                     containerClass='w-100'
                                     validate={errors}
@@ -222,35 +307,42 @@ export default function Add(props) {
                                 <Input
                                     id='price'
                                     name='price'
-                                    type='number'
-                                    value={item?.price}
+                                    type='text'
+                                    value={VND.format(item.price)}
                                     placeholder="Nhập giá"
                                     disabled={true}
                                     validate={errors}
                                     containerClass='w-25 mb-2 mt-0'
                                 />
                                 <Input
-                                    id='price'
-                                    name='price'
+                                    id='quantity'
+                                    name='quantity'
                                     type='number'
+                                    min='0'
                                     value={item?.quantity}
-                                    placeholder="Nhập số lượng"
                                     validate={errors}
                                     containerClass='w-25 mb-2 mt-0'
                                     onChange={(value) => {
-                                        // setData({...data, address: value})
+                                        setQuantityProduct(item.id, item.productId, item.price, value)
                                     }}
                                 />
                                 <Input
-                                    id='price'
-                                    name='price'
-                                    type='number'
-                                    value={item?.price}
-                                    placeholder="Nhập giá"
+                                    id='total'
+                                    name='total'
+                                    type='text'
+                                    value={VND.format(item.total)}
+                                    placeholder="Nhập tổng tiền"
                                     disabled={true}
                                     validate={errors}
                                     containerClass='w-25 mb-2 mt-0'
                                 />
+                                <div className="flex items-center justify-center mb-2 h4">
+                                    <i
+                                        className='bx bx-x-circle text-red'
+                                        onClick={() => removeProduct(item.id)}
+                                    >
+                                    </i>
+                                </div>
                             </div>
                         ))
                     }
@@ -260,6 +352,23 @@ export default function Add(props) {
                             onClick={() => addProduct()}
                         >
                         </i>
+                    </div>
+                </div>
+            </div>
+            <div className="flex w-full justify-content-end space-x-6 mb-4">
+                <div className="w-50"></div>
+                <div className="w-50">
+                    <div className="flex space-x-1 border-top border-dark pt-3">
+                        <div className="w-50 h5 text-end">Tổng tiền hàng:</div>
+                        <div className="w-50 h5 text-end">{VND.format(totalReceipt)}</div>
+                    </div>
+                    <div className="flex space-x-1">
+                        <div className="w-50 h5 text-end">Giảm giá:</div>
+                        <div className="w-50 h5 text-end">{VND.format(couponReceipt)}</div>
+                    </div>
+                    <div className="flex space-x-1">
+                        <div className="w-50 h5 text-end">Thành tiền:</div>
+                        <div className="w-50 h5 text-end">{VND.format(totalReceipt - couponReceipt)}</div>
                     </div>
                 </div>
             </div>

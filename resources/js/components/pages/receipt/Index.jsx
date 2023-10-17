@@ -20,6 +20,8 @@ import {modalActions} from '~/components/store/modal-slice'
 import {filtersActions} from '~/components/store/filters-slice'
 
 function ReceiptIndex() {
+    const NUMBER = new Intl.NumberFormat();
+
     const tableThead = [
         {
             name: 'Id',
@@ -76,13 +78,25 @@ function ReceiptIndex() {
         await axiosAPI.get(url.constant, paramConstants)
             .then((res) => {
                 let products = res.data.products
+                let coupons = []
 
-                products.unshift({id: '', name: 'Chọn sản phẩm'})
+                res.data.coupons.map((item) => {
+                    coupons.push({
+                        id: item.id,
+                        name: item.code + ' (' + NUMBER.format(item.value) + ' ' + item.unit + ')',
+                        value:item.value,
+                        unit:item.unit,
+                    })
+                })
+
+                products.unshift({id: '', name: 'Chọn...'})
+                coupons.unshift({id: '', name: 'Chọn...'})
 
                 setConstant({
                     ...constant, 
                     permissions: res.data.permissions,
                     products: products,
+                    coupons: coupons,
                 })
             })
     }
