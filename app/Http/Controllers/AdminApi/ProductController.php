@@ -13,6 +13,7 @@ use App\Services\ProductService;
 use App\Services\ProductTypeService;
 use App\Services\SupplierService;
 use App\Services\UploadFileSevice;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,6 +23,7 @@ class ProductController extends Controller
     protected $productTypeService;
     protected $branchService;
     protected $supplierService;
+    protected $userService;
 
     public function __construct(
         ProductService $productService,
@@ -29,6 +31,7 @@ class ProductController extends Controller
         ProductTypeService $productTypeService,
         SupplierService $supplierService,
         BranchService $branchService,
+        UserService $userService,
     )
     {
         $this->productService = $productService;
@@ -36,6 +39,7 @@ class ProductController extends Controller
         $this->productTypeService = $productTypeService;
         $this->branchService = $branchService;
         $this->supplierService = $supplierService;
+        $this->userService = $userService;
     }
 
     public function index(Request $request)
@@ -142,5 +146,16 @@ class ProductController extends Controller
         ];
 
         return $result;
+    }
+
+    public function getUsers(Request $request)
+    {
+        $params = [
+            'phone' => $request->phone,
+        ];
+
+        $users = $this->userService->index($params);
+
+        return $users;
     }
 }

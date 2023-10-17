@@ -72,13 +72,17 @@ function ReceiptIndex() {
         getConstant()
     }, [paramConstants])
 
-    const getConstant=async() => {
+    const getConstant = async () => {
         await axiosAPI.get(url.constant, paramConstants)
             .then((res) => {
+                let products = res.data.products
+
+                products.unshift({id: '', name: 'Chọn sản phẩm'})
 
                 setConstant({
                     ...constant, 
                     permissions: res.data.permissions,
+                    products: products,
                 })
             })
     }
@@ -141,7 +145,7 @@ function ReceiptIndex() {
             name: 'delete'
         }))
     }
-    console.log(constant);
+
     return (
         <PageFrame
             data={lists}

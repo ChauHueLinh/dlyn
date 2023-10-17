@@ -229,6 +229,18 @@
 	display: none;
 }
 
+.option {
+	height: 36px;
+	opacity: 1 !important;
+	&:hover {
+    	background-color: rgb(219 234 254/var(--tw-bg-opacity))
+	}
+}
+
+.text-green {
+	color: #09A635;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

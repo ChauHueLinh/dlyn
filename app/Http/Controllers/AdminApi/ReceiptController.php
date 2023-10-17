@@ -4,16 +4,22 @@ namespace App\Http\Controllers\AdminApi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Receipt\ReceiptCollection;
+use App\Services\ProductService;
 use App\Services\ReceiptService;
 use Illuminate\Http\Request;
 
 class ReceiptController extends Controller
 {
     protected $receiptService;
+    protected $productService;
 
-    public function __construct(ReceiptService $receiptService)
+    public function __construct(
+        ReceiptService $receiptService,
+        ProductService $productService
+    )
     {
         $this->receiptService = $receiptService;
+        $this->productService = $productService;
     }
 
     public function index(Request $request)
@@ -36,9 +42,11 @@ class ReceiptController extends Controller
     public function getConstant(Request $request) 
     {
         $permissions = auth()->user()->role ? auth()->user()->role->permissions->pluck('displayName', 'key') : [];
+        $products = $this->productService->index([]);
 
         $params = [
             'permissions'       => $permissions,
+            'products'          => $products,
         ];
 
         return $params;

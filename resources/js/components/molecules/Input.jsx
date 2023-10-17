@@ -55,13 +55,15 @@ export default function Input(props) {
 
     return (
         <div className={props.containerClass}>
-            <label
-                htmlFor={props.name}
-                className={`${labelClass}`}
-            >
-                <div> {props.labelName} </div>
-                {props.isRequired && <p className="text-red-500">*</p>}
-            </label>
+            {props.labelName && (
+                <label
+                    htmlFor={props.name}
+                    className={`${labelClass}`}
+                >
+                    <div> {props.labelName} </div>
+                    {props.isRequired && <p className="text-red-500">*</p>}
+                </label>
+            )}
 
             { props.children
                 ?
@@ -78,6 +80,7 @@ export default function Input(props) {
                         min={props?.min}
                         step={props?.step}
                         checked={isChecked}
+                        onBlur={props?.callbackOnBlur}
                     />
             }
             

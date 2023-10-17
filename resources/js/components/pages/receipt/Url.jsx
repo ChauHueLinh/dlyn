@@ -4,4 +4,5 @@ export const url = {
   'update': '/receipt/update',
   'destroy': '/receipt/destroy',
   'constant': '/receipt/constant',
+  'users': document.location.origin + '/cms/adminApi/users',
 }

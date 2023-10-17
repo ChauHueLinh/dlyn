@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 use App\Http\Controllers\AdminApi\RoleController as CommonRoleController;
+use App\Http\Controllers\AdminApi\UserController as CommonUserController;
 use App\Http\Controllers\AdminApi\AdminController as CommonAdminController;
 use App\Http\Controllers\AdminApi\BranchController as CommonBranchController;
 use App\Http\Controllers\AdminApi\CouponController as CommonCouponController;
@@ -25,7 +26,6 @@ use App\Http\Controllers\AdminApi\ProductController as CommonProductController;
 use App\Http\Controllers\AdminApi\ReceiptController as CommonReceiptController;
 use App\Http\Controllers\AdminApi\SupplierController as CommonSupplierController;
 use App\Http\Controllers\AdminApi\ProductTypeController as CommonProductTypeController;
-use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,21 +48,21 @@ Route::middleware('authUser')->group(function () {
 
 //Admin
 Route::prefix('cms')->group(function () {
-	Route::get('login', [LoginController::class, 'showLoginForm'])->name('cms.login.get');
 	Route::post('login', [LoginController::class, 'login'])->name('cms.login.post');
+	Route::get('login', [LoginController::class, 'showLoginForm'])->name('cms.login.get');
 
 	Route::middleware(['authAdmin'])->group(function () {
 		Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-		Route::get('', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-		Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
 		Route::get('role', [RoleController::class, 'index'])->name('role.index');
+		Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
 		Route::get('coupon', [CouponController::class, 'index'])->name('coupon.index');
-		Route::get('product', [ProductController::class, 'index'])->name('product.index');
-		Route::get('productType', [ProductTypeController::class, 'index'])->name('productType.index');
 		Route::get('branch', [BranchController::class, 'index'])->name('branch.index');
-		Route::get('supplier', [SupplierController::class, 'index'])->name('supplier.index');
+		Route::get('product', [ProductController::class, 'index'])->name('product.index');
 		Route::get('receipt', [ReceiptController::class, 'index'])->name('receipt.index');
+		Route::get('', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+		Route::get('supplier', [SupplierController::class, 'index'])->name('supplier.index');
+		Route::get('productType', [ProductTypeController::class, 'index'])->name('productType.index');
 
 		Route::prefix('common-api')->name('common.')->group(function () {
 			Route::prefix('admin')->group(function () {
@@ -114,15 +114,25 @@ Route::prefix('cms')->group(function () {
 				Route::put('update', [CommonReceiptController::class, 'update'])->name('receipt.update');
 				Route::delete('destroy', [CommonReceiptController::class, 'destroy'])->name('receipt.destroy');
 			});
+			// Route::prefix('user')->group(function () {
+			// 	Route::get('', [CommonReceiptController::class, 'index']);
+			// 	Route::post('store', [CommonReceiptController::class, 'store'])->name('receipt.store');
+			// 	Route::put('update', [CommonReceiptController::class, 'update'])->name('receipt.update');
+			// 	Route::delete('destroy', [CommonReceiptController::class, 'destroy'])->name('receipt.destroy');
+			// });
 
-			Route::get('admin/constant', [CommonAdminController::class, 'getConstant'])->name('admin.constant');
 			Route::get('role/constant', [CommonRoleController::class, 'getConstant'])->name('role.constant');
-			Route::get('coupon/constant', [CommonCouponController::class, 'getConstant'])->name('coupon.constant');
-			Route::get('product/constant', [CommonProductController::class, 'getConstant'])->name('product.constant');
-			Route::get('product-type/constant', [CommonProductTypeController::class, 'getConstant'])->name('product-type.constant');
+			Route::get('admin/constant', [CommonAdminController::class, 'getConstant'])->name('admin.constant');
 			Route::get('branch/constant', [CommonBranchController::class, 'getConstant'])->name('branch.constant');
-			Route::get('supplier/constant', [CommonSupplierController::class, 'getConstant'])->name('supplier.constant');
+			Route::get('coupon/constant', [CommonCouponController::class, 'getConstant'])->name('coupon.constant');
 			Route::get('receipt/constant', [CommonReceiptController::class, 'getConstant'])->name('receipt.constant');
+			Route::get('product/constant', [CommonProductController::class, 'getConstant'])->name('product.constant');
+			Route::get('supplier/constant', [CommonSupplierController::class, 'getConstant'])->name('supplier.constant');
+			Route::get('product-type/constant', [CommonProductTypeController::class, 'getConstant'])->name('product-type.constant');
+		});
+
+		Route::prefix('adminApi')->group(function () {
+			Route::get('users', [CommonUserController::class, 'getList']);
 		});
 	});
 });
