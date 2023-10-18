@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
             WardSeeder::class,
             RemoveImageSeeder::class,
-            KeySeeder::class,
             UserSeeder::class,
         ]);
     }

@@ -25,7 +25,6 @@ class RemoveImageSeeder extends Seeder
                 $admin = Admin::where('avatar', $image)->get()->count();
                 $product = ProductImage::where('src', 'LIKE', $image)->get()->count();
                 $branch = Branch::where('image', $image)->get()-> count();
-
                 if($admin == 0 && $product == 0 && $branch == 0) {
                     Storage::disk('public')->delete($image);
                     echo $image . PHP_EOL;
