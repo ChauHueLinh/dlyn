@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('receiptId');
             $table->string('status');
             $table->string('createdBy');
+            $table->string('updatedBy');
             $table->timestamps();
             $table->softDeletes();
         });

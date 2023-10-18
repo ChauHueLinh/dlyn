@@ -41,6 +41,7 @@ class UserController extends Controller
     {
         $params = [
             'phone' => $request->phone,
+            'email' => $request->email,
         ];
         $users = $this->userService->getList($params);
 

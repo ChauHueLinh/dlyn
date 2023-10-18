@@ -9,4 +9,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Receipt extends Model
 {
     use HasFactory, SoftDeletes;
+
+    const UNPAID = 0;
+    const PAID = 1;
+
+    protected $fillable = [
+        'code',
+        'status',
+        'userId',
+        'orderId',
+        'couponId',
+        'total',
+        'name',
+        'phoneNumber',
+        'address',
+        'createdBy',
+        'updatedBy',
+    ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'receipt_products', 'receiptId', 'productId')->withPivot('quantity', 'price', 'total');
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class, 'receiptId', 'id');
+    }
 }

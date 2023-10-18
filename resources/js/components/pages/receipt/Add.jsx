@@ -20,19 +20,20 @@ export default function Add(props) {
 
     const [errors, setErrors] = useState({})
     const [loading, setLoading] = useState(false)
-    const [listUser, setListUser] = useState([])
+    const [listUserOnPhone, setListUserOnPhone] = useState([])
+    const [listUserOnEmail, setListUserOnEmail] = useState([])
     const [products, setProducts] = useState([])
     const [data, setData] = useState({})
     const [totalReceipt, setTotalReceipt] = useState({})
     const [couponReceipt, setCouponReceipt] = useState({})
-    
+
     const openDialog = collection.name == props.modalKey && status
-    
+
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
     });
-    
+
     useEffect(() => {
         setValueTotalReceipt()
     }, [products, data.coupon])
@@ -44,9 +45,10 @@ export default function Add(props) {
             return false
         }
 
-        setLoading(true)
+        // setLoading(true)
 
         let form = new FormData()
+        form.append('userId', data.userId ?? '')
         form.append('name', data.name ?? '')
         form.append('phone', data.phone ?? '')
         form.append('email', data.email ?? '')
@@ -54,10 +56,12 @@ export default function Add(props) {
         form.append('couponId', data?.coupon?.id ?? '')
         form.append('note', data?.note ?? '')
         products?.length > 0 && products.map((item) => {
-            form.append('products[]', JSON.stringify({
-                productId: item.productId,
-                quantity: item.quantity,
-            }))
+            if(item.productId != '' && item.quantity > 0) {
+                form.append('products[]', JSON.stringify({
+                    productId: item.productId,
+                    quantity: item.quantity,
+                }))
+            }
         })
 
         axiosAPI.post(url.store, form)
@@ -84,14 +88,22 @@ export default function Add(props) {
             })
     }
 
-    const getUser = async (phone) => {
-        if (phone.length < 5) {
-            setListUser([])
+    const getUser = async (phone, email, provider) => {
+        if (phone.length < 5 && provider == 'phone') {
+            setListUserOnPhone([])
             return false
         }
-        let res = await axiosAPI.get(url.users, { params: { phone: phone } })
+        if (email.length < 5 && provider == 'email') {
+            setListUserOnEmail([])
+            return false
+        }
 
-        setListUser(res.data)
+        let res = await axiosAPI.get(url.users, { params: { phone: phone, email: email } })
+        if (provider == 'phone') {
+            setListUserOnPhone(res.data)
+        } else if (provider == 'email') {
+            setListUserOnEmail(res.data)
+        }
     }
 
     const addProduct = () => {
@@ -145,14 +157,14 @@ export default function Add(props) {
 
     const setValueCouponReceipt = (total_receipt) => {
         let coupon_receipt = 0
-        if(data.coupon) {
-            if(data.coupon.unit == 'VND') {
-                if(data.coupon.value > total_receipt) {
+        if (data.coupon) {
+            if (data.coupon.unit == 'VND') {
+                if (data.coupon.value > total_receipt) {
                     coupon_receipt = total_receipt
                 } else {
                     coupon_receipt = data.coupon.value
                 }
-            } else if(data.coupon.unit == '%') {
+            } else if (data.coupon.unit == '%') {
                 coupon_receipt = total_receipt * data.coupon.value / 100
             }
         }
@@ -190,7 +202,7 @@ export default function Add(props) {
                             setData({ ...data, name: value })
                         }}
                     />
-                    <div className="mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2">
+                    <div className="mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2 mt-4">
                         <div className="">Số điện thoại</div>
                         <div className="text-red-500">*</div>
                     </div>
@@ -206,53 +218,82 @@ export default function Add(props) {
                             containerClass='w-full'
                             onChange={(value) => {
                                 setData({ ...data, phone: value })
-                                getUser(value)
+                                getUser(value, '', 'phone')
                             }}
                         />
-                        {listUser?.length > 0 &&
+                        {listUserOnPhone?.length > 0 &&
                             <div
                                 className='absolute w-full py-1 rounded-lg overflow-auto border border-gray-300  bg-white z-15'
-                                style={{ maxHeight: '100px', height: 'fit-content' }}
-                                onBlur={() => setListUser([])}
+                                style={{maxHeight: '100px', height: 'fit-content'}}
                             >
-                                {listUser?.length > 0 &&
-                                    listUser?.map((item) => (
-                                        <div
-                                            className='option p-2'
-                                            key={item.id}
-                                            onClick={() => {
-                                                setData({
-                                                    ...data,
-                                                    id: item.id,
-                                                    name: item.name,
-                                                    phone: item.phone,
-                                                    email: item.email,
-                                                    address: item.address,
-                                                })
-                                                setListUser([])
-                                            }}
-                                        >
-                                            {item.name + ' (' + item.phone + ')'}
-                                        </div>
-                                    ))
-                                }
+                                {listUserOnPhone?.map((item) => (
+                                    <div
+                                        className='option p-2'
+                                        key={item.id}
+                                        onClick={() => {
+                                            setData({
+                                                ...data,
+                                                userId: item.id,
+                                                name: item.name,
+                                                phone: item.phone,
+                                                email: item.email,
+                                                address: item.address,
+                                            })
+                                            setListUserOnPhone([])
+                                        }}
+                                    >
+                                        {item.name + ' (' + item.phone + ')'}
+                                    </div>
+                                ))}
                             </div>
                         }
                     </div>
-                    <Input
-                        id='email'
-                        name='email'
-                        type='text'
-                        value={data?.email}
-                        labelName='Email'
-                        placeholder="Nhập email"
-                        isRequired={true}
-                        validate={errors}
-                        containerClass='w-full my-4'
-                        onChange={(value) => {
-                            setData({ ...data, email: value })
-                        }}
-                    />
+                    <div className="mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2 mt-4">
+                        <div className="">Email</div>
+                        <div className="text-red-500">*</div>
+                    </div>
+                    <div className='relative'>
+                        <Input
+                            id='email'
+                            name='email'
+                            type='text'
+                            value={data?.email}
+                            placeholder="Nhập email"
+                            isRequired={true}
+                            validate={errors}
+                            containerClass='w-full'
+                            onChange={(value) => {
+                                setData({ ...data, email: value })
+                                getUser('', value, 'email')
+                            }}
+                        />
+                        {listUserOnEmail?.length > 0 &&
+                            <div
+                                className='absolute w-full py-1 rounded-lg overflow-auto border border-gray-300  bg-white z-15'
+                                style={{ maxHeight: '100px', height: 'fit-content' }}
+                            >
+                                {listUserOnEmail?.map((item) => (
+                                    <div
+                                        className='option p-2'
+                                        key={item.id}
+                                        onClick={() => {
+                                            setData({
+                                                ...data,
+                                                id: item.id,
+                                                name: item.name,
+                                                phone: item.phone,
+                                                email: item.email,
+                                                address: item.address,
+                                            })
+                                            setListUserOnEmail([])
+                                        }}
+                                    >
+                                        {item.name + ' (' + item.email + ')'}
+                                    </div>
+                                ))}
+                            </div>
+                        }
+                    </div>
                     <Input
                         id='address'
                         name='address'
@@ -262,7 +303,7 @@ export default function Add(props) {
                         placeholder="Nhập địa chỉ"
                         isRequired={true}
                         validate={errors}
-                        containerClass='w-full mb-4'
+                        containerClass='w-full my-4'
                         onChange={(value) => {
                             setData({ ...data, address: value })
                         }}
@@ -271,7 +312,7 @@ export default function Add(props) {
                         name='couponId'
                         label='Mã giảm giá'
                         data={props.constant.coupons ?? []}
-                        callback={(value) => {setData({...data, coupon: value})}}
+                        callback={(value) => { setData({ ...data, coupon: value }) }}
                         search={true}
                         validate={errors}
                     />
@@ -281,7 +322,7 @@ export default function Add(props) {
                         placeholder='Nhập ghi chú'
                         validate={errors}
                         containerClass='mt-4'
-                        onChange={(value) => setData({...data, note: value})}
+                        onChange={(value) => setData({ ...data, note: value })}
                     />
                 </div>
                 <div className="w-50">

@@ -10739,7 +10739,7 @@ function Input(props) {
     isChecked = _useState6[0],
     setIsChecked = _useState6[1];
   var isDisabled = props.disabled == true ? true : false;
-  var inputClass = props.inputClass ? props.inputClass : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5";
+  var inputClass = props.inputClass ? props.inputClass : "bg-gray-50 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5";
   var labelClass = props.labelClass ? props.labelClass : "mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2";
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (props.validate[props.name] != undefined) {
@@ -10797,7 +10797,7 @@ function Input(props) {
       name: props.name,
       value: value,
       id: props.name,
-      className: "".concat(inputClass, " ").concat(errors.message && 'border-red-500'),
+      className: "".concat(inputClass, " ").concat(errors.message && 'border-red-500', " shadow-md"),
       placeholder: props.placeholder,
       onChange: function onChange(e) {
         return handleChange(e);
@@ -12714,7 +12714,7 @@ function Textarea(props) {
       id: props.name,
       value: value,
       rows: "4",
-      className: "".concat(inputClass, " ").concat(errors.message ? 'border-red-500' : ''),
+      className: "".concat(inputClass, " ").concat(errors.message ? 'border-red-500' : '', " shadow-md "),
       placeholder: props.placeholder,
       disabled: isDisabled,
       onChange: function onChange(e) {
@@ -19006,24 +19006,28 @@ function Add(props) {
     setLoading = _useState4[1];
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
-    listUser = _useState6[0],
-    setListUser = _useState6[1];
+    listUserOnPhone = _useState6[0],
+    setListUserOnPhone = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
-    products = _useState8[0],
-    setProducts = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    listUserOnEmail = _useState8[0],
+    setListUserOnEmail = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    data = _useState10[0],
-    setData = _useState10[1];
+    products = _useState10[0],
+    setProducts = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState12 = _slicedToArray(_useState11, 2),
-    totalReceipt = _useState12[0],
-    setTotalReceipt = _useState12[1];
+    data = _useState12[0],
+    setData = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState14 = _slicedToArray(_useState13, 2),
-    couponReceipt = _useState14[0],
-    setCouponReceipt = _useState14[1];
+    totalReceipt = _useState14[0],
+    setTotalReceipt = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState16 = _slicedToArray(_useState15, 2),
+    couponReceipt = _useState16[0],
+    setCouponReceipt = _useState16[1];
   var openDialog = collection.name == props.modalKey && status;
   var VND = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
@@ -19033,13 +19037,16 @@ function Add(props) {
     setValueTotalReceipt();
   }, [products, data.coupon]);
   var handler = function handler(e) {
-    var _data$name, _data$phone, _data$email, _data$address, _data$coupon$id, _data$coupon, _data$note;
+    var _data$userId, _data$name, _data$phone, _data$email, _data$address, _data$coupon$id, _data$coupon, _data$note;
     e.preventDefault();
     if (errors.avatar) {
       return false;
     }
-    setLoading(true);
+
+    // setLoading(true)
+
     var form = new FormData();
+    form.append('userId', (_data$userId = data.userId) !== null && _data$userId !== void 0 ? _data$userId : '');
     form.append('name', (_data$name = data.name) !== null && _data$name !== void 0 ? _data$name : '');
     form.append('phone', (_data$phone = data.phone) !== null && _data$phone !== void 0 ? _data$phone : '');
     form.append('email', (_data$email = data.email) !== null && _data$email !== void 0 ? _data$email : '');
@@ -19047,10 +19054,12 @@ function Add(props) {
     form.append('couponId', (_data$coupon$id = data === null || data === void 0 || (_data$coupon = data.coupon) === null || _data$coupon === void 0 ? void 0 : _data$coupon.id) !== null && _data$coupon$id !== void 0 ? _data$coupon$id : '');
     form.append('note', (_data$note = data === null || data === void 0 ? void 0 : data.note) !== null && _data$note !== void 0 ? _data$note : '');
     (products === null || products === void 0 ? void 0 : products.length) > 0 && products.map(function (item) {
-      form.append('products[]', JSON.stringify({
-        productId: item.productId,
-        quantity: item.quantity
-      }));
+      if (item.productId != '' && item.quantity > 0) {
+        form.append('products[]', JSON.stringify({
+          productId: item.productId,
+          quantity: item.quantity
+        }));
+      }
     });
     _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_3__["default"].post(_Url__WEBPACK_IMPORTED_MODULE_8__.url.store, form).then(function (e) {
       react_hot_toast__WEBPACK_IMPORTED_MODULE_1__["default"].dismiss();
@@ -19073,29 +19082,41 @@ function Add(props) {
       }
     });
   };
-  var getUser = function getUser(_x) {
-    return (_ref = _ref || _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(phone) {
+  var getUser = function getUser(_x, _x2, _x3) {
+    return (_ref = _ref || _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(phone, email, provider) {
       var res;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            if (!(phone.length < 5)) {
+            if (!(phone.length < 5 && provider == 'phone')) {
               _context.next = 3;
               break;
             }
-            setListUser([]);
+            setListUserOnPhone([]);
             return _context.abrupt("return", false);
           case 3:
-            _context.next = 5;
+            if (!(email.length < 5 && provider == 'email')) {
+              _context.next = 6;
+              break;
+            }
+            setListUserOnEmail([]);
+            return _context.abrupt("return", false);
+          case 6:
+            _context.next = 8;
             return _libs_axiosAPI__WEBPACK_IMPORTED_MODULE_3__["default"].get(_Url__WEBPACK_IMPORTED_MODULE_8__.url.users, {
               params: {
-                phone: phone
+                phone: phone,
+                email: email
               }
             });
-          case 5:
+          case 8:
             res = _context.sent;
-            setListUser(res.data);
-          case 7:
+            if (provider == 'phone') {
+              setListUserOnPhone(res.data);
+            } else if (provider == 'email') {
+              setListUserOnEmail(res.data);
+            }
+          case 10:
           case "end":
             return _context.stop();
         }
@@ -19223,7 +19244,7 @@ function Add(props) {
             }));
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-          className: "mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2",
+          className: "mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2 mt-4",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
             className: "",
             children: "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
@@ -19246,18 +19267,64 @@ function Add(props) {
               setData(_objectSpread(_objectSpread({}, data), {}, {
                 phone: value
               }));
-              getUser(value);
+              getUser(value, '', 'phone');
             }
-          }), (listUser === null || listUser === void 0 ? void 0 : listUser.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+          }), (listUserOnPhone === null || listUserOnPhone === void 0 ? void 0 : listUserOnPhone.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
             className: "absolute w-full py-1 rounded-lg overflow-auto border border-gray-300  bg-white z-15",
             style: {
               maxHeight: '100px',
               height: 'fit-content'
             },
-            onBlur: function onBlur() {
-              return setListUser([]);
+            children: listUserOnPhone === null || listUserOnPhone === void 0 ? void 0 : listUserOnPhone.map(function (item) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+                className: "option p-2",
+                onClick: function onClick() {
+                  setData(_objectSpread(_objectSpread({}, data), {}, {
+                    userId: item.id,
+                    name: item.name,
+                    phone: item.phone,
+                    email: item.email,
+                    address: item.address
+                  }));
+                  setListUserOnPhone([]);
+                },
+                children: item.name + ' (' + item.phone + ')'
+              }, item.id);
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2 mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "",
+            children: "Email"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "text-red-500",
+            children: "*"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+          className: "relative",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            id: "email",
+            name: "email",
+            type: "text",
+            value: data === null || data === void 0 ? void 0 : data.email,
+            placeholder: "Nh\u1EADp email",
+            isRequired: true,
+            validate: errors,
+            containerClass: "w-full",
+            onChange: function onChange(value) {
+              setData(_objectSpread(_objectSpread({}, data), {}, {
+                email: value
+              }));
+              getUser('', value, 'email');
+            }
+          }), (listUserOnEmail === null || listUserOnEmail === void 0 ? void 0 : listUserOnEmail.length) > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            className: "absolute w-full py-1 rounded-lg overflow-auto border border-gray-300  bg-white z-15",
+            style: {
+              maxHeight: '100px',
+              height: 'fit-content'
             },
-            children: (listUser === null || listUser === void 0 ? void 0 : listUser.length) > 0 && (listUser === null || listUser === void 0 ? void 0 : listUser.map(function (item) {
+            children: listUserOnEmail === null || listUserOnEmail === void 0 ? void 0 : listUserOnEmail.map(function (item) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
                 className: "option p-2",
                 onClick: function onClick() {
@@ -19268,27 +19335,12 @@ function Add(props) {
                     email: item.email,
                     address: item.address
                   }));
-                  setListUser([]);
+                  setListUserOnEmail([]);
                 },
-                children: item.name + ' (' + item.phone + ')'
+                children: item.name + ' (' + item.email + ')'
               }, item.id);
-            }))
+            })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          id: "email",
-          name: "email",
-          type: "text",
-          value: data === null || data === void 0 ? void 0 : data.email,
-          labelName: "Email",
-          placeholder: "Nh\u1EADp email",
-          isRequired: true,
-          validate: errors,
-          containerClass: "w-full my-4",
-          onChange: function onChange(value) {
-            setData(_objectSpread(_objectSpread({}, data), {}, {
-              email: value
-            }));
-          }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
           id: "address",
           name: "address",
@@ -19298,7 +19350,7 @@ function Add(props) {
           placeholder: "Nh\u1EADp \u0111\u1ECBa ch\u1EC9",
           isRequired: true,
           validate: errors,
-          containerClass: "w-full mb-4",
+          containerClass: "w-full my-4",
           onChange: function onChange(value) {
             setData(_objectSpread(_objectSpread({}, data), {}, {
               address: value

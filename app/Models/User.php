@@ -17,6 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    const ACTIVATE = 1;
+    const DEACTIVATE = 0;
+
     protected $fillable = [
         'name',
         'status',
@@ -50,5 +53,10 @@ class User extends Authenticatable
     public function scopePhone($query, $phone) 
     {
         return $query->where('phone', 'LIKE', '%'.$phone.'%');
+    }
+
+    public function scopeEmail($query, $email) 
+    {
+        return $query->where('email', 'LIKE', '%'.$email.'%');
     }
 }

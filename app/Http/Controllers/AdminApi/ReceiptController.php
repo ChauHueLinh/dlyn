@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\AdminApi;
 
+use App\Helper\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Receipt\Store;
 use App\Http\Resources\Receipt\ReceiptCollection;
 use App\Services\CouponService;
 use App\Services\ProductService;
@@ -43,9 +45,22 @@ class ReceiptController extends Controller
         return $receipts;
     }
 
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        dd($request->products);
+        $params = [
+            'userId'    => $request->userId,
+            'name'      => $request->name,
+            'phone'     => $request->phone,
+            'email'     => $request->email,
+            'address'   => $request->address,
+            'note'      => $request->note,
+            'products'  => $request->products,
+            'couponId'  => $request->couponId,
+        ];
+
+        $result = $this->receiptService->store($params);
+
+        return Response::responseArray($result['status'], $result['message']);
     }
 
     public function getConstant(Request $request) 

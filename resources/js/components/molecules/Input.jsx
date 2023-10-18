@@ -9,7 +9,7 @@ export default function Input(props) {
     const isDisabled = props.disabled == true ? true : false
     const inputClass = props.inputClass ?
                        props.inputClass :
-                       "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       "bg-gray-50 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
     const labelClass = props.labelClass ? props.labelClass : "mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2"
 
     useEffect(() => {
@@ -73,7 +73,7 @@ export default function Input(props) {
                         type={props.type ?? "text"}
                         name={props.name} value={value}
                         id={props.name}
-                        className={`${inputClass} ${errors.message && 'border-red-500'}`}
+                        className={`${inputClass} ${errors.message && 'border-red-500'} shadow-md`}
                         placeholder={props.placeholder}
                         onChange={e => handleChange(e)}
                         disabled={isDisabled}

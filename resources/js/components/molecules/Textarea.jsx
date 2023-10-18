@@ -50,7 +50,7 @@ export default function Textarea(props) {
                 id={props.name}
                 value={value}
                 rows="4"
-                className={`${inputClass} ${errors.message ? 'border-red-500' : ''}`}
+                className={`${inputClass} ${errors.message ? 'border-red-500' : ''} shadow-md `}
                 placeholder={props.placeholder}
                 disabled={isDisabled}
                 onChange={(e) => handleChange(e)}

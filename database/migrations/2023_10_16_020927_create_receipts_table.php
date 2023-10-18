@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('code');
             $table->string('status');
             $table->string('userId');
-            $table->string('orderId')->nullable(true);
             $table->string('couponId');
             $table->string('total');
             $table->string('name');

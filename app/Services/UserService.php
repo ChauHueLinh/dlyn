@@ -45,6 +45,9 @@ class UserService
             ->when(isset($params['phone']), function ($query) use ($params) {
                 return $query->phone($params['phone']);
             })
+            ->when(isset($params['email']), function ($query) use ($params) {
+                return $query->email($params['email']);
+            })
             ->get();
 
         return $users;
