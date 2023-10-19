@@ -159,7 +159,7 @@ function ProductTypeIndex() {
                         </td>
                         <td>
                             <div className="flex items-center justify-center p-3">
-                                {constant?.permissions?.updateAdmin &&
+                                {constant?.permissions?.updateProductType &&
                                     <button
                                         type="button"
                                         className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm me-2"
@@ -172,7 +172,7 @@ function ProductTypeIndex() {
                                         <i className='bx bx-edit-alt m-auto'></i>
                                     </button>
                                 }
-                                {constant?.permissions?.deleteAdmin &&
+                                {constant?.permissions?.deleteProductType &&
                                     <button
                                         type="button"
                                         className="focus:outline-none text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm ms-2"

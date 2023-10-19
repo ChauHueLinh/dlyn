@@ -73,7 +73,7 @@ export default function Input(props) {
                         type={props.type ?? "text"}
                         name={props.name} value={value}
                         id={props.name}
-                        className={`${inputClass} ${errors.message && 'border-red-500'} shadow-md`}
+                        className={`${inputClass} ${errors.message && 'border-red-500'} ${isDisabled == true && 'bg-gray'} shadow-md`}
                         placeholder={props.placeholder}
                         onChange={e => handleChange(e)}
                         disabled={isDisabled}

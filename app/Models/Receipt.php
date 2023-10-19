@@ -23,6 +23,7 @@ class Receipt extends Model
         'name',
         'phoneNumber',
         'address',
+        'note',
         'createdBy',
         'updatedBy',
     ];
@@ -35,5 +36,15 @@ class Receipt extends Model
     public function order()
     {
         return $this->hasOne(Order::class, 'receiptId', 'id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'userId');
+    }
+
+    public function coupon()
+    {
+        return $this->hasOne(Coupon::class, 'id', 'couponId');
     }
 }

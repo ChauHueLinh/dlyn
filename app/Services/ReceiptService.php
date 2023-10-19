@@ -57,9 +57,9 @@ class ReceiptService
 
         $receipts = $receipts
             ->with([
-                // 'attributes',
-                // 'mainImage',
-                // 'descriptionImages',
+                'user',
+                'coupon',
+                'products',
                 // 'suppliers'
             ]);
 
@@ -117,13 +117,20 @@ class ReceiptService
             
             $coupon = $this->coupon->find($params['couponId']);
 
+            if($coupon->unit == Coupon::VND) {
+                $discount = $coupon->value;
+            } elseif($coupon->unit == Coupon::PERCENT) {
+                $discount = $total * $coupon->value / 100;
+            }
+
             $paramsReceipt = [
                 'code'          => 'DLYN' . Carbon::now()->timestamp,
-                'status'        => Receipt::PAID,
+                'status'        => $params['status'],
                 'userId'        => $user->id,
                 'couponId'      => $coupon->id,
-                'total'         => $total,
+                'total'         => $total - $discount,
                 'name'          => $params['name'],
+                'note'          => $params['note'],
                 'phoneNumber'   => $params['phone'],
                 'address'       => $params['address'],
                 'createdBy'     => auth()->guard('admin')->user()->id,
@@ -155,5 +162,29 @@ class ReceiptService
 
             return Response::responseArray(false, $e->getMessage());
         }
+    }
+
+    public function update($params)
+    {
+        $receipt = $this->receipt->find($params['id']);
+        if(!$receipt) {
+            return Response::responseArray(false, 'Đã có lỗi xảy ra.');
+        }
+
+        $receipt->update($params);
+
+        return Response::responseArray(true, 'Cập nhật thành công.');
+    }
+
+    public function destroy($params)
+    {
+        $receipt = $this->receipt->find($params['id']);
+        if(!$receipt) {
+            return Response::responseArray(false, 'Đã có lỗi xảy ra.');
+        }
+
+        $receipt->delete();
+
+        return Response::responseArray(true, 'Cập nhật thành công.');
     }
 }

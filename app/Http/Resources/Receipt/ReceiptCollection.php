@@ -20,7 +20,16 @@ class ReceiptCollection extends JsonResource
 
         return [
             'id'            => $this->id,
+            'code'          => $this->code,
+            'total'         => $this->total,
+            'status'        => $this->status,
             'name'          => $this->name,
+            'address'       => $this->address,
+            'phoneNumber'   => $this->phoneNumber,
+            'user'          => $this->user,
+            'coupon'        => $this->coupon,
+            'note'          => $this->note,
+            'products'      => $this->products,
         ];
     }
 }

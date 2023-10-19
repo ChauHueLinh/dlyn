@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phoneNumber');
             $table->string('address');
-            $table->text('note');
+            $table->text('note')->nullable(true);
             $table->string('createdBy');
             $table->string('updatedBy');
             $table->timestamps();

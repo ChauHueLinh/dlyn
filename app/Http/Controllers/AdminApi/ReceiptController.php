@@ -5,7 +5,9 @@ namespace App\Http\Controllers\AdminApi;
 use App\Helper\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Receipt\Store;
+use App\Http\Requests\Receipt\Update;
 use App\Http\Resources\Receipt\ReceiptCollection;
+use App\Models\Receipt;
 use App\Services\CouponService;
 use App\Services\ProductService;
 use App\Services\ReceiptService;
@@ -55,10 +57,35 @@ class ReceiptController extends Controller
             'address'   => $request->address,
             'note'      => $request->note,
             'products'  => $request->products,
+            'status'    => $request->status,
             'couponId'  => $request->couponId,
         ];
 
         $result = $this->receiptService->store($params);
+
+        return Response::responseArray($result['status'], $result['message']);
+    }
+
+    public function update(Update $request)
+    {
+        $params = [
+            'id' => $request->id,
+            'status' => $request->status,
+            'note' => $request->note,
+        ];
+
+        $result = $this->receiptService->update($params);
+
+        return Response::responseArray($result['status'], $result['message']);
+    }
+
+    public function destroy(Request $request)
+    {
+        $params = [
+            'id' => $request->id,
+        ];
+
+        $result = $this->receiptService->destroy($params);
 
         return Response::responseArray($result['status'], $result['message']);
     }
@@ -72,7 +99,7 @@ class ReceiptController extends Controller
         $params = [
             'permissions'       => $permissions,
             'products'          => $products,
-            'coupons'          => $coupons,
+            'coupons'           => $coupons,
         ];
 
         return $params;
