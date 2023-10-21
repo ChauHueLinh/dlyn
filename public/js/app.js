@@ -19012,7 +19012,7 @@ function Add(props) {
   var maxString = 255;
   var openDialog = collection.name == props.modalKey && status;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var _props$data, _props$data2, _props$data3, _props$data4, _props$data5, _props$data6, _props$data7, _props$data8, _props$data9, _props$data10, _props$data11;
+    var _props$data, _Object$entries, _props$data$attribute, _props$data2, _props$data3, _props$data4, _props$data5, _props$data6, _props$data7, _props$data8, _props$data9, _props$data10, _props$data11;
     var desImgs = [];
     var attr = [];
     var supplierId = [];
@@ -19022,10 +19022,10 @@ function Add(props) {
         value: item.src
       });
     });
-    props === null || props === void 0 || (_props$data2 = props.data) === null || _props$data2 === void 0 || (_props$data2 = _props$data2.attributes) === null || _props$data2 === void 0 || _props$data2.map(function (item, index) {
-      var _item$attributes;
+    Object === null || Object === void 0 || (_Object$entries = Object.entries((_props$data$attribute = props === null || props === void 0 || (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : _props$data2.attributes) !== null && _props$data$attribute !== void 0 ? _props$data$attribute : {})) === null || _Object$entries === void 0 || _Object$entries.map(function (item, index) {
+      var _item$;
       var attributes = [];
-      item === null || item === void 0 || (_item$attributes = item.attributes) === null || _item$attributes === void 0 || _item$attributes.map(function (i) {
+      (_item$ = item[1]) === null || _item$ === void 0 || (_item$ = _item$.attributes) === null || _item$ === void 0 || _item$.map(function (i) {
         attributes.push({
           id: i.id,
           name: i.name,
@@ -19037,8 +19037,8 @@ function Add(props) {
       });
       attr.push({
         id: index,
-        name: item.name,
-        quantity: item.quantity,
+        name: item[1].name,
+        quantity: item[1].quantity,
         attributes: attributes
       });
     });
@@ -19062,12 +19062,12 @@ function Add(props) {
       suppliers: props === null || props === void 0 || (_props$data10 = props.data) === null || _props$data10 === void 0 ? void 0 : _props$data10.suppliers,
       quantity: props === null || props === void 0 || (_props$data11 = props.data) === null || _props$data11 === void 0 ? void 0 : _props$data11.quantity
     });
-  }, [props.data, status]);
+  }, [props === null || props === void 0 ? void 0 : props.data, status]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var quantity = 0;
     groupAttributes === null || groupAttributes === void 0 || groupAttributes.map(function (item) {
-      var _item$attributes2;
-      var attributes = item === null || item === void 0 || (_item$attributes2 = item.attributes) === null || _item$attributes2 === void 0 ? void 0 : _item$attributes2.filter(function (item) {
+      var _item$attributes;
+      var attributes = item === null || item === void 0 || (_item$attributes = item.attributes) === null || _item$attributes === void 0 ? void 0 : _item$attributes.filter(function (item) {
         return item.name != '';
       });
       if ((attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0) {
@@ -19096,8 +19096,8 @@ function Add(props) {
     form.append('mainImage', (_data$mainImage = data.mainImage) !== null && _data$mainImage !== void 0 ? _data$mainImage : '');
     form.append('_method', 'PUT');
     (groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.length) > 0 && groupAttributes.map(function (item) {
-      var _item$attributes3;
-      (item === null || item === void 0 || (_item$attributes3 = item.attributes) === null || _item$attributes3 === void 0 ? void 0 : _item$attributes3.length) > 0 && (item === null || item === void 0 ? void 0 : item.attributes.map(function (i) {
+      var _item$attributes2;
+      (item === null || item === void 0 || (_item$attributes2 = item.attributes) === null || _item$attributes2 === void 0 ? void 0 : _item$attributes2.length) > 0 && (item === null || item === void 0 ? void 0 : item.attributes.map(function (i) {
         if (i.name != '') {
           form.append('attr[]', JSON.stringify({
             id: i.id,
@@ -19421,11 +19421,11 @@ function Add(props) {
     }));
   };
   var callbackUploadFiles = function callbackUploadFiles(files) {
-    var _data$descriptionImag3, _Object$entries;
+    var _data$descriptionImag3, _Object$entries2;
     var newPreviewDescriptionImage = previewDescriptionImage !== null && previewDescriptionImage !== void 0 ? previewDescriptionImage : [];
     var errors = errorsDescriptionImage !== null && errorsDescriptionImage !== void 0 ? errorsDescriptionImage : [];
     var desImgs = (_data$descriptionImag3 = data.descriptionImages) !== null && _data$descriptionImag3 !== void 0 ? _data$descriptionImag3 : [];
-    Object === null || Object === void 0 || (_Object$entries = Object.entries(files)) === null || _Object$entries === void 0 || _Object$entries.map(function (item) {
+    Object === null || Object === void 0 || (_Object$entries2 = Object.entries(files)) === null || _Object$entries2 === void 0 || _Object$entries2.map(function (item) {
       var _newPreviewDescriptio, _errors;
       var objectUrl = URL.createObjectURL(item[1]);
       var id = newPreviewDescriptionImage.length > 0 ? ((_newPreviewDescriptio = newPreviewDescriptionImage.at(-1)) === null || _newPreviewDescriptio === void 0 ? void 0 : _newPreviewDescriptio.id) + 1 : 0;
@@ -19549,7 +19549,7 @@ function Add(props) {
           className: "",
           children: "Thu\u1ED9c t\xEDnh"
         }), groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.map(function (item) {
-          var _item$attributes4;
+          var _item$attributes3;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
             className: "mt-0 mb-2",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
@@ -19588,7 +19588,7 @@ function Add(props) {
                   setQuantityGroupAttribute(item.id, value);
                 }
               })]
-            }), item === null || item === void 0 || (_item$attributes4 = item.attributes) === null || _item$attributes4 === void 0 ? void 0 : _item$attributes4.map(function (i, index) {
+            }), item === null || item === void 0 || (_item$attributes3 = item.attributes) === null || _item$attributes3 === void 0 ? void 0 : _item$attributes3.map(function (i, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "ms-4 mt-1",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {

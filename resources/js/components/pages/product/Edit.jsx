@@ -46,14 +46,14 @@ export default function Add(props) {
 		props?.data?.descriptionImages?.map((item) => {
 			desImgs.push({ id: item.id, value: item.src })
 		})
-		props?.data?.attributes?.map((item, index) => {
+		Object?.entries(props?.data?.attributes ?? {})?.map((item, index) => {
 			let attributes = []
 
-			item?.attributes?.map((i) => {
+			item[1]?.attributes?.map((i) => {
 				attributes.push({ id: i.id, name: i.name, value: i.value })
 				attributes.sort((a, b) => a.id - b.id)
 			})
-			attr.push({ id: index, name: item.name, quantity: item.quantity, attributes: attributes })
+			attr.push({ id: index, name: item[1].name, quantity: item[1].quantity, attributes: attributes })
 		})
 		setGroupAttributes(attr)
 		props?.data?.suppliers?.map((item) => {
@@ -73,7 +73,7 @@ export default function Add(props) {
 			suppliers: props?.data?.suppliers,
 			quantity: props?.data?.quantity,
 		})
-	}, [props.data, status])
+	}, [props?.data, status])
 
 	useEffect(() => {
 		var quantity = 0
