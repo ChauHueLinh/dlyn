@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-  <div id="receip-index"></div>
+  <div id="order-index"></div>
 @endsection

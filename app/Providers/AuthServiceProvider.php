@@ -13,6 +13,7 @@ use App\Models\Supplier;
 use App\Policies\AdminPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\CouponPolicy;
+use App\Policies\OrderPolicy;
 use App\Policies\ProductPolicy;
 use App\Policies\ReceiptPolicy;
 use App\Policies\SupplierPolicy;
@@ -28,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Role::class                     => RolePolicy::class,
         Admin::class                    => AdminPolicy::class,
+        Order::class                    => OrderPolicy::class,
         Coupon::class                   => CouponPolicy::class,
         Branch::class                   => BranchPolicy::class,
         Receipt::class                  => ReceiptPolicy::class,

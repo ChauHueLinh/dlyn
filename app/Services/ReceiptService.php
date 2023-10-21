@@ -139,11 +139,17 @@ class ReceiptService
 
             $receipt = $this->receipt->create($paramsReceipt);
 
-            $receipt->order()->create([
+            $order = $receipt->order()->create([
                 'code'          => 'DLYN' . Carbon::now()->timestamp,
                 'status'        => Order::NEW,
                 'createdBy'     => auth()->guard('admin')->user()->id,
                 'updatedBy'     => auth()->guard('admin')->user()->id,
+            ]);
+
+            $orderHistory = $order->histories()->create([
+                'orderId' => $order->id,
+                'status' => Order::NEW,
+                'createdBy' => auth()->guard('admin')->user()->id,
             ]);
 
             foreach($products as $item) {

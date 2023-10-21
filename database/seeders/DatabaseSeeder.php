@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
             WardSeeder::class,
             RemoveImageSeeder::class,
-            UserSeeder::class,
+            // UserSeeder::class,
         ]);
     }
 }

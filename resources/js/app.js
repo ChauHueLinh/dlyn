@@ -3,6 +3,7 @@ import './bootstrap';
 import './components/pages/role/Index';
 import './components/pages/test/Index';
 import './components/pages/admin/Index';
+import './components/pages/order/Index';
 import './components/pages/coupon/Index';
 import './components/pages/branch/Index';
 import './components/pages/product/Index';

@@ -9,6 +9,7 @@ use App\Http\Controllers\Guest\DashboardController;
 
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\ProductController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\AdminApi\RoleController as CommonRoleController;
 use App\Http\Controllers\AdminApi\UserController as CommonUserController;
 use App\Http\Controllers\AdminApi\AdminController as CommonAdminController;
+use App\Http\Controllers\AdminApi\OrderController as CommonOrderController;
 use App\Http\Controllers\AdminApi\BranchController as CommonBranchController;
 use App\Http\Controllers\AdminApi\CouponController as CommonCouponController;
 use App\Http\Controllers\AdminApi\ProductController as CommonProductController;
@@ -63,6 +65,7 @@ Route::prefix('cms')->group(function () {
 		Route::get('', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 		Route::get('supplier', [SupplierController::class, 'index'])->name('supplier.index');
 		Route::get('productType', [ProductTypeController::class, 'index'])->name('productType.index');
+		Route::get('order', [OrderController::class, 'index'])->name('order.index');
 
 		Route::prefix('common-api')->name('common.')->group(function () {
 			Route::prefix('admin')->group(function () {
@@ -114,6 +117,12 @@ Route::prefix('cms')->group(function () {
 				Route::put('update', [CommonReceiptController::class, 'update'])->name('receipt.update');
 				Route::delete('destroy', [CommonReceiptController::class, 'destroy'])->name('receipt.destroy');
 			});
+			Route::prefix('order')->group(function () {
+				Route::get('', [CommonOrderController::class, 'index']);
+				Route::post('store', [CommonOrderController::class, 'store'])->name('order.store');
+				Route::put('update', [CommonOrderController::class, 'update'])->name('order.update');
+				Route::delete('destroy', [CommonOrderController::class, 'destroy'])->name('order.destroy');
+			});
 			// Route::prefix('user')->group(function () {
 			// 	Route::get('', [CommonReceiptController::class, 'index']);
 			// 	Route::post('store', [CommonReceiptController::class, 'store'])->name('receipt.store');
@@ -123,6 +132,7 @@ Route::prefix('cms')->group(function () {
 
 			Route::get('role/constant', [CommonRoleController::class, 'getConstant'])->name('role.constant');
 			Route::get('admin/constant', [CommonAdminController::class, 'getConstant'])->name('admin.constant');
+			Route::get('order/constant', [CommonOrderController::class, 'getConstant'])->name('order.constant');
 			Route::get('branch/constant', [CommonBranchController::class, 'getConstant'])->name('branch.constant');
 			Route::get('coupon/constant', [CommonCouponController::class, 'getConstant'])->name('coupon.constant');
 			Route::get('receipt/constant', [CommonReceiptController::class, 'getConstant'])->name('receipt.constant');

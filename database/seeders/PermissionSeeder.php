@@ -255,6 +255,36 @@ class PermissionSeeder extends Seeder
                 'displayName'   => 'Xóa',
                 'parentId'      => 36
             ],
+            [
+                'id'            => 41,
+                'key'           => 'order',
+                'displayName'   => 'Đơn hàng',
+                'parentId'      => 0
+            ],
+            [
+                'id'            => 42,
+                'key'           => 'indexOrder',
+                'displayName'   => 'Danh sách',
+                'parentId'      => 41
+            ],
+            [
+                'id'            => 43,
+                'key'           => 'createOrder',
+                'displayName'   => 'Tạo mới',
+                'parentId'      => 41
+            ],
+            [
+                'id'            => 44,
+                'key'           => 'updateOrder',
+                'displayName'   => 'Cập nhật',
+                'parentId'      => 41
+            ],
+            [
+                'id'            => 45,
+                'key'           => 'deleteOrder',
+                'displayName'   => 'Xóa',
+                'parentId'      => 41
+            ],
         ];
 
         foreach ($permissions as $permission) {

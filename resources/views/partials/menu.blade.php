@@ -99,6 +99,13 @@
                         </a>
                     </li>
                 @endif
+                @if (Auth::user()->can('index', \App\Models\Order::class))
+                    <li>
+                        <a href="{{ route("order.index") }}">
+                            <div class="ps-4 menu-title">Đơn hàng</div>
+                        </a>
+                    </li>
+                @endif
                 @if (Auth::user()->can('index', \App\Models\Coupon::class))
                     <li>
                         <a href="{{ route("coupon.index") }}">
