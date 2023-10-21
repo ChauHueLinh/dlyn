@@ -120,10 +120,11 @@ class ProductService
         }
 
         $product->update([
-            'name' => $params['name'],
-            'price' => $params['price'],
-            'status' => $params['status'],
-            'quantity' => $params['quantity'],
+            'name'          => $params['name'],
+            'price'         => $params['price'],
+            'status'        => $params['status'],
+            'productTypeId' => $params['productTypeId'],
+            'quantity'      => $params['quantity'],
         ]);
 
         if(isset($params['deletedAttributes'])) {

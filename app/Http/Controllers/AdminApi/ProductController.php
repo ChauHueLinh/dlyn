@@ -133,7 +133,7 @@ class ProductController extends Controller
     {
         $permissions = auth()->guard('admin')->user()->role ? auth()->user()->role->permissions->pluck('displayName', 'key') : [];
         $status = Product::LIST_STATUS;
-        $productTypes = $this->productTypeService->index([]);
+        $productTypes = $this->productTypeService->index(['sort_key' => 'name', 'order_by' => "ASC"]);
         $branchs = $this->branchService->index([]);
         $suppliers = $this->supplierService->index([]);
 
