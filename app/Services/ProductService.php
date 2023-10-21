@@ -84,10 +84,11 @@ class ProductService
         if(isset($params['attributes'])){
             foreach($params['attributes'] as $attribute){
                 $attribute = json_decode($attribute);
-                $this->productAttribute->create([
-                    'productId' => $product->id,
+                $product->attributes()->create([
                     'name' => $attribute->name,
                     'value' => $attribute->value,
+                    'groupName' => $attribute->groupName,
+                    'quantity' => $attribute->quantity,
                 ]);
             }
         }
@@ -156,6 +157,8 @@ class ProductService
                     'productId' => $product->id,
                     'name'      => $attribute->name,
                     'value'     => $attribute->value,
+                    'groupName' => $attribute->groupName,
+                    'quantity'  => $attribute->quantity,
                 ]);
             }
         }

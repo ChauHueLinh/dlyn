@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Product;
 
-use App\Models\ProductImage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductCollection extends JsonResource
@@ -18,18 +17,35 @@ class ProductCollection extends JsonResource
         if(!empty($this->items)) {
             return [];
         }
+        $attributes = [];
+        if(isset($this->attributes)) {
+            foreach($this->attributes->toArray() as $attribute) {
+                if(!isset($attributes[$attribute['groupName']])) {
+                    $attributes[$attribute['groupName']] = [
+                        'name'      => $attribute['groupName'],
+                        'quantity'  => $attribute['quantity'],
+                        'attributes'  => [],
+                    ];
+                }
+                array_push($attributes[$attribute['groupName']]['attributes'], [
+                    'id' => $attribute['id'],
+                    'name' => $attribute['name'],
+                    'value' => $attribute['value'],
+                ]);
+            }
+        }
         return [
             'id'                => $this->id,
             'name'              => $this->name,
             'price'             => $this->price,
             'status'            => $this->status,
             'quantity'          => $this->quantity,
-            'attributes'        => $this->attributes,
+            'attributes'        => $attributes,
             'mainImage'         => url('storage' . DIRECTORY_SEPARATOR . $this->mainImage['src']),
             'descriptionImages' => ProductDescriptionImageCollection::collection($this->descriptionImages),
             'suppliers'         => $this->suppliers,
             'productTypeId'     => $this->productTypeId,
             'branchId'          => $this->branchId,
-                ];
+        ];
     }
 }

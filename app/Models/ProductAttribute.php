@@ -13,5 +13,7 @@ class ProductAttribute extends Model
         'productId',
         'name',
         'value',
+        'groupName',
+        'quantity',
     ];
 }

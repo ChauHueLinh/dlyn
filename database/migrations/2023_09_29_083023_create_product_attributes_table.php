@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('productId');
             $table->string('name');
             $table->string('value');
+            $table->string('groupName')->nullable(true);
+            $table->string('quantity')->nullable(true);
             $table->timestamps();
         });
     }

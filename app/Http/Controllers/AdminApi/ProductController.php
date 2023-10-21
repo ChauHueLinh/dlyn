@@ -100,11 +100,12 @@ class ProductController extends Controller
             'status'                    => $request->status,
             'quantity'                  => $request->quantity,
             'branchId'                  => $request->branchId,
-            'supplierId'                => $request->supplierId,
+            'supplierId'                => $request->supplierId ?? [],
             'productTypeId'             => $request->productTypeId,
             'deletedAttributes'         => $request->deletedAttributes,
             'deletedDescriptionImages'  => $request->deletedDescriptionImages,
         ];
+ 
 
         if(isset($request->mainImage)) {
             $params['mainImage'] = $this->uploadFileSevice->uploadImg($request->mainImage, Product::FOLDER)['result'];

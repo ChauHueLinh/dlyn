@@ -15,481 +15,671 @@ import UploadFiles from '~/components/molecules/UploadFiles'
 import { url } from '~/components/pages/product/Url'
 import { modalActions } from '~/components/store/modal-slice'
 
-export default function Edit(props) {
-    const dispatch = useDispatch()
-    const status = useSelector((state) => state.modal.isOpen)
-    const collection = useSelector((state) => state.modal.collection)
+export default function Add(props) {
+	const dispatch = useDispatch()
+	const status = useSelector((state) => state.modal.isOpen)
+	const collection = useSelector((state) => state.modal.collection)
 
-    const [errors, setErrors] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [attributes, setAttributes] = useState([])
-    const [errorAttributes, setErrorAttributes] = useState([])
-    const [errorsMainImage, setErrorsMainImage] = useState([])
-    const [previewMainImage, setPreviewMainImage] = useState()
-    const [deletedAttributes, setDeletedAttributes] = useState([])
-    const [errorsDescriptionImage, setErrorsDescriptionImage] = useState([])
-    const [previewDescriptionImage, setPreviewDescriptionImage] = useState([])
-    const [deletedDescriptionImages, setDeletedDescriptionImages] = useState([])
-    const [data, setData] = useState({
-        status: 0
-    })
+	const [errors, setErrors] = useState({})
+	const [loading, setLoading] = useState(false)
+	const [data, setData] = useState({
+		status: 0
+	})
+	const [groupAttributes, setGroupAttributes] = useState([])
+	const [errorAttributes, setErrorAttributes] = useState([])
+	const [errorGroupAttributes, setErrorGroupAttributes] = useState([])
+	const [previewMainImage, setPreviewMainImage] = useState()
+	const [previewDescriptionImage, setPreviewDescriptionImage] = useState([])
+	const [errorsDescriptionImage, setErrorsDescriptionImage] = useState([])
+	const [errorsMainImage, setErrorsMainImage] = useState([])
+	const [deletedDescriptionImages, setDeletedDescriptionImages] = useState([])
+	const [deletedAttributes, setDeletedAttributes] = useState([])
 
-    const openDialog = collection.name == props.modalKey && status
+	const maxString = 255
 
-    useEffect(() => {
-        let desImgs = []
-        let attr = []
-        let supplierId = []
-        props?.data?.descriptionImages?.map((item) => {
-            desImgs.push({ id: item.id, value: item.src })
-        })
-        props?.data?.attributes?.map((item) => {
-            attr.push({ id: item.id, name: item.name, value: item.value })
-        })
-        props?.data?.suppliers?.map((item) => {
-            supplierId.push({id: item.id, name:item.name})
-        })
+	const openDialog = collection.name == props.modalKey && status
 
-        setPreviewMainImage(props?.data?.mainImage)
-        setPreviewDescriptionImage(desImgs)
-        setAttributes(attr)
-        setData({
-            ...data,
-            id: props?.data?.id,
-            name: props?.data?.name,
-            price: props?.data?.price,
-            quantity: props?.data?.quantity,
-            status: props?.data?.status,
-            productTypeId: props?.data?.productTypeId,
-            branchId: props?.data?.branchId,
-            supplierId: props?.data?.supplierId,
-            suppliers: props?.data?.suppliers,
-        })
-    }, [props.data, status])
+	useEffect(() => {
+		let desImgs = []
+		let attr = []
+		let supplierId = []
+		props?.data?.descriptionImages?.map((item) => {
+			desImgs.push({ id: item.id, value: item.src })
+		})
+		props?.data?.attributes?.map((item, index) => {
+			let attributes = []
 
-    const handler = (e) => {
-        e.preventDefault()
+			item?.attributes?.map((i) => {
+				attributes.push({ id: i.id, name: i.name, value: i.value })
+				attributes.sort((a, b) => a.id - b.id)
+			})
+			attr.push({ id: index, name: item.name, quantity: item.quantity, attributes: attributes })
+		})
+		setGroupAttributes(attr)
+		props?.data?.suppliers?.map((item) => {
+			supplierId.push({ id: item.id, name: item.name })
+		})
 
-        if (errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
-            return false
-        }
+		setPreviewMainImage(props?.data?.mainImage)
+		setPreviewDescriptionImage(desImgs)
+		setData({
+			id: props.data.id,
+			name: props?.data?.name,
+			price: props.data.price,
+			status: props?.data?.status,
+			productTypeId: props?.data?.productTypeId,
+			branchId: props?.data?.branchId,
+			supplierId: props?.data?.supplierId,
+			suppliers: props?.data?.suppliers,
+			quantity: props?.data?.quantity,
+		})
+	}, [props.data, status])
 
-        setLoading(true)
+	useEffect(() => {
+		var quantity = 0
+		groupAttributes?.map((item) => {
+			let attributes = item?.attributes?.filter((item) => item.name != '')
+			if (attributes?.length > 0) {
+				quantity = quantity + Number(item.quantity)
+			}
+		})
 
-        let form = new FormData()
-        form.append('id', data.id ?? '')
-        form.append('name', data.name ?? '')
-        form.append('price', data.price ?? '')
-        form.append('quantity', data.quantity ?? '')
-        form.append('status', data.status ?? '')
-        form.append('productTypeId', data.productTypeId ?? '')
-        form.append('branchId', data.branchId ?? '')
-        form.append('mainImage', data.mainImage ?? '')
-        form.append('_method', 'PUT')
-        attributes?.length > 0 && attributes?.map((item) => {
-            form.append('attr[]', JSON.stringify({
-                id: item.id,
-                name: item.name,
-                value: item.value,
-            }))
-        })
-        data?.descriptionImages?.length > 0 && data?.descriptionImages?.map((item) => {
-            form.append('descriptionImages[]', item.value)
-        })
-        data?.suppliers?.length > 0 && data?.suppliers?.map((item) => {
-            form.append('supplierId[]', item.id)
-        })
-        deletedAttributes?.length > 0 && deletedAttributes?.map((item) => {
-            form.append('deletedAttributes[]', item)
-        })
-        deletedDescriptionImages?.length > 0 && deletedDescriptionImages?.map((item) => {
-            form.append('deletedDescriptionImages[]', item)
-        })
+		setData({ ...data, quantity: quantity })
+	}, [groupAttributes])
 
-        axiosAPI.post(url.update, form)
-            .then((e) => {
-                toast.dismiss()
-                if (e.data.status == true) {
-                    toast.success(e.data.message)
-                    dispatch(modalActions.loadingTable(true))
-                    props.callback()
+	const handler = (e) => {
+		e.preventDefault()
 
-                    close()
-                } else if (e.data.status == false) {
-                    toast.error(e.data.message)
-                    setErrors(e.data.errors)
-                    dispatch(modalActions.loading(false))
-                    dispatch(modalActions.loadingTable(false))
-                    setLoading(false)
-                } else {
-                    setErrors(e.data.errors)
-                    dispatch(modalActions.loading(false))
-                    dispatch(modalActions.loadingTable(false))
-                    setLoading(false)
-                }
-            })
-    }
+		if (errorAttributes?.length > 0 || errorsMainImage?.length > 0 || errorsDescriptionImage?.length > 0) {
+			return false
+		}
 
-    const addAttribute = () => {
-        setAttributes([...attributes, { id: attributes?.length > 0 ? (attributes.at(-1).id + 1) : 0, name: '', value: '' }])
-    }
+		setLoading(true)
 
-    const removeAttribute = (id) => {
-        var new_array_attributes = attributes.filter((item) => item.id != id)
-        var new_deleted_attributes = deletedAttributes
-        new_deleted_attributes.push(id)
+		let form = new FormData()
+		form.append('id', data.id ?? '')
+		form.append('name', data.name ?? '')
+		form.append('price', data.price ?? '')
+		form.append('quantity', data.quantity ?? '')
+		form.append('status', data.status ?? '')
+		form.append('productTypeId', data.productTypeId ?? '')
+		form.append('branchId', data.branchId ?? '')
+		form.append('mainImage', data.mainImage ?? '')
+		form.append('_method', 'PUT')
+		groupAttributes?.length > 0 && groupAttributes.map((item) => {
+			item?.attributes?.length > 0 && item?.attributes.map((i) => {
+				if (i.name != '') {
+					form.append('attr[]', JSON.stringify({
+						id: i.id,
+						groupName: item.name,
+						quantity: item.quantity,
+						name: i.name,
+						value: i.value,
+					}))
+				}
+			})
+		})
+		data?.descriptionImages?.length > 0 && data?.descriptionImages?.map((item) => {
+			form.append('descriptionImages[]', item.value)
+		})
+		data?.suppliers?.length > 0 && data?.suppliers?.map((item) => {
+			form.append('supplierId[]', item.id)
+		})
+		deletedAttributes?.length > 0 && deletedAttributes?.map((item) => {
+			form.append('deletedAttributes[]', item)
+		})
+		deletedDescriptionImages?.length > 0 && deletedDescriptionImages?.map((item) => {
+			form.append('deletedDescriptionImages[]', item)
+		})
 
-        setDeletedAttributes(new_deleted_attributes)
-        setAttributes(new_array_attributes)
-    }
+		axiosAPI.post(url.update, form)
+			.then((e) => {
+				toast.dismiss()
+				if (e.data.status == true) {
+					toast.success(e.data.message)
+					dispatch(modalActions.loadingTable(true))
+					props.callback()
 
-    const setNameAttribute = (id, name, value) => {
-        const error_atrributes = errorAttributes.filter((item) => item.id != id)
-        const maxString = 255
-        const nameLength = 'Tên thuộc tính chứa tối đa ' + maxString + ' ký tự.'
-        const nameUnique = 'Thuộc tính đã tồn tại.'
-        const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
-        const e = [];
+					close()
+				} else if (e.data.status == false) {
+					toast.error(e.data.message)
+					setErrors(e.data.errors)
+					dispatch(modalActions.loading(false))
+					dispatch(modalActions.loadingTable(false))
+					setLoading(false)
+				} else {
+					setErrors(e.data.errors)
+					dispatch(modalActions.loading(false))
+					dispatch(modalActions.loadingTable(false))
+					setLoading(false)
+				}
+			})
+	}
 
-        if (name.length > maxString) {
-            e.push(nameLength)
-        } else {
-            e.filter((item) => item != nameLength)
-        }
-        if (attributes.filter((item) => item.name == name).length < 1) {
-            e.filter((item) => item != nameUnique)
-        } else {
-            e.push(nameUnique)
-        }
-        if (e.length > 0) {
-            error_atrributes.push({ id: id, value: e })
-        }
-        setErrorAttributes(error_atrributes)
+	const addGroupAttribute = () => {
+		let attributes = [{ id: 1, name: '', value: '' }]
+		setGroupAttributes([...groupAttributes, { id: groupAttributes?.length > 0 ? (attributes.at(-1).id + 1) : 1, name: '', quantity: 0, attributes: attributes }])
+	}
 
-        var new_array_attributes = attributes.filter((item) => item.id != id)
-        new_array_attributes.push({ id: id, name: name, value: value })
-        new_array_attributes.sort((a, b) => a.id - b.id)
-        setAttributes(new_array_attributes)
-    }
+	const removeGroupAttribute = (id) => {
+		var new_array_group_attributes = groupAttributes.filter((item) => item.id != id)
+		var new_group_attribute = groupAttributes.filter((item) => item.id == id)
+		var new_deleted_attributes = deletedAttributes
 
-    const setValueAttribute = (id, name, value) => {
-        const error_atrributes = errorAttributes.filter((item) => item.id != id)
-        const maxString = 255
-        const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
-        const e = [];
+		new_group_attribute[0]?.attributes?.map((item) => {
+			new_deleted_attributes.push(item.id)
+		})
 
-        if (value.length > maxString) {
-            e.push(valueLength)
-        } else {
-            e.filter((item) => item != valueLength)
-        }
-        if (e.length > 0) {
-            error_atrributes.push({ id: id, value: e })
-        }
-        setErrorAttributes(error_atrributes)
+		setDeletedAttributes(new_deleted_attributes)
+		setGroupAttributes(new_array_group_attributes)
+	}
 
-        var new_array_attributes = attributes.filter((item) => item.id != id)
-        new_array_attributes.push({ id: id, name: name, value: value })
-        new_array_attributes.sort((a, b) => a.id - b.id)
-        setAttributes(new_array_attributes)
-    }
+	const setNameGroupAttribute = (id, name) => {
+		const valueLength = 'Tên nhóm chưa tối đa ' + maxString + ' ký tự.'
+		const new_error_group_atrributes = errorGroupAttributes.filter((item) => item.id != id)
+		const new_group_attributes = groupAttributes?.filter((item) => item.id != id)
+		const groupAttribute = groupAttributes?.filter((item) => item.id == id)
+		const check = groupAttributes?.filter((item) => item.name == name)
 
-    const callbackUploadFile = (file) => {
-        const objectUrl = URL.createObjectURL(file)
-        setPreviewMainImage(objectUrl)
-        var arr_error = []
-        var ruleType = ['jpg', 'jpeg', 'png']
-        var type = file.type.split('/')
-        if (ruleType.includes(type[1]) == false) {
-            arr_error.push('Ảnh không đúng định dạng.')
-        }
-        if (file.size > 2000000) {
-            arr_error.push('Dung lượng ảnh không vượt quá 2 MB.')
-        }
-        setErrorsMainImage([...arr_error])
-        setData({ ...data, mainImage: file })
-    }
+		if (name?.length > maxString) {
+			new_error_group_atrributes.push({ id: id, value: valueLength })
+		} else {
+			new_error_group_atrributes.filter((item) => item.id != id)
+		}
+		if (check?.length > 1) {
+			new_error_group_atrributes.push({ id: id, value: 'Tên nhóm đã tồn tại.' })
+		}
+		setErrorGroupAttributes([...errorGroupAttributes])
 
-    const callbackUploadFiles = (files) => {
-        let newPreviewDescriptionImage = previewDescriptionImage ?? []
-        let errors = errorsDescriptionImage ?? []
-        let desImgs = data.descriptionImages ?? []
+		new_group_attributes?.push({
+			id: id,
+			name: name,
+			quantity: groupAttribute[0].quantity,
+			attributes: groupAttribute[0].attributes,
+		})
+		new_group_attributes.sort((a, b) => a.id - b.id)
+		setGroupAttributes(new_group_attributes)
+	}
 
-        Object?.entries(files)?.map((item) => {
-            const objectUrl = URL.createObjectURL(item[1])
-            const id = newPreviewDescriptionImage.length > 0 ? newPreviewDescriptionImage.at(-1)?.id + 1 : 0
-            var ruleType = ['jpg', 'jpeg', 'png']
-            var type = item[1].type.split('/')
+	const setQuantityGroupAttribute = (id, quantity) => {
+		const new_error_group_atrributes = errorGroupAttributes.filter((item) => item.id != id)
+		const new_group_attributes = groupAttributes?.filter((item) => item.id != id)
+		const groupAttribute = groupAttributes?.filter((item) => item.id == id)
+		const e = [];
 
-            errors['desImg-' + id] = []
-            if (ruleType.includes(type[1]) == false) {
-                errors['desImg-' + id].push('Ảnh không đúng định dạng.')
-            }
-            if (item[1].size > 2000000) {
-                errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.')
-            }
-            if (errors['desImg-' + id]?.length == 0) {
-                delete errors['desImg-' + id]
-            }
-            desImgs.push({ id: id, value: item[1] })
-            newPreviewDescriptionImage.push({ id: id, value: objectUrl })
-        })
+		setErrorGroupAttributes([...errorGroupAttributes, new_error_group_atrributes])
 
-        setErrorsDescriptionImage(errors)
-        setPreviewDescriptionImage([...newPreviewDescriptionImage])
-        setData({ ...data, descriptionImages: desImgs })
-    }
+		new_group_attributes?.push({
+			id: id,
+			name: groupAttribute[0].name,
+			quantity: quantity,
+			attributes: groupAttribute[0].attributes,
+		})
+		new_group_attributes.sort((a, b) => a.id - b.id)
+		setGroupAttributes(new_group_attributes)
+	}
 
-    const removeDescriptionImage = (id) => {
-        const newPreviewDescriptionImage = previewDescriptionImage?.filter((item) => item.id != id)
-        const newDescriptionImages = data?.descriptionImages?.filter((item) => item.id != id)
-        const newDeleletedDescriptionImages = deletedDescriptionImages ?? []
+	const addAttribute = (groupId) => {
+		const new_group_attributes = groupAttributes.filter((item) => item.id != groupId)
+		const groupAttribute = groupAttributes.filter((item) => item.id == groupId)
+		let attributes = groupAttribute[0].attributes
 
-        delete errorsDescriptionImage['desImg-' + id]
-        newDeleletedDescriptionImages.push(id)
+		attributes.push({
+			id: attributes?.length > 0 ? (attributes.at(-1).id + 1) : 1,
+			name: '',
+			value: '',
+		})
+		attributes.sort((a, b) => a.id - b.id)
+		new_group_attributes.push({
+			id: groupId,
+			name: groupAttribute[0].name,
+			quantity: groupAttribute[0].quantity,
+			quantity: groupAttribute[0].quantity,
+			attributes: attributes,
+		})
+		new_group_attributes.sort((a, b) => a.id - b.id)
+		setGroupAttributes(new_group_attributes)
+	}
 
-        setPreviewDescriptionImage([...newPreviewDescriptionImage])
-        setData({ ...data, descriptionImages: newDescriptionImages })
-        setDeletedDescriptionImages([...newDeleletedDescriptionImages])
-    }
+	const removeAttribute = (groupId, id) => {
+		const new_group_attributes = groupAttributes.filter((item) => item.id != groupId)
+		const groupAttribute = groupAttributes.filter((item) => item.id == groupId)
+		const attributes = groupAttribute[0].attributes.filter((i) => i.id != id)
+		var new_deleted_attributes = deletedAttributes
 
-    const close = () => {
-        setData({})
-        setErrors({})
-        setAttributes([])
-        setLoading(false)
-        setDeletedAttributes([])
-        dispatch(modalActions.close())
-        setDeletedDescriptionImages([])
-    }
-    console.log(data);
-    return (
-        <Modal
-            display={openDialog}
-            callbackClose={() => close()}
-            wrapperClass='w-75'
-            btnClose={true}
-        >
-            <h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Chỉnh sửa sản phẩm</h2>
-            <div className="flex space-x-6">
-                <div className="w-50">
-                    <Input
-                        id='name'
-                        name='name'
-                        type='text'
-                        labelName='Tên'
-                        placeholder="Nhập tên"
-                        value={data?.name}
-                        isRequired={true}
-                        validate={errors}
-                        containerClass='w-full mb-4'
-                        onChange={(value) => {
-                            setData({ ...data, name: value })
-                        }}
-                    />
-                    <Input
-                        id='price'
-                        name='price'
-                        type='number'
-                        labelName='Giá'
-                        placeholder="Nhập giá"
-                        value={data?.price}
-                        isRequired={true}
-                        validate={errors}
-                        containerClass='w-full mb-4'
-                        onChange={(value) => {
-                            setData({ ...data, price: value })
-                        }}
-                    />
-                    <Input
-                        id='quantity'
-                        name='quantity'
-                        type='number'
-                        labelName='Số lượng'
-                        placeholder="Nhập số lượng"
-                        value={data?.quantity}
-                        isRequired={true}
-                        validate={errors}
-                        containerClass='w-full mb-4'
-                        onChange={(value) => {
-                            setData({ ...data, quantity: value })
-                        }}
-                    />
-                    <div className="">Thuộc tính</div>
-                    {attributes?.map((item) => (
-                        <div className="mt-0" key={item.id}>
-                            <div className="flex mt-0 w-full space-x-2">
-                                <div className="flex items-center justify-center mb-0 mt-2 h4">
-                                    <i
-                                        className='bx bx-x-circle text-red'
-                                        onClick={() => removeAttribute(item.id)}
-                                    >
-                                    </i>
-                                </div>
-                                <Input
-                                    id={item.id}
-                                    type='text'
-                                    value={item.name}
-                                    placeholder="Nhập tên thuộc tính"
-                                    containerClass='w-25 mb-0'
-                                    validate={errors}
-                                    onChange={(value) => {
-                                        setNameAttribute(item.id, value, item.value)
-                                    }}
-                                />
-                                <Input
-                                    id={item.id}
-                                    type='text'
-                                    value={item.value}
-                                    placeholder="Nhập giá trị"
-                                    containerClass='w-75 mb-0'
-                                    validate={errors}
-                                    onChange={(value) => {
-                                        setValueAttribute(item.id, item.name, value)
-                                    }}
-                                />
-                            </div>
-                            <div className="text-red">{errorAttributes?.filter((i) => i.id == item.id)[0]?.value[0]}</div>
-                        </div>
-                    ))}
-                    <div className="flex items-center justify-content-start mb-4 mt-1 h4">
-                        <i
-                            className='bx bx-plus-circle text-green'
-                            onClick={() => addAttribute()}
-                        >
-                        </i>
-                    </div>
-                </div>
-                <div className="w-50">
-                    <div className="text-center">
-                        <label htmlFor="" className='h3'>Ảnh đại diện</label>
-                    </div>
-                    <div className="">
-                        {previewMainImage &&
-                            <div
-                                className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage?.length > 0 ? 'border-danger' : 'border-dark'}`}
-                                style={{ height: '100px', width: '100px' }}
-                            >
-                                <img src={previewMainImage} alt="" />
-                            </div>
-                        }
+		if (attributes?.length == 0) {
+			attributes.push({
+				id: 1,
+				name: '',
+				value: '',
+			})
+		}
 
-                        <div className="text-red">{errorsMainImage[0] ?? ''}</div>
-                    </div>
-                    <UploadFile
-                        name='main'
-                        containerClass=''
-                        validate={errors}
-                        callback={(file) => callbackUploadFile(file)}
-                        errors={errors}
-                        btnValue={<i className='bx bx-image-add'></i>}
-                        btnClass='w-full inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'
-                    />
-                    <div className="text-center">
-                        <label htmlFor="" className='mt-6 h3'>Ảnh mô tả</label>
-                    </div>
-                    <div className="relative flex space-x-1 flex-wrap">
-                        {previewDescriptionImage?.map((item) => (
-                            <div className="relative mt-2" key={item.id}>
-                                <div className="w-full absolute flex justify-content-end">
-                                    <div
-                                        className="bg-red flex items-center justify-center overflow-hidden rounded-circle"
-                                        style={{ width: '19px', height: '19px', fontSize: '19px' }}
-                                        onClick={(event) => removeDescriptionImage(item.id, item.name)}
-                                    >
-                                        <i className='bx bx-x-circle text-black bg-white' style={{ width: '19px' }}></i>
-                                    </div>
-                                </div>
-                                <div
-                                    className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id]?.length > 0 ? 'border-danger' : 'border-dark'}`}
-                                    style={{ height: '100px', width: '100px' }}
-                                >
-                                    <img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''} />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <UploadFiles
-                        name='sub'
-                        preview={[]}
-                        containerClass=''
-                        validate={errors}
-                        callback={(files) => {
-                            callbackUploadFiles(files)
-                        }}
-                        errors={errors}
-                        btnValue={<i className='bx bx-image-add'></i>}
-                        btnClass='w-full inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'
-                    />
-                    <MultiSelectBox
-                        data={props.constant.suppliers ?? []}
-                        callback={(value) => setData({...data, suppliers: value})} 
-                        label="Nhà cung cấp" 
-                        containerClass=''
-                        placeholder="Chọn nhà cung cấp" 
-                        showLabel='name'
-                        isRequired={false}
-                        search={true}
-                        classLabel='mt-4 mb-2'
-                        value={data.suppliers}
-                    />
-                    <SelectBox
-                        label='Trạng thái'
-                        data={props.constant ? props.constant.status : []}
-                        value={data?.status}
-                        callback={(value) => setData({ ...data, status: value.id })}
-                        search={false}
-                        containerClass='mt-4'
-                    />
-                    <SelectBox
-                        label='Loại sản phẩm'
-                        data={props.constant ? props.constant.productTypes : []}
-                        value={data?.productTypeId}
-                        callback={(value) => setData({ ...data, productTypeId: value.id })}
-                        search={false}
-                        containerClass='mt-4'
-                    />
-                    <SelectBox
-                        label='Thương hiệu'
-                        data={props.constant ? props.constant.branchs : []}
-                        value={data?.branchId}
-                        callback={(value) => setData({ ...data, branchId: value.id })}
-                        search={false}
-                        containerClass='mt-4'
-                    />
-                </div>
-            </div>
-            <div className="w-50 m-auto">
-                <form onSubmit={handler} className="space-y-6">
-                    <div className="flex justify-content-start w-full">
-                        <div className="flex justify-content-around mt-6 w-100">
-                            <button
-                                type="button"
-                                onClick={() => close()}
-                                style={{ width: '100px' }}
-                                className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                            >
-                                Thoát
-                            </button>
-                            {loading == true ? (
-                                <div className="flex items-center justify-content-around" style={{ width: '100px' }}>
-                                    <div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
-                                        <span className="sr-only">Loading...</span>
-                                    </div>
-                                    <div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
-                                        <span className="sr-only">Loading...</span>
-                                    </div>
-                                    <div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
-                                        <span className="sr-only">Loading...</span>
-                                    </div>
-                                </div>
-                            ) : (
-                                <button type="submit" className="px-6 py-2 rounded-md bg-sky-800 hover:bg-sky-700 text-white"> Cập nhật </button>
-                            )}
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </Modal>
-    )
+		new_group_attributes.push({
+			id: groupId,
+			name: groupAttribute[0].name,
+			quantity: groupAttribute[0].quantity,
+			quantity: groupAttribute[0].quantity,
+			attributes: attributes,
+		})
+		new_group_attributes.sort((a, b) => a.id - b.id)
+		if (id != undefined) {
+			new_deleted_attributes.push(id)
+		}
+
+		setDeletedAttributes(new_deleted_attributes)
+		setGroupAttributes(new_group_attributes)
+	}
+
+	const setNameAttribute = (groupId, id, name) => {
+		const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
+		const new_group_attributes = groupAttributes.filter((item) => item.id != groupId)
+		const groupAttribute = groupAttributes.filter((item) => item.id == groupId)
+		let attributes = groupAttribute[0].attributes.filter((i) => i.id != id)
+		const attribute = groupAttribute[0].attributes?.filter((i) => i.id == id)
+		const check = groupAttribute[0].attributes?.filter((i) => i.name == name)
+		let new_error_atrributes = errorAttributes?.filter((item) => item.id != String(groupId + '_' + id))
+
+		if (check?.length > 0) {
+			new_error_atrributes?.push({ id: String(groupId + '_' + id), value: 'Tên thuộc tính đã tồn tại' })
+		} else {
+			if (name?.length > maxString) {
+				new_error_atrributes?.push({ id: String(groupId + '_' + id), value: valueLength })
+			} else {
+				new_error_atrributes = new_error_atrributes?.filter((item) => item.id != String(groupId + '_' + id))
+			}
+		}
+		setErrorAttributes([...new_error_atrributes])
+
+		attributes.push({
+			id: id,
+			name: name,
+			value: attribute[0]?.value,
+		})
+		attributes.sort((a, b) => a.id - b.id)
+		new_group_attributes.push({
+			id: groupId,
+			name: groupAttribute[0].name,
+			quantity: groupAttribute[0].quantity,
+			quantity: groupAttribute[0].quantity,
+			attributes: attributes,
+		})
+		new_group_attributes.sort((a, b) => a.id - b.id)
+		setGroupAttributes(new_group_attributes)
+	}
+
+	const setValueAttribute = (groupId, id, value) => {
+		const valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.'
+		let new_group_attributes = groupAttributes.filter((item) => item.id != groupId)
+		const groupAttribute = groupAttributes.filter((item) => item.id == groupId)
+		const attributes = groupAttribute[0].attributes.filter((i) => i.id != id)
+		const attribute = groupAttribute[0].attributes.filter((i) => i.id == id)
+		let new_error_atrributes = errorAttributes?.filter((item) => item.id != groupId + '_' + id)
+
+		if (attribute[0]?.name?.length > maxString) {
+			new_error_atrributes?.push({ id: groupId + '_' + id, value: valueLength })
+		} else {
+			new_error_atrributes = new_error_atrributes.filter((item) => item.id != groupId + '_' + id)
+		}
+		setErrorAttributes([...new_error_atrributes])
+
+		attributes.push({
+			id: id,
+			name: attribute[0]?.name,
+			value: value,
+		})
+		attributes.sort((a, b) => a.id - b.id)
+		new_group_attributes.push({
+			id: groupId,
+			name: groupAttribute[0].name,
+			quantity: groupAttribute[0].quantity,
+			quantity: groupAttribute[0].quantity,
+			attributes: attributes,
+		})
+		new_group_attributes.sort((a, b) => a.id - b.id)
+		setGroupAttributes(new_group_attributes)
+	}
+
+	const callbackUploadFile = (file) => {
+		const objectUrl = URL.createObjectURL(file)
+		setPreviewMainImage(objectUrl)
+		var arr_error = []
+		var ruleType = ['jpg', 'jpeg', 'png']
+		var type = file.type.split('/')
+		if (ruleType.includes(type[1]) == false) {
+			arr_error.push('Ảnh không đúng định dạng.')
+		}
+		if (file.size > 2000000) {
+			arr_error.push('Dung lượng ảnh không vượt quá 2 MB.')
+		}
+		setErrorsMainImage([...arr_error])
+		setData({ ...data, mainImage: file })
+	}
+
+	const callbackUploadFiles = (files) => {
+		let newPreviewDescriptionImage = previewDescriptionImage ?? []
+		let errors = errorsDescriptionImage ?? []
+		let desImgs = data.descriptionImages ?? []
+
+		Object?.entries(files)?.map((item) => {
+			const objectUrl = URL.createObjectURL(item[1])
+			const id = newPreviewDescriptionImage.length > 0 ? newPreviewDescriptionImage.at(-1)?.id + 1 : 0
+			var ruleType = ['jpg', 'jpeg', 'png']
+			var type = item[1].type.split('/')
+
+			errors['desImg-' + id] = []
+			if (ruleType.includes(type[1]) == false) {
+				errors['desImg-' + id].push('Ảnh không đúng định dạng.')
+			}
+			if (item[1].size > 2000000) {
+				errors['desImg-' + id].push('Dung lượng ảnh không vượt quá 2 MB.')
+			}
+			if (errors['desImg-' + id]?.length == 0) {
+				delete errors['desImg-' + id]
+			}
+			desImgs.push({ id: id, value: item[1] })
+			newPreviewDescriptionImage.push({ id: id, value: objectUrl })
+		})
+
+		setErrorsDescriptionImage(errors)
+		setPreviewDescriptionImage([...newPreviewDescriptionImage])
+		setData({ ...data, descriptionImages: desImgs })
+	}
+
+	const removeDescriptionImage = (id) => {
+		const newPreviewDescriptionImage = previewDescriptionImage?.filter((item) => item.id != id)
+		const newDescriptionImages = data?.descriptionImages?.filter((item) => item.id != id)
+		const newDeleletedDescriptionImages = deletedDescriptionImages ?? []
+
+		delete errorsDescriptionImage['desImg-' + id]
+		newDeleletedDescriptionImages.push(id)
+
+		setPreviewDescriptionImage([...newPreviewDescriptionImage])
+		setData({ ...data, descriptionImages: newDescriptionImages })
+		setDeletedDescriptionImages([...newDeleletedDescriptionImages])
+	}
+
+	const close = () => {
+		setData({ status: 0 })
+		setErrors({})
+		setLoading(false)
+		setGroupAttributes([])
+		setPreviewMainImage()
+		setPreviewDescriptionImage([])
+		dispatch(modalActions.close())
+		setDeletedAttributes([])
+		setDeletedDescriptionImages([])
+	}
+
+	return (
+		<Modal
+			display={openDialog}
+			callbackClose={() => close()}
+			wrapperClass='w-75'
+			btnClose={true}
+		>
+			<h2 className="text-lg font-medium leading-6 text-gray-900 mb-4"> Chỉnh sửa sản phẩm</h2>
+			<div className="flex space-x-6">
+				<div className="w-50">
+					<Input
+						id='name'
+						name='name'
+						type='text'
+						labelName='Tên'
+						placeholder="Nhập tên"
+						value={data?.name}
+						isRequired={true}
+						validate={errors}
+						containerClass='w-full mb-4'
+						onChange={(value) => {
+							setData({ ...data, name: value })
+						}}
+					/>
+					<Input
+						id='price'
+						name='price'
+						type='number'
+						labelName='Giá'
+						value={data?.price}
+						placeholder="Nhập giá"
+						isRequired={true}
+						validate={errors}
+						containerClass='w-full mb-4'
+						onChange={(value) => {
+							setData({ ...data, price: value })
+						}}
+					/>
+					<Input
+						id='quantity'
+						name='quantity'
+						type='number'
+						labelName='Số lượng'
+						placeholder="Nhập số lượng"
+						isRequired={true}
+						validate={errors}
+						value={data?.quantity}
+						containerClass='w-full mb-4'
+						onChange={(value) => {
+							setData({ ...data, quantity: value })
+						}}
+					/>
+					<div className="">Thuộc tính</div>
+					{groupAttributes?.map((item) => (
+						<div className="mt-0 mb-2" key={item.id}>
+							<label htmlFor="" className='mt-2 ms-4 ps-2'>Nhóm</label>
+							<div className="flex mt-0 w-full space-x-2">
+								<div className="flex items-center justify-center mb-0 mt-2 h4">
+									<i
+										className='bx bx-x-circle text-red'
+										onClick={() => removeGroupAttribute(item.id)}
+									>
+									</i>
+								</div>
+								<Input
+									id={item.id}
+									type='text'
+									value={item.name}
+									placeholder="Nhập tên nhóm"
+									containerClass='w-75 mb-0'
+									validate={errors}
+									onChange={(value) => {
+										setNameGroupAttribute(item.id, value)
+									}}
+								/>
+								<Input
+									id={item.id}
+									type='number'
+									value={item.quantity}
+									placeholder="Nhập số lượng"
+									containerClass='w-25 mb-0'
+									validate={errors}
+									min={0}
+									onChange={(value) => {
+										setQuantityGroupAttribute(item.id, value)
+									}}
+								/>
+							</div>
+							{item?.attributes?.map((i, index) => (
+								<div className="ms-4 mt-1" key={index}>
+									<div className="flex space-x-2">
+										<div className="flex items-center justify-center mb-0 mt-2 h4 ms-3">
+											<i
+												className='bx bx-x-circle text-red'
+												onClick={() => removeAttribute(item.id, i.id)}
+											>
+											</i>
+										</div>
+										<Input
+											id={i.id}
+											type='text'
+											value={i.name}
+											placeholder="Nhập tên thuộc tính"
+											containerClass='w-50 mb-0'
+											validate={errors}
+											onChange={(value) => {
+												setNameAttribute(item.id, i.id, value)
+											}}
+										/>
+										<Input
+											id={i.id}
+											type='text'
+											value={i.value}
+											placeholder="Nhập giá trị"
+											containerClass='w-100 mb-0'
+											validate={errors}
+											onChange={(value) => {
+												setValueAttribute(item.id, i.id, value)
+											}}
+										/>
+									</div>
+								</div>
+							))}
+							<div className="flex items-center justify-content-start mb-4 mt-1 h4 ms-4 ps-3">
+								<i
+									className='bx bx-plus-circle text-green'
+									onClick={() => addAttribute(item.id)}
+								>
+								</i>
+							</div>
+						</div>
+					))}
+					<div className="flex items-center justify-content-start mb-4 mt-1 h4">
+						<i
+							className='bx bx-plus-circle text-green'
+							onClick={() => addGroupAttribute()}
+						>
+						</i>
+					</div>
+				</div>
+				<div className="w-50">
+					<div className="text-center">
+						<label htmlFor="" className='h3'>Ảnh đại diện</label>
+					</div>
+					<div className="">
+						{previewMainImage &&
+							<div
+								className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsMainImage?.length > 0 ? 'border-danger' : 'border-dark'}`}
+								style={{ height: '100px', width: '100px' }}
+							>
+								<img src={previewMainImage} alt="" />
+							</div>
+						}
+
+						<div className="text-red">{errorsMainImage[0] ?? ''}</div>
+					</div>
+					<UploadFile
+						name='main'
+						containerClass='mt-0 '
+						validate={errors}
+						callback={(file) => callbackUploadFile(file)}
+						errors={errors}
+						btnValue={<i className='bx bx-image-add'></i>}
+						btnClass='w-full inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'
+					/>
+					<div className="text-center">
+						<label htmlFor="" className='mt-6 h3'>Ảnh mô tả</label>
+					</div>
+					<div className="relative  flex space-x-1 flex-wrap">
+						{previewDescriptionImage?.map((item) => (
+							<div className="relative mt-2" key={item.id}>
+								<div className="w-full absolute flex justify-content-end">
+									<div
+										className="bg-red flex items-center justify-center overflow-hidden rounded-circle"
+										style={{ width: '19px', height: '19px', fontSize: '19px' }}
+										onClick={(event) => removeDescriptionImage(item.id)}
+									>
+										<i className='bx bx-x-circle text-black bg-white' style={{ width: '19px' }}></i>
+									</div>
+								</div>
+								<div
+									className={`flex items-center justify-center rounded-4 overflow-hidden border-2 mt-1 me-1 ${errorsDescriptionImage['desImg-' + item.id]?.length > 0 ? 'border-danger' : 'border-dark'}`}
+									style={{ height: '100px', width: '100px' }}
+								>
+									<img src={item.value} alt="" title={errorsDescriptionImage['desImg-' + item.id] ?? ''} />
+								</div>
+							</div>
+						))}
+					</div>
+					<UploadFiles
+						name='sub'
+						preview={[]}
+						containerClass=''
+						validate={errors}
+						callback={(files) => {
+							callbackUploadFiles(files)
+						}}
+						errors={errors}
+						btnClass='w-full inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100'
+						btnValue={<i className='bx bx-image-add'></i>}
+					/>
+					<MultiSelectBox
+						data={props.constant.suppliers ?? []}
+						callback={(value) => setData({ ...data, suppliers: value })}
+						label="Nhà cung cấp"
+						containerClass=''
+						placeholder="Chọn nhà cung cấp"
+						showLabel='name'
+						isRequired={false}
+						search={true}
+						classLabel='mt-4 mb-2'
+					/>
+					<SelectBox
+						label='Trạng thái'
+						data={props.constant ? props.constant.status : []}
+						value={data.status ?? 0}
+						callback={(value) => setData({ ...data, status: value.id })}
+						search={false}
+						containerClass='mt-4'
+					/>
+					<SelectBox
+						label='Loại sản phẩm'
+						data={props.constant ? props.constant.productTypes : []}
+						value={data.productTypeId ?? 0}
+						callback={(value) => setData({ ...data, productTypeId: value.id })}
+						search={true}
+						containerClass='mt-4'
+					/>
+					<SelectBox
+						label='Thương hiệu'
+						data={props.constant ? props.constant.branchs : []}
+						value={data.branchId ?? 0}
+						callback={(value) => setData({ ...data, branchId: value.id })}
+						search={true}
+						containerClass='mt-4'
+					/>
+				</div>
+			</div>
+			<div className="w-50 m-auto">
+				<form onSubmit={handler} className="space-y-6">
+					<div className="flex justify-content-start w-full">
+						<div className="flex justify-content-around mt-6 w-100">
+							<button
+								type="button"
+								onClick={() => close()}
+								style={{ width: '100px' }}
+								className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+							>
+								Thoát
+							</button>
+							{loading == true ? (
+								<div className="flex items-center justify-content-around" style={{ width: '100px' }}>
+									<div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
+										<span className="sr-only">Loading...</span>
+									</div>
+									<div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
+										<span className="sr-only">Loading...</span>
+									</div>
+									<div className="spinner-grow text-success" style={{ height: '10px', width: '10px' }}>
+										<span className="sr-only">Loading...</span>
+									</div>
+								</div>
+							) : (
+								<button type="submit" className="px-6 py-2 rounded-md bg-sky-800 hover:bg-sky-700 text-white"> Tạo mới </button>
+							)}
+						</div>
+					</div>
+				</form>
+			</div>
+		</Modal>
+	)
 }

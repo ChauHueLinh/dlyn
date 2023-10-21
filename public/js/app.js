@@ -17911,15 +17911,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_modal_slice__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../store/modal-slice */ "./resources/js/components/store/modal-slice.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -17966,34 +17966,53 @@ function Add(props) {
     setData = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
-    attributes = _useState8[0],
-    setAttributes = _useState8[1];
+    groupAttributes = _useState8[0],
+    setGroupAttributes = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
     errorAttributes = _useState10[0],
     setErrorAttributes = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState12 = _slicedToArray(_useState11, 2),
-    previewMainImage = _useState12[0],
-    setPreviewMainImage = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    errorGroupAttributes = _useState12[0],
+    setErrorGroupAttributes = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
     _useState14 = _slicedToArray(_useState13, 2),
-    previewDescriptionImage = _useState14[0],
-    setPreviewDescriptionImage = _useState14[1];
+    previewMainImage = _useState14[0],
+    setPreviewMainImage = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState16 = _slicedToArray(_useState15, 2),
-    errorsDescriptionImage = _useState16[0],
-    setErrorsDescriptionImage = _useState16[1];
+    previewDescriptionImage = _useState16[0],
+    setPreviewDescriptionImage = _useState16[1];
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState18 = _slicedToArray(_useState17, 2),
-    errorsMainImage = _useState18[0],
-    setErrorsMainImage = _useState18[1];
+    errorsDescriptionImage = _useState18[0],
+    setErrorsDescriptionImage = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState20 = _slicedToArray(_useState19, 2),
+    errorsMainImage = _useState20[0],
+    setErrorsMainImage = _useState20[1];
+  var maxString = 255;
   var openDialog = collection.name == props.modalKey && status;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var quantity = 0;
+    groupAttributes === null || groupAttributes === void 0 || groupAttributes.map(function (item) {
+      var _item$attributes;
+      var attributes = item === null || item === void 0 || (_item$attributes = item.attributes) === null || _item$attributes === void 0 ? void 0 : _item$attributes.filter(function (item) {
+        return item.name != '';
+      });
+      if ((attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0) {
+        quantity = quantity + Number(item.quantity);
+      }
+    });
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      quantity: quantity
+    }));
+  }, [groupAttributes]);
   var handler = function handler(e) {
     var _data$name, _data$price, _data$quantity, _data$status, _data$productTypeId, _data$branchId, _data$mainImage, _data$descriptionImag, _data$descriptionImag2, _data$suppliers;
     e.preventDefault();
-    if ((errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.length) > 0 || (errorsMainImage === null || errorsMainImage === void 0 ? void 0 : errorsMainImage.length) > 0 || (errorsDescriptionImage === null || errorsDescriptionImage === void 0 ? void 0 : errorsDescriptionImage.length) > 0) {
-      console.log(2);
+    if ((errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.length) > 0 || (errorsMainImage === null || errorsMainImage === void 0 ? void 0 : errorsMainImage.length) > 0 || (errorsDescriptionImage === null || errorsDescriptionImage === void 0 ? void 0 : errorsDescriptionImage.length) > 0 || (errorGroupAttributes === null || errorGroupAttributes === void 0 ? void 0 : errorGroupAttributes.length) > 0) {
       return false;
     }
     if (!data.mainImage) {
@@ -18008,10 +18027,17 @@ function Add(props) {
     form.append('status', (_data$status = data.status) !== null && _data$status !== void 0 ? _data$status : '');
     form.append('productTypeId', (_data$productTypeId = data.productTypeId) !== null && _data$productTypeId !== void 0 ? _data$productTypeId : '');
     form.append('branchId', (_data$branchId = data.branchId) !== null && _data$branchId !== void 0 ? _data$branchId : '');
-    (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 && attributes.map(function (item) {
-      form.append('attr[]', JSON.stringify({
-        name: item.name,
-        value: item.value
+    (groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.length) > 0 && groupAttributes.map(function (item) {
+      var _item$attributes2;
+      (item === null || item === void 0 || (_item$attributes2 = item.attributes) === null || _item$attributes2 === void 0 ? void 0 : _item$attributes2.length) > 0 && (item === null || item === void 0 ? void 0 : item.attributes.map(function (i) {
+        if (i.name != '') {
+          form.append('attr[]', JSON.stringify({
+            groupName: item.name,
+            quantity: item.quantity,
+            name: i.name,
+            value: i.value
+          }));
+        }
       }));
     });
     form.append('mainImage', (_data$mainImage = data.mainImage) !== null && _data$mainImage !== void 0 ? _data$mainImage : '');
@@ -18042,97 +18068,252 @@ function Add(props) {
       }
     });
   };
-  var addAttribute = function addAttribute() {
-    setAttributes([].concat(_toConsumableArray(attributes), [{
-      id: (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 ? attributes.at(-1).id + 1 : 0,
+  var addGroupAttribute = function addGroupAttribute() {
+    var attributes = [{
+      id: 1,
       name: '',
       value: ''
+    }];
+    setGroupAttributes([].concat(_toConsumableArray(groupAttributes), [{
+      id: (groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.length) > 0 ? attributes.at(-1).id + 1 : 1,
+      name: '',
+      quantity: 0,
+      attributes: attributes
     }]));
   };
-  var removeAttribute = function removeAttribute(id) {
-    var new_array_attributes = attributes.filter(function (item) {
+  var removeGroupAttribute = function removeGroupAttribute(id) {
+    var new_array_group_attributes = groupAttributes.filter(function (item) {
       return item.id != id;
     });
-    setAttributes(new_array_attributes);
+    setGroupAttributes(new_array_group_attributes);
   };
-  var setNameAttribute = function setNameAttribute(id, name, value) {
-    var error_atrributes = errorAttributes.filter(function (item) {
+  var setNameGroupAttribute = function setNameGroupAttribute(id, name) {
+    var valueLength = 'Tên nhóm chưa tối đa ' + maxString + ' ký tự.';
+    var new_error_group_atrributes = errorGroupAttributes.filter(function (item) {
       return item.id != id;
     });
-    var maxString = 255;
-    var nameLength = 'Tên thuộc tính chứa tối đa ' + maxString + ' ký tự.';
-    var nameUnique = 'Thuộc tính đã tồn tại.';
-    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
-    var e = [];
-    if (name.length > maxString) {
-      e.push(nameLength);
-    } else {
-      e.filter(function (item) {
-        return item != nameLength;
-      });
-    }
-    if (attributes.filter(function (item) {
+    var new_group_attributes = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id != id;
+    });
+    var groupAttribute = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id == id;
+    });
+    var check = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
       return item.name == name;
-    }).length < 1) {
-      e.filter(function (item) {
-        return item != nameUnique;
+    });
+    if ((name === null || name === void 0 ? void 0 : name.length) > maxString) {
+      new_error_group_atrributes.push({
+        id: id,
+        value: valueLength
       });
     } else {
-      e.push(nameUnique);
-    }
-    if (e.length > 0) {
-      error_atrributes.push({
-        id: id,
-        value: e
+      new_error_group_atrributes.filter(function (item) {
+        return item.id != id;
       });
     }
-    setErrorAttributes(error_atrributes);
-    var new_array_attributes = attributes.filter(function (item) {
-      return item.id != id;
-    });
-    new_array_attributes.push({
+    if ((check === null || check === void 0 ? void 0 : check.length) > 1) {
+      new_error_group_atrributes.push({
+        id: id,
+        value: 'Tên nhóm đã tồn tại.'
+      });
+    }
+    setErrorGroupAttributes(_toConsumableArray(errorGroupAttributes));
+    new_group_attributes === null || new_group_attributes === void 0 || new_group_attributes.push({
       id: id,
       name: name,
-      value: value
+      quantity: groupAttribute[0].quantity,
+      attributes: groupAttribute[0].attributes
     });
-    new_array_attributes.sort(function (a, b) {
+    new_group_attributes.sort(function (a, b) {
       return a.id - b.id;
     });
-    setAttributes(new_array_attributes);
+    setGroupAttributes(new_group_attributes);
   };
-  var setValueAttribute = function setValueAttribute(id, name, value) {
-    var error_atrributes = errorAttributes.filter(function (item) {
+  var setQuantityGroupAttribute = function setQuantityGroupAttribute(id, quantity) {
+    var new_error_group_atrributes = errorGroupAttributes.filter(function (item) {
       return item.id != id;
     });
-    var maxString = 255;
-    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
+    var new_group_attributes = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id != id;
+    });
+    var groupAttribute = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id == id;
+    });
     var e = [];
-    if (value.length > maxString) {
-      e.push(valueLength);
-    } else {
-      e.filter(function (item) {
-        return item != valueLength;
-      });
-    }
-    if (e.length > 0) {
-      error_atrributes.push({
-        id: id,
-        value: e
-      });
-    }
-    setErrorAttributes(error_atrributes);
-    var new_array_attributes = attributes.filter(function (item) {
-      return item.id != id;
-    });
-    new_array_attributes.push({
+    setErrorGroupAttributes([].concat(_toConsumableArray(errorGroupAttributes), [new_error_group_atrributes]));
+    new_group_attributes === null || new_group_attributes === void 0 || new_group_attributes.push({
       id: id,
-      name: name,
-      value: value
+      name: groupAttribute[0].name,
+      quantity: quantity,
+      attributes: groupAttribute[0].attributes
     });
-    new_array_attributes.sort(function (a, b) {
+    new_group_attributes.sort(function (a, b) {
       return a.id - b.id;
     });
-    setAttributes(new_array_attributes);
+    setGroupAttributes(new_group_attributes);
+  };
+  var addAttribute = function addAttribute(groupId) {
+    var _new_group_attributes;
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes;
+    attributes.push({
+      id: (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 ? attributes.at(-1).id + 1 : 1,
+      name: '',
+      value: ''
+    });
+    attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    new_group_attributes.push((_new_group_attributes = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes, "attributes", attributes), _new_group_attributes));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
+  };
+  var removeAttribute = function removeAttribute(groupId, id) {
+    var _new_group_attributes2;
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes.filter(function (i) {
+      return i.id != id;
+    });
+    if ((attributes === null || attributes === void 0 ? void 0 : attributes.length) == 0) {
+      attributes.push([{
+        id: 1,
+        name: '',
+        value: ''
+      }]);
+    }
+    new_group_attributes.push((_new_group_attributes2 = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes2, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes2, "attributes", attributes), _new_group_attributes2));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
+  };
+  var setNameAttribute = function setNameAttribute(groupId, id, name) {
+    var _groupAttribute$0$att, _groupAttribute$0$att2, _attribute$, _new_group_attributes3;
+    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes.filter(function (i) {
+      return i.id != id;
+    });
+    var attribute = (_groupAttribute$0$att = groupAttribute[0].attributes) === null || _groupAttribute$0$att === void 0 ? void 0 : _groupAttribute$0$att.filter(function (i) {
+      return i.id == id;
+    });
+    var check = (_groupAttribute$0$att2 = groupAttribute[0].attributes) === null || _groupAttribute$0$att2 === void 0 ? void 0 : _groupAttribute$0$att2.filter(function (i) {
+      return i.name == name;
+    });
+    var new_error_atrributes = errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.filter(function (item) {
+      return item.id != String(groupId + '_' + id);
+    });
+    if ((check === null || check === void 0 ? void 0 : check.length) > 0) {
+      var _new_error_atrributes;
+      (_new_error_atrributes = new_error_atrributes) === null || _new_error_atrributes === void 0 || _new_error_atrributes.push({
+        id: String(groupId + '_' + id),
+        value: 'Tên thuộc tính đã tồn tại'
+      });
+    } else {
+      if ((name === null || name === void 0 ? void 0 : name.length) > maxString) {
+        var _new_error_atrributes2;
+        (_new_error_atrributes2 = new_error_atrributes) === null || _new_error_atrributes2 === void 0 || _new_error_atrributes2.push({
+          id: String(groupId + '_' + id),
+          value: valueLength
+        });
+      } else {
+        var _new_error_atrributes3;
+        new_error_atrributes = (_new_error_atrributes3 = new_error_atrributes) === null || _new_error_atrributes3 === void 0 ? void 0 : _new_error_atrributes3.filter(function (item) {
+          return item.id != String(groupId + '_' + id);
+        });
+      }
+    }
+    setErrorAttributes(_toConsumableArray(new_error_atrributes));
+    attributes.push({
+      id: id,
+      name: name,
+      value: (_attribute$ = attribute[0]) === null || _attribute$ === void 0 ? void 0 : _attribute$.value
+    });
+    attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    new_group_attributes.push((_new_group_attributes3 = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes3, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes3, "attributes", attributes), _new_group_attributes3));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
+  };
+  var setValueAttribute = function setValueAttribute(groupId, id, value) {
+    var _attribute$2, _attribute$3, _new_group_attributes4;
+    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes.filter(function (i) {
+      return i.id != id;
+    });
+    var attribute = groupAttribute[0].attributes.filter(function (i) {
+      return i.id == id;
+    });
+    var new_error_atrributes = errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.filter(function (item) {
+      return item.id != groupId + '_' + id;
+    });
+    if (((_attribute$2 = attribute[0]) === null || _attribute$2 === void 0 || (_attribute$2 = _attribute$2.name) === null || _attribute$2 === void 0 ? void 0 : _attribute$2.length) > maxString) {
+      var _new_error_atrributes4;
+      (_new_error_atrributes4 = new_error_atrributes) === null || _new_error_atrributes4 === void 0 || _new_error_atrributes4.push({
+        id: groupId + '_' + id,
+        value: valueLength
+      });
+    } else {
+      new_error_atrributes = new_error_atrributes.filter(function (item) {
+        return item.id != groupId + '_' + id;
+      });
+    }
+    setErrorAttributes(_toConsumableArray(new_error_atrributes));
+    attributes.push({
+      id: id,
+      name: (_attribute$3 = attribute[0]) === null || _attribute$3 === void 0 ? void 0 : _attribute$3.name,
+      value: value
+    });
+    attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    new_group_attributes.push((_new_group_attributes4 = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes4, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes4, "attributes", attributes), _new_group_attributes4));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
   };
   var callbackUploadFile = function callbackUploadFile(file) {
     var objectUrl = URL.createObjectURL(file);
@@ -18207,7 +18388,7 @@ function Add(props) {
     });
     setErrors({});
     setLoading(false);
-    setAttributes([]);
+    setGroupAttributes([]);
     setPreviewMainImage();
     setPreviewDescriptionImage([]);
     dispatch(_store_modal_slice__WEBPACK_IMPORTED_MODULE_11__.modalActions.close());
@@ -18260,6 +18441,7 @@ function Add(props) {
           type: "number",
           labelName: "S\u1ED1 l\u01B0\u1EE3ng",
           placeholder: "Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng",
+          value: data === null || data === void 0 ? void 0 : data.quantity,
           isRequired: true,
           validate: errors,
           containerClass: "w-full mb-4",
@@ -18271,46 +18453,90 @@ function Add(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
           className: "",
           children: "Thu\u1ED9c t\xEDnh"
-        }), attributes === null || attributes === void 0 ? void 0 : attributes.map(function (item) {
-          var _errorAttributes$filt;
+        }), groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.map(function (item) {
+          var _item$attributes3;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-            className: "mt-0",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            className: "mt-0 mb-2",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
+              htmlFor: "",
+              className: "mt-2 ms-4 ps-2",
+              children: "Nh\xF3m"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               className: "flex mt-0 w-full space-x-2",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "flex items-center justify-center mb-0 mt-2 h4",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
                   className: "bx bx-x-circle text-red",
                   onClick: function onClick() {
-                    return removeAttribute(item.id);
+                    return removeGroupAttribute(item.id);
                   }
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
                 id: item.id,
                 type: "text",
                 value: item.name,
-                placeholder: "Nh\u1EADp t\xEAn thu\u1ED9c t\xEDnh",
-                containerClass: "w-25 mb-0",
-                validate: errors,
-                onChange: function onChange(value) {
-                  setNameAttribute(item.id, value, item.value);
-                }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                id: item.id,
-                type: "text",
-                value: item.value,
-                placeholder: "Nh\u1EADp gi\xE1 tr\u1ECB",
+                placeholder: "Nh\u1EADp t\xEAn nh\xF3m",
                 containerClass: "w-75 mb-0",
                 validate: errors,
                 onChange: function onChange(value) {
-                  setValueAttribute(item.id, item.name, value);
+                  setNameGroupAttribute(item.id, value);
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                id: item.id,
+                type: "number",
+                value: item.quantity,
+                placeholder: "Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng",
+                containerClass: "w-25 mb-0",
+                validate: errors,
+                min: 0,
+                onChange: function onChange(value) {
+                  setQuantityGroupAttribute(item.id, value);
                 }
               })]
+            }), item === null || item === void 0 || (_item$attributes3 = item.attributes) === null || _item$attributes3 === void 0 ? void 0 : _item$attributes3.map(function (i, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                className: "ms-4 mt-1",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                  className: "flex space-x-2",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                    className: "flex items-center justify-center mb-0 mt-2 h4 ms-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                      className: "bx bx-x-circle text-red",
+                      onClick: function onClick() {
+                        return removeAttribute(item.id, i.id);
+                      }
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                    id: i.id,
+                    type: "text",
+                    value: i.name,
+                    placeholder: "Nh\u1EADp t\xEAn thu\u1ED9c t\xEDnh",
+                    containerClass: "w-50 mb-0",
+                    validate: errors,
+                    onChange: function onChange(value) {
+                      setNameAttribute(item.id, i.id, value);
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                    id: i.id,
+                    type: "text",
+                    value: i.value,
+                    placeholder: "Nh\u1EADp gi\xE1 tr\u1ECB",
+                    containerClass: "w-100 mb-0",
+                    validate: errors,
+                    onChange: function onChange(value) {
+                      setValueAttribute(item.id, i.id, value);
+                    }
+                  })]
+                })
+              }, index);
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
-              className: "text-red",
-              children: errorAttributes === null || errorAttributes === void 0 || (_errorAttributes$filt = errorAttributes.filter(function (i) {
-                return i.id == item.id;
-              })[0]) === null || _errorAttributes$filt === void 0 ? void 0 : _errorAttributes$filt.value[0]
+              className: "flex items-center justify-content-start mb-4 mt-1 h4 ms-4 ps-3",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                className: "bx bx-plus-circle text-green",
+                onClick: function onClick() {
+                  return addAttribute(item.id);
+                }
+              })
             })]
           }, item.id);
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
@@ -18318,7 +18544,7 @@ function Add(props) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
             className: "bx bx-plus-circle text-green",
             onClick: function onClick() {
-              return addAttribute();
+              return addGroupAttribute();
             }
           })
         })]
@@ -18677,7 +18903,7 @@ function Delete(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */   "default": () => (/* binding */ Add)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -18724,8 +18950,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Edit(props) {
-  var _errorsMainImage$, _props$constant$suppl;
+function Add(props) {
+  var _errorsMainImage$, _props$constant$suppl, _data$status2, _data$productTypeId2, _data$branchId2;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var status = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.modal.isOpen;
@@ -18741,47 +18967,52 @@ function Edit(props) {
     _useState4 = _slicedToArray(_useState3, 2),
     loading = _useState4[0],
     setLoading = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState6 = _slicedToArray(_useState5, 2),
-    attributes = _useState6[0],
-    setAttributes = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState8 = _slicedToArray(_useState7, 2),
-    errorAttributes = _useState8[0],
-    setErrorAttributes = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState10 = _slicedToArray(_useState9, 2),
-    errorsMainImage = _useState10[0],
-    setErrorsMainImage = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
-    _useState12 = _slicedToArray(_useState11, 2),
-    previewMainImage = _useState12[0],
-    setPreviewMainImage = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState14 = _slicedToArray(_useState13, 2),
-    deletedAttributes = _useState14[0],
-    setDeletedAttributes = _useState14[1];
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState16 = _slicedToArray(_useState15, 2),
-    errorsDescriptionImage = _useState16[0],
-    setErrorsDescriptionImage = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState18 = _slicedToArray(_useState17, 2),
-    previewDescriptionImage = _useState18[0],
-    setPreviewDescriptionImage = _useState18[1];
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-    _useState20 = _slicedToArray(_useState19, 2),
-    deletedDescriptionImages = _useState20[0],
-    setDeletedDescriptionImages = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       status: 0
     }),
+    _useState6 = _slicedToArray(_useState5, 2),
+    data = _useState6[0],
+    setData = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    groupAttributes = _useState8[0],
+    setGroupAttributes = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    errorAttributes = _useState10[0],
+    setErrorAttributes = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState12 = _slicedToArray(_useState11, 2),
+    errorGroupAttributes = _useState12[0],
+    setErrorGroupAttributes = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+    _useState14 = _slicedToArray(_useState13, 2),
+    previewMainImage = _useState14[0],
+    setPreviewMainImage = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState16 = _slicedToArray(_useState15, 2),
+    previewDescriptionImage = _useState16[0],
+    setPreviewDescriptionImage = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState18 = _slicedToArray(_useState17, 2),
+    errorsDescriptionImage = _useState18[0],
+    setErrorsDescriptionImage = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState20 = _slicedToArray(_useState19, 2),
+    errorsMainImage = _useState20[0],
+    setErrorsMainImage = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState22 = _slicedToArray(_useState21, 2),
-    data = _useState22[0],
-    setData = _useState22[1];
+    deletedDescriptionImages = _useState22[0],
+    setDeletedDescriptionImages = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState24 = _slicedToArray(_useState23, 2),
+    deletedAttributes = _useState24[0],
+    setDeletedAttributes = _useState24[1];
+  var maxString = 255;
   var openDialog = collection.name == props.modalKey && status;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var _props$data, _props$data2, _props$data3, _props$data4, _props$data5, _props$data6, _props$data7, _props$data8, _props$data9, _props$data10, _props$data11, _props$data12, _props$data13;
+    var _props$data, _props$data2, _props$data3, _props$data4, _props$data5, _props$data6, _props$data7, _props$data8, _props$data9, _props$data10, _props$data11;
     var desImgs = [];
     var attr = [];
     var supplierId = [];
@@ -18791,13 +19022,27 @@ function Edit(props) {
         value: item.src
       });
     });
-    props === null || props === void 0 || (_props$data2 = props.data) === null || _props$data2 === void 0 || (_props$data2 = _props$data2.attributes) === null || _props$data2 === void 0 || _props$data2.map(function (item) {
+    props === null || props === void 0 || (_props$data2 = props.data) === null || _props$data2 === void 0 || (_props$data2 = _props$data2.attributes) === null || _props$data2 === void 0 || _props$data2.map(function (item, index) {
+      var _item$attributes;
+      var attributes = [];
+      item === null || item === void 0 || (_item$attributes = item.attributes) === null || _item$attributes === void 0 || _item$attributes.map(function (i) {
+        attributes.push({
+          id: i.id,
+          name: i.name,
+          value: i.value
+        });
+        attributes.sort(function (a, b) {
+          return a.id - b.id;
+        });
+      });
       attr.push({
-        id: item.id,
+        id: index,
         name: item.name,
-        value: item.value
+        quantity: item.quantity,
+        attributes: attributes
       });
     });
+    setGroupAttributes(attr);
     props === null || props === void 0 || (_props$data3 = props.data) === null || _props$data3 === void 0 || (_props$data3 = _props$data3.suppliers) === null || _props$data3 === void 0 || _props$data3.map(function (item) {
       supplierId.push({
         id: item.id,
@@ -18806,19 +19051,33 @@ function Edit(props) {
     });
     setPreviewMainImage(props === null || props === void 0 || (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : _props$data4.mainImage);
     setPreviewDescriptionImage(desImgs);
-    setAttributes(attr);
-    setData(_objectSpread(_objectSpread({}, data), {}, {
-      id: props === null || props === void 0 || (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : _props$data5.id,
-      name: props === null || props === void 0 || (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : _props$data6.name,
-      price: props === null || props === void 0 || (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : _props$data7.price,
-      quantity: props === null || props === void 0 || (_props$data8 = props.data) === null || _props$data8 === void 0 ? void 0 : _props$data8.quantity,
-      status: props === null || props === void 0 || (_props$data9 = props.data) === null || _props$data9 === void 0 ? void 0 : _props$data9.status,
-      productTypeId: props === null || props === void 0 || (_props$data10 = props.data) === null || _props$data10 === void 0 ? void 0 : _props$data10.productTypeId,
-      branchId: props === null || props === void 0 || (_props$data11 = props.data) === null || _props$data11 === void 0 ? void 0 : _props$data11.branchId,
-      supplierId: props === null || props === void 0 || (_props$data12 = props.data) === null || _props$data12 === void 0 ? void 0 : _props$data12.supplierId,
-      suppliers: props === null || props === void 0 || (_props$data13 = props.data) === null || _props$data13 === void 0 ? void 0 : _props$data13.suppliers
-    }));
+    setData({
+      id: props.data.id,
+      name: props === null || props === void 0 || (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : _props$data5.name,
+      price: props.data.price,
+      status: props === null || props === void 0 || (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : _props$data6.status,
+      productTypeId: props === null || props === void 0 || (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : _props$data7.productTypeId,
+      branchId: props === null || props === void 0 || (_props$data8 = props.data) === null || _props$data8 === void 0 ? void 0 : _props$data8.branchId,
+      supplierId: props === null || props === void 0 || (_props$data9 = props.data) === null || _props$data9 === void 0 ? void 0 : _props$data9.supplierId,
+      suppliers: props === null || props === void 0 || (_props$data10 = props.data) === null || _props$data10 === void 0 ? void 0 : _props$data10.suppliers,
+      quantity: props === null || props === void 0 || (_props$data11 = props.data) === null || _props$data11 === void 0 ? void 0 : _props$data11.quantity
+    });
   }, [props.data, status]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var quantity = 0;
+    groupAttributes === null || groupAttributes === void 0 || groupAttributes.map(function (item) {
+      var _item$attributes2;
+      var attributes = item === null || item === void 0 || (_item$attributes2 = item.attributes) === null || _item$attributes2 === void 0 ? void 0 : _item$attributes2.filter(function (item) {
+        return item.name != '';
+      });
+      if ((attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0) {
+        quantity = quantity + Number(item.quantity);
+      }
+    });
+    setData(_objectSpread(_objectSpread({}, data), {}, {
+      quantity: quantity
+    }));
+  }, [groupAttributes]);
   var handler = function handler(e) {
     var _data$id, _data$name, _data$price, _data$quantity, _data$status, _data$productTypeId, _data$branchId, _data$mainImage, _data$descriptionImag, _data$descriptionImag2, _data$suppliers, _data$suppliers2;
     e.preventDefault();
@@ -18836,13 +19095,20 @@ function Edit(props) {
     form.append('branchId', (_data$branchId = data.branchId) !== null && _data$branchId !== void 0 ? _data$branchId : '');
     form.append('mainImage', (_data$mainImage = data.mainImage) !== null && _data$mainImage !== void 0 ? _data$mainImage : '');
     form.append('_method', 'PUT');
-    (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 && (attributes === null || attributes === void 0 ? void 0 : attributes.map(function (item) {
-      form.append('attr[]', JSON.stringify({
-        id: item.id,
-        name: item.name,
-        value: item.value
+    (groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.length) > 0 && groupAttributes.map(function (item) {
+      var _item$attributes3;
+      (item === null || item === void 0 || (_item$attributes3 = item.attributes) === null || _item$attributes3 === void 0 ? void 0 : _item$attributes3.length) > 0 && (item === null || item === void 0 ? void 0 : item.attributes.map(function (i) {
+        if (i.name != '') {
+          form.append('attr[]', JSON.stringify({
+            id: i.id,
+            groupName: item.name,
+            quantity: item.quantity,
+            name: i.name,
+            value: i.value
+          }));
+        }
       }));
-    }));
+    });
     (data === null || data === void 0 || (_data$descriptionImag = data.descriptionImages) === null || _data$descriptionImag === void 0 ? void 0 : _data$descriptionImag.length) > 0 && (data === null || data === void 0 || (_data$descriptionImag2 = data.descriptionImages) === null || _data$descriptionImag2 === void 0 ? void 0 : _data$descriptionImag2.map(function (item) {
       form.append('descriptionImages[]', item.value);
     }));
@@ -18876,100 +19142,266 @@ function Edit(props) {
       }
     });
   };
-  var addAttribute = function addAttribute() {
-    setAttributes([].concat(_toConsumableArray(attributes), [{
-      id: (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 ? attributes.at(-1).id + 1 : 0,
+  var addGroupAttribute = function addGroupAttribute() {
+    var attributes = [{
+      id: 1,
       name: '',
       value: ''
+    }];
+    setGroupAttributes([].concat(_toConsumableArray(groupAttributes), [{
+      id: (groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.length) > 0 ? attributes.at(-1).id + 1 : 1,
+      name: '',
+      quantity: 0,
+      attributes: attributes
     }]));
   };
-  var removeAttribute = function removeAttribute(id) {
-    var new_array_attributes = attributes.filter(function (item) {
+  var removeGroupAttribute = function removeGroupAttribute(id) {
+    var _new_group_attribute$;
+    var new_array_group_attributes = groupAttributes.filter(function (item) {
       return item.id != id;
+    });
+    var new_group_attribute = groupAttributes.filter(function (item) {
+      return item.id == id;
     });
     var new_deleted_attributes = deletedAttributes;
-    new_deleted_attributes.push(id);
+    (_new_group_attribute$ = new_group_attribute[0]) === null || _new_group_attribute$ === void 0 || (_new_group_attribute$ = _new_group_attribute$.attributes) === null || _new_group_attribute$ === void 0 || _new_group_attribute$.map(function (item) {
+      new_deleted_attributes.push(item.id);
+    });
     setDeletedAttributes(new_deleted_attributes);
-    setAttributes(new_array_attributes);
+    setGroupAttributes(new_array_group_attributes);
   };
-  var setNameAttribute = function setNameAttribute(id, name, value) {
-    var error_atrributes = errorAttributes.filter(function (item) {
+  var setNameGroupAttribute = function setNameGroupAttribute(id, name) {
+    var valueLength = 'Tên nhóm chưa tối đa ' + maxString + ' ký tự.';
+    var new_error_group_atrributes = errorGroupAttributes.filter(function (item) {
       return item.id != id;
     });
-    var maxString = 255;
-    var nameLength = 'Tên thuộc tính chứa tối đa ' + maxString + ' ký tự.';
-    var nameUnique = 'Thuộc tính đã tồn tại.';
-    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
-    var e = [];
-    if (name.length > maxString) {
-      e.push(nameLength);
-    } else {
-      e.filter(function (item) {
-        return item != nameLength;
-      });
-    }
-    if (attributes.filter(function (item) {
+    var new_group_attributes = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id != id;
+    });
+    var groupAttribute = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id == id;
+    });
+    var check = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
       return item.name == name;
-    }).length < 1) {
-      e.filter(function (item) {
-        return item != nameUnique;
+    });
+    if ((name === null || name === void 0 ? void 0 : name.length) > maxString) {
+      new_error_group_atrributes.push({
+        id: id,
+        value: valueLength
       });
     } else {
-      e.push(nameUnique);
-    }
-    if (e.length > 0) {
-      error_atrributes.push({
-        id: id,
-        value: e
+      new_error_group_atrributes.filter(function (item) {
+        return item.id != id;
       });
     }
-    setErrorAttributes(error_atrributes);
-    var new_array_attributes = attributes.filter(function (item) {
-      return item.id != id;
-    });
-    new_array_attributes.push({
+    if ((check === null || check === void 0 ? void 0 : check.length) > 1) {
+      new_error_group_atrributes.push({
+        id: id,
+        value: 'Tên nhóm đã tồn tại.'
+      });
+    }
+    setErrorGroupAttributes(_toConsumableArray(errorGroupAttributes));
+    new_group_attributes === null || new_group_attributes === void 0 || new_group_attributes.push({
       id: id,
       name: name,
-      value: value
+      quantity: groupAttribute[0].quantity,
+      attributes: groupAttribute[0].attributes
     });
-    new_array_attributes.sort(function (a, b) {
+    new_group_attributes.sort(function (a, b) {
       return a.id - b.id;
     });
-    setAttributes(new_array_attributes);
+    setGroupAttributes(new_group_attributes);
   };
-  var setValueAttribute = function setValueAttribute(id, name, value) {
-    var error_atrributes = errorAttributes.filter(function (item) {
+  var setQuantityGroupAttribute = function setQuantityGroupAttribute(id, quantity) {
+    var new_error_group_atrributes = errorGroupAttributes.filter(function (item) {
       return item.id != id;
     });
-    var maxString = 255;
-    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
+    var new_group_attributes = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id != id;
+    });
+    var groupAttribute = groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.filter(function (item) {
+      return item.id == id;
+    });
     var e = [];
-    if (value.length > maxString) {
-      e.push(valueLength);
-    } else {
-      e.filter(function (item) {
-        return item != valueLength;
-      });
-    }
-    if (e.length > 0) {
-      error_atrributes.push({
-        id: id,
-        value: e
-      });
-    }
-    setErrorAttributes(error_atrributes);
-    var new_array_attributes = attributes.filter(function (item) {
-      return item.id != id;
-    });
-    new_array_attributes.push({
+    setErrorGroupAttributes([].concat(_toConsumableArray(errorGroupAttributes), [new_error_group_atrributes]));
+    new_group_attributes === null || new_group_attributes === void 0 || new_group_attributes.push({
       id: id,
-      name: name,
-      value: value
+      name: groupAttribute[0].name,
+      quantity: quantity,
+      attributes: groupAttribute[0].attributes
     });
-    new_array_attributes.sort(function (a, b) {
+    new_group_attributes.sort(function (a, b) {
       return a.id - b.id;
     });
-    setAttributes(new_array_attributes);
+    setGroupAttributes(new_group_attributes);
+  };
+  var addAttribute = function addAttribute(groupId) {
+    var _new_group_attributes;
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes;
+    attributes.push({
+      id: (attributes === null || attributes === void 0 ? void 0 : attributes.length) > 0 ? attributes.at(-1).id + 1 : 1,
+      name: '',
+      value: ''
+    });
+    attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    new_group_attributes.push((_new_group_attributes = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes, "attributes", attributes), _new_group_attributes));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
+  };
+  var removeAttribute = function removeAttribute(groupId, id) {
+    var _new_group_attributes2;
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes.filter(function (i) {
+      return i.id != id;
+    });
+    var new_deleted_attributes = deletedAttributes;
+    if ((attributes === null || attributes === void 0 ? void 0 : attributes.length) == 0) {
+      attributes.push({
+        id: 1,
+        name: '',
+        value: ''
+      });
+    }
+    new_group_attributes.push((_new_group_attributes2 = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes2, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes2, "attributes", attributes), _new_group_attributes2));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    if (id != undefined) {
+      new_deleted_attributes.push(id);
+    }
+    setDeletedAttributes(new_deleted_attributes);
+    setGroupAttributes(new_group_attributes);
+  };
+  var setNameAttribute = function setNameAttribute(groupId, id, name) {
+    var _groupAttribute$0$att, _groupAttribute$0$att2, _attribute$, _new_group_attributes3;
+    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes.filter(function (i) {
+      return i.id != id;
+    });
+    var attribute = (_groupAttribute$0$att = groupAttribute[0].attributes) === null || _groupAttribute$0$att === void 0 ? void 0 : _groupAttribute$0$att.filter(function (i) {
+      return i.id == id;
+    });
+    var check = (_groupAttribute$0$att2 = groupAttribute[0].attributes) === null || _groupAttribute$0$att2 === void 0 ? void 0 : _groupAttribute$0$att2.filter(function (i) {
+      return i.name == name;
+    });
+    var new_error_atrributes = errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.filter(function (item) {
+      return item.id != String(groupId + '_' + id);
+    });
+    if ((check === null || check === void 0 ? void 0 : check.length) > 0) {
+      var _new_error_atrributes;
+      (_new_error_atrributes = new_error_atrributes) === null || _new_error_atrributes === void 0 || _new_error_atrributes.push({
+        id: String(groupId + '_' + id),
+        value: 'Tên thuộc tính đã tồn tại'
+      });
+    } else {
+      if ((name === null || name === void 0 ? void 0 : name.length) > maxString) {
+        var _new_error_atrributes2;
+        (_new_error_atrributes2 = new_error_atrributes) === null || _new_error_atrributes2 === void 0 || _new_error_atrributes2.push({
+          id: String(groupId + '_' + id),
+          value: valueLength
+        });
+      } else {
+        var _new_error_atrributes3;
+        new_error_atrributes = (_new_error_atrributes3 = new_error_atrributes) === null || _new_error_atrributes3 === void 0 ? void 0 : _new_error_atrributes3.filter(function (item) {
+          return item.id != String(groupId + '_' + id);
+        });
+      }
+    }
+    setErrorAttributes(_toConsumableArray(new_error_atrributes));
+    attributes.push({
+      id: id,
+      name: name,
+      value: (_attribute$ = attribute[0]) === null || _attribute$ === void 0 ? void 0 : _attribute$.value
+    });
+    attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    new_group_attributes.push((_new_group_attributes3 = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes3, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes3, "attributes", attributes), _new_group_attributes3));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
+  };
+  var setValueAttribute = function setValueAttribute(groupId, id, value) {
+    var _attribute$2, _attribute$3, _new_group_attributes4;
+    var valueLength = 'Giá trị chứa tối đa ' + maxString + ' ký tự.';
+    var new_group_attributes = groupAttributes.filter(function (item) {
+      return item.id != groupId;
+    });
+    var groupAttribute = groupAttributes.filter(function (item) {
+      return item.id == groupId;
+    });
+    var attributes = groupAttribute[0].attributes.filter(function (i) {
+      return i.id != id;
+    });
+    var attribute = groupAttribute[0].attributes.filter(function (i) {
+      return i.id == id;
+    });
+    var new_error_atrributes = errorAttributes === null || errorAttributes === void 0 ? void 0 : errorAttributes.filter(function (item) {
+      return item.id != groupId + '_' + id;
+    });
+    if (((_attribute$2 = attribute[0]) === null || _attribute$2 === void 0 || (_attribute$2 = _attribute$2.name) === null || _attribute$2 === void 0 ? void 0 : _attribute$2.length) > maxString) {
+      var _new_error_atrributes4;
+      (_new_error_atrributes4 = new_error_atrributes) === null || _new_error_atrributes4 === void 0 || _new_error_atrributes4.push({
+        id: groupId + '_' + id,
+        value: valueLength
+      });
+    } else {
+      new_error_atrributes = new_error_atrributes.filter(function (item) {
+        return item.id != groupId + '_' + id;
+      });
+    }
+    setErrorAttributes(_toConsumableArray(new_error_atrributes));
+    attributes.push({
+      id: id,
+      name: (_attribute$3 = attribute[0]) === null || _attribute$3 === void 0 ? void 0 : _attribute$3.name,
+      value: value
+    });
+    attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    new_group_attributes.push((_new_group_attributes4 = {
+      id: groupId,
+      name: groupAttribute[0].name,
+      quantity: groupAttribute[0].quantity
+    }, _defineProperty(_new_group_attributes4, "quantity", groupAttribute[0].quantity), _defineProperty(_new_group_attributes4, "attributes", attributes), _new_group_attributes4));
+    new_group_attributes.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setGroupAttributes(new_group_attributes);
   };
   var callbackUploadFile = function callbackUploadFile(file) {
     var objectUrl = URL.createObjectURL(file);
@@ -19042,15 +19474,18 @@ function Edit(props) {
     setDeletedDescriptionImages(_toConsumableArray(newDeleletedDescriptionImages));
   };
   var close = function close() {
-    setData({});
+    setData({
+      status: 0
+    });
     setErrors({});
-    setAttributes([]);
     setLoading(false);
-    setDeletedAttributes([]);
+    setGroupAttributes([]);
+    setPreviewMainImage();
+    setPreviewDescriptionImage([]);
     dispatch(_store_modal_slice__WEBPACK_IMPORTED_MODULE_11__.modalActions.close());
+    setDeletedAttributes([]);
     setDeletedDescriptionImages([]);
   };
-  console.log(data);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_molecules_Modal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     display: openDialog,
     callbackClose: function callbackClose() {
@@ -19085,8 +19520,8 @@ function Edit(props) {
           name: "price",
           type: "number",
           labelName: "Gi\xE1",
-          placeholder: "Nh\u1EADp gi\xE1",
           value: data === null || data === void 0 ? void 0 : data.price,
+          placeholder: "Nh\u1EADp gi\xE1",
           isRequired: true,
           validate: errors,
           containerClass: "w-full mb-4",
@@ -19101,9 +19536,9 @@ function Edit(props) {
           type: "number",
           labelName: "S\u1ED1 l\u01B0\u1EE3ng",
           placeholder: "Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng",
-          value: data === null || data === void 0 ? void 0 : data.quantity,
           isRequired: true,
           validate: errors,
+          value: data === null || data === void 0 ? void 0 : data.quantity,
           containerClass: "w-full mb-4",
           onChange: function onChange(value) {
             setData(_objectSpread(_objectSpread({}, data), {}, {
@@ -19113,46 +19548,90 @@ function Edit(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
           className: "",
           children: "Thu\u1ED9c t\xEDnh"
-        }), attributes === null || attributes === void 0 ? void 0 : attributes.map(function (item) {
-          var _errorAttributes$filt;
+        }), groupAttributes === null || groupAttributes === void 0 ? void 0 : groupAttributes.map(function (item) {
+          var _item$attributes4;
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
-            className: "mt-0",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            className: "mt-0 mb-2",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("label", {
+              htmlFor: "",
+              className: "mt-2 ms-4 ps-2",
+              children: "Nh\xF3m"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               className: "flex mt-0 w-full space-x-2",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "flex items-center justify-center mb-0 mt-2 h4",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
                   className: "bx bx-x-circle text-red",
                   onClick: function onClick() {
-                    return removeAttribute(item.id);
+                    return removeGroupAttribute(item.id);
                   }
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
                 id: item.id,
                 type: "text",
                 value: item.name,
-                placeholder: "Nh\u1EADp t\xEAn thu\u1ED9c t\xEDnh",
-                containerClass: "w-25 mb-0",
-                validate: errors,
-                onChange: function onChange(value) {
-                  setNameAttribute(item.id, value, item.value);
-                }
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                id: item.id,
-                type: "text",
-                value: item.value,
-                placeholder: "Nh\u1EADp gi\xE1 tr\u1ECB",
+                placeholder: "Nh\u1EADp t\xEAn nh\xF3m",
                 containerClass: "w-75 mb-0",
                 validate: errors,
                 onChange: function onChange(value) {
-                  setValueAttribute(item.id, item.name, value);
+                  setNameGroupAttribute(item.id, value);
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                id: item.id,
+                type: "number",
+                value: item.quantity,
+                placeholder: "Nh\u1EADp s\u1ED1 l\u01B0\u1EE3ng",
+                containerClass: "w-25 mb-0",
+                validate: errors,
+                min: 0,
+                onChange: function onChange(value) {
+                  setQuantityGroupAttribute(item.id, value);
                 }
               })]
+            }), item === null || item === void 0 || (_item$attributes4 = item.attributes) === null || _item$attributes4 === void 0 ? void 0 : _item$attributes4.map(function (i, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                className: "ms-4 mt-1",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                  className: "flex space-x-2",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                    className: "flex items-center justify-center mb-0 mt-2 h4 ms-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                      className: "bx bx-x-circle text-red",
+                      onClick: function onClick() {
+                        return removeAttribute(item.id, i.id);
+                      }
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                    id: i.id,
+                    type: "text",
+                    value: i.name,
+                    placeholder: "Nh\u1EADp t\xEAn thu\u1ED9c t\xEDnh",
+                    containerClass: "w-50 mb-0",
+                    validate: errors,
+                    onChange: function onChange(value) {
+                      setNameAttribute(item.id, i.id, value);
+                    }
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_Input__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                    id: i.id,
+                    type: "text",
+                    value: i.value,
+                    placeholder: "Nh\u1EADp gi\xE1 tr\u1ECB",
+                    containerClass: "w-100 mb-0",
+                    validate: errors,
+                    onChange: function onChange(value) {
+                      setValueAttribute(item.id, i.id, value);
+                    }
+                  })]
+                })
+              }, index);
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
-              className: "text-red",
-              children: errorAttributes === null || errorAttributes === void 0 || (_errorAttributes$filt = errorAttributes.filter(function (i) {
-                return i.id == item.id;
-              })[0]) === null || _errorAttributes$filt === void 0 ? void 0 : _errorAttributes$filt.value[0]
+              className: "flex items-center justify-content-start mb-4 mt-1 h4 ms-4 ps-3",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                className: "bx bx-plus-circle text-green",
+                onClick: function onClick() {
+                  return addAttribute(item.id);
+                }
+              })
             })]
           }, item.id);
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
@@ -19160,7 +19639,7 @@ function Edit(props) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
             className: "bx bx-plus-circle text-green",
             onClick: function onClick() {
-              return addAttribute();
+              return addGroupAttribute();
             }
           })
         })]
@@ -19191,7 +19670,7 @@ function Edit(props) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_UploadFile__WEBPACK_IMPORTED_MODULE_8__["default"], {
           name: "main",
-          containerClass: "",
+          containerClass: "mt-0 ",
           validate: errors,
           callback: function callback(file) {
             return callbackUploadFile(file);
@@ -19209,7 +19688,7 @@ function Edit(props) {
             children: "\u1EA2nh m\xF4 t\u1EA3"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
-          className: "relative flex space-x-1 flex-wrap",
+          className: "relative  flex space-x-1 flex-wrap",
           children: previewDescriptionImage === null || previewDescriptionImage === void 0 ? void 0 : previewDescriptionImage.map(function (item) {
             var _errorsDescriptionIma, _errorsDescriptionIma2;
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -19224,7 +19703,7 @@ function Edit(props) {
                     fontSize: '19px'
                   },
                   onClick: function onClick(event) {
-                    return removeDescriptionImage(item.id, item.name);
+                    return removeDescriptionImage(item.id);
                   },
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
                     className: "bx bx-x-circle text-black bg-white",
@@ -19256,10 +19735,10 @@ function Edit(props) {
             callbackUploadFiles(files);
           },
           errors: errors,
+          btnClass: "w-full inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100",
           btnValue: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
             className: "bx bx-image-add"
-          }),
-          btnClass: "w-full inline-flex justify-center rounded-md border border-transparent px-2 py-2 text-sm font-medium text-black border border-1 border-dark bg-gray-100"
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_MultiSelectBox__WEBPACK_IMPORTED_MODULE_7__["default"], {
           data: (_props$constant$suppl = props.constant.suppliers) !== null && _props$constant$suppl !== void 0 ? _props$constant$suppl : [],
           callback: function callback(value) {
@@ -19273,12 +19752,11 @@ function Edit(props) {
           showLabel: "name",
           isRequired: false,
           search: true,
-          classLabel: "mt-4 mb-2",
-          value: data.suppliers
+          classLabel: "mt-4 mb-2"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_SelectBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
           label: "Tr\u1EA1ng th\xE1i",
           data: props.constant ? props.constant.status : [],
-          value: data === null || data === void 0 ? void 0 : data.status,
+          value: (_data$status2 = data.status) !== null && _data$status2 !== void 0 ? _data$status2 : 0,
           callback: function callback(value) {
             return setData(_objectSpread(_objectSpread({}, data), {}, {
               status: value.id
@@ -19289,24 +19767,24 @@ function Edit(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_SelectBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
           label: "Lo\u1EA1i s\u1EA3n ph\u1EA9m",
           data: props.constant ? props.constant.productTypes : [],
-          value: data === null || data === void 0 ? void 0 : data.productTypeId,
+          value: (_data$productTypeId2 = data.productTypeId) !== null && _data$productTypeId2 !== void 0 ? _data$productTypeId2 : 0,
           callback: function callback(value) {
             return setData(_objectSpread(_objectSpread({}, data), {}, {
               productTypeId: value.id
             }));
           },
-          search: false,
+          search: true,
           containerClass: "mt-4"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_molecules_SelectBox__WEBPACK_IMPORTED_MODULE_6__["default"], {
           label: "Th\u01B0\u01A1ng hi\u1EC7u",
           data: props.constant ? props.constant.branchs : [],
-          value: data === null || data === void 0 ? void 0 : data.branchId,
+          value: (_data$branchId2 = data.branchId) !== null && _data$branchId2 !== void 0 ? _data$branchId2 : 0,
           callback: function callback(value) {
             return setData(_objectSpread(_objectSpread({}, data), {}, {
               branchId: value.id
             }));
           },
-          search: false,
+          search: true,
           containerClass: "mt-4"
         })]
       })]
@@ -19368,7 +19846,7 @@ function Edit(props) {
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("button", {
               type: "submit",
               className: "px-6 py-2 rounded-md bg-sky-800 hover:bg-sky-700 text-white",
-              children: " C\u1EADp nh\u1EADt "
+              children: " T\u1EA1o m\u1EDBi "
             })]
           })
         })
