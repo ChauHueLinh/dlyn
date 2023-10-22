@@ -10566,6 +10566,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_dashboard_Index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/pages/dashboard/Index */ "./resources/js/components/pages/dashboard/Index.jsx");
 /* harmony import */ var _components_pages_productType_Index__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/pages/productType/Index */ "./resources/js/components/pages/productType/Index.jsx");
 
+//admin
 
 
 
@@ -10577,6 +10578,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+//user
 
 /***/ }),
 

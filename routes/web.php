@@ -42,7 +42,7 @@ use App\Http\Controllers\AdminApi\ProductTypeController as CommonProductTypeCont
 // User
 Route::get('login', [UserLoginController::class, 'showLoginForm'])->name('login.get');
 
-Route::middleware('authUser')->group(function () {
+Route::prefix('')->group(function () {
 	Route::get('', [DashboardController::class, 'index'])->name('guest.index');
 	Route::get('test', [TestController::class, 'index']);
 });
