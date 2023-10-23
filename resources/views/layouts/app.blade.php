@@ -96,17 +96,8 @@
     
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
-        $.map($('a'), (item) => {
-            if(item.href == window.location.href) {
-                $(item).attr('class', 'text-black')
-                $(item).parent().addClass('bg-light text-black rounded-top')
-            } else {
-                $(item).parent().removeClass('bg-light text-black rounded-top')
-                $(item).attr('class', 'text-white')
-            }
-        })
-
         $('#btn-account').on('click', function () {
+            console.log('admin');
             if ($('#items-btn-account').hasClass('show')) {
                 $('#items-btn-account').removeClass('show')
             } else {

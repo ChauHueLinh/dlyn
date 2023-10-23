@@ -12,7 +12,13 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="text-white">
-    <div class="w-full fixed bg-body-dark flex flex-wrap">
+    
+    <div class="" style="margin-top: 107px">
+        
+        @yield('content')
+        
+    </div>
+    <div class="w-full fixed bg-body-dark flex flex-wrap top-0">
         <div class="w-100 flex" style="height: 70px">
             <div class="w-25 flex items-center h4 ps-4">
 
@@ -37,9 +43,11 @@
                         </div>
                     </div>
                     <div class="absolute w-100 radius-15 bg-light text-black shadow-lg d-none py-2 overflow-hidden" id="items-btn-account">
-                        <div class="p-2 option">Thông tin cá nhân</div>
-                        <div class="p-2 option">Đổi mật khẩu</div>
-                        <div class="p-2 option">Đăng xuất</div>
+                        @if (auth()->guard('user')->user())
+                            <div class="p-2 option">Thông tin tài khoản</div>
+                            <div class="p-2 option">Đổi mật khẩu</div>
+                        @endif
+                        <div class="p-2 option">{{ auth()->guard('user')->user() ? 'Đăng xuất' : 'Đăng nhập'}}</div>
                     </div>
                 </div>
             </div>
@@ -59,14 +67,7 @@
             <div class="flex items-center justify-center py-2 w-100" class="text-white">SHOWROOM</div>
         </div>
     </div>
-
-
-    <div class="page-content">
-
-        @yield('content')
-
-    </div>
-
+    
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>

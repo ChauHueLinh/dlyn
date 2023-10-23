@@ -137,14 +137,6 @@ $(function () {
 		$("html").toggleClass("ColorLessIcons");
 	});
 
-	$('#btn-account').on('click', function () {
-		if ($('#items-btn-account').hasClass('d-none')) {
-			$('#items-btn-account').removeClass('d-none')
-		} else {
-			$('#items-btn-account').addClass('d-none')
-		}
-	})
-
 	$(".sidebar-wrapper").hover(function () {
 		$(".wrapper").addClass("sidebar-hovered");
 	}, function () {
