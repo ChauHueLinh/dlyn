@@ -86,15 +86,15 @@ $(function () {
 	$(function () {
 		for (var i = window.location, o = $(".metismenu li a").filter(function () {
 			return this.href == i;
-		}).addClass("").parent().addClass("mm-active");;) {
+		}).addClass("").parent().addClass("mm-active"); ;) {
 			if (!o.is("li")) break;
 			o = o.parent("").addClass("mm-show").parent("").addClass("mm-active");
 		}
 	}),
-	// metismenu
-	$(function () {
-		$('#menu').metisMenu();
-	});
+		// metismenu
+		$(function () {
+			$('#menu').metisMenu();
+		});
 	/* Back To Top */
 	$(document).ready(function () {
 		$(window).on("scroll", function () {
@@ -120,29 +120,34 @@ $(function () {
 	});
 
 
-	$("#darkmode").on("click", function() {
+	$("#darkmode").on("click", function () {
 		$("html").attr("class", "dark-theme")
-	  }),
-	  
-	  $("#lightmode").on("click", function() {
-		$("html").attr("class", "light-theme")
-	  }),
-	  
-	  $("#darksidebar").on("click", function() {
-		$("html").attr("class", "dark-sidebar")
-	  })
+	}),
+
+		$("#lightmode").on("click", function () {
+			$("html").attr("class", "light-theme")
+		}),
+
+		$("#darksidebar").on("click", function () {
+			$("html").attr("class", "dark-sidebar")
+		})
 
 
-	  $("#ColorLessIcons").on("click", function () {
+	$("#ColorLessIcons").on("click", function () {
 		$("html").toggleClass("ColorLessIcons");
 	});
 
 	$('#btn-account').on('click', function () {
-		if($('#items-btn-account').hasClass('show')) {
-			$('#items-btn-account').removeClass('show')
+		if ($('#items-btn-account').hasClass('d-none')) {
+			$('#items-btn-account').removeClass('d-none')
 		} else {
-			$('#items-btn-account').addClass('show')
+			$('#items-btn-account').addClass('d-none')
 		}
 	})
+
+	$(".sidebar-wrapper").hover(function () {
+		$(".wrapper").addClass("sidebar-hovered");
+	}, function () {
+		$(".wrapper").removeClass("sidebar-hovered");
+	});
 });
-  

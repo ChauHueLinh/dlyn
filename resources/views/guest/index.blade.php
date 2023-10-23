@@ -1,5 +1,5 @@
 @extends('layouts.app-user')
 
 @section('content')
-  {{-- <div id="product-index"></div> --}}
+  <div id="user-dashboard-index"></div>
 @endsection

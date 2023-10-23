@@ -12,7 +12,7 @@
 }
 
 .bg-body-dark {
-  background: linear-gradient(#141e30, #243b55);
+  background: #243b55;
 }
 
 .card-center {
@@ -212,6 +212,13 @@
 
 .border-right {
   border-right: 1px solid;
+}
+
+.option {
+  cursor: pointer;
+}
+.option:hover {
+  background-color: rgb(161, 159, 159);
 }
 
 input:-webkit-autofill,

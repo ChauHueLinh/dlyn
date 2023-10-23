@@ -44,6 +44,7 @@ Route::get('login', [UserLoginController::class, 'showLoginForm'])->name('login.
 
 Route::prefix('')->group(function () {
 	Route::get('', [DashboardController::class, 'index'])->name('guest.index');
+	Route::get('product', [DashboardController::class, 'index'])->name('guest.product');
 	Route::get('test', [TestController::class, 'index']);
 });
 

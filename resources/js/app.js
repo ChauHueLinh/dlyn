@@ -13,3 +13,5 @@ import './components/pages/dashboard/Index';
 import './components/pages/productType/Index';
 
 //user
+import './components/pages-user/product/Index';
+import './components/pages-user/dashboard/Index';
