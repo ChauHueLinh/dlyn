@@ -34,6 +34,7 @@ class ProductCollection extends JsonResource
                 ]);
             }
         }
+
         return [
             'id'                => $this->id,
             'name'              => $this->name,
@@ -45,6 +46,7 @@ class ProductCollection extends JsonResource
             'descriptionImages' => ProductDescriptionImageCollection::collection($this->descriptionImages),
             'suppliers'         => $this->suppliers,
             'productTypeId'     => $this->productTypeId,
+            'productTypeName'   => $this->productType->name,
             'branchId'          => $this->branchId,
         ];
     }

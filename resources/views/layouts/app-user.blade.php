@@ -29,42 +29,42 @@
             <div class="w-25 flex justify-content-end relative">
                 <div class="w-50 relative">
                     <div class="w-100 flex items-center justify-content-center">
-                        <div class="w-100 flex items-center justify-center">
+                        <div class="w-100 cursor-pointer flex items-center justify-center">
                             <a href="abababa"><i class='m-0 py-2 bx bx-bell text-white h3'></i></a>
                         </div>
-                        <div class="w-100 flex items-center justify-center">
+                        <div class="w-100 cursor-pointer flex items-center justify-center">
                             <a href="abababa"><i class='m-0 py-2 bx bx-heart text-white h3'></i></a>
                         </div>
-                        <div class="w-100 flex items-center justify-center">
+                        <div class="w-100 cursor-pointer flex items-center justify-center">
                             <a href="abababa"><i class='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
                         </div>
-                        <div class="w-100 flex items-center justify-center" id="btn-account">
+                        <div class="w-100 cursor-pointer flex items-center justify-center" id="btn-account">
                             <i class='m-0 py-2 bx bx-user text-white h3'></i>
                         </div>
                     </div>
                     <div class="absolute w-100 radius-15 bg-light text-black shadow-lg d-none py-2 overflow-hidden" id="items-btn-account">
                         @if (auth()->guard('user')->user())
-                            <div class="p-2 option">Thông tin tài khoản</div>
-                            <div class="p-2 option">Đổi mật khẩu</div>
+                            <div class="p-2 cursor-pointer option">Thông tin tài khoản</div>
+                            <div class="p-2 cursor-pointer option">Đổi mật khẩu</div>
                         @endif
-                        <div class="p-2 option">{{ auth()->guard('user')->user() ? 'Đăng xuất' : 'Đăng nhập'}}</div>
+                        <div class="p-2 cursor-pointer option">{{ auth()->guard('user')->user() ? 'Đăng xuất' : 'Đăng nhập'}}</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="w-75 mx-auto m-0 flex justify-content-around" id="header-menu">
-            <div class="flex items-center justify-center w-100 py-2">
+            <div class="flex items-center justify-center cursor-pointer w-100 py-2">
                 <a href="{{ route('guest.index')}}" class="text-white">
                     GIỚI THIỆU
                 </a>
             </div>
-            <div class="flex items-center justify-center w-100 py-2">
+            <div class="flex items-center justify-center cursor-pointer w-100 py-2">
                 <a href="{{ route('guest.product')}}" class="text-white">
                     SẢN PHẨM
                 </a>
             </div>
-            <div class="flex items-center justify-center py-2 w-100" class="text-white">BỘ SƯU TẬP</div>
-            <div class="flex items-center justify-center py-2 w-100" class="text-white">SHOWROOM</div>
+            <div class="flex items-center justify-center cursor-pointer py-2 w-100" class="text-white">BỘ SƯU TẬP</div>
+            <div class="flex items-center justify-center cursor-pointer py-2 w-100" class="text-white">SHOWROOM</div>
         </div>
     </div>
     

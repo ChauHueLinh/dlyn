@@ -22,7 +22,7 @@ export default function Modal(props) {
                 >
                     <div className='fixed inset-0 bg-black bg-opacity-25' />
                 </Transition.Child>
-                <div className='fixed inset-0 overflow-auto'>
+                <div className={`${props.containerClass ?? 'fixed inset-0 overflow-auto'}`} style={props?.containerStyle}>
                     <div className={`card-center max-h-100 ${props.wrapperClass && props.wrapperClass}`}>
                         <Transition.Child
                             as={Fragment}
@@ -33,10 +33,10 @@ export default function Modal(props) {
                             leaveFrom='opacity-100 scale-100'
                             leaveTo='opacity-0 scale-95'
                         >
-                            <Dialog.Panel className={props.panelClass ? props.panelClass : 'w-full transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'}>
+                            <Dialog.Panel className={props.panelClass ? props.panelClass : 'w-full transform bg-white p-6 text-left align-middle shadow-xl transition-all'}>
                                 {props.btnClose &&
                                     <button type="button" className="lead absolute max-w-max" style={{ top: '10px', right: '16px' }} onClick={() => props.callbackClose()}>
-                                        <i className='bx bx-x' style={{ fontSize: '30px' }}></i>
+                                        <i className='bx bx-x text-black' style={{ fontSize: '30px' }}></i>
                                     </button>
                                 }
                                 {props.children}

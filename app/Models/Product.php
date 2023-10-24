@@ -71,4 +71,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Supplier::class, 'product_suppliers', 'productId', 'supplierId');
     }
+
+    public function productType()
+    {
+        return $this->hasOne(ProductType::class, 'id', 'productTypeId');
+    }
 }

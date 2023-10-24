@@ -55,7 +55,8 @@ class ProductService
                 'attributes',
                 'mainImage',
                 'descriptionImages',
-                'suppliers'
+                'suppliers',
+                'productType'
             ]);
 
         if (isset($params['per_page'])) {
