@@ -221,6 +221,23 @@
   background-color: rgb(161, 159, 159);
 }
 
+.des-img {
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease-in-out;
+}
+.des-img i {
+  font-size: 40px;
+}
+
+.product-img-user :hover .des-img {
+  opacity: 1;
+}
+
+.product-img-user :hover i {
+  font-size: 40px;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

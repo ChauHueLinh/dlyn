@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LoginController as UserLoginController;
 
-use App\Http\Controllers\Guest\DashboardController;
 
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
@@ -16,7 +15,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ReceiptController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\ProductTypeController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\DashboardController;
 
 use App\Http\Controllers\AdminApi\RoleController as CommonRoleController;
 use App\Http\Controllers\AdminApi\UserController as CommonUserController;
@@ -28,6 +27,9 @@ use App\Http\Controllers\AdminApi\ProductController as CommonProductController;
 use App\Http\Controllers\AdminApi\ReceiptController as CommonReceiptController;
 use App\Http\Controllers\AdminApi\SupplierController as CommonSupplierController;
 use App\Http\Controllers\AdminApi\ProductTypeController as CommonProductTypeController;
+
+use App\Http\Controllers\Guest\DashboardController as UserDashboardController;
+use App\Http\Controllers\Guest\ProductController as UserProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +45,8 @@ use App\Http\Controllers\AdminApi\ProductTypeController as CommonProductTypeCont
 Route::get('login', [UserLoginController::class, 'showLoginForm'])->name('login.get');
 
 Route::prefix('')->group(function () {
-	Route::get('', [DashboardController::class, 'index'])->name('guest.index');
-	Route::get('product', [DashboardController::class, 'index'])->name('guest.product');
-	Route::get('test', [TestController::class, 'index']);
+	Route::get('', [UserDashboardController::class, 'index'])->name('guest.index');
+	Route::get('product', [UserProductController::class, 'index'])->name('guest.product');
 });
 
 
@@ -63,7 +64,7 @@ Route::prefix('cms')->group(function () {
 		Route::get('branch', [BranchController::class, 'index'])->name('branch.index');
 		Route::get('product', [ProductController::class, 'index'])->name('product.index');
 		Route::get('receipt', [ReceiptController::class, 'index'])->name('receipt.index');
-		Route::get('', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+		Route::get('', [DashboardController::class, 'index'])->name('admin.dashboard');
 		Route::get('supplier', [SupplierController::class, 'index'])->name('supplier.index');
 		Route::get('productType', [ProductTypeController::class, 'index'])->name('productType.index');
 		Route::get('order', [OrderController::class, 'index'])->name('order.index');

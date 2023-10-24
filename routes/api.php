@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ProductTypeController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('authAdmin')->group(function () {
-    Route::get('users', function () {
-        return 'chó chỉnh đần';
-    });
-});
+Route::get('product-types', [ProductTypeController::class, 'getList']);
+Route::get('products', [ProductController::class, 'getList']);

@@ -9,7 +9,7 @@ function DashboardIndex() {
     return (
         <div className="bg-light">
             <div className="w-full pt-1 relative">
-                <div className="text-white p-6 card-center tex-break opacity-75 w-75 bg-dark radius-15">
+                <div className="text-white p-6 card-center text-break opacity-75 w-75 bg-dark radius-15 container">
                     <div className="text-center h3">THELYN – Phong cách tạo nên sự khác biệt!</div>
                     <div className="h5 mt-4">
                         THELYN là thương hiệu womenswear, hướng đến những dòng sản phẩm thiết kế, may đo cao cấp, đi sâu vào khai thác các chất liệu và đường nét hiện đại. 
@@ -55,7 +55,7 @@ function DashboardIndex() {
                     </div>
                 </div>
                 <div className="w-50 bg-gray me-4 mb-2 radius-15 flex overflow-hidden">
-                    <div className="w-50">
+                    <div className="">
                         <div className="px-6 py-3 h3 text-break fw-bold text-black">
                             Sản phẩm xuất phát từ tình yêu
                         </div>
@@ -70,9 +70,7 @@ function DashboardIndex() {
                             Chứng minh một điều: THELYN là thương hiệu xuất phát từ tình yêu và khát khao chạm đến trái tim của người phụ nữ, nhằm tôn vinh giá trị, vẻ đẹp truyền thống của người phụ nữ Việt Nam hiện đại.
                         </div>
                     </div>
-                    <div className="flex w-50 space-x-2">
-                        <img src={window.location.href + 'assets/img/index-user-2.jpg'} alt=""/>
-                    </div>
+                    <img src={window.location.href + 'assets/img/index-user-2.jpg'} alt="" className='w-50'/>
                 </div>
             </div>
             <div className="w-full bg-dark">
