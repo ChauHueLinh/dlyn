@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ProductTypeController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('product-types', [ProductTypeController::class, 'getList']);
 Route::get('products', [ProductController::class, 'getList']);
+Route::get('favourite', [UserController::class, 'getListFavourite']);

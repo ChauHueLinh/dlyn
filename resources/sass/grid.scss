@@ -1,0 +1,297 @@
+.item-0 {
+	grid-row-start: span 2;
+	grid-column-start: auto;
+	grid-row-end: 2;
+	grid-column-end: span 2;
+    height: calc(100vw / 16 * 9 - 1rem);
+}
+.item-1 {
+	grid-row-start: span 2;
+	grid-column-start: 3;
+	grid-row-end: 2;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9 - 1.5rem);
+	// padding-bottom: 0.5rem;
+}
+.item-2 {
+	grid-row-start: span 2;
+	grid-column-start: 4;
+	grid-row-end: 2;
+	grid-column-end: 4;
+    height: calc(100vw / 32 * 9 - 1.5rem);
+	// padding-bottom: 0.5rem;
+}
+.item-3 {
+	grid-row-start: 1;
+	grid-column-start: 3;
+	grid-row-end: 2;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9);
+}
+.item-4 {
+	grid-row-start: 1;
+	grid-column-start: 4;
+	grid-row-end: 2;
+	grid-column-end: 4; 
+    height: calc(100vw / 32 * 9);
+}
+.item-5 {
+	grid-row-start: 3;
+	grid-column-start: auto;
+	grid-row-end: 3;
+	grid-column-end: auto;
+    height: calc(100vw / 32 * 9);
+}
+.item-6 {
+	grid-row-start: 3;
+	grid-column-start: 2;
+	grid-row-end: 3;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9);
+}
+.item-7 {
+	grid-row-start: 3;
+	grid-column-start: 3;
+	grid-row-end: 3;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9);
+}
+.item-8 {
+	grid-row-start: 3;
+	grid-column-start: 4;
+	grid-row-end: 3;
+	grid-column-end: 4;
+	height: calc(100vw / 32 * 9);
+}
+.item-9 {
+	grid-row-start: 4;
+	grid-column-start: 1;
+	grid-row-end: 4;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+.item-10 {
+	grid-row-start: 4;
+	grid-column-start: 2;
+	grid-row-end: 4;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+.item-11 {
+	grid-row: 4 / span 2;
+	grid-column-start: 3;
+	grid-row-end: 6;
+	grid-column-end: span 2;
+    height: calc(100vw / 16 * 9);
+	margin-top: 0.25rem;
+}
+.item-12 {
+	grid-row-start: 5;
+	grid-column-start: 1;
+	grid-row-end: 5;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9 - 0.5rem);
+}
+.item-13 {
+	grid-row-start: 5;
+	grid-column-start: 2;
+	grid-row-end: 5;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9 - 0.5rem);
+}
+.item-14 {
+	grid-row-start: 6;
+	grid-column-start: 1;
+	grid-row-end: 6;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-15 {
+	grid-row-start: 6;
+	grid-column-start: 2;
+	grid-row-end: 6;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-16 {
+	grid-row-start: 6;
+	grid-column-start: 3;
+	grid-row-end: 6;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-17 {
+	grid-row-start: 6;
+	grid-column-start: 4;
+	grid-row-end: 6;
+	grid-column-end: 4;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-18 {
+	grid-row: 7 / span 2;
+	grid-column-start: 1;
+	grid-row-end: 9;
+	grid-column-end: 3;
+    height: calc(100vw / 16 * 9);
+	margin-top: 0.25rem;
+}
+.item-19 {
+	grid-row-start: 7;
+	grid-column-start: 3;
+	grid-row-end: 7;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9 - 0.5rem);
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+.item-20 {
+	grid-row-start: 7;
+	grid-column-start: 4;
+	grid-row-end: 7;
+	grid-column-end: 4;
+    height: calc(100vw / 32 * 9 - 0.5rem);
+	margin-top: 0.25rem;
+margin-bottom: 0.25rem;
+}
+.item-21 {
+	grid-row-start: 8;
+	grid-column-start: 3;
+	grid-row-end: 8;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9);
+	margin-bottom: 0.25rem;
+}
+.item-22 {
+	grid-row-start: 8;
+	grid-column-start: 4;
+	grid-row-end: 8;
+	grid-column-end: 4;
+    height: calc(100vw / 32 * 9);
+	margin-bottom: 0.25rem;
+}
+.item-23 {
+	grid-row-start: 9;
+	grid-column-start: 1;
+	grid-row-end: 9;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9);
+}
+.item-24 {
+	grid-row-start: 9;
+	grid-column-start: 2;
+	grid-row-end: 9;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9);
+}
+.item-25 {
+	grid-row-start: 9;
+	grid-column-start: 3;
+	grid-row-end: 9;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9);
+}
+.item-26 {
+	grid-row-start: 9;
+	grid-column-start: 4;
+	grid-row-end: 9;
+	grid-column-end: 4;
+    height: calc(100vw / 32 * 9);
+}
+.item-27 {
+	grid-row-start: 10;
+	grid-column-start: 1;
+	grid-row-end: 10;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+.item-28 {
+	grid-row-start: 10;
+	grid-column-start: 2;
+	grid-row-end: 10;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+.item-29 {
+	grid-row: 10 / span 2;
+	grid-column-start: 3;
+	grid-row-end: 12;
+	grid-column-end: span 2;
+    height: calc(100vw / 16 * 9);
+	margin-top: 0.25rem;
+}
+.item-30 {
+	grid-row-start: 11;
+	grid-column-start: 1;
+	grid-row-end: 11;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9 - 0.5rem);
+}
+.item-31 {
+	grid-row-start: 11;
+	grid-column-start: 2;
+	grid-row-end: 11;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9 - 0.5rem);
+}
+.item-32 {
+	grid-row-start: 12;
+	grid-column-start: 1;
+	grid-row-end: 12;
+	grid-column-end: 1;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-33 {
+	grid-row-start: 12;
+	grid-column-start: 2;
+	grid-row-end: 12;
+	grid-column-end: 2;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-34 {
+	grid-row-start: 12;
+	grid-column-start: 3;
+	grid-row-end: 12;
+	grid-column-end: 3;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+.item-35 {
+	grid-row-start: 12;
+	grid-column-start: 4;
+	grid-row-end: 12;
+	grid-column-end: 4;
+    height: calc(100vw / 32 * 9);
+	margin-top: 0.25rem;
+}
+
+.grid-container {
+	display: grid;
+	grid-row-gap: 0.25rem;
+	grid-column-gap: 0.5rem;
+	grid-template-areas:
+	  'item-0	item-0	item-1 	item-2'
+	  'item-0 	item-0	item-3 	item-4'
+	  'item-5 	item-6	item-7 	item-8'
+	  'item-9 	item-10	item-11 item-11'
+	  'item-12 	item-13	item-11 item-11'
+	  'item-14 	item-15	item-16 item-17'
+	  'item-18 	item-18	item-19 item-20'
+	  'item-18 	item-18	item-21 item-22'
+	  'item-23 	item-24	item-25 item-26'
+	  'item-27 	item-28	item-29 item-29'
+	  'item-30 	item-31	item-29 item-29'
+}
