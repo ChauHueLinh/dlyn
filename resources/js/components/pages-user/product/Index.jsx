@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import axiosAPI from '~/libs/axiosAPI'
+import Pagination from '@mui/material/Pagination';
+import { useCookies } from "react-cookie";
+  
 
 import store from '~/components/store'
 import Detail from '~/components/pages-user/product/Detail'
@@ -9,37 +12,41 @@ import { url } from '~/components/pages-user/product/Url'
 import { modalActions } from '~/components/store/modal-slice'
 
 function ProductIndex() {
+    const btnUserItems = useRef(null);
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
     });
-
-    var NUMBER = new Intl.NumberFormat();
+    const NUMBER = new Intl.NumberFormat();
+    const PER_PAGE = 9
 
     const dispatch = useDispatch()
-    const [bodyWidth, setBodyWidth] = useState(document.body.clientWidth)
-    const [sizeImg, setSizeImg] = useState({
-        width: document.body.clientWidth / 16 * 3 + 'px',
-        height: document.body.clientWidth / 32 * 9 + 'px',
+
+    const [lists, setLists]             = useState([])
+    const [cookies, setCookie]          = useCookies([])
+    const [accessToken, setAccessToken] = useState(cookies?.accessToken ?? '')
+    const [constant, setConstant]       = useState({})
+    const [dataItem, setDataItem]       = useState({})
+    const [loading, setLoading]         = useState(false)
+    const [pagination, setPagination]   = useState({
+        count: 1,
+        page: 1,
     })
-    const [lists, setLists] = useState([])
-    const [filters, setFilters] = useState({})
-    const [constant, setConstant] = useState({})
-    const [dataItem, setDataItem] = useState({})
-    const [loading, setLoading] = useState(false)
     const [paramsConstant, setParamsConstant] = useState({
-        productTypeId: ''
+        productTypeId: '',
+        per_page: PER_PAGE,
+        page: 1,
     })
 
     useEffect(() => {
         function handleResize() {
             var widthImg = window.innerWidth / 16 * 3
             var heightImg = widthImg / 2 * 3
-            setSizeImg({
-                width: widthImg + 'px',
-                height: heightImg + 'px'
-            })
-            setBodyWidth(window.innerWidth)
+            // setSizeImg({
+            //     width: widthImg + 'px',
+            //     height: heightImg + 'px'
+            // })
+            // setBodyWidth(window.innerWidth)
         }
         window.addEventListener('resize', handleResize)
         getListFavourite()
@@ -80,9 +87,7 @@ function ProductIndex() {
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-        }).then((response) => response.json())
-
-        console.log(listFavourite);
+        }).then((response) => response.json())  
 
         // setConstant({...constant,
         //     favourite: product_types.data
@@ -97,7 +102,11 @@ function ProductIndex() {
             },
         }).then((response) => response.json()).then(setLoading(false))
 
-        setLists(products.result)
+        setPagination({
+            count: products.result.lastPage,
+            page: products.result.currentPage
+        })
+        setLists(products.result.products)
     }
 
     const setFavourite = async (productId) => {
@@ -106,6 +115,20 @@ function ProductIndex() {
         } else {
             setLoading(true)
 
+        }
+    }
+
+    const handlePagination = (event, value) => {
+        setPagination({...pagination,
+            page: value
+        })
+    }
+
+    const handleClickBtnUser = () => {
+        if(btnUserItems.current.classList.contains('d-none') == false) {
+            btnUserItems.current.classList.add('d-none')
+        } else {
+            btnUserItems.current.classList.remove('d-none')
         }
     }
 
@@ -126,26 +149,40 @@ function ProductIndex() {
                     <div className="w-50">
                         <img src={window.location.origin + '/assets/img/name.png'} alt="" className="mx-auto" style={{ height: '70px' }} />
                     </div>
-                    <div className="w-25 flex justify-content-end relative">
-                        <div className="w-50 relative">
-                            <div className="w-100 flex items-center justify-content-center">
-                                <div className="w-100 cursor-pointer flex items-center justify-center">
-                                    <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
-                                </div>
-                                <div className="w-100 cursor-pointer flex items-center justify-center">
-                                    <a href="abababa"><i className='m-0 py-2 bx bx-heart text-white h3'></i></a>
-                                </div>
-                                <div className="w-100 cursor-pointer flex items-center justify-center">
-                                    <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
-                                </div>
-                                <div className="w-100 cursor-pointer flex items-center justify-center" id="btn-account">
-                                    <i className='m-0 py-2 bx bx-user text-white h3'></i>
+                    <div className="w-25 relative">
+                        <div className="w-100 relative">
+                            <div className="w-100 flex items-center justify-content-end">
+                                <div className="w-50"></div>
+                                <div className="w-50 flex items-center justify-content-center">
+                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
+                                    </div>
+                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <a href="abababa"><i className='m-0 py-2 bx bx-heart text-white h3'></i></a>
+                                    </div>
+                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
+                                    </div>
+                                    <div className="w-100 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
+                                        <i className='m-0 py-2 bx bx-user text-white h3'></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="absolute w-100 radius-15 bg-light d-none text-black shadow-lg py-2 overflow-hidden" id="items-btn-account">
-                                <div className="p-2 cursor-pointer option">Thông tin tài khoản</div>
-                                <div className="p-2 cursor-pointer option">Đổi mật khẩu</div>
-                                {/* <div className="p-2 cursor-pointer option">{{ auth()-> guard('user') -> user() ? 'Đăng xuất' : 'Đăng nhập'}}</div> */}
+                            <div 
+                                className="absolute w-100 rounded-lg d-none bg-light text-black shadow-lg py-2 overflow-hidden" 
+                                ref={btnUserItems}
+                                onBlur={() => btnUserItems?.current?.classList?.remove('d-none')}
+                                
+                            >
+                                {accessToken != '' ? (
+                                    <div className="">
+                                        <div className="p-2 cursor-pointer option">Thông tin tài khoản</div>
+                                        <div className="p-2 cursor-pointer option">Đổi mật khẩu</div>
+                                        <div className="p-2 cursor-pointer option">Đăng xuất</div>
+                                    </div>
+                                ) : (
+                                    <div className="p-2 cursor-pointer option">Đăng nhập</div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -179,11 +216,14 @@ function ProductIndex() {
                         <div className={`relative cursor-pointer overflow-hidden rounded-lg product-img-user ${'item-' + index}`} key={item.id}>
                             <div className="w-100 absolute p-2 bottom-0">
                                 <div className="w-100 overflow-hidden des-img">
-                                    <div className="py-2 px-3 rounded-lg mb-1 fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{item.name}</div>
-                                    <div className="py-2 px-3 rounded-lg fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{VND.format(item.price)}</div>
+                                    <div className="py-2 w-fit px-3 rounded-lg mb-1 fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{item.name}</div>
+                                    <div className="py-2 w-fit px-3 rounded-lg fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{VND.format(item.price)}</div>
                                 </div>
                             </div>
-                            <div className="des-img absolute right-0 text-end pe-3">
+                            <div className="des-img absolute right-0 text-end pe-3" onClick={() => {
+                                setCookie('accessToken', '')
+                                setAccessToken('1')
+                            }}>
                                 <i className='bx bx-heart-circle' style={{fontSize: '50px'}}></i>
                             </div>
                             <img src={item.mainImage} alt="" className={`h-100 rounded-lg min-width-100 mx-auto`}  onClick={() => openModalDetail(item)}/>
@@ -191,6 +231,19 @@ function ProductIndex() {
                     ))
                 }
             </div>
+            {pagination?.count > 1 && (
+                 <div className="w-100 pb-4">
+                    <div className="w-fit mx-auto">
+                        <Pagination 
+                            count={pagination?.count} 
+                            page={pagination?.page} 
+                            onChange={handlePagination} 
+                            color="secondary"
+                            defaultPage={pagination?.page}
+                        />
+                    </div>
+                </div>
+            )}
             <Detail
                 modalKey='detail'
                 callback={() => callbackUpdate()}

@@ -19,12 +19,21 @@ class ProductController extends Controller
 
     public function getList(Request $request)
     {
-        $params = [];
+        $paramsJson = json_decode($request->params);
+
+        $params = [
+            'per_page' => trim($paramsJson->per_page) ?? 36,
+            'page' => trim($paramsJson->page) ?? 1,
+        ];
 
         $productsCollection = $this->productService->index($params);
-
         $products = ProductCollection::collection($productsCollection);
+        $data = [
+            'products' => $products,
+            'currentPage' => $productsCollection->currentPage(),
+            'lastPage' => $productsCollection->lastPage(),
+        ];
 
-        return Response::responseArray(true, 'Thành công', $products);
+        return Response::responseArray(true, 'Thành công', $data);
     }
 }
