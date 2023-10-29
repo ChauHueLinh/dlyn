@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 import { useState, useEffect } from 'react'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import store from '~/components/store'
 import Add from '~/components/pages/role/Add'
 import Edit from '~/components/pages/role/Edit'
@@ -59,7 +59,7 @@ function RoleIndex(){
     }, [paramConstants])
 
     const getConstant=async() => {
-        await axiosAPI.get(url.constant, paramConstants)
+        await axios.get(url.constant, paramConstants)
             .then((res) => {
                 setConstant({
                     ...constant, 
@@ -70,7 +70,7 @@ function RoleIndex(){
     }
 
     const getList=async() => {
-        await axiosAPI.get(url.index, {params: filters.param})
+        await axios.get(url.index, {params: filters.param})
             .then((res) => {
                 setLists(res.data)
             })

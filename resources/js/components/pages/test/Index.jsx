@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 import { useState, useEffect } from 'react'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import store from '~/components/store'
 import Add from '~/components/pages/role/Add'
 import Edit from '~/components/pages/role/Edit'

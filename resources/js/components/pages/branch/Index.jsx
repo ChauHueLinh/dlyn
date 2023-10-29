@@ -1,5 +1,5 @@
 import React from 'react'
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import ReactDOM from 'react-dom/client'
 import toast from 'react-hot-toast'
 
@@ -59,7 +59,7 @@ function BranchIndex() {
     }, [filters])
 
     const getConstant=async() => {
-        await axiosAPI.get(url.constant)
+        await axios.get(url.constant)
             .then((res) => {
                 setConstant({
                     ...constant, 
@@ -69,7 +69,7 @@ function BranchIndex() {
     }
 
     const getList=async() => {
-        await axiosAPI.get(url.index, {params: filters.param})
+        await axios.get(url.index, {params: filters.param})
             .then((res) => {
                 setLists(res.data)
             })

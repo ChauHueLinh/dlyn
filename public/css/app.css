@@ -36080,8 +36080,12 @@ video {
   z-index: 10;
 }
 
-.z-1000 {
-  z-index: 1000;
+.z-16 {
+  z-index: 16;
+}
+
+.z-17 {
+  z-index: 17;
 }
 
 :-webkit-scrollbar {
@@ -36166,10 +36170,10 @@ img {
   display: block;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+.text-autofill-white input:-webkit-autofill,
+.text-autofill-white input:-webkit-autofill:hover,
+.text-autofill-white input:-webkit-autofill:focus,
+.text-autofill-white input:-webkit-autofill:active {
   -webkit-background-clip: text;
   -webkit-text-fill-color: #ffffff;
   -webkit-transition: background-color 5000s ease-in-out 0s;

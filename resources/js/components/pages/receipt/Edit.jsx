@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import Modal from '~/components//molecules/Modal'
 import Input from '~/components/molecules/Input'
 import SelectBox from '~/components//molecules/SelectBox'
@@ -84,7 +84,7 @@ export default function Add(props) {
 		form.append('note', data?.note ?? '')
 		form.append('_method', 'PUT')
 
-		axiosAPI.post(url.update, form)
+		axios.post(url.update, form)
 			.then((e) => {
 				toast.dismiss()
 				if (e.data.status == true) {
@@ -118,7 +118,7 @@ export default function Add(props) {
 			return false
 		}
 
-		let res = await axiosAPI.get(url.users, { params: { phone: phone, email: email } })
+		let res = await axios.get(url.users, { params: { phone: phone, email: email } })
 		if (provider == 'phone') {
 			setListUserOnPhone(res.data)
 		} else if (provider == 'email') {

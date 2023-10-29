@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalActions } from '~/components/store/modal-slice'
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import Modal from '~/components/molecules/Modal'
 import { url } from '~/components/pages/productType/Url'
 
@@ -23,7 +23,7 @@ export default function Delete(props) {
             form.append('id', props.data.id)
             form.append('_method', 'DELETE')
 
-        axiosAPI.post(url.destroy, form)
+        axios.post(url.destroy, form)
         .then((res) => {
             toast.dismiss()
             if (res.data.status == true) {

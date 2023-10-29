@@ -9,7 +9,7 @@ function DashboardIndex() {
 
     return (
         <div className="bg-light">
-            <div className="w-full bg-body-dark flex flex-wrap top-0 fixed z-1000">
+            <div className="w-full bg-body-dark flex flex-wrap top-0 fixed z-16">
                 <div className="w-100 flex" style={{height: '70px'}}>
                     <div className="w-25 flex items-center h4 ps-4">
 

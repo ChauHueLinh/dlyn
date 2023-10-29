@@ -9,7 +9,7 @@
 	
 	<title>Login</title>
 </head>
-<body>
+<body class="text-autofill-white">
 	<div class="vh-100 vw-100 bg-body-dark">
 		<div class="h-75 w-50 card-center lis-rounded-circle-50 border overflow-hidden flex">
             <div class="w-50 h-100 bg-login">

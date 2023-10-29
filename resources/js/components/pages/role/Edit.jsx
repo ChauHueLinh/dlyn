@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import Input from '~/components/molecules/Input'
 import Modal from '~/components/molecules/Modal'
 import Table from '~/components/molecules/Table'
@@ -69,7 +69,7 @@ export default function Edit(props) {
             form.append('permissions', permissions)
             form.append('_method', 'PUT')
 
-        axiosAPI.post(url.update, form)
+        axios.post(url.update, form)
             .then((res) => {
                 toast.dismiss()
                 console.log(res);

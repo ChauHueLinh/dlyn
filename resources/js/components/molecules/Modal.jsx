@@ -22,8 +22,8 @@ export default function Modal(props) {
                 >
                     <div className='fixed inset-0 bg-black bg-opacity-25' />
                 </Transition.Child>
-                <div className={`${props.containerClass ?? 'fixed inset-0 overflow-auto'}`} style={props?.containerStyle}>
-                    <div className={`card-center max-h-100 ${props.wrapperClass && props.wrapperClass}`}>
+                <div className={`${props.containerClass ?? 'rounded-lg fixed inset-0 overflow-auto'}`} style={props?.containerStyle}>
+                    <div className={`card-center max-h-100 rounded-lg overflow-hidden ${props.wrapperClass && props.wrapperClass}`}>
                         <Transition.Child
                             as={Fragment}
                             enter='ease-out duration-300'

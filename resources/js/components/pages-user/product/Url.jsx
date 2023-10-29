@@ -3,4 +3,5 @@ export const url = {
   'products': '/api/products?params=',
   'favourite': '/api/favourite',
   'dashboard': window.location.origin,
+  'logout': '/logout',
 }

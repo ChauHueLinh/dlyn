@@ -1,5 +1,5 @@
 import React from 'react'
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import ReactDOM from 'react-dom/client'
 import toast from 'react-hot-toast'
 
@@ -80,7 +80,7 @@ function AdminIndex() {
     }, [paramConstants])
 
     const getConstant=async() => {
-        await axiosAPI.get(url.constant, paramConstants)
+        await axios.get(url.constant, paramConstants)
             .then((res) => {
 
                 var roles = res.data.roles
@@ -103,7 +103,7 @@ function AdminIndex() {
     }
 
     const getList=async() => {
-        await axiosAPI.get(url.index, {params: filters.param})
+        await axios.get(url.index, {params: filters.param})
             .then((res) => {
                 setLists(res.data)
             })
@@ -117,7 +117,7 @@ function AdminIndex() {
             form.append('status', !enabled ? 1: 0)
             form.append('_method', 'PUT')
 
-        axiosAPI.post(url.update_status, form)
+        axios.post(url.update_status, form)
         .then((res) => {
             toast.dismiss()
             if(res.data.status == true) {

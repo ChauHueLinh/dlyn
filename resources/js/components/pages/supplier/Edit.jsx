@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import Modal from '~/components/molecules/Modal'
 import Input from '~/components/molecules/Input'
 import SelectBox from '~/components/molecules/SelectBox'
@@ -58,7 +58,7 @@ export default function Add(props) {
             form.append('address', data.address ?? '')
             form.append('_method', 'PUT')
 
-        axiosAPI.post(url.update, form)
+        axios.post(url.update, form)
         .then((e) => {
             toast.dismiss()
             if (e.data.status == true) {
@@ -83,7 +83,7 @@ export default function Add(props) {
     }
 
     const getConstant = async () => {
-        await axiosAPI.get(url.constant, {params: paramsConstant})
+        await axios.get(url.constant, {params: paramsConstant})
             .then((res) => {
                 let provinces = res.data.provinces
                 let districts = res.data.districts

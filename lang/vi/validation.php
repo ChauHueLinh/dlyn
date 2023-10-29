@@ -33,7 +33,7 @@ return [
     ],
     'boolean'               => ':attribute field must be true or false.',
     'can'                   => ':attribute field contains an unauthorized value.',
-    'confirmed'             => ':attribute field confirmation does not match.',
+    'confirmed'             => 'Xác nhận :attribute không trùng khớp.',
     'current_password'      => 'password is incorrect.',
     'date'                  => ':attribute field must be a valid date.',
     'date_equals'           => ':attribute field must be a date equal to :date.',

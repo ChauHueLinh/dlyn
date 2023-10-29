@@ -245,8 +245,12 @@
     z-index: 10;
 }
 
-.z-1000 {
-	z-index: 1000;
+.z-16 {
+	z-index: 16;
+}
+
+.z-17 {
+	z-index: 17;
 }
 
 :-webkit-scrollbar {
@@ -337,12 +341,14 @@ img {
 	}
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: #ffffff;
-	transition: background-color 5000s ease-in-out 0s;
-	font-size: inherit !important;
+.text-autofill-white {
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: #ffffff;
+		transition: background-color 5000s ease-in-out 0s;
+		font-size: inherit !important;
+	}
 }

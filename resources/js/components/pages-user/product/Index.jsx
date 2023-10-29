@@ -8,8 +8,11 @@ import { useCookies } from "react-cookie";
 
 import store from '~/components/store'
 import Detail from '~/components/pages-user/product/Detail'
+import Login from '~/components/pages-user/user/Login'
+import Register from '~/components/pages-user/user/Register'
 import { url } from '~/components/pages-user/product/Url'
 import { modalActions } from '~/components/store/modal-slice'
+import toast, {Toaster} from 'react-hot-toast';
 
 function ProductIndex() {
     const btnUserItems = useRef(null);
@@ -22,13 +25,13 @@ function ProductIndex() {
 
     const dispatch = useDispatch()
 
-    const [lists, setLists]             = useState([])
-    const [cookies, setCookie]          = useCookies([])
-    const [accessToken, setAccessToken] = useState(cookies?.accessToken ?? '')
-    const [constant, setConstant]       = useState({})
-    const [dataItem, setDataItem]       = useState({})
-    const [loading, setLoading]         = useState(false)
-    const [pagination, setPagination]   = useState({
+    const [lists, setLists]                     = useState([])
+    const [cookies, setCookie, removeCookie]    = useCookies([])
+    const [constant, setConstant]               = useState({})
+    const [dataItem, setDataItem]               = useState({})
+    const [loading, setLoading]                 = useState(false)
+    const [user, setUser]                       = useState({})
+    const [pagination, setPagination]           = useState({
         count: 1,
         page: 1,
     })
@@ -50,6 +53,11 @@ function ProductIndex() {
         }
         window.addEventListener('resize', handleResize)
         getListFavourite()
+        setUser({
+            id: cookies.userId,
+            name: cookies.userName,
+            accessToken: cookies.accessToken,
+        })
     }, [])
 
     useEffect(() => {
@@ -132,6 +140,26 @@ function ProductIndex() {
         }
     }
 
+    const logout = () => {
+        let form = new FormData()
+            form.append('accessToken', cookies.accessToken ?? '')
+            form.append('_method', 'DELETE')
+
+        axiosAPI.post(url.logout, form, {headers: {
+            'Authorization': cookies.accessToken,
+            'Content-Type': 'application/json'
+        }})
+        .then((response) => {
+            toast.dismiss()
+            toast.success('Đăng xuất thành công.')
+            removeCookie(['accessToken'])
+            removeCookie(['userId'])
+            removeCookie(['userName'])
+            setUser({})
+        })
+        btnUserItems.current.classList.add('d-none')
+    }
+
     const openModalDetail = (item) => {
         setDataItem(item)
         dispatch(modalActions.open({
@@ -139,9 +167,36 @@ function ProductIndex() {
         }))
     }
 
+    const openModalLogin = () => {
+        btnUserItems.current.classList.add('d-none')
+        dispatch(modalActions.open({
+            name: 'login'
+        }))
+    }
+
+    const openModalRegister = () => {
+        btnUserItems.current.classList.add('d-none')
+        dispatch(modalActions.open({
+            name: 'register'
+        }))
+    }
+
+    // const callbackRegister = () => {
+    //     console.log(cookies);
+    //     setUser({
+    //         id: cookies.userId,
+    //         name: cookies.userName,
+    //         accessToken: cookies.accessToken,
+    //     })
+    // }
+    console.log(user);
     return (
         <div className={`bg-body-dark-5`}>
-            <div className="w-full bg-body-dark flex flex-wrap top-0 fixed z-1000">
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
+            <div className="w-full bg-body-dark flex flex-wrap top-0 fixed z-16">
                 <div className="w-100 flex" style={{ height: '70px' }}>
                     <div className="w-25 flex items-center h4 ps-4">
 
@@ -169,19 +224,22 @@ function ProductIndex() {
                                 </div>
                             </div>
                             <div 
-                                className="absolute w-100 rounded-lg d-none bg-light text-black shadow-lg py-2 overflow-hidden" 
+                                className="absolute w-fit rounded-lg d-none bg-light text-black shadow-lg py-2 overflow-hidden right-0" 
                                 ref={btnUserItems}
                                 onBlur={() => btnUserItems?.current?.classList?.remove('d-none')}
                                 
                             >
-                                {accessToken != '' ? (
+                                {(user?.accessToken) ? (
                                     <div className="">
-                                        <div className="p-2 cursor-pointer option">Thông tin tài khoản</div>
-                                        <div className="p-2 cursor-pointer option">Đổi mật khẩu</div>
-                                        <div className="p-2 cursor-pointer option">Đăng xuất</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break">Thông tin tài khoản</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break">Đổi mật khẩu</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break" onClick={() => logout()}>Đăng xuất</div>
                                     </div>
                                 ) : (
-                                    <div className="p-2 cursor-pointer option">Đăng nhập</div>
+                                    <div className="">
+                                        <div className="py-2 px-3 cursor-pointer option text-break" onClick={() => openModalLogin()}>Đăng nhập</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break" onClick={() => openModalRegister()}>Đăng ký</div>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -200,7 +258,7 @@ function ProductIndex() {
                     <div className="flex items-center justify-center cursor-pointer py-2 w-100 text-white">SHOWROOM</div>
                 </div>
             </div>
-            <div className="w-100 flex mx-auto" style={{height: '107px'}}>
+            <div className="w-100 flex mx-auto" style={{marginTop: '107px'}}>
                 {constant?.productTypes?.map((item) => (
                     <div
                         className={`w-full cursor-pointer p-3 text-black text-center bg-gray ${paramsConstant?.productTypeId != item.id && 'opacity-50'}`} key={item.id}
@@ -246,8 +304,17 @@ function ProductIndex() {
             )}
             <Detail
                 modalKey='detail'
-                callback={() => callbackUpdate()}
                 data={dataItem}
+            />
+            <Login
+                modalKey='login'
+                callbackLogin={(value) => setUser(value)}
+                callbackOpenRegister={() => openModalRegister()}
+            />
+            <Register
+                modalKey='register'
+                callbackRegister={(value) => setUser(value)}
+                callbackOpenLogin={() => openModalLogin()}
             />
         </div>
     )

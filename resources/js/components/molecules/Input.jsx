@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 export default function Input(props) {
 
-    const [errors, setErrors] = useState({})
-    const [value, setValue]   = useState('')
+    const [errors, setErrors]       = useState({})
+    const [value, setValue]         = useState('')
     const [isChecked, setIsChecked] = useState(false)
+    const [type, setType]           = useState(props?.type)
 
     const isDisabled = props.disabled == true ? true : false
     const inputClass = props.inputClass ?
-                       props.inputClass :
-                       "bg-gray-50 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        props.inputClass :
+        "bg-gray-50 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
     const labelClass = props.labelClass ? props.labelClass : "mb-2 text-sm font-medium text-gray-900 flex items-center space-x-2"
 
     useEffect(() => {
@@ -64,29 +65,39 @@ export default function Input(props) {
                     {props.isRequired && <p className="text-red-500">*</p>}
                 </label>
             )}
-
-            { props.children
-                ?
-                    props.children
-                :
-                    <input
-                        type={props.type ?? "text"}
-                        name={props.name} value={value}
-                        id={props.name}
-                        className={`${inputClass} ${errors.message && 'border-red-500'} ${isDisabled == true && 'bg-gray'} shadow-md`}
-                        placeholder={props.placeholder}
-                        onChange={e => handleChange(e)}
-                        disabled={isDisabled}
-                        min={props?.min}
-                        step={props?.step}
-                        checked={isChecked}
-                        onBlur={props?.callbackOnBlur}
-                    />
-            }
-            
-            { errors.message && errors.message.map((item, index) => (
-                <div key={index} className="text-red-500 mt-1">{ item }</div>
-            )) }
+            <div className="relative">
+                {props?.type == 'password' && (
+                    <div 
+                        className="flex items-center justify-center absolute right-0 h-100" 
+                        style={{ width: '40px', fontSize: '25px' }}
+                        onClick={() => {
+                            setType(type == 'password' ? 'text' : 'password')
+                        }}
+                    >
+                        {type == 'password' ? (
+                            <i className='bx bxs-hide' ></i>
+                        ) : (
+                            <i className='bx bxs-show' ></i>
+                        )}
+                    </div>
+                )}
+                <input
+                    type={type}
+                    name={props.name} value={value}
+                    id={props.name}
+                    className={`${inputClass} ${errors.message && 'border-red-500'} ${isDisabled == true && 'bg-gray'} shadow-md`}
+                    placeholder={props?.placeholder ?? '1'}
+                    onChange={e => handleChange(e)}
+                    disabled={isDisabled}
+                    min={props?.min}
+                    step={props?.step}
+                    checked={isChecked}
+                    onBlur={props?.callbackOnBlur}
+                />
+            </div>
+            {errors.message && errors.message.map((item, index) => (
+                <div key={index} className="text-red-500 mt-1">{item}</div>
+            ))}
         </div>
     )
 }

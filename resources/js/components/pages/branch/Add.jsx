@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import Modal from '~/components/molecules/Modal'
 import Input from '~/components/molecules/Input'
 import UploadFile from '~/components/molecules/UploadFile'
@@ -38,7 +38,7 @@ export default function Add(props) {
             form.append('name', data.name ?? '')
             form.append('avatar', data.avatar ?? '')
 
-        axiosAPI.post(url.store, form)
+        axios.post(url.store, form)
         .then((e) => {
             toast.dismiss()
             if (e.data.status == true) {

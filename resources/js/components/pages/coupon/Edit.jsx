@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import axiosAPI from '~/libs/axiosAPI'
+import axios from '~/libs/axios'
 import Input from '~/components/molecules/Input'
 import Modal from '~/components/molecules/Modal'
 import SelectBox from '~/components/molecules/SelectBox'
@@ -43,7 +43,7 @@ export default function Edit(props) {
             dataItem.file && form.append('avatar', dataItem.file)
             dataItem.file && form.append('password', dataItem.password ?? '')
 
-        axiosAPI.post(url.update, form)
+        axios.post(url.update, form)
         .then((e) => {
             toast.dismiss()
             if (e.data.status == true) {

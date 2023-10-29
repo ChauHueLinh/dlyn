@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 axios.defaults.validateStatus = (status) => status < 500;
 const instance = axios.create({
-    baseURL: 'common-api',
+    baseURL: 'api',
     timeout: 15000,
     headers: {
         'content-type': 'application/json'
