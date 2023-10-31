@@ -52,6 +52,13 @@ class Product extends Model
         });
     }
 
+    public function scopeUser($query, $userId)
+    {
+        return $query->whereHas('users', function ($q) use($userId) {
+            return $q->where('userId', $userId);
+        });
+    }
+
     public function attributes()
     {
         return $this->hasMany(ProductAttribute::class, 'productId', 'id');
@@ -75,5 +82,10 @@ class Product extends Model
     public function productType()
     {
         return $this->hasOne(ProductType::class, 'id', 'productTypeId');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(UserFavourite::class, 'productId', 'id');
     }
 }

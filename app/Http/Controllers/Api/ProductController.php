@@ -19,12 +19,11 @@ class ProductController extends Controller
 
     public function getList(Request $request)
     {
-        $paramsJson = json_decode($request->params);
-
         $params = [
-            'per_page' => trim($paramsJson->per_page) ?? 36,
-            'page' => trim($paramsJson->page) ?? 1,
+            'per_page' => $request->per_page,
+            'page' => $request->page,
         ];
+        isset($request->userId) && $params['userId'] =  $request->userId;
 
         $productsCollection = $this->productService->index($params);
         $products = ProductCollection::collection($productsCollection);

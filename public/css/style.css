@@ -27,6 +27,10 @@
   max-height: 100vh;
 }
 
+.min-h-100 {
+  min-height: 100vh;
+}
+
 .bg-body-dark {
   background: #243b55;
 }

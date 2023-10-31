@@ -1,39 +1,152 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider, useDispatch, useSelector } from 'react-redux'
-
+import axiosAPI from '~/libs/axiosAPI'
 import store from '~/components/store'
-import {url} from '~/components/pages-user/dashboard/Url'
+import { url } from '~/components/pages-user/dashboard/Url'
+import { useCookies } from 'react-cookie'
+import toast, { Toaster } from 'react-hot-toast'
+import { modalActions } from '~/components/store/modal-slice'
+import Login from '~/components/pages-user/user/Login'
+import Register from '~/components/pages-user/user/Register'
 
 function DashboardIndex() {
+    const dispatch = useDispatch()
+
+    const btnUserItems = useRef(null);
+    const [cookies, setCookie, removeCookie]    = useCookies([])
+    const [user, setUser]                       = useState({
+        accessToken: cookies.accessToken
+    })
+
+    useEffect(() => {
+        function handleResize() {
+            var widthImg = window.innerWidth / 16 * 3
+            var heightImg = widthImg / 2 * 3
+            // setSizeImg({
+            //     width: widthImg + 'px',
+            //     height: heightImg + 'px'
+            // })
+            // setBodyWidth(window.innerWidth)
+        }
+        window.addEventListener('resize', handleResize)
+        setUser({
+            accessToken: cookies.accessToken,
+        })
+        if(user?.accessToken != undefined && user?.accessToken != '') {
+            getMe(cookies.accessToken)
+        }
+    }, [])
+
+    const handleClickBtnUser = () => {
+        if(btnUserItems.current.classList.contains('d-none') == false) {
+            btnUserItems.current.classList.add('d-none')
+        } else {
+            btnUserItems.current.classList.remove('d-none')
+        }
+    }
+
+    const logout = () => {
+        axiosAPI.delete(url.logout, {headers: {
+            'Authorization': user.accessToken,
+            'Content-Type': 'application/json'
+        }})
+        .then((response) => {
+            toast.dismiss()
+            if(response?.data?.status == true) {
+                toast.success('Đăng xuất thành công.')
+                removeCookie(['accessToken'])
+                setUser({})
+            } else {
+                toast.error('Đăng xuất thất bại.')
+            }
+        })
+        btnUserItems.current.classList.add('d-none')
+    }
+
+    const getMe = (token) => {
+        if(token != undefined) {
+            let user = axiosAPI.get(url.me, {headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }}).then((response) => {
+                setUser({...user,
+                    id: response.data.result.id,
+                    name: response.data.result.name,
+                    favourites: response.data.result.favourites,
+                    accessToken: token,
+                })
+            })
+        } else {
+            return false
+        }
+    }
+
+    const openModalLogin = () => {
+        btnUserItems.current.classList.add('d-none')
+        dispatch(modalActions.open({
+            name: 'login'
+        }))
+    }
+
+    const openModalRegister = () => {
+        btnUserItems.current.classList.add('d-none')
+        dispatch(modalActions.open({
+            name: 'register'
+        }))
+    }
 
     return (
         <div className="bg-light">
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="w-full bg-body-dark flex flex-wrap top-0 fixed z-16">
-                <div className="w-100 flex" style={{height: '70px'}}>
+                <div className="w-100 flex" style={{ height: '70px' }}>
                     <div className="w-25 flex items-center h4 ps-4">
 
                     </div>
                     <div className="w-50">
-                        <img src={window.location.origin + '/assets/img/name.png'} alt="" className="mx-auto" style={{height: '70px'}}/>
+                        <img src={window.location.origin + '/assets/img/name.png'} alt="" className="mx-auto" style={{ height: '70px' }} />
                     </div>
-                    <div className="w-25 flex justify-content-end relative">
-                        <div className="w-50 relative">
-                            <div className="w-100 flex items-center justify-content-center">
-                                <div className="w-100 cursor-pointer flex items-center justify-center">
-                                    <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
-                                </div>
-                                <div className="w-100 cursor-pointer flex items-center justify-center">
-                                    <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
-                                </div>
-                                <div className="w-100 cursor-pointer flex items-center justify-center" id="btn-account">
-                                    <i className='m-0 py-2 bx bx-user text-white h3'></i>
+                    <div className="w-25 relative">
+                        <div className="w-100 relative">
+                            <div className="w-100 flex items-center justify-content-end">
+                                <div className="w-50"></div>
+                                <div className="w-50 flex items-center justify-content-center">
+                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
+                                    </div>
+                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <a href="abababa"><i className='m-0 py-2 bx bx-heart text-white h3'></i></a>
+                                    </div>
+                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
+                                    </div>
+                                    <div className="w-100 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
+                                        <i className='m-0 py-2 bx bx-user text-white h3'></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="absolute w-100 radius-15 bg-light text-black shadow-lg d-none py-2 overflow-hidden" id="items-btn-account">
-                                <div className="p-2 cursor-pointer option">Thông tin tài khoản</div>
-                                <div className="p-2 cursor-pointer option">Đổi mật khẩu</div>
-                                {/* <div className="p-2 cursor-pointer option">{{ auth()-> guard('user') -> user() ? 'Đăng xuất' : 'Đăng nhập'}}</div> */}
+                            <div
+                                className="absolute w-fit rounded-lg d-none bg-light text-black shadow-lg py-2 overflow-hidden right-0"
+                                ref={btnUserItems}
+                                onBlur={() => btnUserItems?.current?.classList?.remove('d-none')}
+
+                            >
+                                {(user?.accessToken) ? (
+                                    <div className="">
+                                        <div className="py-2 px-3 cursor-pointer option text-break">Thông tin tài khoản</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break">Đổi mật khẩu</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break" onClick={() => logout()}>Đăng xuất</div>
+                                    </div>
+                                ) : (
+                                    <div className="">
+                                        <div className="py-2 px-3 cursor-pointer option text-break" onClick={() => openModalLogin()}>Đăng nhập</div>
+                                        <div className="py-2 px-3 cursor-pointer option text-break" onClick={() => openModalRegister()}>Đăng ký</div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -51,7 +164,7 @@ function DashboardIndex() {
                     <div className="flex items-center justify-center cursor-pointer py-2 w-100 text-white">SHOWROOM</div>
                 </div>
             </div>
-            <div className="w-full pt-1 relative" style={{marginTop: '107px'}}>
+            <div className="w-full pt-1 relative" style={{ marginTop: '107px' }}>
                 <div className="text-white p-6 card-center text-break opacity-75 w-75 bg-dark radius-15 container">
                     <div className="text-center h3">THELYN – Phong cách tạo nên sự khác biệt!</div>
                     <div className="h5 mt-4">
@@ -180,6 +293,22 @@ function DashboardIndex() {
                     </div>
                 </div>
             </div>
+            <Login
+                modalKey='login'
+                callbackLogin={(value) => {
+                    setUser(value)
+                    getMe(value.accessToken)
+                }}
+                callbackOpenRegister={() => openModalRegister()}
+            />
+            <Register
+                modalKey='register'
+                callbackRegister={(value) => {
+                    setUser(value)
+                    getMe(value.accessToken)
+                }}
+                callbackOpenLogin={() => openModalLogin()}
+            />
         </div>
     )
 }

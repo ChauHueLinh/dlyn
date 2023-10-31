@@ -48,6 +48,9 @@ class ProductService
             })
             ->when(isset($params['branchId']), function ($query) use ($params) {
                 return $query->branch($params['branchId']);
+            })
+            ->when(isset($params['userId']), function ($query) use ($params) {
+                return $query->user($params['userId']);
             });
 
         $products = $products

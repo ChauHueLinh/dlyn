@@ -4,8 +4,6 @@ import { Provider, useDispatch, useSelector } from 'react-redux'
 import axiosAPI from '~/libs/axiosAPI'
 import Pagination from '@mui/material/Pagination';
 import { useCookies } from "react-cookie";
-  
-
 import store from '~/components/store'
 import Detail from '~/components/pages-user/product/Detail'
 import Login from '~/components/pages-user/user/Login'
@@ -82,18 +80,21 @@ function ProductIndex() {
     }
 
     const getList = async () => {
-        var products = await fetch(url.products + JSON.stringify(paramsConstant), {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        }).then((response) => response.json()).then(setLoading(false))
-
-        setPagination({
-            count: products.result.lastPage,
-            page: products.result.currentPage
+        let params = {
+            per_page: PER_PAGE,
+            page: pagination.page ?? 1,
+            userId: paramsConstant.userId,
+        }
+        axiosAPI.get(url.products, {params: params}, {headers: {
+            'Content-Type': 'application/json'
+        }}).then((response) => {
+            setPagination({
+                count: response.data.result.lastPage,
+                page: response.data.result.currentPage
+            })
+            setLists(response.data.result.products)
         })
-        setLists(products.result.products)
+
     }
 
     const setFavourite = async (productId) => {
@@ -201,7 +202,7 @@ function ProductIndex() {
     }
     console.log(user);
     return (
-        <div className={`bg-body-dark-5`}>
+        <div className={`bg-body-dark-5 min-h-100`}>
             <Toaster
                 position="top-center"
                 reverseOrder={false}
@@ -219,12 +220,16 @@ function ProductIndex() {
                             <div className="w-100 flex items-center justify-content-end">
                                 <div className="w-50"></div>
                                 <div className="w-50 flex items-center justify-content-center">
-                                    <div className="w-100 cursor-pointer flex items-center justify-center">
-                                        <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
-                                    </div>
-                                    <div className="w-100 cursor-pointer flex items-center justify-center">
-                                        <a href="abababa"><i className='m-0 py-2 bx bx-heart text-white h3'></i></a>
-                                    </div>
+                                    {user.id && (
+                                        <div className="w-100 cursor-pointer flex items-center justify-center">
+                                            <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
+                                        </div>
+                                    )}
+                                    {user.id && (
+                                        <div className="w-100 cursor-pointer flex items-center justify-center" onClick={() => setParamsConstant({...paramsConstant, userId: user.id ?? ''})}>
+                                            <i className='m-0 py-2 bx bx-heart text-white h3'></i>
+                                        </div>
+                                    )}
                                     <div className="w-100 cursor-pointer flex items-center justify-center">
                                         <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
                                     </div>

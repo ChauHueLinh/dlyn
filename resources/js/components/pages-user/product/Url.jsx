@@ -1,6 +1,6 @@
 export const url = {
   'productTypes': '/api/product-types?params=',
-  'products': '/api/products?params=',
+  'products': '/products',
   'favourite': '/favourite',
   'dashboard': window.location.origin,
   'logout': '/logout',
