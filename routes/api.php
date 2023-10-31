@@ -20,12 +20,15 @@ Route::controller(UserController::class)->group(function () {
         Route::post('login', 'login');
         Route::post('register', 'register');
     });
-
+    
     Route::middleware(['auth:sanctum'])->group(function () {
+        Route::get('me', 'me');
+
+        Route::post('favourite', 'favourite');
+        
         Route::delete('logout', 'logout');
     });
 });
 
 Route::get('product-types', [ProductTypeController::class, 'getList']);
 Route::get('products', [ProductController::class, 'getList']);
-Route::get('favourite', [UserController::class, 'getListFavourite']);

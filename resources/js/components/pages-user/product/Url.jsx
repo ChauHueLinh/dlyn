@@ -1,7 +1,8 @@
 export const url = {
   'productTypes': '/api/product-types?params=',
   'products': '/api/products?params=',
-  'favourite': '/api/favourite',
+  'favourite': '/favourite',
   'dashboard': window.location.origin,
   'logout': '/logout',
+  'me': '/me',
 }

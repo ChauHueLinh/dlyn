@@ -21,7 +21,7 @@ function ProductIndex() {
         currency: 'VND',
     });
     const NUMBER = new Intl.NumberFormat();
-    const PER_PAGE = 9
+    const PER_PAGE = 36
 
     const dispatch = useDispatch()
 
@@ -30,7 +30,9 @@ function ProductIndex() {
     const [constant, setConstant]               = useState({})
     const [dataItem, setDataItem]               = useState({})
     const [loading, setLoading]                 = useState(false)
-    const [user, setUser]                       = useState({})
+    const [user, setUser]                       = useState({
+        accessToken: cookies.accessToken
+    })
     const [pagination, setPagination]           = useState({
         count: 1,
         page: 1,
@@ -52,12 +54,12 @@ function ProductIndex() {
             // setBodyWidth(window.innerWidth)
         }
         window.addEventListener('resize', handleResize)
-        getListFavourite()
         setUser({
-            id: cookies.userId,
-            name: cookies.userName,
             accessToken: cookies.accessToken,
         })
+        if(user?.accessToken != undefined && user?.accessToken != '') {
+            getMe(cookies.accessToken)
+        }
     }, [])
 
     useEffect(() => {
@@ -66,40 +68,17 @@ function ProductIndex() {
     }, [paramsConstant])
 
     const getConstant = async () => {
-        var product_types = await fetch(url.productTypes + JSON.stringify(paramsConstant), {
+        let product_types = await fetch(url.productTypes + JSON.stringify(paramsConstant), {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         }).then((response) => response.json())
-
-        var listFavourite = await fetch(url.favourite, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        }).then((response) => response.json())
-
-        product_types?.data?.unshift({ id: '', name: 'TẤT CẢ' })
 
         setConstant({
             ...constant,
             productTypes: product_types.data
         })
-    }
-
-    const getListFavourite = async () => {
-
-        var listFavourite = await fetch(url.favourite, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        }).then((response) => response.json())  
-
-        // setConstant({...constant,
-        //     favourite: product_types.data
-        // })
     }
 
     const getList = async () => {
@@ -118,11 +97,35 @@ function ProductIndex() {
     }
 
     const setFavourite = async (productId) => {
-        if (loading == true) {
-            return false
+        if(!user.accessToken) {
+            openModalLogin()
         } else {
-            setLoading(true)
-
+            let favourites = user.favourites ?? []
+            if (loading == true) {
+                return false
+            } else {
+                setLoading(true)
+                let form = new FormData
+                    form.append('productId', productId)
+                if(favourites?.includes(productId)) {
+                    form.append('status', 'delete')
+                    favourites = favourites?.filter((item) => item != productId)
+                } else {
+                    form.append('status', 'create')
+                    favourites?.push(productId)
+                }
+                axiosAPI.post(url.favourite, form, {headers: {
+                    'Authorization': user.accessToken,
+                    'Content-Type': 'application/json'
+                }}).then((response) => {
+                    setLoading(false)
+                    toast.dismiss()
+                    toast.success(response?.data?.message)
+                    setUser({...user,
+                        favourites: favourites
+                    })
+                })
+            }
         }
     }
 
@@ -140,22 +143,38 @@ function ProductIndex() {
         }
     }
 
-    const logout = () => {
-        let form = new FormData()
-            form.append('accessToken', cookies.accessToken ?? '')
-            form.append('_method', 'DELETE')
+    const getMe = (token) => {
+        if(token != undefined) {
+            let user = axiosAPI.get(url.me, {headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }}).then((response) => {
+                setUser({...user,
+                    id: response.data.result.id,
+                    name: response.data.result.name,
+                    favourites: response.data.result.favourites,
+                    accessToken: token,
+                })
+            })
+        } else {
+            return false
+        }
+    }
 
-        axiosAPI.post(url.logout, form, {headers: {
-            'Authorization': cookies.accessToken,
+    const logout = () => {
+        axiosAPI.delete(url.logout, {headers: {
+            'Authorization': user.accessToken,
             'Content-Type': 'application/json'
         }})
         .then((response) => {
             toast.dismiss()
-            toast.success('Đăng xuất thành công.')
-            removeCookie(['accessToken'])
-            removeCookie(['userId'])
-            removeCookie(['userName'])
-            setUser({})
+            if(response?.data?.status == true) {
+                toast.success('Đăng xuất thành công.')
+                removeCookie(['accessToken'])
+                setUser({})
+            } else {
+                toast.error('Đăng xuất thất bại.')
+            }
         })
         btnUserItems.current.classList.add('d-none')
     }
@@ -180,15 +199,6 @@ function ProductIndex() {
             name: 'register'
         }))
     }
-
-    // const callbackRegister = () => {
-    //     console.log(cookies);
-    //     setUser({
-    //         id: cookies.userId,
-    //         name: cookies.userName,
-    //         accessToken: cookies.accessToken,
-    //     })
-    // }
     console.log(user);
     return (
         <div className={`bg-body-dark-5`}>
@@ -278,11 +288,8 @@ function ProductIndex() {
                                     <div className="py-2 w-fit px-3 rounded-lg fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{VND.format(item.price)}</div>
                                 </div>
                             </div>
-                            <div className="des-img absolute right-0 text-end pe-3" onClick={() => {
-                                setCookie('accessToken', '')
-                                setAccessToken('1')
-                            }}>
-                                <i className='bx bx-heart-circle' style={{fontSize: '50px'}}></i>
+                            <div className="des-img absolute right-0 text-end pe-3" onClick={() => setFavourite(item.id)}>
+                                <i className={`bx bx-heart-circle ${user?.favourites?.includes(item?.id) && 'text-red'}`} style={{fontSize: '50px'}}></i>
                             </div>
                             <img src={item.mainImage} alt="" className={`h-100 rounded-lg min-width-100 mx-auto`}  onClick={() => openModalDetail(item)}/>
                         </div>
@@ -308,12 +315,18 @@ function ProductIndex() {
             />
             <Login
                 modalKey='login'
-                callbackLogin={(value) => setUser(value)}
+                callbackLogin={(value) => {
+                    setUser(value)
+                    getMe(value.accessToken)
+                }}
                 callbackOpenRegister={() => openModalRegister()}
             />
             <Register
                 modalKey='register'
-                callbackRegister={(value) => setUser(value)}
+                callbackRegister={(value) => {
+                    setUser(value)
+                    getMe(value.accessToken)
+                }}
                 callbackOpenLogin={() => openModalLogin()}
             />
         </div>

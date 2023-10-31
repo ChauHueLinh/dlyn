@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Helper\Response;
 use App\Models\User;
+use App\Models\UserFavourite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\TryCatch;
@@ -104,5 +105,31 @@ class UserService
         ];
 
         return Response::responseArray(true, "Đăng nhập thành công.", $data);
+    }
+
+    public function me($userId)
+    {
+        $user = $this->user
+            ->where('id', $userId)
+            ->with([
+            'favourites'
+            ])
+            ->first();
+        
+        return Response::responseArray(true, 'Thành công.', $user);
+    }
+
+    public function setFavourite($params)
+    {
+        $user = $this->user->find($params['userId']);
+        if($params['status'] == 'create') {
+            $userFavourite = new UserFavourite();
+            $userFavourite->productId = $params['productId'];
+            $user->favourites()->save($userFavourite);
+            return Response::responseArray(true, 'Đã thêm vào danh sách yêu thích.');
+        } else {
+            $user->favourites()->where('productId', $params['productId'])->delete();
+            return Response::responseArray(true, 'Đã xóa khỏi danh sách yêu thích.');
+        }  
     }
 }

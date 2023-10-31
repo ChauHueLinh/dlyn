@@ -46,12 +46,8 @@ export default function Register(props) {
                 if(response.data.status == true) {
                     toast.success(response.data.message)
                     props.callbackRegister({
-                        id: response.data.result.id,
-                        name: response.data.result.name,
-                        accessToken: response.data.result.accessToken,
+                        accessToken: 'Bearer ' + response.data.result.accessToken,
                     })
-                    setCookie('userId', response.data.result.id)
-                    setCookie('userName', response.data.result.name)
                     setCookie('accessToken', 'Bearer ' + response.data.result.accessToken)
                     close()
                 } else {

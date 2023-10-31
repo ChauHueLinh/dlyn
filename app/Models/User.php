@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $query->where('email', 'LIKE', '%'.$email.'%');
     }
+
+    public function favourites()
+    {
+        return $this->hasMany(UserFavourite::class, 'userId');
+    }
 }

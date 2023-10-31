@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_favourites', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('userId');
-            $table->string('productId');
+            $table->bigInteger('userId');
+            $table->bigInteger('productId');
             $table->timestamps();
         });
     }

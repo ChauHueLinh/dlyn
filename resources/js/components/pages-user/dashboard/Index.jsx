@@ -24,9 +24,6 @@ function DashboardIndex() {
                                     <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
                                 </div>
                                 <div className="w-100 cursor-pointer flex items-center justify-center">
-                                    <a href="abababa"><i className='m-0 py-2 bx bx-heart text-white h3'></i></a>
-                                </div>
-                                <div className="w-100 cursor-pointer flex items-center justify-center">
                                     <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
                                 </div>
                                 <div className="w-100 cursor-pointer flex items-center justify-center" id="btn-account">

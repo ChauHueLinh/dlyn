@@ -6,6 +6,8 @@ use App\Helper\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\Login;
 use App\Http\Requests\Api\User\Register;
+use App\Http\Resources\User\DetailUserClollection;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -44,9 +46,13 @@ class UserController extends Controller
         }
     }
 
-    public function information()
+    public function me(Request $request)
     {
+        $userId = $request->user()->id;
+        $result = $this->userService->me($userId);
+        $user = new DetailUserClollection($result['result']);
 
+        return Response::responseJson($result['status'], $result['message'], $user);
     }
 
     public function sendMailResetPassword()
@@ -59,8 +65,15 @@ class UserController extends Controller
 
     }
 
-    public function getListFavourite(Request $request)
+    public function favourite(Request $request)
     {
-        return true;
+        $params = [
+            'userId'    => $request->user()->id,
+            'productId' => $request->productId,
+            'status'    => $request->status,
+        ];
+        $result = $this->userService->setFavourite($params);
+        
+        return Response::responseJson($result['status'], $result['message']);
     }
 }
