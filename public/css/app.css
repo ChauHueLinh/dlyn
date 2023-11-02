@@ -35897,6 +35897,14 @@ video {
   min-height: 100vh;
 }
 
+.h-0 {
+  height: 0px;
+}
+
+.w-0 {
+  width: 0px;
+}
+
 .bg-body-dark {
   background: #243b55;
 }
@@ -36183,6 +36191,10 @@ img {
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
   font-size: inherit !important;
+}
+
+.transition-10 {
+  transition: 1s ease-in-out;
 }
 
 .item-0 {

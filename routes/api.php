@@ -30,5 +30,9 @@ Route::controller(UserController::class)->group(function () {
     });
 });
 
+Route::controller(ProductController::class)->group(function () {
+    Route::get('products', 'getList');
+    Route::get('product/similar', 'getSimilarProducts');
+
+});
 Route::get('product-types', [ProductTypeController::class, 'getList']);
-Route::get('products', [ProductController::class, 'getList']);

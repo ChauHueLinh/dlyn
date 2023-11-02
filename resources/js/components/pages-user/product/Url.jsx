@@ -1,8 +1,9 @@
 export const url = {
-  'productTypes': '/api/product-types?params=',
+  'me': '/me',
+  'logout': '/logout',
   'products': '/products',
   'favourite': '/favourite',
   'dashboard': window.location.origin,
-  'logout': '/logout',
-  'me': '/me',
+  'productTypes': '/api/product-types?params=',
+  'similarProducts': 'product/similar'
 }

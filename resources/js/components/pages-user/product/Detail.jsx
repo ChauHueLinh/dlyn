@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
-
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-
 import Modal from '~/components/molecules/Modal'
 import {modalActions} from '~/components/store/modal-slice'
+import axiosAPI from '~/libs/axiosAPI'
+import { url } from '~/components/pages-user/product/Url'
 
 export default function Detail(props) {
     const VND = new Intl.NumberFormat('vi-VN', {
@@ -17,12 +17,13 @@ export default function Detail(props) {
     const status     = useSelector((state) => state.modal.isOpen)
     const collection = useSelector((state) => state.modal.collection)
 
-    const [errors, setErrors]         = useState({})
-    const [images, setImages]         = useState([])
-    const [focusImg, setFocusImg]     = useState(props.data.mainImage)
-    const [loading, setLoading]       = useState(false)
-    const [data, setData]             = useState(props.data)
-    const [cartItem, setCartItem]     = useState({})
+    const [errors, setErrors]                   = useState({})
+    const [images, setImages]                   = useState([])
+    const [focusImg, setFocusImg]               = useState(props.data.mainImage)
+    const [loading, setLoading]                 = useState(false)
+    const [data, setData]                       = useState(props.data)
+    const [cartItem, setCartItem]               = useState({})
+    const [similarProducts, serSimilarProducts] = useState([])
 
     const openDialog = collection.name == props.modalKey && status
 
@@ -44,7 +45,7 @@ export default function Detail(props) {
         setImages(imgs)
         setData(props.data)
         setFocusImg(props.data.mainImage)
-
+        getSimilarProducts(props.data.id)
     }, [props.data, status])
 
     const minusCartItem = () => {
@@ -63,6 +64,19 @@ export default function Detail(props) {
             return false
         } else {
             setCartItem({...cartItem, quantity: cartItem.quantity + 1})
+        }
+    }
+
+    const getSimilarProducts = async (productId) => {
+        if(productId) {
+            let params = {
+                productId: productId,
+            }
+            axiosAPI.get(url.similarProducts, {params: params}, {headers: {
+                'Content-Type': 'application/json'
+            }}).then((response) => {
+                console.log(response);
+            })
         }
     }
 
@@ -88,7 +102,9 @@ export default function Detail(props) {
             <div className="w-100 m-auto flex mt-6 text-black">
                 <div className="w-100 flex space-x-6">
                     <div className="w-50">
-                        <img src={focusImg ?? ''} alt="" className='w-75 m-auto' />
+                        {images?.map((item, index) => (
+                            <img src={item} alt="" className={`m-auto transition-10 ${item == focusImg ? 'w-75' : 'w-0'}`} key={index}/>
+                        ))}
                         <div className="w-100 flex space-x-2 mt-2">
                             {images?.map((item, index) => (
                                 <div 

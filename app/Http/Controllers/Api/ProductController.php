@@ -24,6 +24,7 @@ class ProductController extends Controller
             'page' => $request->page,
         ];
         isset($request->userId) && $params['userId'] =  $request->userId;
+        isset($request->productTypeId) && $params['productTypeId'] =  $request->productTypeId;
 
         $productsCollection = $this->productService->index($params);
         $products = ProductCollection::collection($productsCollection);
@@ -34,5 +35,15 @@ class ProductController extends Controller
         ];
 
         return Response::responseArray(true, 'Thành công', $data);
+    }
+
+    public function getSimilarProducts(Request $request)
+    {
+        $params = [
+            'productId' => $request->productId,
+        ];
+        $similarProductsCollection = $this->productService->index($params);
+        $similarProducts = ProductCollection::collection($similarProductsCollection);
+        return Response::responseArray(true, 'Thành công', $similarProducts);
     }
 }

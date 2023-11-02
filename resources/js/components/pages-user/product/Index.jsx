@@ -10,7 +10,7 @@ import Login from '~/components/pages-user/user/Login'
 import Register from '~/components/pages-user/user/Register'
 import { url } from '~/components/pages-user/product/Url'
 import { modalActions } from '~/components/store/modal-slice'
-import toast, {Toaster} from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 
 function ProductIndex() {
     const btnUserItems = useRef(null);
@@ -23,15 +23,15 @@ function ProductIndex() {
 
     const dispatch = useDispatch()
 
-    const [lists, setLists]                     = useState([])
-    const [cookies, setCookie, removeCookie]    = useCookies([])
-    const [constant, setConstant]               = useState({})
-    const [dataItem, setDataItem]               = useState({})
-    const [loading, setLoading]                 = useState(false)
-    const [user, setUser]                       = useState({
+    const [lists, setLists] = useState([])
+    const [cookies, setCookie, removeCookie] = useCookies([])
+    const [constant, setConstant] = useState({})
+    const [dataItem, setDataItem] = useState({})
+    const [loading, setLoading] = useState(true)
+    const [user, setUser] = useState({
         accessToken: cookies.accessToken
     })
-    const [pagination, setPagination]           = useState({
+    const [pagination, setPagination] = useState({
         count: 1,
         page: 1,
     })
@@ -55,7 +55,7 @@ function ProductIndex() {
         setUser({
             accessToken: cookies.accessToken,
         })
-        if(user?.accessToken != undefined && user?.accessToken != '') {
+        if (user?.accessToken != undefined && user?.accessToken != '') {
             getMe(cookies.accessToken)
         }
     }, [])
@@ -73,6 +73,8 @@ function ProductIndex() {
             },
         }).then((response) => response.json())
 
+        product_types.data?.unshift({ id: '', name: 'TẤT CẢ' })
+
         setConstant({
             ...constant,
             productTypes: product_types.data
@@ -84,21 +86,24 @@ function ProductIndex() {
             per_page: PER_PAGE,
             page: pagination.page ?? 1,
             userId: paramsConstant.userId,
+            productTypeId: paramsConstant.productTypeId,
         }
-        axiosAPI.get(url.products, {params: params}, {headers: {
-            'Content-Type': 'application/json'
-        }}).then((response) => {
+        axiosAPI.get(url.products, { params: params }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
             setPagination({
                 count: response.data.result.lastPage,
                 page: response.data.result.currentPage
             })
             setLists(response.data.result.products)
+            setLoading(false)
         })
-
     }
 
     const setFavourite = async (productId) => {
-        if(!user.accessToken) {
+        if (!user.accessToken) {
             openModalLogin()
         } else {
             let favourites = user.favourites ?? []
@@ -107,22 +112,25 @@ function ProductIndex() {
             } else {
                 setLoading(true)
                 let form = new FormData
-                    form.append('productId', productId)
-                if(favourites?.includes(productId)) {
+                form.append('productId', productId)
+                if (favourites?.includes(productId)) {
                     form.append('status', 'delete')
                     favourites = favourites?.filter((item) => item != productId)
                 } else {
                     form.append('status', 'create')
                     favourites?.push(productId)
                 }
-                axiosAPI.post(url.favourite, form, {headers: {
-                    'Authorization': user.accessToken,
-                    'Content-Type': 'application/json'
-                }}).then((response) => {
+                axiosAPI.post(url.favourite, form, {
+                    headers: {
+                        'Authorization': user.accessToken,
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
                     setLoading(false)
                     toast.dismiss()
                     toast.success(response?.data?.message)
-                    setUser({...user,
+                    setUser({
+                        ...user,
                         favourites: favourites
                     })
                 })
@@ -131,13 +139,14 @@ function ProductIndex() {
     }
 
     const handlePagination = (event, value) => {
-        setPagination({...pagination,
+        setPagination({
+            ...pagination,
             page: value
         })
     }
 
     const handleClickBtnUser = () => {
-        if(btnUserItems.current.classList.contains('d-none') == false) {
+        if (btnUserItems.current.classList.contains('d-none') == false) {
             btnUserItems.current.classList.add('d-none')
         } else {
             btnUserItems.current.classList.remove('d-none')
@@ -145,12 +154,15 @@ function ProductIndex() {
     }
 
     const getMe = (token) => {
-        if(token != undefined) {
-            let user = axiosAPI.get(url.me, {headers: {
-                'Authorization': token,
-                'Content-Type': 'application/json'
-            }}).then((response) => {
-                setUser({...user,
+        if (token != undefined) {
+            let user = axiosAPI.get(url.me, {
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+                setUser({
+                    ...user,
                     id: response.data.result.id,
                     name: response.data.result.name,
                     favourites: response.data.result.favourites,
@@ -163,20 +175,22 @@ function ProductIndex() {
     }
 
     const logout = () => {
-        axiosAPI.delete(url.logout, {headers: {
-            'Authorization': user.accessToken,
-            'Content-Type': 'application/json'
-        }})
-        .then((response) => {
-            toast.dismiss()
-            if(response?.data?.status == true) {
-                toast.success('Đăng xuất thành công.')
-                removeCookie(['accessToken'])
-                setUser({})
-            } else {
-                toast.error('Đăng xuất thất bại.')
+        axiosAPI.delete(url.logout, {
+            headers: {
+                'Authorization': user.accessToken,
+                'Content-Type': 'application/json'
             }
         })
+            .then((response) => {
+                toast.dismiss()
+                if (response?.data?.status == true) {
+                    toast.success('Đăng xuất thành công.')
+                    removeCookie(['accessToken'])
+                    setUser({})
+                } else {
+                    toast.error('Đăng xuất thất bại.')
+                }
+            })
         btnUserItems.current.classList.add('d-none')
     }
 
@@ -200,7 +214,7 @@ function ProductIndex() {
             name: 'register'
         }))
     }
-    console.log(user);
+    console.log(loading);
     return (
         <div className={`bg-body-dark-5 min-h-100`}>
             <Toaster
@@ -219,30 +233,30 @@ function ProductIndex() {
                         <div className="w-100 relative">
                             <div className="w-100 flex items-center justify-content-end">
                                 <div className="w-50"></div>
-                                <div className="w-50 flex items-center justify-content-center">
+                                <div className="w-50 flex items-center justify-content-end">
                                     {user.id && (
-                                        <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <div className="w-25 cursor-pointer flex items-center justify-center">
                                             <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
                                         </div>
                                     )}
                                     {user.id && (
-                                        <div className="w-100 cursor-pointer flex items-center justify-center" onClick={() => setParamsConstant({...paramsConstant, userId: user.id ?? ''})}>
-                                            <i className='m-0 py-2 bx bx-heart text-white h3'></i>
+                                        <div className="w-25 cursor-pointer flex items-center justify-center">
+                                            <i className='m-0 py-2 bx bx-heart text-white h3' onClick={() => setParamsConstant({ ...paramsConstant, userId: user.id ?? '' })}></i>
                                         </div>
                                     )}
-                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                    <div className="w-25 cursor-pointer flex items-center justify-center">
                                         <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
                                     </div>
-                                    <div className="w-100 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
+                                    <div className="w-25 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
                                         <i className='m-0 py-2 bx bx-user text-white h3'></i>
                                     </div>
                                 </div>
                             </div>
-                            <div 
-                                className="absolute w-fit rounded-lg d-none bg-light text-black shadow-lg py-2 overflow-hidden right-0" 
+                            <div
+                                className="absolute w-fit rounded-lg d-none bg-light text-black shadow-lg py-2 overflow-hidden right-0"
                                 ref={btnUserItems}
                                 onBlur={() => btnUserItems?.current?.classList?.remove('d-none')}
-                                
+
                             >
                                 {(user?.accessToken) ? (
                                     <div className="">
@@ -273,41 +287,51 @@ function ProductIndex() {
                     <div className="flex items-center justify-center cursor-pointer py-2 w-100 text-white">SHOWROOM</div>
                 </div>
             </div>
-            <div className="w-100 flex mx-auto" style={{marginTop: '107px'}}>
+            <div className="w-100 flex mx-auto" style={{ marginTop: '107px' }}>
                 {constant?.productTypes?.map((item) => (
                     <div
-                        className={`w-full cursor-pointer p-3 text-black text-center bg-gray ${paramsConstant?.productTypeId != item.id && 'opacity-50'}`} key={item.id}
-                        onClick={() => setParamsConstant({ ...paramsConstant, productTypeId: item.id })}
+                        className={`w-full cursor-pointer p-3 text-black text-center bg-gray ${paramsConstant?.productTypeId != item.id && 'opacity-50'}`}
+                        key={item.id}
+                        onClick={() => {
+                            delete paramsConstant['userId']
+                            setParamsConstant({ ...paramsConstant, productTypeId: item.id ?? '' })
+                        }}
                     >
                         {item.name}
                     </div>
                 ))}
             </div>
-            <div className={`vw-75 mx-auto py-3 grid-container`}>
-                {
-                    lists?.map((item, index) => (
+            {(loading == false && lists?.length < 1) ? (
+                <div className="w-full mt-6 mx-auto p-6">
+                    <div className="w-fit mx-auto">
+                        Không có kết quả phù hợp
+                    </div>
+                </div>
+            ) : (
+                <div className={`vw-75 mx-auto py-3 grid-container`}>
+                    {lists?.map((item, index) => (
                         <div className={`relative cursor-pointer overflow-hidden rounded-lg product-img-user ${'item-' + index}`} key={item.id}>
                             <div className="w-100 absolute p-2 bottom-0">
                                 <div className="w-100 overflow-hidden des-img">
-                                    <div className="py-2 w-fit px-3 rounded-lg mb-1 fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{item.name}</div>
-                                    <div className="py-2 w-fit px-3 rounded-lg fw-bold bg-gray text-black" style={{fontSize: '20px'}}>{VND.format(item.price)}</div>
+                                    <div className="py-2 w-fit px-3 rounded-lg mb-1 fw-bold bg-gray text-black" style={{ fontSize: '20px' }}>{item.name}</div>
+                                    <div className="py-2 w-fit px-3 rounded-lg fw-bold bg-gray text-black" style={{ fontSize: '20px' }}>{VND.format(item.price)}</div>
                                 </div>
                             </div>
-                            <div className="des-img absolute right-0 text-end pe-3" onClick={() => setFavourite(item.id)}>
-                                <i className={`bx bx-heart-circle ${user?.favourites?.includes(item?.id) && 'text-red'}`} style={{fontSize: '50px'}}></i>
+                            <div className="des-img absolute right-0 text-end pe-3">
+                                <i className={`bx bx-heart-circle ${user?.favourites?.includes(item?.id) && 'text-red'}`} style={{ fontSize: '50px' }}  onClick={() => setFavourite(item.id)}></i>
                             </div>
-                            <img src={item.mainImage} alt="" className={`h-100 rounded-lg min-width-100 mx-auto`}  onClick={() => openModalDetail(item)}/>
+                            <img src={item.mainImage} alt="" className={`h-100 rounded-lg min-width-100 mx-auto`} onClick={() => openModalDetail(item)} />
                         </div>
-                    ))
-                }
-            </div>
+                    ))}
+                </div>
+            )}
             {pagination?.count > 1 && (
-                 <div className="w-100 pb-4">
+                <div className="w-100 pb-4">
                     <div className="w-fit mx-auto">
-                        <Pagination 
-                            count={pagination?.count} 
-                            page={pagination?.page} 
-                            onChange={handlePagination} 
+                        <Pagination
+                            count={pagination?.count}
+                            page={pagination?.page}
+                            onChange={handlePagination}
                             color="secondary"
                             defaultPage={pagination?.page}
                         />

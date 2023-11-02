@@ -114,16 +114,16 @@ function DashboardIndex() {
                         <div className="w-100 relative">
                             <div className="w-100 flex items-center justify-content-end">
                                 <div className="w-50"></div>
-                                <div className="w-50 flex items-center justify-content-center">
+                                <div className="w-50 flex items-center justify-content-end">
                                     {user.id && (
-                                        <div className="w-100 cursor-pointer flex items-center justify-center">
+                                        <div className="w-25 cursor-pointer flex items-center justify-center">
                                             <a href="abababa"><i className='m-0 py-2 bx bx-bell text-white h3'></i></a>
                                         </div>
                                     )}
-                                    <div className="w-100 cursor-pointer flex items-center justify-center">
+                                    <div className="w-25 cursor-pointer flex items-center justify-center">
                                         <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
                                     </div>
-                                    <div className="w-100 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
+                                    <div className="w-25 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
                                         <i className='m-0 py-2 bx bx-user text-white h3'></i>
                                     </div>
                                 </div>
