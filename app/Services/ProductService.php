@@ -53,11 +53,7 @@ class ProductService
                 return $query->user($params['userId']);
             })
             ->when(isset($params['productId']), function ($query) use ($params) {
-                $product = $this->product->find($params['productId']);
-                return $query
-                ->productType($product->productTypeId)
-                ->inRandomOrder()
-                ->limit(4);
+                return $query->similar($params['productId'])->inRandomOrder()->limit(4);
             });
 
         $products = $products

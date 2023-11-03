@@ -59,6 +59,15 @@ class Product extends Model
         });
     }
 
+    public function scopeSimilar($query, $productId)
+    {
+        $product = $this->where('id', $productId)->first();
+        return $query
+            ->where('productTypeId', $product->productTypeId)
+            ->where('id', '!=', $product->id)
+            ->inRandomOrder();
+    }
+
     public function attributes()
     {
         return $this->hasMany(ProductAttribute::class, 'productId', 'id');

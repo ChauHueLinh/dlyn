@@ -368,3 +368,54 @@ img {
 .transition-10 {
 	transition: 1s ease-in-out;
 }
+
+.opacity-0 {
+	opacity: 0;
+}
+
+.rectangular-2-3 {
+	aspect-ratio: 2 / 3;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+	display: none;
+}
+
+.space-x-1 {
+	&:first-child {
+		padding-right: 0.125rem;
+	}
+	&:nth-child(0) {
+		padding-left: 0.125rem;
+		padding-right: 0.125rem;
+	}
+	&:last-child {
+		padding-left: 0.125rem;
+	}
+}
+
+.space-x-2 {
+	&:first-child {
+		padding-right: 0.25rem;
+	}
+	&:nth-child(0) {
+		padding-left: 0.25rem;
+		padding-right: 0.25rem;
+	}
+	&:last-child {
+		padding-left: 0.25rem;
+	}
+}
+
+.space-x-3 {
+	&:first-child {
+		padding-right: 0.5rem;
+	}
+	&:nth-child(0) {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+	&:last-child {
+		padding-left: 0.5rem;
+	}
+}

@@ -75,9 +75,30 @@ export default function Detail(props) {
             axiosAPI.get(url.similarProducts, {params: params}, {headers: {
                 'Content-Type': 'application/json'
             }}).then((response) => {
-                console.log(response);
+                serSimilarProducts(response.data.result)
             })
         }
+    }
+
+    const setMainProduct = (item) => {
+        let imgs = []
+
+        imgs.push(item?.mainImage)
+        item?.descriptionImages?.map((item) => {
+            imgs.push(item?.src)
+        })
+        item.attributes && 
+            setCartItem({...cartItem,
+                groupName: Object.entries(item.attributes)[0][0],
+                maxQuantity: Object.entries(item.attributes)[0][1]?.quantity,
+                productId: item.id,
+                quantity: 1,
+            });
+
+        setImages(imgs)
+        setData(item)
+        setFocusImg(item.mainImage)
+        getSimilarProducts(item.id)
     }
 
     const close = () => {
@@ -95,15 +116,11 @@ export default function Detail(props) {
             btnClose={true}
             containerStyle={{height: '100vh'}}
         >
-            <Toaster
-                position="top-center"
-                reverseOrder={false}
-            />
-            <div className="w-100 m-auto flex mt-6 text-black">
-                <div className="w-100 flex space-x-6">
-                    <div className="w-50">
+            <div className="w-100 m-auto flex mt-6 text-black overflow-auto">
+                <div className="w-100 flex">
+                    <div className="w-50 me-2">
                         {images?.map((item, index) => (
-                            <img src={item} alt="" className={`m-auto transition-10 ${item == focusImg ? 'w-75' : 'w-0'}`} key={index}/>
+                            <img src={item} alt="" className={`m-auto transition-10 ${item == focusImg ? 'w-75 opacity-100' : 'w-0 opacity-0'}`} key={index}/>
                         ))}
                         <div className="w-100 flex space-x-2 mt-2">
                             {images?.map((item, index) => (
@@ -118,7 +135,7 @@ export default function Detail(props) {
                             ))}
                         </div>
                     </div>
-                    <div className="w-50">
+                    <div className="w-50 ms-2">
                         <div className="" style={{fontSize: '40px'}}>{data?.name}</div>
                         <div className="pt-4 font-weight-light" style={{fontSize: '40px'}}>{VND.format(data.price)}</div>
                         <div className="pt-4 font-weight-light">Danh mục: {data?.productTypeName}</div>
@@ -133,7 +150,7 @@ export default function Detail(props) {
                                 </div>
                             ))}
                         </div>
-                        <div className="flex space-x-2 mt-4">
+                        <div className="flex mt-4 space-x-2">
                             <div 
                                 className="cursor-pointer btn-minus equal border border-dark rounded-lg fw-bold flex items-center justify-center" 
                                 style={{height: '32px'}}
@@ -162,11 +179,23 @@ export default function Detail(props) {
                             </div>
                         </div>
                         <div className="mt-3">Hỗ trợ chọn size</div>
-                        <div className="w-100 border border-dark overflow-hidden">
+                        <div className="w-100 border border-dark overflow-hidden bottom-0">
                             <img src={window.location.origin + '/assets/img/size-vay.png'} alt="" className='w-100'/>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="mt-6 mb-4 text-black text-center h5">Sản phẩm cùng danh mục</div>
+            <div className="flex justify-content-between h-fit space-x-2">
+                {similarProducts?.map((item, index) => (
+                    <div className="w-25 rectangular-2-3 overflow-hidden" key={index}>
+                        <img 
+                            src={item.mainImage} 
+                            className='min-width-100 h-full mx-auto rounded-lg'
+                            onClick={() => setMainProduct(item)}
+                        />
+                    </div>
+                ))}
             </div>
         </Modal>
     )

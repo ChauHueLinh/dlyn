@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom/client'
-import { Provider, useDispatch, useSelector } from 'react-redux'
+import Pusher from 'pusher-js';
+import Echo from 'laravel-echo';
 import axiosAPI from '~/libs/axiosAPI'
-import Pagination from '@mui/material/Pagination';
-import { useCookies } from "react-cookie";
 import store from '~/components/store'
-import Detail from '~/components/pages-user/product/Detail'
-import Login from '~/components/pages-user/user/Login'
-import Register from '~/components/pages-user/user/Register'
-import { url } from '~/components/pages-user/product/Url'
-import { modalActions } from '~/components/store/modal-slice'
+import ReactDOM from 'react-dom/client'
+import { useCookies } from "react-cookie";
 import toast, { Toaster } from 'react-hot-toast';
+import Pagination from '@mui/material/Pagination';
+import Login from '~/components/pages-user/user/Login'
+import { url } from '~/components/pages-user/product/Url'
+import React, { useState, useEffect, useRef } from 'react'
+import Detail from '~/components/pages-user/product/Detail'
+import Register from '~/components/pages-user/user/Register'
+import { modalActions } from '~/components/store/modal-slice'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 
 function ProductIndex() {
     const btnUserItems = useRef(null);
@@ -214,7 +216,7 @@ function ProductIndex() {
             name: 'register'
         }))
     }
-    console.log(loading);
+
     return (
         <div className={`bg-body-dark-5 min-h-100`}>
             <Toaster
@@ -318,7 +320,7 @@ function ProductIndex() {
                                 </div>
                             </div>
                             <div className="des-img absolute right-0 text-end pe-3">
-                                <i className={`bx bx-heart-circle ${user?.favourites?.includes(item?.id) && 'text-red'}`} style={{ fontSize: '50px' }}  onClick={() => setFavourite(item.id)}></i>
+                                <i className={`bx bx-heart-circle ${user?.favourites?.includes(item?.id) && 'text-red'}`} style={{ fontSize: '50px' }} onClick={() => setFavourite(item.id)}></i>
                             </div>
                             <img src={item.mainImage} alt="" className={`h-100 rounded-lg min-width-100 mx-auto`} onClick={() => openModalDetail(item)} />
                         </div>
