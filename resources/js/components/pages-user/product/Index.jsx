@@ -85,6 +85,8 @@ function ProductIndex() {
 
     const getList = async () => {
         let params = {
+            sort_key: 'id',
+            order_by: 'DESC',
             per_page: PER_PAGE,
             page: pagination.page ?? 1,
             userId: paramsConstant.userId,

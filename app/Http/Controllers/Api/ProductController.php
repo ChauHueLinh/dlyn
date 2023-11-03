@@ -25,6 +25,8 @@ class ProductController extends Controller
         ];
         isset($request->userId) && $params['userId'] =  $request->userId;
         isset($request->productTypeId) && $params['productTypeId'] =  $request->productTypeId;
+        isset($request->sort_key) && $params['sort_key'] =  $request->sort_key;
+        isset($request->order_by) && $params['order_by'] =  $request->order_by;
 
         $productsCollection = $this->productService->index($params);
         $products = ProductCollection::collection($productsCollection);

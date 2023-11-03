@@ -68,6 +68,11 @@ class Product extends Model
             ->inRandomOrder();
     }
 
+    public function scopeSort($query, $sortKey, $orderBy)
+    {
+        return $query->orderBy($sortKey, $orderBy);
+    }
+
     public function attributes()
     {
         return $this->hasMany(ProductAttribute::class, 'productId', 'id');

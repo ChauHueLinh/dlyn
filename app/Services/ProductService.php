@@ -36,9 +36,11 @@ class ProductService
     public function index($params)
     {
         $products = $this->product
-            ->orderBy($params['sort_key'] ?? 'id', $params['order_by'] ?? 'DESC')
             ->when(isset($params['status']), function ($query) use ($params) {
                 return $query->status($params['status']);
+            })
+            ->when(isset($params['sort_key']), function ($query) use ($params) {
+                return $query->sort($params['sort_key'], $params['order_by'] ?? 'DESC');
             })
             ->when(isset($params['productTypeId']), function ($query) use ($params) {
                 return $query->productType($params['productTypeId']);
