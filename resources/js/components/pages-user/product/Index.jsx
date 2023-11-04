@@ -10,6 +10,7 @@ import Login from '~/components/pages-user/user/Login'
 import { url } from '~/components/pages-user/product/Url'
 import React, { useState, useEffect, useRef } from 'react'
 import Detail from '~/components/pages-user/product/Detail'
+import Cart from '~/components/pages-user/product/Cart'
 import Register from '~/components/pages-user/user/Register'
 import { modalActions } from '~/components/store/modal-slice'
 import { Provider, useDispatch, useSelector } from 'react-redux'
@@ -60,6 +61,7 @@ function ProductIndex() {
         if (user?.accessToken != undefined && user?.accessToken != '') {
             getMe(cookies.accessToken)
         }
+        dispatch(modalActions.open({name: 'cart'}))
     }, [])
 
     useEffect(() => {
@@ -190,6 +192,7 @@ function ProductIndex() {
                 if (response?.data?.status == true) {
                     toast.success('Đăng xuất thành công.')
                     removeCookie(['accessToken'])
+                    removeCookie(['cart'])
                     setUser({})
                 } else {
                     toast.error('Đăng xuất thất bại.')
@@ -248,8 +251,8 @@ function ProductIndex() {
                                             <i className='m-0 py-2 bx bx-heart text-white h3' onClick={() => setParamsConstant({ ...paramsConstant, userId: user.id ?? '' })}></i>
                                         </div>
                                     )}
-                                    <div className="w-25 cursor-pointer flex items-center justify-center">
-                                        <a href="abababa"><i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i></a>
+                                    <div className="w-25 cursor-pointer flex items-center justify-center" onClick={() => dispatch(modalActions.open({name: 'cart'}))}>
+                                        <i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i>
                                     </div>
                                     <div className="w-25 cursor-pointer flex items-center justify-center" onClick={() => handleClickBtnUser()}>
                                         <i className='m-0 py-2 bx bx-user text-white h3'></i>
@@ -361,6 +364,9 @@ function ProductIndex() {
                     getMe(value.accessToken)
                 }}
                 callbackOpenLogin={() => openModalLogin()}
+            />
+            <Cart
+                modalKey='cart'
             />
         </div>
     )

@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserFavourite::class, 'userId');
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class, 'userId', 'id');
+    }
 }
