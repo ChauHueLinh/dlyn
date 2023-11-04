@@ -61,7 +61,6 @@ function ProductIndex() {
         if (user?.accessToken != undefined && user?.accessToken != '') {
             getMe(cookies.accessToken)
         }
-        dispatch(modalActions.open({name: 'cart'}))
     }, [])
 
     useEffect(() => {
