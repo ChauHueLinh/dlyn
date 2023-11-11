@@ -343,6 +343,10 @@ img {
   display: none;
 }
 
+.transform-x-100 {
+  transform: translateX(-100%);
+}
+
 .item-0 {
   grid-row-start: span 2;
   grid-column-start: auto;

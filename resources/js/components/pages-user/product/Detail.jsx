@@ -123,7 +123,7 @@ export default function Detail(props) {
 		})
 		if(cookies.accessToken) {
 			axiosAPI.post(url.addToCart, form, {headers: {
-				'Authorization': cookies.accessToken,
+				'Authorization': props.accessToken,
 				'Content-Type': 'application/json',
 			}}).then((response) => {
 				console.log(response);
@@ -136,9 +136,12 @@ export default function Detail(props) {
 					toast.error(response.data.message)
 				}
 			})
+			setCookie('cart', cart)
+		} else {
+			close()
+			props.callbackOpenLogin()
 		}
 
-		setCookie('cart', cart)
 	}
 
 	const close = () => {

@@ -7,7 +7,7 @@ const modalSlice = createSlice({
         validateField: [],
         collection: [],
         isLoading: false,
-        isLoadingTable: false
+        isLoadingTable: false,
     },
     reducers: {
         open(state, action) {
@@ -16,7 +16,8 @@ const modalSlice = createSlice({
             state.isOpen = true
             state.collection = {
                 id: payload.id,
-                name: payload.name
+                name: payload.name,
+                data: payload.data,
             }
         },
         close(state, action) {

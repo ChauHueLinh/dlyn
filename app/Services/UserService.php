@@ -132,4 +132,15 @@ class UserService
             return Response::responseArray(true, 'Đã xóa khỏi danh sách yêu thích.');
         }  
     }
+
+    public function getListCoupons($params)
+    {
+        $user = $this->user->find($params['userId']);
+        if(!$user) {
+            return Response::responseArray(false, 'Đã có lỗi xảy ra.');
+        }
+        $coupons = $user->coupons()->get();
+        
+        return Response::responseArray(true, 'Thành công.', $coupons);
+    }
 }

@@ -17,6 +17,9 @@ class DetailUserClollection extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'address' => $this->address,
             'favourites' => array_column($this->favourites->toArray(), 'productId'),
         ];
     }

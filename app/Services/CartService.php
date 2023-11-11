@@ -77,25 +77,26 @@ class CartService
                 return Response::responseArray(false, 'Đã có lỗi xảy ra.');
             }
             $cartItem = $user
-                ->cartItems()
-                ->where('productId', $params['productId'])
-                ->where('groupAttributeName', $params['groupAttributeName'])
-                ->first();
+            ->cartItems()
+            ->where('productId', $params['productId'])
+            ->where('groupAttributeName', $params['groupAttributeName'])
+            ->first();
+
             if($cartItem) {
-                $cartItem->update([
-                    'quantity' => $cartItem->quantity + $params['quantity']
-                ]);
+                if($cartItem->quantity > 1 && $params['status'] == 'minus') {
+                    $cartItem->update([
+                        'quantity' => $cartItem->quantity - 1
+                    ]);
+                } else {
+                    $cartItem->delete();
+                }
             } else {
-                $user->cartItems()->create([
-                    'productId' => $params['productId'],
-                    'groupAttributeName' => $params['groupAttributeName'],
-                    'quantity' => $params['quantity'],
-                ]);
+                return Response::responseArray(false, 'Đã có lỗi xảy ra.');
             }
 
-            return Response::responseArray(true, 'Thêm vào giỏ hàng thành công.');
+            return Response::responseArray(true, 'Xóa khỏi giỏ hàng thành công.');
         } catch (\Throwable $th) {
-            return Response::responseArray(false, 'Đã có lỗi xảy ra.');
+            return Response::responseArray(false, $th->getMessage());
         }
     }
 }

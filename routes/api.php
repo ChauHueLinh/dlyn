@@ -3,7 +3,8 @@
 use App\Http\Controllers\Api\ProductTypeController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\CouponController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::controller(UserController::class)->group(function () {
-    Route::middleware([])->group(function () {
-        Route::post('login', 'login');
-        Route::post('register', 'register');
-    });
+    Route::post('login', 'login');
+    Route::post('register', 'register');
     
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('me', 'me');
@@ -42,6 +41,12 @@ Route::controller(CartController::class)->group(function () {
         Route::get('cart', 'index');
         Route::post('cart/add', 'add');
         Route::post('cart/remove', 'remove');
+    });
+});
+
+Route::controller(CouponController::class)->group(function () {
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::get('coupon', 'getCoupon');
     });
 });
 

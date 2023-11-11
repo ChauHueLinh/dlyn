@@ -37,7 +37,6 @@ export default function Login(props) {
 
         axiosAPI.post(url.login, form)
         .then((response) => {
-            console.log(response.data.status);
             toast.dismiss()
             if (response.data.status == undefined) {
                 setErrors(response.data.errors)

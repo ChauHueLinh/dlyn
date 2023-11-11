@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class, 'userId', 'id');
     }
+
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class, 'user_coupons', 'userId', 'couponId')->wherePivot('quantity', '>', 0);
+    }
 }
