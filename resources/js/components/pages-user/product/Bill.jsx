@@ -104,15 +104,14 @@ export default function Bill(props) {
 				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
 				'Access-Control-Allow-Origin': '*',
 				'Origin': '*',
+				'allowedHeaders': ['Content-Type', 'Authorization'],
+				"Access-Control-Allow-Credentials": true
 		}
 		if (data.address && data.address != '') {
 			var url = `${baseUrlDistance}?key=${APIkey}&origin=${origin}&destination=${data.address}`;
-			var res =  axios.get(baseUrlDistance, {params: {
-				key: APIkey,
-                origin: origin,
-                destination: data.address,
-			}}, {headers: {'Content-Type': 'application/json'}})
-			console.log( res);
+			fetch(url, {crossdomain: true}, {withCredentials: true}, {headers: headers}).then(response => response.json()).then((res) => {
+				console.log(res);
+			})
 		}
 	}
 
