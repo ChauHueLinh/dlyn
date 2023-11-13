@@ -42,7 +42,7 @@
         "@reduxjs/toolkit": "^1.9.5",
         "@tinymce/tinymce-react": "^4.3.0",
         "antd": "^4.12.2",
-        "axios": "^0.21.1",
+        "axios": "^1.6.1",
         "chart.js": "^4.4.0",
         "clsx": "^1.2.1",
         "cors": "^2.8.5",
@@ -58,6 +58,7 @@
         "react-hot-toast": "^2.4.1",
         "react-leaflet": "^4.2.1",
         "react-paginate": "^8.2.0",
+        "react-query": "^3.39.3",
         "react-redux": "^7.2.9",
         "react-router-dom": "^5.2.0",
         "reactjs-click-outside": "^1.0.1",
@@ -67,6 +68,5 @@
         "sass": "^1.32.6",
         "sass-loader": "^11.0.0",
         "simplebar": "^6.2.5"
-    },
-    "proxy": {}
+    }
 }

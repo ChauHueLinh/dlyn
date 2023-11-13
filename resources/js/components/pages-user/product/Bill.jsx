@@ -3,13 +3,13 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Modal from '~/components/molecules/Modal'
+import Input from '~/components/molecules/Input'
+import SelectBox from '~/components/molecules/SelectBox'
+import Textarea from '~/components/molecules/Textarea'
 import { modalActions } from '~/components/store/modal-slice'
 import axiosAPI from '~/libs/axiosAPI'
 import { url } from '~/components/pages-user/product/Url'
-import { useCookies } from 'react-cookie';
-import Input from '~/components/molecules/Input'
-import Textarea from '~/components/molecules/Textarea'
-import SelectBox from '~/components/molecules/SelectBox'
+import { useCookies } from 'react-cookie'
 import axios from 'axios';
 
 export default function Bill(props) {
@@ -32,6 +32,7 @@ export default function Bill(props) {
 	const [loading, setLoading] = useState(true)
 	const [totalBill, setTotalBill] = useState(0)
 	const [totalProduct, setTotalProduct] = useState(0)
+	const [customerLocation, setCustomerLocation] = useState({})
 
 
 	const openDialog = collection.name == props.modalKey && status
@@ -45,7 +46,7 @@ export default function Bill(props) {
 				'Content-Type': 'application/json'
 			}
 		}).then((response) => {
-			response.data.result.map((item) => {
+			response.data.result?.map((item) => {
 				coupons.push({
 					id: item.id,
 					name: item.code,
@@ -60,7 +61,7 @@ export default function Bill(props) {
 	}, [])
 
 	useEffect(() => {
-		getDistance(data.address)
+		getDistance()
 	}, [data.address])
 
 	useEffect(() => {
@@ -70,7 +71,7 @@ export default function Bill(props) {
 			total = total + item.quantity * item.price
 		})
 
-
+		axios
 		setTotalProduct(collection.data?.length)
 		setTotalBill(total)
 		setData({
@@ -81,7 +82,7 @@ export default function Bill(props) {
 			email: props.user.email,
 			address: props.user.address,
 		})
-	}, [collection.data])
+	}, [collection.data, customerLocation])
 
 	const handleChangeCoupon = (value) => {
 		setData({ ...data, couponId: value.id })
@@ -94,29 +95,20 @@ export default function Bill(props) {
 		}
 	}
 
-	const getLocationCustomer = async (address) => {
+	const getDistance = async () => {
+		const baseUrlDistance = "https://maps.googleapis.com/maps/api/directions/json"
 		const APIkey = 'AIzaSyDihznxqVhw1jVmiV5_gTcqiDzNFph6Jtk'
-		var baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json'
-		var response = await (await fetch(`${baseUrl}?key=${APIkey}&address=${address}`)).json()
-
-		return response.results[0].geometry.location
-	}
-
-	const getDistance = (address) => {
-		const APIkey = 'AIzaSyDihznxqVhw1jVmiV5_gTcqiDzNFph6Jtk'
-		const originLocation = {
-			lat: 20.982847,
-			lng: 105.808238,
+		const origin = '286 Nguyễn Xiển, xã Tân Triều, huyện Thanh Trì, thành phố Hà Nội'
+		const headers = {
+				"Content-Type": "application/json",
+				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+				'Access-Control-Allow-Origin': '*',
+				'Origin': '*',
 		}
-		const base_url = "https://maps.googleapis.com/maps/api/directions/json"
-		if (address && address != '') {
-			getLocationCustomer(address).then(async (response) => {
-				var customerLocation = response
-				var response = await (await fetch(`${base_url}?key=${APIkey}&origin=${originLocation.lat},${originLocation.lng}&destination=${customerLocation.lat},${customerLocation.lng}`, {headers: {
-					'content-type': 'application/json'
-				}})).json()
-				console.log(response.status);
-			})
+		if (data.address && data.address != '') {
+			var url = `${baseUrlDistance}?key=${APIkey}&origin=${origin}&destination=${data.address}`;
+			var res = await fetch(url)
+			console.log(await res.json());
 		}
 	}
 
