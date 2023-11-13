@@ -107,12 +107,12 @@ export default function Bill(props) {
 		}
 		if (data.address && data.address != '') {
 			var url = `${baseUrlDistance}?key=${APIkey}&origin=${origin}&destination=${data.address}`;
-			var res = await axios.get(baseUrlDistance, {params: {
+			var res =  axios.get(baseUrlDistance, {params: {
 				key: APIkey,
                 origin: origin,
                 destination: data.address,
 			}}, {headers: {'Content-Type': 'application/json'}})
-			console.log(await res.json());
+			console.log( res);
 		}
 	}
 
