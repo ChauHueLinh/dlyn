@@ -12,7 +12,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ReceiptService
 {
@@ -28,8 +30,7 @@ class ReceiptService
         Coupon $coupon,
         Order $order,
         Product $product,
-    )
-    {
+    ) {
         $this->receipt = $receipt;
         $this->user = $user;
         $this->coupon = $coupon;
@@ -53,7 +54,7 @@ class ReceiptService
             // ->when(isset($params['branchId']), function ($query) use ($params) {
             //     return $query->branch($params['branchId']);
             // })
-            ;
+        ;
 
         $receipts = $receipts
             ->with([
@@ -84,8 +85,8 @@ class ReceiptService
         try {
             $total = 0;
             $products = [];
-            if(count($params['products'] ?? []) > 0) {
-                foreach($params['products'] as $item) {
+            if (count($params['products'] ?? []) > 0) {
+                foreach ($params['products'] as $item) {
                     $item = json_decode($item);
                     $product = $this->product->find($item->productId);
 
@@ -100,11 +101,11 @@ class ReceiptService
                 }
             }
 
-            if(isset($params['userId'])) {
+            if (isset($params['userId'])) {
                 $user = $this->user->find($params['userId']);
             } else {
                 $password = substr(md5(mt_rand()), 0, 8);
-                Mail::to($params['email']) ->send(new UserActivationEmail($params['email'], $password));
+                Mail::to($params['email'])->send(new UserActivationEmail($params['email'], $password));
                 $user = $this->user->create([
                     'name'      => $params['name'],
                     'status'    => User::ACTIVATE,
@@ -114,12 +115,12 @@ class ReceiptService
                     'password'  => Hash::make($password),
                 ]);
             }
-            
+
             $coupon = $this->coupon->find($params['couponId']);
 
-            if($coupon->unit == Coupon::VND) {
+            if ($coupon->unit == Coupon::VND) {
                 $discount = $coupon->value;
-            } elseif($coupon->unit == Coupon::PERCENT) {
+            } elseif ($coupon->unit == Coupon::PERCENT) {
                 $discount = $total * $coupon->value / 100;
             }
 
@@ -133,26 +134,26 @@ class ReceiptService
                 'note'          => $params['note'],
                 'phoneNumber'   => $params['phone'],
                 'address'       => $params['address'],
-                'createdBy'     => auth()->guard('admin')->user()->id,
-                'updatedBy'     => auth()->guard('admin')->user()->id,
+                'createdBy'     => 'admin_' . auth()->guard('admin')->user()->id,
+                'updatedBy'     => 'admin_' . auth()->guard('admin')->user()->id,
             ];
 
             $receipt = $this->receipt->create($paramsReceipt);
 
             $order = $receipt->order()->create([
-                'code'          => 'DLYN' . Carbon::now()->timestamp,
+                'code'          => $receipt->code,
                 'status'        => Order::NEW,
-                'createdBy'     => auth()->guard('admin')->user()->id,
-                'updatedBy'     => auth()->guard('admin')->user()->id,
+                'createdBy'     => 'admin_' . auth()->guard('admin')->user()->id,
+                'updatedBy'     => 'admin_' . auth()->guard('admin')->user()->id,
             ]);
 
             $orderHistory = $order->histories()->create([
                 'orderId' => $order->id,
                 'status' => Order::NEW,
-                'createdBy' => auth()->guard('admin')->user()->id,
+                'createdBy' => 'admin_' . auth()->guard('admin')->user()->id,
             ]);
 
-            foreach($products as $item) {
+            foreach ($products as $item) {
                 $receipt->products()->attach($item['productId'], [
                     'quantity'  => $item['quantity'],
                     'price'     => $item['price'],
@@ -161,7 +162,7 @@ class ReceiptService
             }
 
             DB::commit();
-            
+
             return Response::responseArray(true, 'Tạo mới thành công.');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -173,7 +174,7 @@ class ReceiptService
     public function update($params)
     {
         $receipt = $this->receipt->find($params['id']);
-        if(!$receipt) {
+        if (!$receipt) {
             return Response::responseArray(false, 'Đã có lỗi xảy ra.');
         }
 
@@ -185,12 +186,89 @@ class ReceiptService
     public function destroy($params)
     {
         $receipt = $this->receipt->find($params['id']);
-        if(!$receipt) {
+        if (!$receipt) {
             return Response::responseArray(false, 'Đã có lỗi xảy ra.');
         }
 
         $receipt->delete();
 
         return Response::responseArray(true, 'Cập nhật thành công.');
+    }
+
+    public function apiCreateReceipt($params)
+    {
+        try {
+            DB::beginTransaction();
+            $totalBill = 0;
+            $products = [];
+            $urlCreateOrderGHN = env('URL_CREATE_ORDER_GHN');
+            $headers = [
+                'Content-type'  => 'application/json',
+                'ShopId'        => env('SHOP_ID'),
+                'Token'         => env('SHOP_TOKEN'),
+            ];
+            foreach ($params['products'] as $eachProduct) {
+                $product = $this->product->where('id', $eachProduct['id'])->first();
+                $productAttributes = $product->attributes()->where('groupName', $eachProduct['groupAttributeName'])->get();
+                foreach($productAttributes as $eachAttribute) {
+                    $eachAttribute->update(['quantity' => $eachAttribute->quantity - $eachProduct['quantity']]);
+                }
+                $totalBill = $totalBill + $product->price * $eachProduct['quantity'];
+                $products[] = [
+                    'productId' => $product->id,
+                    'quantity' => $eachProduct['quantity'],
+                    'price' => $product->price,
+                    'total' => $product->price * $eachProduct['quantity'],
+                    'category' => $eachProduct['groupAttributeName'],
+                ];
+            }
+            $user = $this->user->where('id', $params['userId'])->first();
+            if (isset($params['couponId'])) {
+                $coupon = $this->coupon->where('id', $params['couponId'])->first();
+                if ($coupon->unit == Coupon::VND) {
+                    $discount = $coupon->value;
+                } elseif ($coupon->unit == Coupon::PERCENT) {
+                    $discount = $totalBill * $coupon->value / 100;
+                }
+                $totalBill = $totalBill - $discount;
+            }
+            $totalBill = $totalBill + $params['serviceFee'];
+
+            $receipt = $user->receipts()->create([
+                'code'          => 'DLYN' . Carbon::now()->timestamp,
+                'status'        => $params['payment'] == 'COD' ? Receipt::UNPAID : Receipt::PAID,
+                'userId'        => $user->id,
+                'couponId'      => $params['couponId'] ?? '',
+                'total'         => $totalBill,
+                'name'          => $params['customerName'],
+                'phoneNumber'   => $params['customerPhone'],
+                'address'       => $params['customerAddress'],
+                'note'          => $params['note'] ?? '',
+                'createdBy'     => 'user_' . $user->id,
+            ]);
+            foreach ($products as $product) {
+                $receipt->products()->attach($product['productId'], [
+                    'quantity'  => $product['quantity'],
+                    'price'     => $product['price'],
+                    'total'     => $product['total'],
+                ]);
+            }
+            $order = $receipt->order()->create([
+                'code'          => $receipt->code,
+                'status'        => Order::NEW,
+                'createdBy'     => 'user_' . $user->id,
+                'updatedBy'     => 'user_' . $user->id,
+            ]);
+            $order->histories()->create([
+                'orderId' => $order->id,
+                'status' => Order::NEW,
+                'createdBy' => 'user_' . $user->id,
+            ]);
+            DB::commit();
+            return Response::responseArray(true, 'Đặt hàng thành công. Đơn hàng đang được xác nhận.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return Response::responseArray(false, $th->getMessage());
+        }
     }
 }

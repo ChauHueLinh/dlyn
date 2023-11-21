@@ -41,7 +41,6 @@ export default function Detail(props) {
 		props.data.attributes &&
 			setCartItem({
 				...cartItem,
-				groupName: Object.entries(props.data.attributes)[0][0],
 				maxQuantity: Object.entries(props.data.attributes)[0][1]?.quantity,
 				productId: props.data.id,
 				quantity: 1,
@@ -63,12 +62,17 @@ export default function Detail(props) {
 	}
 
 	const plusCartItem = () => {
-		if (cartItem.quantity == cartItem.maxQuantity) {
-			toast.dismiss()
-			toast.error('Sản phẩm đã đạt giới hạn.')
-			return false
+		if(cartItem.groupName) {
+			if (cartItem.quantity == cartItem.maxQuantity) {
+				toast.dismiss()
+				toast.error('Sản phẩm đã đạt giới hạn.')
+				return false
+			} else {
+				setCartItem({ ...cartItem, quantity: cartItem.quantity + 1 })
+			}
 		} else {
-			setCartItem({ ...cartItem, quantity: cartItem.quantity + 1 })
+			toast.dismiss()
+			toast.error('Vui lòng chọn loại sản phẩm.')
 		}
 	}
 
@@ -110,6 +114,11 @@ export default function Detail(props) {
 	}
 
 	const addToCart = () => {
+		if(!cartItem.groupName) {
+			toast.dismiss()
+            toast.error('Vui lòng chọn loại sản phẩm.')
+            return false
+		}
 		let form = new FormData
 				form.append('productId', cartItem.productId)
 				form.append('quantity', cartItem.quantity)

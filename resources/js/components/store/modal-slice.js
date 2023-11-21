@@ -18,6 +18,7 @@ const modalSlice = createSlice({
                 id: payload.id,
                 name: payload.name,
                 data: payload.data,
+                accessToken: payload.accessToken,
             }
         },
         close(state, action) {

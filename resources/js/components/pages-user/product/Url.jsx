@@ -10,4 +10,5 @@ export const url = {
   'productTypes': 'api/product-types?params=',
   'similarProducts': 'product/similar',
   'coupon': 'coupon',
+  'createReceipt': 'receipt/create',
 }

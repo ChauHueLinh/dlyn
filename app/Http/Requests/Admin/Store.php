@@ -24,7 +24,7 @@ class Store extends FormRequest
         $rules = [
             'name' => [
                 'required',
-                'max:255',
+                'max:191',
             ],
             'phone' => [
                 'required',
@@ -35,7 +35,7 @@ class Store extends FormRequest
                 'required', 
                 'email', 
                 'unique:admins', 
-                'max:255',
+                'max:191',
                 'regex:/^([a-z0-9_-]+)(\.[a-z0-9_-]+)*@([a-z0-9_-]+\.)+[a-z]{2,6}$/ix', 
             ],
             'password' => [

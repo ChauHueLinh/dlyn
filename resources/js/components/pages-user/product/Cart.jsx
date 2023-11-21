@@ -188,6 +188,7 @@ export default function Cart(props) {
 	const close = () => {
 		dispatch(modalActions.close())
 		setLoading(false)
+		setSelectedId([])
 	}
 
 	return (
@@ -260,7 +261,7 @@ export default function Cart(props) {
 							<div className="w-full text-black flex items-center justify-center">{`Tổng ${VND.format(total)}`}</div>
 							{selectedId.length > 0 ? (
 								<div className="w-full flex justify-content-end">
-									<div className="w-fit cursor-pointer bg-info p-2 rounded-lg" onClick={() => handleBtnOrder()}>Đặt hàng</div>
+									<div className="w-fit cursor-pointer bg-warning p-2 rounded-lg" onClick={() => handleBtnOrder()}>Đặt hàng</div>
 								</div>
 							) : (
 								<div className="w-full"></div>

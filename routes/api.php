@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CouponController;
+use App\Http\Controllers\Api\ReceiptController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,12 @@ Route::controller(CartController::class)->group(function () {
 Route::controller(CouponController::class)->group(function () {
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('coupon', 'getCoupon');
+    });
+});
+
+Route::controller(ReceiptController::class)->group(function () {
+    Route::middleware(['auth:sanctum'])->prefix('receipt')->group(function () {
+        Route::post('create', 'createReceipt');
     });
 });
 

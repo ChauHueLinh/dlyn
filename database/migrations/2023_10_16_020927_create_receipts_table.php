@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('code');
             $table->string('status');
             $table->string('userId');
-            $table->string('couponId');
+            $table->string('couponId')->nullable(true);
             $table->string('total');
             $table->string('name');
             $table->string('phoneNumber');
             $table->string('address');
             $table->text('note')->nullable(true);
             $table->string('createdBy');
-            $table->string('updatedBy');
+            $table->string('updatedBy')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });

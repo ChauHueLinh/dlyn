@@ -15,6 +15,7 @@ import Bill from '~/components/pages-user/product/Bill'
 import Register from '~/components/pages-user/user/Register'
 import { modalActions } from '~/components/store/modal-slice'
 import { Provider, useDispatch, useSelector } from 'react-redux'
+import axios from 'axios';
 
 function ProductIndex() {
 	const btnUserItems = useRef(null);
@@ -255,7 +256,7 @@ function ProductIndex() {
 										</div>
 									)}
 									{user.id && (
-										<div className="w-25 cursor-pointer flex items-center justify-center" onClick={() => dispatch(modalActions.open({name: 'cart'}))}>
+										<div className="w-25 cursor-pointer flex items-center justify-center" onClick={() => dispatch(modalActions.open({ name: 'cart' }))}>
 											<i className='m-0 py-2 bx bx-shopping-bag text-white h3'></i>
 										</div>
 									)}
@@ -374,12 +375,12 @@ function ProductIndex() {
 			/>
 			<Cart
 				modalKey='cart'
-				callbackOpenBill={(selected) => dispatch(modalActions.open({name: 'bill', data: selected}))}
+				callbackOpenBill={(selected) => dispatch(modalActions.open({ name: 'bill', data: selected }))}
 				accessToken={user.accessToken}
 			/>
 			<Bill
 				modalKey='bill'
-				callbackOpenCart={() => dispatch(modalActions.open({name: 'cart'}))}
+				callbackOpenCart={() => dispatch(modalActions.open({ name: 'cart', accessToken: user.accessToken }))}
 				user={user}
 			/>
 		</div>

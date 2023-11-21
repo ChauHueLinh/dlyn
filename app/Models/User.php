@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Coupon::class, 'user_coupons', 'userId', 'couponId')->wherePivot('quantity', '>', 0);
     }
+
+    public function receipts()
+    {
+        return $this->hasMany(Receipt::class, 'userId', 'id');
+    }
 }
