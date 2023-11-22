@@ -11,6 +11,7 @@ class Ward extends Model
 
     protected $fillable = [
         'name',
+        'nameExtension',
         'type',
         'districtId',
     ];

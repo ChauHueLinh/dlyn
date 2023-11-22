@@ -15,7 +15,7 @@ import Bill from '~/components/pages-user/product/Bill'
 import Register from '~/components/pages-user/user/Register'
 import { modalActions } from '~/components/store/modal-slice'
 import { Provider, useDispatch, useSelector } from 'react-redux'
-import axios from 'axios';
+import axios, { all } from 'axios';
 
 function ProductIndex() {
 	const btnUserItems = useRef(null);
@@ -45,6 +45,7 @@ function ProductIndex() {
 		per_page: PER_PAGE,
 		page: 1,
 	})
+	const [address, setAddress] = useState([])
 
 	useEffect(() => {
 		function handleResize() {
@@ -63,6 +64,7 @@ function ProductIndex() {
 		if (user?.accessToken != undefined && user?.accessToken != '') {
 			getMe(cookies.accessToken)
 		}
+		// getAdress()
 	}, [])
 
 	useEffect(() => {
@@ -85,6 +87,54 @@ function ProductIndex() {
 			productTypes: product_types.data
 		})
 	}
+
+	// const getAdress = async () => {
+	// 	var provinces = (await (await fetch('https://online-gateway.ghn.vn/shiip/public-api/master-data/province', {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			'token': '7bebf185-823d-11ee-af43-6ead57e9219a'
+	// 		}
+	// 	})).json()).data
+	// 	var i = 0
+	// 	setInterval(() => {
+	// 		if (i < 63) {
+	// 			getDistricts(provinces, provinces[i])
+	// 			i++
+	// 		}
+	// 	}, 60000)
+	// }
+
+	// const getDistricts = async (address, province) => {
+	// 	const all = address.filter(item => item.ProvinceID != province.ProvinceID)
+	// 	var districts = (await (await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=${province.ProvinceID}`, {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			'token': '7bebf185-823d-11ee-af43-6ead57e9219a'
+	// 		}
+	// 	})).json()).data
+	// 	var i = 0
+	// 	setInterval(async() => {
+	// 		if (i < districts.length) {
+	// 			districts[i].wards = await getWard(districts[i])
+	// 			i++
+	// 		}
+	// 	}, 1500)
+	// 	province.districts = districts
+
+	// 	all.push(province)
+	// 	setAddress(all)
+	// }
+
+	// const getWard = async(district) => {
+	// 	var wards = (await (await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=${district.DistrictID}`, {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			'token': '7bebf185-823d-11ee-af43-6ead57e9219a'
+	// 		}
+	// 	})).json()).data
+
+	// 	return wards
+	// }
 
 	const getList = async () => {
 		let params = {
@@ -225,7 +275,7 @@ function ProductIndex() {
 			name: 'register'
 		}))
 	}
-
+	console.log(JSON.stringify(address));
 	return (
 		<div className={`bg-body-dark-5 min-h-100`}>
 			<Toaster
