@@ -40,10 +40,12 @@ use App\Http\Controllers\Guest\ProductController as UserProductController;
 |
 */
 // User
+ 
 Route::get('login', [UserLoginController::class, 'showLoginForm'])->name('login.get');
 
 Route::prefix('')->group(function () {
 	Route::get('', [UserDashboardController::class, 'index'])->name('guest.index');
+	Route::get('test', [UserDashboardController::class, 'test']);
 	Route::get('product', [UserProductController::class, 'index'])->name('guest.product');
 });
 
