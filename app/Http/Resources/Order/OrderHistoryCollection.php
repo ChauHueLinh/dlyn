@@ -15,14 +15,14 @@ class OrderHistoryCollection extends JsonResource
      */
     public function toArray($request)
     {
+        if($this->resource) {
+
+        }
         if(!empty($this->items)) {
             return [];
         }
         return [
             'id'            => $this->id,
-            'adminId'       => $this->admin->id,
-            'name'          => $this->admin->name,
-            'name'          => $this->admin->name,
             'status'        => $this->status,
             'date'          => Carbon::parse($this->created_at)->format('H:i:s d-m-Y'),
         ];

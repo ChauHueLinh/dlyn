@@ -275,7 +275,7 @@ function ProductIndex() {
 			name: 'register'
 		}))
 	}
-	console.log(JSON.stringify(address));
+
 	return (
 		<div className={`bg-body-dark-5 min-h-100`}>
 			<Toaster

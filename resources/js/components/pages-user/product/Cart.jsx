@@ -75,30 +75,31 @@ export default function Cart(props) {
 		}
 	}
 
-	const setSelected = (id, checked) => {
+	const setSelected = (id, groupAttribute, checked) => {
 		var total = 0
 		if (id == 'all') {
 			var cart = []
 			var selectedIds = []
-
+			
 			if (checked == true) {
 				data.map((item) => {
-					selectedIds.push(item.productId)
+					selectedIds.push(`${item.productId}_${item.groupAttribute}`)
 					total = total + Number(item.quantity * item.price)
 				})
+			} else {
+				setSelectedId([])
 			}
 		} else {
-			var item = data.filter((item) => item.id == id)[0]
 			var selectedIds = selectedId
 
 			if (checked == true) {
-				selectedIds.push(id)
+				selectedIds.push(`${id}_${groupAttribute}`)
             } else {
-				selectedIds.splice(selectedIds.indexOf(id), 1)
+				selectedIds.splice(selectedIds.indexOf(`${id}_${groupAttribute}`), 1)
 			}
 		}
 		data.map((item) => {
-			if (selectedIds.includes(item.productId) == true) {
+			if (selectedIds.includes(`${item.productId}_${item.groupAttribute}`) == true) {
 				total = total + Number(item.quantity * item.price)
 			}
 		})
@@ -168,7 +169,7 @@ export default function Cart(props) {
 		var selected = []
 
 		data.map((item, index) => {
-			if(selectedId.includes(item.productId) == true) {
+			if(selectedId.includes(`${item.productId}_${item.groupAttribute}`) == true) {
 				if(errors[index]) {
 					error = true
 				}
@@ -208,7 +209,7 @@ export default function Cart(props) {
 						{data.map((item, index) => (
 							<div className="text-black flex space-x-2 border-bottom border-dark" key={index}>
 								<div className="flex items-center justify-center px-2">
-									<input style={{ height: '20px', width: '20px' }} type="checkbox" checked={selectedId.includes(item.productId) == true ? 1 : 0} onChange={(e) => setSelected(item.productId, e.target.checked)} />
+									<input style={{ height: '20px', width: '20px' }} type="checkbox" checked={selectedId.includes(`${item.productId}_${item.groupAttribute}`) == true ? 1 : 0} onChange={(e) => setSelected(item.productId, item.groupAttribute, e.target.checked)} />
 								</div>
 								<div className="w-fit py-2">
 									<img src={item.image} alt="" style={{ width: '60px' }} />
@@ -254,7 +255,7 @@ export default function Cart(props) {
 							<div className="w-full flex items-center p-2 space-x-2">
 								<input style={{ height: '20px', width: '20px' }} type="checkbox"
 									checked={data?.length == selectedId?.length ? 1 : 0}
-									onChange={(e) => setSelected('all', e.target.checked)}
+									onChange={(e) => setSelected('all', null, e.target.checked)}
 								/>
 								<div className="text-black">Chọn tất cả</div>
 							</div>

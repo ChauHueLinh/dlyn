@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Receipt;
 
+use App\Http\Resources\Order\OrderCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReceiptCollection extends JsonResource
@@ -30,6 +31,7 @@ class ReceiptCollection extends JsonResource
             'coupon'        => $this->coupon,
             'note'          => $this->note,
             'products'      => $this->products,
+            'order'         => new OrderCollection($this->order),
         ];
     }
 }

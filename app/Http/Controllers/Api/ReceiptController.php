@@ -19,6 +19,7 @@ class ReceiptController extends Controller
     
     public function createReceipt(ApiCreateRequest $request)
     {
+        
         $params = $request->validated();
         $params['userId'] = $request->user()->id;
         $result = $this->receiptService->apiCreateReceipt($params);

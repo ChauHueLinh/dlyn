@@ -61,7 +61,8 @@ class ReceiptService
                 'user',
                 'coupon',
                 'products',
-                // 'suppliers'
+                'order',
+                'order.histories',
             ]);
 
         if (isset($params['per_page'])) {
@@ -140,18 +141,18 @@ class ReceiptService
 
             $receipt = $this->receipt->create($paramsReceipt);
 
-            $order = $receipt->order()->create([
-                'code'          => $receipt->code,
-                'status'        => Order::NEW,
-                'createdBy'     => 'admin_' . auth()->guard('admin')->user()->id,
-                'updatedBy'     => 'admin_' . auth()->guard('admin')->user()->id,
-            ]);
+            // $order = $receipt->order()->create([
+            //     'code'          => $receipt->code,
+            //     'status'        => Order::NEW,
+            //     'createdBy'     => 'admin_' . auth()->guard('admin')->user()->id,
+            //     'updatedBy'     => 'admin_' . auth()->guard('admin')->user()->id,
+            // ]);
 
-            $orderHistory = $order->histories()->create([
-                'orderId' => $order->id,
-                'status' => Order::NEW,
-                'createdBy' => 'admin_' . auth()->guard('admin')->user()->id,
-            ]);
+            // $orderHistory = $order->histories()->create([
+            //     'orderId' => $order->id,
+            //     'status' => Order::NEW,
+            //     'createdBy' => 'admin_' . auth()->guard('admin')->user()->id,
+            // ]);
 
             foreach ($products as $item) {
                 $receipt->products()->attach($item['productId'], [
@@ -253,17 +254,17 @@ class ReceiptService
                     'total'     => $product['total'],
                 ]);
             }
-            $order = $receipt->order()->create([
-                'code'          => $receipt->code,
-                'status'        => Order::NEW,
-                'createdBy'     => 'user_' . $user->id,
-                'updatedBy'     => 'user_' . $user->id,
-            ]);
-            $order->histories()->create([
-                'orderId' => $order->id,
-                'status' => Order::NEW,
-                'createdBy' => 'user_' . $user->id,
-            ]);
+            // $order = $receipt->order()->create([
+            //     'code'          => $receipt->code,
+            //     'status'        => Order::NEW,
+            //     'createdBy'     => 'user_' . $user->id,
+            //     'updatedBy'     => 'user_' . $user->id,
+            // ]);
+            // $order->histories()->create([
+            //     'orderId' => $order->id,
+            //     'status' => Order::NEW,
+            //     'createdBy' => 'user_' . $user->id,
+            // ]);
             DB::commit();
             return Response::responseArray(true, 'Đặt hàng thành công. Đơn hàng đang được xác nhận.');
         } catch (\Throwable $th) {
