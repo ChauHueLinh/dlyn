@@ -18,11 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PermissionSeeder::class,
             PermissionRoleSeeder::class,
-            ProvinceSeeder::class,
-            DistrictSeeder::class,
-            WardSeeder::class,
             RemoveImageSeeder::class,
-            // UserSeeder::class,
+            CadastralSeeder::class,
         ]);
     }
 }

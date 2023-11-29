@@ -75,7 +75,6 @@ export default function Bill(props) {
 			total = total + item.quantity * item.price
 		})
 
-		axios
 		setTotalProduct(collection.data?.length)
 		setTotalBill(total)
 		setData({
@@ -85,7 +84,7 @@ export default function Bill(props) {
 			phone: props.user.phone,
 			email: props.user.email,
 			address: props.user.address,
-			payment: 'BANK',
+			payment: 'COD',
 		})
 	}, [collection.data])
 
@@ -94,6 +93,10 @@ export default function Bill(props) {
 			getTransportService()
 		}
 	}, [data.address])
+
+	// useEffect(() => {
+	// 	handleChangeTransportService()
+	// }, [data.serviceId])
 
 	const getTransportService = async () => {
 		const APIkey = 'AIzaSyDihznxqVhw1jVmiV5_gTcqiDzNFph6Jtk'

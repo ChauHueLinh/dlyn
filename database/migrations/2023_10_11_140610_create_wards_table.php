@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('wards', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->text('nameExtension');
             $table->string('type');
             $table->string('districtId');
             $table->timestamps();

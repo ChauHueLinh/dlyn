@@ -47,6 +47,11 @@ function ReceiptIndex() {
       className: 'flex items-center space-x-1 justify-center'
     },
     {
+      name: 'Đơn hàng',
+      key: false,
+      className: 'flex items-center space-x-1 justify-center'
+    },
+    {
       name: 'Ghi chú',
       key: false,
       className: 'flex items-center space-x-1 justify-center'
@@ -206,6 +211,13 @@ function ReceiptIndex() {
                 :
                 <div className="text-red">Chưa thanh toán</div>
               }
+            </td>
+            <td className="p-3 flex items-center justify-center">
+              {item?.order ? (
+                <div className="p-1 m-1 h-100 text-center cursor-pointer w-fit border border-success rounded-lg">Xem đơn hàng</div>
+              ) : (
+                <div className="p-1 m-1 text-center cursor-pointer w-fit border border-warning rounded-lg">Tạo đơn hàng </div>
+              )}
             </td>
             <td className="p-3 text-break">
               {item.note}

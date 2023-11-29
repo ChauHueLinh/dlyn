@@ -11,7 +11,13 @@ class District extends Model
 
     protected $fillable = [
         'name',
+        'nameExtension',
         'type',
         'provinceId',
     ];
+
+    public function wards()
+    {
+        return $this->hasMany(Ward::class, 'districtId', 'id');
+    }
 }

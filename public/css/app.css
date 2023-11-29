@@ -2943,7 +2943,7 @@ textarea.form-control-lg {
 	margin-left: 0
 }
 .dropdown-menu {
-	position: absolute;
+	/* position: absolute; */
 	z-index: 1000;
 	display: none;
 	min-width: 10rem;
@@ -29211,7 +29211,7 @@ a:hover {
 
 	line-height: 70px;
 
-	background: #243b55;
+	background: #f6f6f6;
 
 	position: fixed;
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Message;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\Auth\LoginController;
@@ -39,6 +40,10 @@ use App\Http\Controllers\Guest\ProductController as UserProductController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('test', function(){
+	broadcast(new Message(auth()->user(), 'message chat'))->toOthers();
+});
+
 // User
  
 Route::get('login', [UserLoginController::class, 'showLoginForm'])->name('login.get');
